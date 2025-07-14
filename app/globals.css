@@ -9,7 +9,9 @@
 body {
   font-family: var(--font-apple-garamond);
 }
-
+.narrow {
+  font-family: var(--font-arial-narrow);
+}
 /* @custom-variant light (&:is(.light *)); */
 
 @theme inline {
