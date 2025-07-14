@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <header className="flex items-center px-6 bg-white relative">
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetTrigger className="flex items-center gap-2 text-2xl">
+        <SheetTrigger className="flex items-center gap-2 text-2xl z-20">
           <span>Menu</span>
           <div className="relative">
             <PlusIcon
@@ -72,12 +72,12 @@ const Navbar = () => {
       </Sheet>
 
       {/* Centered title */}
-      <div className="absolute inset-0 flex items-center justify-center -z-20">
+      <div className="absolute inset-0 flex items-center justify-center z-10">
         <h1 className="text-2xl">BigSpontino</h1>
       </div>
 
       {/* Right side content */}
-      <div className="flex items-center ml-auto">
+      <div className="flex items-center ml-auto z-20">
         <div className="flex items-center gap-2 pe-3">
           <Link href={'www.google.com'} className="text-primary">
             <InstagramIcon />
