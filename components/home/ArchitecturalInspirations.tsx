@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const ArchitecturalInspirations = () => {
   return (
-    <section className="px-6 pt-3 pb-40">
+    <section className="px-6 pt-3 pb-28">
       <div className="grid grid-cols-2 gap-1 ">
         <div className="grid gap-1">
           <div className="p-16 border-2 aspect-11/5">

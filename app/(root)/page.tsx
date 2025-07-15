@@ -2,6 +2,7 @@ import ArchitecturalInspirations from '@/components/home/ArchitecturalInspiratio
 import HeroSection from '@/components/home/hero/HeroSection';
 import ItalianFlavors from '@/components/home/ItalianFlavors';
 import Location from '@/components/home/Location';
+import Newsletter from '@/components/home/Newsletter';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Location />
       <ItalianFlavors />
       <ArchitecturalInspirations />
+      <Newsletter />
     </main>
   );
 }
