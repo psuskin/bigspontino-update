@@ -33,11 +33,6 @@ const Location = () => {
     },
   ] as const;
 
-  const handleExplore = (locationName: string) => {
-    // In a real app, you'd use React Router or similar
-    console.log(`Redirecting to ${locationName} details page`);
-    // Example: navigate(`/location/${locationName.toLowerCase()}`);
-  };
   return (
     <section className="py-40">
       <div className="">
@@ -90,6 +85,11 @@ const Location = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="">
+        <h2 className="text-sm font-narrow w-2/5 mx-auto  text-center font-bold mt-10">
+          Experience the Heart of Italy at BigSpontino*
+        </h2>
       </div>
     </section>
   );

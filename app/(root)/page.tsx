@@ -1,4 +1,6 @@
+import ArchitecturalInspirations from '@/components/home/ArchitecturalInspirations';
 import HeroSection from '@/components/home/hero/HeroSection';
+import ItalianFlavors from '@/components/home/ItalianFlavors';
 import Location from '@/components/home/Location';
 
 export default function Home() {
@@ -6,6 +8,8 @@ export default function Home() {
     <main className="">
       <HeroSection />
       <Location />
+      <ItalianFlavors />
+      <ArchitecturalInspirations />
     </main>
   );
 }
