@@ -17,7 +17,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="flex items-center px-6 bg-white relative">
+    <header className="flex items-center px-6 bg-white sticky top-0 z-50 w-full">
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger className="flex items-center gap-2 text-2xl z-20">
           <span>Menu</span>
