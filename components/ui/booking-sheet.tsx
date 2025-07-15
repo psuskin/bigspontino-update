@@ -1,7 +1,4 @@
 'use client';
-
-import type React from 'react';
-
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -18,18 +15,23 @@ import {
 import { SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
-import { CalendarIcon, CheckCircle2 } from 'lucide-react';
+import { CalendarIcon, CheckCircle2, Mail, Phone, Users, X } from 'lucide-react';
 import Link from 'next/link';
+import type React from 'react';
 import { useState } from 'react';
 
-type BookingStep = 'info' | 'selection' | 'form' | 'success';
+type BookingStep = 'selection' | 'form' | 'success';
 
-export default function BookingSheet() {
-  const [step, setStep] = useState<BookingStep>('info');
+interface BookingSheetProps {
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
+  const [step, setStep] = useState<BookingStep>('selection');
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState<string | undefined>(undefined);
   const [selectedGuests, setSelectedGuests] = useState<string>('2');
-
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('en');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -84,454 +86,540 @@ export default function BookingSheet() {
   ];
 
   return (
-    <div className="flex flex-col h-full font-narrow">
-      <SheetHeader className="p-6 border-b">
-        {step === 'info' && (
-          <>
-            <SheetTitle className="text-2xl font-bold">
-              WICHTIGE INFO FÜR EURE RESERVIERUNG BEI COCCODRILLO
-            </SheetTitle>
-            <SheetDescription className="text-sm text-muted-foreground">
-              Tue, {format(selectedDate || new Date(), 'dd MMM')} • {selectedTime || 'Select Time'}{' '}
-              • {selectedGuests} Guests
-            </SheetDescription>
-          </>
-        )}
-        {step === 'selection' && (
-          <>
-            <SheetTitle className="text-2xl font-bold">Book Your Table</SheetTitle>
-            <SheetDescription className="text-sm text-muted-foreground">
-              Tue, {format(selectedDate || new Date(), 'dd MMM')} • {selectedTime || 'Select Time'}{' '}
-              • {selectedGuests} Guests
-            </SheetDescription>
-          </>
-        )}
-        {step === 'form' && (
-          <>
-            <SheetTitle className="text-2xl font-bold">Your Information</SheetTitle>
-            <SheetDescription className="text-sm text-muted-foreground">
-              Please select an option below to continue checkout:
-            </SheetDescription>
-          </>
-        )}
-        {step === 'success' && (
-          <>
-            <SheetTitle className="text-2xl font-bold">Booking Confirmed!</SheetTitle>
-            <SheetDescription className="text-sm text-muted-foreground">
-              Your table has been successfully booked.
-            </SheetDescription>
-          </>
-        )}
-      </SheetHeader>
-
-      <div className="flex-1 overflow-y-auto p-6">
-        {step === 'info' && (
-          <div className="space-y-4 text-sm">
-            <p className="font-semibold">About</p>
-            <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-              <li>
-                Wir bitten Sie freundlich darum, sich an die Personenzahl Ihrer Reservierung zu
-                halten. Warnen Sie uns daher, teilen Sie uns das bitte im Voraus mit, indem Sie Ihre
-                Reservierung über die Bestätigungsmail der Buchung anpassen oder indem Sie uns per
-                E-Mail kontaktieren: coccodrillo@bigsquadra.com.
-              </li>
-              <li>
-                Sie können Ihren Tisch 2 Stunden lang genießen, was Ihnen genug Zeit gibt, um mit
-                uns im Coccodrillo zu genießen.
-              </li>
-              <li>Bitte stellen Sie sicher, dass Sie rechtzeitig ankommen.</li>
-              <li>
-                Wir halten Ihre Plätze für 15 Minuten warm. Danach werden sie an andere Gäste
-                vergeben.
-              </li>
-              <li>
-                Für spezielle Anfragen hinterlassen Sie bitte eine Nachricht in den
-                Reservierungsanmerkungen.
-              </li>
-              <li>
-                Bitte beachten Sie, dass wir keine Tische an bestimmten Plätzen garantieren können,
-                aber wir werden unser Bestes tun, um Ihren Wünschen gerecht zu werden.
-              </li>
-            </ul>
-            <p className="font-semibold">Con amore,</p>
-            <p className="font-semibold">La Squadra di Coccodrillo</p>
-
-            <p className="font-semibold pt-4">Important information regarding your reservation !</p>
-            <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-              <li>
-                We kindly ask to respect the number of people on your reservation. If the number of
-                guests changes, please let us know in advance by adapting your reservation through
-                your booking confirmation email or contact us via email: coccodrillo@bigsquadra.com.
-              </li>
-              <li>
-                You will be able to enjoy your table for 2 hours, which will allow you enough time
-                to enjoy with us at Coccodrillo.
-              </li>
-              <li>
-                We will keep your seats warm for 15 minutes. After that, they will be designed to
-                someone else.
-              </li>
-              <li>
-                If you have any special request, please write it in the reservation&apos;s notes.
-              </li>
-              <li>
-                Please note we do not guarantee tables in specific locations but we will try our
-                best to accomodate your requests.
-              </li>
-            </ul>
-            <p className="font-semibold">Con amore,</p>
-            <p className="font-semibold">La Squadra di Coccodrillo</p>
-          </div>
-        )}
-
-        {step === 'selection' && (
-          <div className="space-y-6">
-            <div className="grid grid-cols-3 gap-4">
-              <div>
-                <Label htmlFor="guests">Guests</Label>
-                <Select value={selectedGuests} onValueChange={setSelectedGuests}>
-                  <SelectTrigger id="guests">
-                    <SelectValue placeholder="Guests" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Array.from({ length: 10 }, (_, i) => (
-                      <SelectItem key={i + 1} value={String(i + 1)}>
-                        {i + 1}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label htmlFor="time">Time</Label>
-                <Select value={selectedTime} onValueChange={setSelectedTime}>
-                  <SelectTrigger id="time">
-                    <SelectValue placeholder="All Times" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {timeSlots.map((time) => (
-                      <SelectItem key={time} value={time}>
-                        {time}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label htmlFor="date">Date</Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={'outline'}
-                      className={cn(
-                        'w-full justify-start text-left font-normal',
-                        !selectedDate && 'text-muted-foreground',
-                      )}
+    <div className="flex flex-col h-full font-narrow bg-white rounded-none">
+      {/* Custom Red Header */}
+      <div className="flex items-center justify-between p-6 bg-red-600 text-white rounded-none">
+        <div className="flex items-center gap-2">
+          <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+            <SelectTrigger className="w-20 h-8 bg-red-700 text-white border-none [&>span]:text-white rounded-none">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="bg-white text-black rounded-none">
+              <SelectItem value="en">EN</SelectItem>
+              <SelectItem value="de">DE</SelectItem>
+            </SelectContent>
+          </Select>
+          <span className="text-xl font-bold font-primary">BigSpontino</span>
+        </div>
+        <button
+          onClick={() => setIsOpen(false)}
+          className="p-1 cursor-pointer rounded-none bg-red-700"
+        >
+          <X className="h-5 w-5 text-white" />
+        </button>
+      </div>
+      {/* Main content area including SheetHeader, step content, and SheetFooter */}
+      <div className="flex flex-col flex-1 overflow-y-auto">
+        <SheetHeader className="p-6 border-b rounded-none">
+          {step === 'selection' && (
+            <>
+              <SheetTitle className="text-2xl font-bold font-primary">Book Your Table</SheetTitle>
+              <SheetDescription className="text-sm text-muted-foreground -mt-2">
+                Tue, {format(selectedDate || new Date(), 'dd MMM')} •{' '}
+                {selectedTime || 'Select Time'} • {selectedGuests} Guests
+              </SheetDescription>
+            </>
+          )}
+          {step === 'form' && (
+            <>
+              <SheetTitle className="text-2xl uppercase font-primary">Your Information</SheetTitle>
+              <SheetDescription className="text-sm text-muted-foreground -mt-2">
+                Please select an option below to continue checkout:
+              </SheetDescription>
+            </>
+          )}
+          {step === 'success' && (
+            <>
+              <SheetTitle className="text-2xl font-bold">Booking Confirmed!</SheetTitle>
+              <SheetDescription className="text-sm text-muted-foreground">
+                Your table has been successfully booked.
+              </SheetDescription>
+            </>
+          )}
+        </SheetHeader>
+        <div className="flex-1 p-6">
+          {step === 'selection' && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-3 gap-2">
+                <div>
+                  <Label className="pb-2" htmlFor="guests">
+                    Guests
+                  </Label>
+                  <Select value={selectedGuests} onValueChange={setSelectedGuests}>
+                    <SelectTrigger
+                      id="guests"
+                      className="bg-white text-black border-gray-300 rounded-none !py-6 w-full"
                     >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {selectedDate ? format(selectedDate, 'dd MMM') : <span>Pick a date</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={selectedDate}
-                      onSelect={setSelectedDate}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
-            </div>
-
-            <p className="text-sm text-muted-foreground">
-              We are thrilled to have you join us! Secure your spot for up to 8 people 30 days ahead
-              of a date; for larger groups (from 9 up to 30), 30 days ahead of a date, with a set
-              menu. For reservations beyond 30 people and special occasions, reach out to us at
-              coccodrillo@bigsquadra.com.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              *Please note: we don&apos;t accept normal reservations via email. For more
-              information, please visit
-              <Link
-                href="https://www.bigsquadra.com/"
-                className="text-blue-600 hover:underline ml-1"
-              >
-                https://www.bigsquadra.com/
-              </Link>
-            </p>
-
-            <div className="grid grid-cols-2 gap-4">
-              {timeSlots.map((slot) => (
-                <Button
-                  key={slot}
-                  variant={selectedTime === slot ? 'default' : 'outline'}
-                  className={cn(
-                    'h-14 text-lg font-semibold',
-                    selectedTime === slot
-                      ? 'bg-red-600 hover:bg-red-700 text-white'
-                      : 'border-red-600 text-red-600 hover:bg-red-50',
-                  )}
-                  onClick={() => setSelectedTime(slot)}
-                >
-                  {slot}
-                </Button>
-              ))}
-              <Button
-                variant="outline"
-                className="h-14 text-lg font-semibold border-red-600 text-red-600 hover:bg-red-50 bg-transparent"
-              >
-                Alert Me
-              </Button>
-            </div>
-          </div>
-        )}
-
-        {step === 'form' && (
-          <form onSubmit={handleBookingSubmit} className="space-y-6">
-            <div className="space-y-4">
-              <Button
-                variant="outline"
-                className="w-full h-12 text-lg flex items-center gap-2 bg-transparent"
-              >
-                <svg role="img" viewBox="0 0 24 24" className="h-5 w-5">
-                  <path
-                    fill="currentColor"
-                    d="M12.24 10.285V14.4h6.806c-.617 4.135-5.08 7.173-11.153 7.173C4.226 21.573 0 17.925 0 12.18c0-3.7 1.74-6.85 4.304-9.188L7.352 5.64c-1.24 1.36-1.902 3.13-1.902 5.14 0 3.57 2.57 6.47 6.206 6.47 3.48 0 5.113-2.448 5.113-4.98V10.285h-5.82z"
-                  />
-                </svg>
-                Sign in with Google
-              </Button>
-              <Button className="w-full h-12 text-lg bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2">
-                <svg role="img" viewBox="0 0 24 24" className="h-5 w-5">
-                  <path
-                    fill="currentColor"
-                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                  />
-                </svg>
-                Login with Facebook
-              </Button>
-            </div>
-            <div className="text-center text-muted-foreground">Or continue as a guest</div>
-
-            <div className="grid gap-4">
-              <div>
-                <Label htmlFor="firstName">First Name*</Label>
-                <Input
-                  id="firstName"
-                  value={formData.firstName}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="lastName">Last Name*</Label>
-                <Input
-                  id="lastName"
-                  value={formData.lastName}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="email">Email Address*</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="phone">Phone Number*</Label>
-                <div className="flex gap-2">
-                  <Select
-                    defaultValue="+49"
-                    onValueChange={(value) => handleSelectChange('phonePrefix', value)}
-                  >
-                    <SelectTrigger className="w-24">
-                      <SelectValue placeholder="+49" />
+                      <SelectValue placeholder="Guests" />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="+49">🇩🇪 +49</SelectItem>
-                      <SelectItem value="+1">🇺🇸 +1</SelectItem>
-                      <SelectItem value="+44">🇬🇧 +44</SelectItem>
+                    <SelectContent className="bg-white text-black rounded-none">
+                      {Array.from({ length: 10 }, (_, i) => (
+                        <SelectItem key={i + 1} value={String(i + 1)}>
+                          {i + 1}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
+                </div>
+                <div>
+                  <Label className="pb-2" htmlFor="time">
+                    Time
+                  </Label>
+                  <Select value={selectedTime} onValueChange={setSelectedTime}>
+                    <SelectTrigger
+                      id="time"
+                      className="bg-white text-black border-gray-300 rounded-none !py-6 w-full"
+                    >
+                      <SelectValue placeholder="All Times" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white text-black rounded-none">
+                      {timeSlots.map((time) => (
+                        <SelectItem key={time} value={time}>
+                          {time}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label className="pb-2" htmlFor="date">
+                    Date
+                  </Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={'outline'}
+                        className={cn(
+                          'justify-start text-left !py-6 w-full font-normal bg-white text-black border-gray-300 rounded-none',
+                          !selectedDate && 'text-muted-foreground',
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {selectedDate ? format(selectedDate, 'dd MMM') : <span>Pick a date</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0 bg-white rounded-none">
+                      <Calendar
+                        mode="single"
+                        selected={selectedDate}
+                        onSelect={setSelectedDate}
+                        initialFocus
+                        className="rounded-none"
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                We are thrilled to have you join us! Secure your spot for up to 8 people 30 days
+                ahead of a date; for larger groups (from 9 up to 30), 30 days ahead of a date, with
+                a set menu. For reservations beyond 30 people and special occasions, reach out to us
+                at info@bigspontino.com.
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                {timeSlots.map((slot) => (
+                  <Button
+                    key={slot}
+                    variant={selectedTime === slot ? 'default' : 'outline'}
+                    className={cn(
+                      'h-14 text-lg font-semibold rounded-none',
+                      selectedTime === slot
+                        ? 'bg-red-600 hover:bg-red-700 text-white'
+                        : 'border-red-600 text-red-600 hover:bg-red-50 bg-transparent',
+                    )}
+                    onClick={() => setSelectedTime(slot)}
+                  >
+                    {slot}
+                  </Button>
+                ))}
+                <Button
+                  variant="outline"
+                  className="h-14 text-lg font-semibold border-red-600 text-red-600 hover:bg-red-50 bg-transparent rounded-none"
+                >
+                  Alert Me
+                </Button>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold font-primary">BigSpontino</h3>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116833.83187909756!2d90.3372882492217!3d23.78097572802354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1752588289916!5m2!1sen!2sbd"
+                  width="100%"
+                  height="250"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+                <p className="text-sm text-muted-foreground">
+                  Veteranenstraße 9, Berlin, Germany, 10119
+                </p>
+              </div>
+            </div>
+          )}
+          {step === 'form' && (
+            <form onSubmit={handleBookingSubmit} className="space-y-6">
+              <div className="space-y-4">
+                <Button
+                  variant="outline"
+                  className="w-full h-12 text-lg flex items-center gap-2 bg-white text-black border-gray-300 hover:bg-gray-50 rounded-none"
+                >
+                  <svg role="img" viewBox="0 0 24 24" className="h-5 w-5">
+                    <path
+                      fill="currentColor"
+                      d="M12.24 10.285V14.4h6.806c-.617 4.135-5.08 7.173-11.153 7.173C4.226 21.573 0 17.925 0 12.18c0-3.7 1.74-6.85 4.304-9.188L7.352 5.64c-1.24 1.36-1.902 3.13-1.902 5.14 0 3.57 2.57 6.47 6.206 6.47 3.48 0 5.113-2.448 5.113-4.98V10.285h-5.82z"
+                    />
+                  </svg>
+                  Sign in with Google
+                </Button>
+                <Button className="w-full h-12 text-lg bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2 rounded-none">
+                  <svg role="img" viewBox="0 0 24 24" className="h-5 w-5">
+                    <path
+                      fill="currentColor"
+                      d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                    />
+                  </svg>
+                  Login with Facebook
+                </Button>
+              </div>
+              <div className="text-center text-muted-foreground">Or continue as a guest</div>
+              <div className="grid gap-4">
+                <div>
+                  <Label className="pb-2" htmlFor="firstName">
+                    First Name*
+                  </Label>
                   <Input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
+                    id="firstName"
+                    value={formData.firstName}
                     onChange={handleInputChange}
                     required
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="birthdayDay">Birthday</Label>
-                  <Input
-                    id="birthdayDay"
-                    placeholder="dd"
-                    value={formData.birthdayDay}
-                    onChange={handleInputChange}
+                    placeholder="John"
+                    className="bg-white text-black border-gray-300 rounded-none py-6"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="birthdayMonth">&nbsp;</Label> {/* Placeholder for alignment */}
+                  <Label className="pb-2" htmlFor="lastName">
+                    Last Name*
+                  </Label>
                   <Input
-                    id="birthdayMonth"
-                    placeholder="mm"
-                    value={formData.birthdayMonth}
+                    id="lastName"
+                    value={formData.lastName}
                     onChange={handleInputChange}
+                    required
+                    placeholder="Doe"
+                    className="bg-white text-black border-gray-300 rounded-none py-6"
                   />
                 </div>
+                <div>
+                  <Label className="pb-2" htmlFor="email">
+                    Email Address*
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="john.doe@example.com"
+                    className="bg-white text-black border-gray-300 rounded-none py-6"
+                  />
+                </div>
+                <div>
+                  <Label className="pb-2" htmlFor="phone">
+                    Phone Number*
+                  </Label>
+                  <div className="flex gap-2">
+                    <Select
+                      defaultValue="+49"
+                      onValueChange={(value) => handleSelectChange('phonePrefix', value)}
+                    >
+                      <SelectTrigger className="w-24 bg-white text-black border-gray-300 rounded-none py-6">
+                        <SelectValue placeholder="+49" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white text-black rounded-none">
+                        <SelectItem value="+49">🇩🇪 +49</SelectItem>
+                        <SelectItem value="+1">🇺🇸 +1</SelectItem>
+                        <SelectItem value="+44">🇬🇧 +44</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="1234567890"
+                      className="bg-white text-black border-gray-300 rounded-none py-6"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="pb-2" htmlFor="birthdayDay">
+                      Birthday
+                    </Label>
+                    <Input
+                      id="birthdayDay"
+                      placeholder="dd"
+                      value={formData.birthdayDay}
+                      onChange={handleInputChange}
+                      className="bg-white text-black border-gray-300 rounded-none py-6"
+                    />
+                  </div>
+                  <div>
+                    <Label className="pb-2" htmlFor="birthdayMonth">
+                      &nbsp;
+                    </Label>{' '}
+                    {/* Placeholder for alignment */}
+                    <Input
+                      id="birthdayMonth"
+                      placeholder="mm"
+                      value={formData.birthdayMonth}
+                      onChange={handleInputChange}
+                      className="bg-white text-black border-gray-300 rounded-none py-6"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Label className="pb-2" htmlFor="postalCode">
+                    Postal Code
+                  </Label>
+                  <Input
+                    id="postalCode"
+                    value={formData.postalCode}
+                    onChange={handleInputChange}
+                    placeholder="10119"
+                    className="bg-white text-black border-gray-300 rounded-none py-6"
+                  />
+                </div>
+                <div>
+                  <Label className="pb-2" htmlFor="language">
+                    Preferred communication language
+                  </Label>
+                  <Select
+                    value={formData.language}
+                    onValueChange={(value) => handleSelectChange('language', value)}
+                  >
+                    <SelectTrigger
+                      id="language"
+                      className="bg-white text-black border-gray-300 rounded-none py-6"
+                    >
+                      <SelectValue placeholder="English" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white text-black rounded-none">
+                      <SelectItem value="English">English</SelectItem>
+                      <SelectItem value="German">German</SelectItem>
+                      <SelectItem value="Italian">Italian</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-              <div>
-                <Label htmlFor="postalCode">Postal Code</Label>
-                <Input id="postalCode" value={formData.postalCode} onChange={handleInputChange} />
+              <div className="space-y-4">
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="receiveNews"
+                    checked={formData.receiveNews}
+                    onCheckedChange={(checked) =>
+                      setFormData((prev) => ({ ...prev, receiveNews: !!checked }))
+                    }
+                    className="border-gray-300 data-[state=checked]:bg-black data-[state=checked]:text-white rounded-none"
+                  />
+                  <Label className="pb-2" htmlFor="receiveNews">
+                    Receive news and offers for this venue
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="agreeTerms"
+                    checked={formData.agreeTerms}
+                    onCheckedChange={(checked) =>
+                      setFormData((prev) => ({ ...prev, agreeTerms: !!checked }))
+                    }
+                    required
+                    className="border-gray-300 data-[state=checked]:bg-black data-[state=checked]:text-white rounded-none"
+                  />
+                  <Label className="pb-2" htmlFor="agreeTerms">
+                    I agree to receive automated text messages, such as reservation reminders, at
+                    the phone number provided.
+                  </Label>
+                </div>
               </div>
-              <div>
-                <Label htmlFor="language">Preferred communication language</Label>
-                <Select
-                  value={formData.language}
-                  onValueChange={(value) => handleSelectChange('language', value)}
+              <p className="text-xs text-muted-foreground">
+                By clicking &quot;submit&quot; you agree to SevenRooms&apos;{' '}
+                <Link href="#" className="underline">
+                  Terms of Service
+                </Link>{' '}
+                and{' '}
+                <Link href="#" className="underline">
+                  GDPR Policy
+                </Link>{' '}
+                and Privacy Policy{' '}
+                <Link href="#" className="underline">
+                  Privacy Policy
+                </Link>
+                .
+              </p>
+              <p className="text-xs text-muted-foreground">
+                For SMS, reply STOP to unsubscribe. Reply HELP for help. Message frequency varies.
+                Message &amp; data rates may apply.
+              </p>
+              <Button
+                type="submit"
+                className="w-full h-12 text-lg bg-red-600 hover:bg-red-700 text-white rounded-none"
+              >
+                Submit
+              </Button>
+            </form>
+          )}
+          {step === 'success' && (
+            <div className="flex flex-col items-center space-y-8 py-8">
+              {/* Success Icon */}
+              <div className="relative">
+                <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center">
+                  <CheckCircle2 className="h-12 w-12 text-green-500" />
+                </div>
+                <div className="absolute -inset-2 bg-green-100 rounded-full -z-10 animate-pulse"></div>
+              </div>
+
+              {/* Success Message */}
+              <div className="text-center space-y-2">
+                <h3 className="text-2xl font-bold text-gray-900">Reservation Confirmed</h3>
+                <p className="text-gray-600 text-lg">
+                  Table for {selectedGuests} •{' '}
+                  {selectedDate ? format(selectedDate, 'MMM dd') : 'N/A'} • {selectedTime || 'N/A'}
+                </p>
+              </div>
+
+              {/* Booking Details Card */}
+              <div className="w-full max-w-md bg-gray-50 rounded-none p-6 space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                    <CalendarIcon className="h-5 w-5 text-black" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Date & Time</p>
+                    <p className="text-sm text-gray-600">
+                      {selectedDate ? format(selectedDate, 'EEEE, MMMM do, yyyy') : 'N/A'} at{' '}
+                      {selectedTime || 'N/A'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                    <Users className="h-5 w-5 text-black" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Party Size</p>
+                    <p className="text-sm text-gray-600">{selectedGuests} guests</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                    <Mail className="h-5 w-5 text-black" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Confirmation sent to</p>
+                    <p className="text-sm text-gray-600">{formData.email}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                    <Phone className="h-5 w-5 text-black" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Contact</p>
+                    <p className="text-sm text-gray-600">
+                      {formData.firstName} {formData.lastName}
+                    </p>
+                    <p className="text-sm text-gray-600">{formData.phone}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Next Steps */}
+              <div className="w-full max-w-md space-y-4">
+                <h4 className="text-lg font-semibold text-gray-900 ps-6">What&apos;s Next?</h4>
+                <div className="space-y-3 ps-6">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-black">1</span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Check your email</p>
+                      <p className="text-sm text-gray-600">
+                        Confirmation details sent to your inbox
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-black">2</span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Arrive on time</p>
+                      <p className="text-sm text-gray-600">Please arrive 5-10 minutes early</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-black">3</span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Enjoy your meal</p>
+                      <p className="text-sm text-gray-600">We can&apos;t wait to welcome you!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="w-full max-w-md space-y-3">
+                <Button
+                  onClick={() => {
+                    setStep('selection');
+                    setSelectedTime(undefined);
+                    setFormData({
+                      firstName: '',
+                      lastName: '',
+                      email: '',
+                      phone: '',
+                      birthdayDay: '',
+                      birthdayMonth: '',
+                      postalCode: '',
+                      language: 'English',
+                      receiveNews: false,
+                      agreeTerms: false,
+                    });
+                  }}
+                  className="w-full h-12 bg-red-600 hover:bg-red-700 text-white rounded-none font-medium"
                 >
-                  <SelectTrigger id="language">
-                    <SelectValue placeholder="English" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="English">English</SelectItem>
-                    <SelectItem value="German">German</SelectItem>
-                    <SelectItem value="Italian">Italian</SelectItem>
-                  </SelectContent>
-                </Select>
+                  Book Another Table
+                </Button>
+                <Button
+                  onClick={() => setIsOpen(false)}
+                  variant="outline"
+                  className="w-full h-12 border-gray-300 text-gray-700 hover:bg-gray-50 rounded-none font-medium"
+                >
+                  Close
+                </Button>
               </div>
             </div>
-
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <Checkbox id="robot" />
-                <Label htmlFor="robot">I&apos;m not a robot</Label>
-                {/* Placeholder for reCAPTCHA */}
-                <img
-                  src="/placeholder.svg?height=30&width=100"
-                  alt="reCAPTCHA"
-                  className="ml-auto"
-                />
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="receiveNews"
-                  checked={formData.receiveNews}
-                  onCheckedChange={(checked) =>
-                    setFormData((prev) => ({ ...prev, receiveNews: !!checked }))
-                  }
-                />
-                <Label htmlFor="receiveNews">Receive news and offers for this venue</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="agreeTerms"
-                  checked={formData.agreeTerms}
-                  onCheckedChange={(checked) =>
-                    setFormData((prev) => ({ ...prev, agreeTerms: !!checked }))
-                  }
-                  required
-                />
-                <Label htmlFor="agreeTerms">
-                  I agree to receive automated text messages, such as reservation reminders, at the
-                  phone number provided.
-                </Label>
-              </div>
-            </div>
-
-            <p className="text-xs text-muted-foreground">
-              By clicking &quot;submit&quot; you agree to SevenRooms&apos;{' '}
-              <Link href="#" className="underline">
-                Terms of Service
-              </Link>{' '}
-              and{' '}
-              <Link href="#" className="underline">
-                GDPR Policy
-              </Link>{' '}
-              and Privacy Policy{' '}
-              <Link href="#" className="underline">
-                Privacy Policy
-              </Link>
-              .
-            </p>
-            <p className="text-xs text-muted-foreground">
-              For SMS, reply STOP to unsubscribe. Reply HELP for help. Message frequency varies.
-              Message &amp; data rates may apply.
-            </p>
-
+          )}
+        </div>
+        <SheetFooter className="p-6 border-t border-gray-200 rounded-none">
+          {step === 'selection' && (
             <Button
-              type="submit"
-              className="w-full h-12 text-lg bg-red-600 hover:bg-red-700 text-white"
+              className="w-full h-12 text-lg bg-red-600 hover:bg-red-700 text-white rounded-none"
+              onClick={() => selectedTime && setStep('form')}
+              disabled={!selectedTime}
             >
-              Submit
+              Continue to Details
             </Button>
-          </form>
-        )}
-
-        {step === 'success' && (
-          <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
-            <CheckCircle2 className="h-20 w-20 text-green-500" />
-            <h3 className="text-3xl font-bold">Booking Successful!</h3>
-            <p className="text-lg text-muted-foreground">
-              Your table for {selectedGuests} guests on {format(selectedDate || new Date(), 'PPP')}{' '}
-              at {selectedTime} has been confirmed.
-            </p>
-            <p className="text-muted-foreground">
-              A confirmation email has been sent to {formData.email}.
-            </p>
-            <Button
-              onClick={() => {
-                setStep('info');
-                setSelectedTime(undefined);
-                setFormData({
-                  firstName: '',
-                  lastName: '',
-                  email: '',
-                  phone: '',
-                  birthdayDay: '',
-                  birthdayMonth: '',
-                  postalCode: '',
-                  language: 'English',
-                  receiveNews: false,
-                  agreeTerms: false,
-                });
-              }}
-              className="mt-4"
-            >
-              Book Another Table
-            </Button>
-          </div>
-        )}
+          )}
+        </SheetFooter>
       </div>
-
-      <SheetFooter className="p-6 border-t">
-        {step === 'info' && (
-          <Button
-            className="w-full h-12 text-lg bg-red-600 hover:bg-red-700 text-white"
-            onClick={() => setStep('selection')}
-          >
-            Select
-          </Button>
-        )}
-        {step === 'selection' && (
-          <Button
-            className="w-full h-12 text-lg bg-red-600 hover:bg-red-700 text-white"
-            onClick={() => selectedTime && setStep('form')}
-            disabled={!selectedTime}
-          >
-            Continue to Details
-          </Button>
-        )}
-        {/* Form and Success steps have their own submit/action buttons */}
-      </SheetFooter>
     </div>
   );
 }
