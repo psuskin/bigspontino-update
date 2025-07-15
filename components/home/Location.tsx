@@ -77,9 +77,14 @@ const Location = () => {
                 </h2>
                 <Link
                   href={location?.location}
-                  className="border-2 font-narrow rounded-full border-white px-8 py-3 text-sm font-medium tracking-widest uppercase transition-all duration-300 hover:bg-white hover:text-black transform hover:scale-105"
+                  className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full border-2 border-white font-narrow px-8 py-3"
                 >
-                  Explore
+                  <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-sm font-medium tracking-widest uppercase text-white transition group-hover:-translate-y-[150%]">
+                    Explore
+                  </div>
+                  <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-white text-sm font-medium tracking-widest uppercase text-black transition duration-300 group-hover:translate-y-0">
+                    Explore
+                  </div>
                 </Link>
               </div>
             </div>

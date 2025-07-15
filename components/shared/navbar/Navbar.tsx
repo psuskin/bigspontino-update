@@ -2,6 +2,7 @@
 import FacebookIcon from '@/components/icons/FacebookIcon';
 import InstagramIcon from '@/components/icons/InstagramIcon';
 import PlusIcon from '@/components/icons/PlusIcon';
+import BookingSheet from '@/components/ui/booking-sheet';
 import {
   Sheet,
   SheetContent,
@@ -11,11 +12,18 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const pathname = usePathname();
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/our-story', label: 'Our Story' },
+    { href: '/jobs', label: 'Jobs' },
+    { href: '/faq', label: 'FAQ' },
+  ];
   return (
     <header className="flex items-center px-6 bg-white sticky top-0 z-50 w-full">
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -30,10 +38,10 @@ const Navbar = () => {
           </div>
         </SheetTrigger>
         <SheetContent
-          className="my-9 mx-6 rounded-none border border-amber-300 bg-transparent"
-          style={{ height: 'calc(100vh - 4rem)' }}
+          className="my-10 mx-6 rounded-none border border-amber-300 bg-transparent pointer-events-none w-xl"
+          style={{ height: 'calc(100vh - 4.5rem)' }}
         >
-          <div className="w-xl h-full bg-amber-300">
+          <div className="w-xl h-full bg-amber-300 pointer-events-auto">
             <SheetHeader>
               <SheetTitle></SheetTitle>
               <SheetDescription></SheetDescription>
@@ -41,41 +49,29 @@ const Navbar = () => {
                 style={{ height: 'calc(100vh - 4rem)' }}
                 className="w-full flex gap-1.5 flex-col h-full items-center justify-center"
               >
-                <Link
-                  href="/"
-                  className="block text-6xl font-medium text-center hover:italic hover:underline hover:underline-offset-1 hover:decoration-5"
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/"
-                  className="block text-6xl font-medium text-center hover:italic hover:underline hover:underline-offset-1 hover:decoration-5"
-                >
-                  Our Story
-                </Link>
-                <Link
-                  href="/"
-                  className="block text-6xl font-medium text-center hover:italic hover:underline hover:underline-offset-1 hover:decoration-5"
-                >
-                  Jobs
-                </Link>
-                <Link
-                  href="/"
-                  className="block text-6xl font-medium text-center hover:italic hover:underline hover:underline-offset-1 hover:decoration-5"
-                >
-                  FAQ
-                </Link>
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`block text-6xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
+                      pathname === link.href ? 'italic after:scale-x-100' : ''
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
               </div>
             </SheetHeader>
           </div>
         </SheetContent>
       </Sheet>
-
       {/* Centered title */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
-        <h1 className="text-2xl">BigSpontino</h1>
+        <Link href={'/'} className="">
+          <h1 className="text-2xl">BigSpontino</h1>
+        </Link>
       </div>
-
       {/* Right side content */}
       <div className="flex items-center ml-auto z-20">
         <div className="flex items-center gap-2 pe-3">
@@ -88,12 +84,29 @@ const Navbar = () => {
         </div>
         <div className="w-4 h-[1px] bg-gray-600"></div>
         <div className="text-2xl flex items-center gap-1 px-3">
-          <button className="">De</button>,<button className="">En</button>
+          <button className="hover:text-amber-500">De</button>,
+          <button className="hover:text-amber-500">En</button>
         </div>
-        <button className="px-6 py-0.5 bg-amber-300 text-2xl">Book A Table</button>
+        {/* Booking Sheet Integration */}
+        <Sheet>
+          <SheetTrigger asChild>
+            <button className="group relative inline-flex h-10 items-center cursor-pointer justify-center overflow-hidden rounded-none  font-medium">
+              <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-amber-300 text-2xl px-6 text-black transition group-hover:-translate-y-[150%]">
+                Book A Table
+              </div>
+              <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center  text-2xl bg-black px-6 text-neutral-50 transition duration-300 group-hover:translate-y-0">
+                Book A Table
+              </div>
+            </button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-full sm:max-w-md">
+            {' '}
+            {/* Adjusted width for booking sheet */}
+            <BookingSheet />
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );
 };
-
 export default Navbar;
