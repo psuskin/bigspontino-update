@@ -31,7 +31,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState<string | undefined>(undefined);
   const [selectedGuests, setSelectedGuests] = useState<string>('2');
-  const [selectedLanguage, setSelectedLanguage] = useState<string>('en');
+  // const [selectedLanguage, setSelectedLanguage] = useState<string>('en');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -87,23 +87,23 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
 
   return (
     <div className="flex flex-col h-full font-narrow bg-white rounded-none">
-      {/* Custom Red Header */}
-      <div className="flex items-center justify-between p-6 bg-red-600 text-white rounded-none">
+      {/* Custom Header */}
+      <div className="flex items-center justify-between p-6 bg-amber-400 text-black rounded-none">
         <div className="flex items-center gap-2">
-          <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
-            <SelectTrigger className="w-20 h-8 bg-red-700 text-white border-none [&>span]:text-white rounded-none">
+          {/* <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+            <SelectTrigger className="w-20 h-8 bg-gray-900 text-black border-none [&>span]:text-white rounded-none">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-white text-black rounded-none">
               <SelectItem value="en">EN</SelectItem>
               <SelectItem value="de">DE</SelectItem>
             </SelectContent>
-          </Select>
-          <span className="text-xl font-bold font-primary">BigSpontino</span>
+          </Select> */}
+          <span className="text-2xl font-bold font-primary">BigSpontino</span>
         </div>
         <button
           onClick={() => setIsOpen(false)}
-          className="p-1 cursor-pointer rounded-none bg-red-700"
+          className="p-1 cursor-pointer rounded-none bg-gray-900"
         >
           <X className="h-5 w-5 text-white" />
         </button>
@@ -113,7 +113,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
         <SheetHeader className="p-6 border-b rounded-none">
           {step === 'selection' && (
             <>
-              <SheetTitle className="text-2xl font-bold font-primary">Book Your Table</SheetTitle>
+              <SheetTitle className="text-xl font-bold ">Book Your Table</SheetTitle>
               <SheetDescription className="text-sm text-muted-foreground -mt-2">
                 Tue, {format(selectedDate || new Date(), 'dd MMM')} •{' '}
                 {selectedTime || 'Select Time'} • {selectedGuests} Guests
@@ -222,10 +222,10 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                     key={slot}
                     variant={selectedTime === slot ? 'default' : 'outline'}
                     className={cn(
-                      'h-14 text-lg font-semibold rounded-none',
+                      'h-14 text-lg font-semibold rounded-none hover:bg-amber-100',
                       selectedTime === slot
-                        ? 'bg-red-600 hover:bg-red-700 text-white'
-                        : 'border-red-600 text-red-600 hover:bg-red-50 bg-transparent',
+                        ? 'bg-amber-500 hover:bg-amber-600 text-black'
+                        : 'border-gray-400 text-gray-800 hover:text-amber-600  hover:bg-gray-100 bg-transparent',
                     )}
                     onClick={() => setSelectedTime(slot)}
                   >
@@ -234,7 +234,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                 ))}
                 <Button
                   variant="outline"
-                  className="h-14 text-lg font-semibold border-red-600 text-red-600 hover:bg-red-50 bg-transparent rounded-none"
+                  className="h-14 text-lg font-semibold border-gray-400 text-gray-800 hover:bg-gray-100 bg-transparent rounded-none"
                 >
                   Alert Me
                 </Button>
@@ -271,7 +271,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                   </svg>
                   Sign in with Google
                 </Button>
-                <Button className="w-full h-12 text-lg bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2 rounded-none">
+                <Button className="w-full h-12 text-lg bg-gray-800 hover:bg-gray-900 text-white flex items-center gap-2 rounded-none">
                   <svg role="img" viewBox="0 0 24 24" className="h-5 w-5">
                     <path
                       fill="currentColor"
@@ -464,7 +464,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
               </p>
               <Button
                 type="submit"
-                className="w-full h-12 text-lg bg-red-600 hover:bg-red-700 text-white rounded-none"
+                className="w-full h-12 text-lg bg-amber-500 hover:bg-amber-600 text-black rounded-none"
               >
                 Submit
               </Button>
@@ -474,12 +474,11 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
             <div className="flex flex-col items-center space-y-8 py-8">
               {/* Success Icon */}
               <div className="relative">
-                <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center">
-                  <CheckCircle2 className="h-12 w-12 text-green-500" />
+                <div className="w-24 h-24 bg-amber-50 rounded-full flex items-center justify-center">
+                  <CheckCircle2 className="h-12 w-12 text-amber-600" />
                 </div>
-                <div className="absolute -inset-2 bg-green-100 rounded-full -z-10 animate-pulse"></div>
+                <div className="absolute -inset-2 bg-amber-100 rounded-full -z-10 animate-pulse"></div>
               </div>
-
               {/* Success Message */}
               <div className="text-center space-y-2">
                 <h3 className="text-2xl font-bold text-gray-900">Reservation Confirmed</h3>
@@ -488,7 +487,6 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                   {selectedDate ? format(selectedDate, 'MMM dd') : 'N/A'} • {selectedTime || 'N/A'}
                 </p>
               </div>
-
               {/* Booking Details Card */}
               <div className="w-full max-w-md bg-gray-50 rounded-none p-6 space-y-4">
                 <div className="flex items-center gap-3">
@@ -503,7 +501,6 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                     </p>
                   </div>
                 </div>
-
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
                     <Users className="h-5 w-5 text-black" />
@@ -513,7 +510,6 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                     <p className="text-sm text-gray-600">{selectedGuests} guests</p>
                   </div>
                 </div>
-
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
                     <Mail className="h-5 w-5 text-black" />
@@ -523,7 +519,6 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                     <p className="text-sm text-gray-600">{formData.email}</p>
                   </div>
                 </div>
-
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
                     <Phone className="h-5 w-5 text-black" />
@@ -537,7 +532,6 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                   </div>
                 </div>
               </div>
-
               {/* Next Steps */}
               <div className="w-full max-w-md space-y-4">
                 <h4 className="text-lg font-semibold text-gray-900 ps-6">What&apos;s Next?</h4>
@@ -573,7 +567,6 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                   </div>
                 </div>
               </div>
-
               {/* Action Buttons */}
               <div className="w-full max-w-md space-y-3">
                 <Button
@@ -593,7 +586,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                       agreeTerms: false,
                     });
                   }}
-                  className="w-full h-12 bg-red-600 hover:bg-red-700 text-white rounded-none font-medium"
+                  className="w-full h-12 bg-amber-500 hover:bg-amber-600 text-black rounded-none font-medium"
                 >
                   Book Another Table
                 </Button>
@@ -611,7 +604,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
         <SheetFooter className="p-6 border-t border-gray-200 rounded-none">
           {step === 'selection' && (
             <Button
-              className="w-full h-12 text-lg bg-red-600 hover:bg-red-700 text-white rounded-none"
+              className="w-full h-12 text-lg bg-amber-500 hover:bg-amber-600 text-black rounded-none"
               onClick={() => selectedTime && setStep('form')}
               disabled={!selectedTime}
             >
