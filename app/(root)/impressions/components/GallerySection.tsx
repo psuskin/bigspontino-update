@@ -6,8 +6,8 @@ import { useCallback, useState } from 'react'; // Import useCallback for memoize
 const images = [
   '/assets/00-Paris-Bambini.jpg',
   '/assets/menus/brunch/1.jpg',
-  '/assets/menus/bar/3.jpg',
   '/assets/08-Il-Bambini-Club.jpg',
+  '/assets/menus/bar/3.jpg',
   '/assets/menus/brunch/2.jpg',
   '/assets/menus/bar/1.jpg',
   '/assets/menus/bar/2.jpg',
@@ -93,23 +93,19 @@ const GallerySection: React.FC = () => {
 
   return (
     <section className="py-12 md:py-24 lg:py-32 px-4 md:px-6 relative overflow-hidden">
-      {/* Subtle Background Pattern/Texture */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 opacity-90 pointer-events-none z-0"></div>
-      {/* Ensure you have a subtle-pattern.png in public/assets or remove this div */}
-      <div
-        className="absolute inset-0 bg-repeat opacity-10 z-0"
-        style={{ backgroundImage: "url('/assets/subtle-pattern.png')", backgroundSize: '200px' }}
-      ></div>
-
-      <div className="container mx-auto relative z-10">
+      <div className="relative z-10">
         <motion.h2
-          className="text-3xl md:text-5xl font-extrabold text-center mb-8 md:mb-16 text-gray-900 dark:text-gray-100 tracking-tight leading-tight"
+          className="text-3xl md:text-5xl font-extrabold uppercase text-center  tracking-tight leading-tight"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
         >
           Moments Captured, <br className="sm:hidden" /> Stories Unfold.
         </motion.h2>
+        <p className="text-center font-narrow w-3/5 mx-auto mb-8 md:mb-20 ">
+          immerse yourself in the vibrant atmosphere and culinary delights of Big Spuntino through
+          our visual journey.
+        </p>
 
         <motion.div
           className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4"
@@ -132,8 +128,9 @@ const GallerySection: React.FC = () => {
             return (
               <motion.div
                 key={index}
-                className="mb-4 overflow-hidden rounded-lg shadow-lg break-inside-avoid cursor-pointer relative group"
+                className="mb-4 overflow-hidden rounded-none shadow-lg break-inside-avoid cursor-pointer relative group"
                 variants={itemVariants}
+                whileHover={{ scale: 1.03, zIndex: 1, boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                 onClick={() => openLightbox(index)}
@@ -144,7 +141,7 @@ const GallerySection: React.FC = () => {
                   alt={`Gallery image ${index + 1}`}
                   width={ratio.width}
                   height={ratio.height}
-                  className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:brightness-90"
+                  className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-opacity-10 transition-opacity duration-300 rounded-lg"></div>
               </motion.div>
@@ -182,9 +179,7 @@ const GallerySection: React.FC = () => {
                 alt={`Full view of gallery image ${currentImageIndex + 1}`}
                 width={1600}
                 height={1000}
-                className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border-2 border-white/20"
-                // Adding an intrinsic placeholder for better loading experience
-                // If you have base64 placeholders, use placeholder="blur" blurDataURL="..."
+                className="max-w-full max-h-[93.5vh] object-contain rounded-none shadow-2xl border-2 border-white/20"
                 placeholder="empty"
               />
 
@@ -192,7 +187,7 @@ const GallerySection: React.FC = () => {
               {images.length > 1 && ( // Only show buttons if there's more than one image
                 <>
                   <motion.button
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl p-2 rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl w-10 h-10 flex items-center justify-center rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20 pb-2"
                     onClick={goToPrevImage}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -202,21 +197,21 @@ const GallerySection: React.FC = () => {
                     &#8249; {/* Unicode for left arrow */}
                   </motion.button>
                   <motion.button
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl p-2 rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl w-10 h-10 flex items-center justify-center rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20 pb-2"
                     onClick={goToNextImage}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
                     transition={{ delay: 0.2 }}
                   >
-                    &#8250; {/* Unicode for right arrow */}
+                    &#8250;
                   </motion.button>
                 </>
               )}
 
               {/* Close button */}
               <motion.button
-                className="absolute top-4 right-4 text-white text-4xl font-light p-2 rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20"
+                className="absolute top-4 right-4 text-white text-4xl font-light px-2 py-1 rounded-none bg-red-800/80 hover:bg-red-800 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20"
                 onClick={closeLightbox}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
