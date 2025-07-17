@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const HeroSection = () => {
   return (
-    <section className="relative w-[97.2%] mx-auto h-[93.5vh] overflow-hidden bg-black">
+    <section className="relative w-full lg:w-[97.2%] mx-auto h-[70vh] md:h-[80vh] lg:h-[93.5vh] overflow-hidden bg-black">
       <Image
         width={1920}
         height={1080}
@@ -17,10 +17,10 @@ const HeroSection = () => {
 
       {/* Text overlay */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-full max-w-4xl h-32 px-8">
+        <div className="w-full max-w-xl md:max-w-2xl lg:max-w-4xl h-32 px-4 md:px-8">
           <MotionPressureText
             text="IL MENU"
-            className="text-6xl md:text-8xl font-bold"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold"
             staggerDelay={0.15}
             animationDuration={0.8}
             initialY={60}
@@ -33,7 +33,7 @@ const HeroSection = () => {
             italic={true}
             textColor="#ffffff"
             strokeColor="#ff0000"
-            minFontSize={48}
+            minFontSize={32} // Adjusted for smaller screens
             scale={true}
           />
         </div>

@@ -2,6 +2,7 @@
 // @ts-nocheck
 'use client';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 import { createRef, ReactNode, useRef } from 'react';
 interface ImageMouseTrailProps {
   items: string[];
@@ -83,21 +84,20 @@ export default function ImageMouseTrail({
       )}
     >
       {items.map((item, index) => (
-        <>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            key={index}
-            className={cn(
-              "object-cover  scale-0 opacity:0 data-[status='active']:scale-100  data-[status='active']:opacity-100 transition-transform data-[status='active']:duration-500 duration-300 data-[status='active']:ease-out-expo  absolute   -translate-y-[50%] -translate-x-[50%] ",
-              imgClass,
-            )}
-            data-index={index}
-            data-status="inactive"
-            src={item}
-            alt={`image-${index}`}
-            ref={refs.current[index]}
-          />
-        </>
+        <Image
+          width={300}
+          height={400}
+          key={index}
+          className={cn(
+            "object-cover  scale-0 opacity:0 data-[status='active']:scale-100  data-[status='active']:opacity-100 transition-transform data-[status='active']:duration-500 duration-300 data-[status='active']:ease-out-expo  absolute   -translate-y-[50%] -translate-x-[50%] ",
+            imgClass,
+          )}
+          data-index={index}
+          data-status="inactive"
+          src={item}
+          alt={`image-${index}`}
+          ref={refs.current[index]}
+        />
       ))}
       {children}
     </section>

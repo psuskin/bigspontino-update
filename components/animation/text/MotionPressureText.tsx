@@ -46,7 +46,7 @@ const MotionPressureText: React.FC<MotionPressureTextProps> = ({
   textColor = '#FFFFFF',
   strokeColor = '#FF0000',
   strokeWidth = 2,
-  minFontSize = 24,
+  minFontSize = 24, // Base minimum font size for small screens
   staggerDelay = 0.1,
   animationDuration = 0.6,
   initialY = 40,
@@ -110,7 +110,20 @@ const MotionPressureText: React.FC<MotionPressureTextProps> = ({
 
     const { width: containerW, height: containerH } = containerRef.current.getBoundingClientRect();
 
-    let newFontSize = containerW / (chars.length / 2);
+    // Responsive font size calculation
+    let newFontSize: number;
+    if (window.innerWidth < 640) {
+      // Small devices (e.g., mobile phones)
+      newFontSize = containerW / (chars.length / 1.2); // Adjust divisor for smaller text
+    } else if (window.innerWidth < 1024) {
+      // Medium devices (e.g., tablets)
+      newFontSize = containerW / (chars.length / 1.5); // Slightly larger text
+    } else {
+      // Large devices (desktops, your original design target)
+      newFontSize = containerW / (chars.length / 2); // Original calculation
+    }
+
+    // Ensure newFontSize doesn't go below the specified minFontSize
     newFontSize = Math.max(newFontSize, minFontSize);
 
     setFontSize(newFontSize);
@@ -133,7 +146,7 @@ const MotionPressureText: React.FC<MotionPressureTextProps> = ({
     setSize();
     window.addEventListener('resize', setSize);
     return () => window.removeEventListener('resize', setSize);
-  }, [scale, text]);
+  }, [scale, text, minFontSize]); // Added minFontSize to dependency array
 
   // Handle pressure effects after animation is complete
   useEffect(() => {
@@ -146,7 +159,8 @@ const MotionPressureText: React.FC<MotionPressureTextProps> = ({
 
       if (titleRef.current) {
         const textRect = titleRef.current.getBoundingClientRect();
-        const maxDist = textRect.width / 2;
+        // Adjust maxDist based on current fontSize to keep effects consistent
+        const maxDist = Math.max(textRect.width / 2, (fontSize * chars.length) / 4);
 
         spansRef.current.forEach((span) => {
           if (!span) return;
@@ -179,7 +193,7 @@ const MotionPressureText: React.FC<MotionPressureTextProps> = ({
 
     animate();
     return () => cancelAnimationFrame(rafId);
-  }, [animationComplete, width, weight, italic, alpha, chars.length]);
+  }, [animationComplete, width, weight, italic, alpha, chars.length, fontSize]); // Added fontSize to dependency array
 
   // Animation variants for characters - properly typed
   const charVariants: Variants = {

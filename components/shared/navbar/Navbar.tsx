@@ -41,29 +41,29 @@ const Navbar = () => {
   };
 
   return (
-    <header className="flex items-center px-6 bg-white sticky top-0 z-50 w-full">
+    <header className="flex items-center px-3 sm:px-4 md:px-6 bg-white sticky top-0 z-50 w-full">
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetTrigger className="flex items-center gap-2 text-2xl z-20">
+        <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
           <span>Menu</span>
           <div className="relative">
             <PlusIcon
-              className={`w-6 h-6 transition-transform duration-300 ease-in-out ${
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-300 ease-in-out ${
                 isOpen ? 'rotate-45' : 'rotate-0'
               }`}
             />
           </div>
         </SheetTrigger>
         <SheetContent
-          className="my-10 mx-6 rounded-none border border-amber-300 bg-transparent pointer-events-none w-xl"
-          style={{ height: 'calc(100vh - 4rem)' }}
+          className="my-4 sm:my-6 md:my-10 mx-3 sm:mx-4 md:mx-6 rounded-none border border-amber-300 bg-transparent pointer-events-none w-full sm:w-xl"
+          style={{ height: 'calc(100vh - 2rem)' }}
         >
-          <div className="w-xl h-full bg-amber-300 pointer-events-auto rounded-none">
+          <div className="w-full h-full bg-amber-300 pointer-events-auto rounded-none">
             <SheetHeader>
               <SheetTitle></SheetTitle>
               <SheetDescription></SheetDescription>
               <div
-                style={{ height: 'calc(100vh - 4rem)' }}
-                className="w-full flex gap-0.5 flex-col h-full items-center justify-center ps-16 pe-10"
+                style={{ height: 'calc(100vh - 2rem)' }}
+                className="w-full flex gap-0.5 flex-col h-full items-center justify-center px-4 sm:px-8 md:ps-16 md:pe-10"
               >
                 {/* <div className="flex items-center mb-4 gap-4">
                   <h5 className="text-xl mb-2 font-narrow">Menu</h5>
@@ -81,10 +81,12 @@ const Navbar = () => {
                         pathname === link.href ? 'italic after:scale-x-100' : ''
                       }`}
                     >
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-5xl leading-tight">{mainText}</span>
+                      <div className="flex items-center gap-1 sm:gap-2 md:gap-2.5">
+                        <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
+                          {mainText}
+                        </span>
                         {bracketed && (
-                          <span className="text-xl uppercase leading-tight">
+                          <span className="text-xs sm:text-sm md:text-lg lg:text-xl uppercase leading-tight">
                             {bracketed.split('(')[1].split(')')[0]}
                           </span>
                         )}
@@ -116,33 +118,35 @@ const Navbar = () => {
       {/* Centered title */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <Link href={'/'} className="">
-          <h1 className="text-2xl">BigSpontino</h1>
+          <h1 className="text-lg sm:text-xl md:text-2xl">BigSpontino</h1>
         </Link>
       </div>
       {/* Right side content */}
       <div className="flex items-center ml-auto z-20">
-        <div className="flex items-center gap-2 pe-3">
+        <div className="flex items-center gap-1 sm:gap-2 pe-2 sm:pe-3">
           <Link href={'https://www.google.com'} className="text-primary">
-            <InstagramIcon />
+            <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6" />
           </Link>
           <Link href={'https://www.google.com'} className="text-primary">
-            <FacebookIcon />
+            <FacebookIcon className="w-5 h-5 sm:w-6 sm:h-6" />
           </Link>
         </div>
-        <div className="w-4 h-[1px] bg-gray-600"></div>
-        <div className="text-2xl flex items-center gap-1 px-3">
+        <div className="w-3 sm:w-4 h-[1px] bg-gray-600"></div>
+        <div className="text-lg sm:text-xl md:text-2xl flex items-center gap-1 px-2 sm:px-3">
           <button className="hover:text-amber-500">De</button>,
           <button className="hover:text-amber-500">En</button>
         </div>
         {/* Booking Sheet Integration */}
         <Sheet open={isBookingSheetOpen} onOpenChange={setIsBookingSheetOpen}>
           <SheetTrigger asChild>
-            <button className="group relative inline-flex h-10 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium">
-              <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-amber-300 text-2xl px-6 text-black transition group-hover:-translate-y-[150%] rounded-none">
-                Book A Table
+            <button className="group relative inline-flex h-8 sm:h-9 md:h-10 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium">
+              <div className="inline-flex h-8 sm:h-9 md:h-10 translate-y-0 items-center justify-center bg-amber-300 text-sm sm:text-lg md:text-xl lg:text-2xl px-3 sm:px-4 md:px-6 text-black transition group-hover:-translate-y-[150%] rounded-none">
+                <span className="hidden sm:inline">Book A Table</span>
+                <span className="sm:hidden">Book</span>
               </div>
-              <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center text-2xl bg-black px-6 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
-                Book A Table
+              <div className="absolute inline-flex h-8 sm:h-9 md:h-10 w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-black px-3 sm:px-4 md:px-6 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+                <span className="hidden sm:inline">Book A Table</span>
+                <span className="sm:hidden">Book</span>
               </div>
             </button>
           </SheetTrigger>
