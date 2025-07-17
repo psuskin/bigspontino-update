@@ -2,6 +2,7 @@
 
 import type React from 'react';
 
+import Footer from '@/components/shared/footer/Footer';
 import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { useRef } from 'react';
 import HeroSection from './components/HeroSection';
@@ -43,6 +44,7 @@ const Section2: React.FC<SectionProps> = ({ scrollYProgress }) => {
   return (
     <motion.div style={{ scale, rotate }} className="relative h-screen bg-white">
       <MenusSection />
+      <Footer />
     </motion.div>
   );
 };
