@@ -57,9 +57,14 @@ const Newsletter = () => {
         <div className="col-span-2">
           <button
             onClick={handleSubmit}
-            className="px-6 py-3 w-full border border-amber-300 bg-amber-300 text-2xl hover:bg-amber-400 transition-colors"
+            className="group relative inline-flex h-8 sm:h-9 md:h-[3.7rem] items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
           >
-            Subscribe
+            <div className="inline-flex h-8 sm:h-9 md:h-[3.7rem] translate-y-0 items-center justify-center bg-amber-300 text-sm sm:text-lg md:text-xl lg:text-2xl px-3 sm:px-4 md:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none">
+              <span className="hidden sm:inline">Subscribe</span>
+            </div>
+            <div className="absolute inline-flex h-8 sm:h-9 md:h-[3.7rem] w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-black px-3 sm:px-4 md:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+              <span className="hidden sm:inline">Subscribe</span>
+            </div>
           </button>
         </div>
       </div>

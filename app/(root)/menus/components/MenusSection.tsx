@@ -75,7 +75,7 @@ const MenusSection: React.FC = () => {
 
   // Card 1: 1:1 image + text + 9:16 image (3 columns)
   const Card1Layout: React.FC<CardLayoutProps> = ({ category }) => (
-    <div className="w-full bg-amber-50 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-1 overflow-hidden  group">
+    <div className="w-full bg-amber-50 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-1 overflow-hidden group">
       {/* Left 1:1 Image */}
       <div className="aspect-square overflow-hidden relative col-span-1 md:col-span-1 lg:col-span-2">
         <div
@@ -99,7 +99,7 @@ const MenusSection: React.FC = () => {
         </p>
         <button
           onClick={handleMenuClick}
-          className="group cursor-pointer relative inline-flex h-8 md:h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-4 md:px-8 py-2 md:py-3"
+          className="group relative inline-flex cursor-pointer h-8 md:h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-4 md:px-8 py-2 md:py-3"
         >
           <div className="inline-flex h-8 md:h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
             View Menu
@@ -124,7 +124,7 @@ const MenusSection: React.FC = () => {
 
   // Card 2: Two 9/16 images + one 1/1 text (3 columns)
   const Card2Layout: React.FC<CardLayoutProps> = ({ category }) => (
-    <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-1 bg-amber-50 overflow-hidden  group">
+    <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-1 bg-amber-50 overflow-hidden group">
       {/* First 9/16 Image */}
       <div className="aspect-square overflow-hidden relative">
         <div
@@ -158,7 +158,7 @@ const MenusSection: React.FC = () => {
         </p>
         <button
           onClick={handleMenuClick}
-          className="group cursor-pointer relative inline-flex h-8 md:h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-4 md:px-8 py-2 md:py-3"
+          className="group relative inline-flex cursor-pointer h-8 md:h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-4 md:px-8 py-2 md:py-3"
         >
           <div className="inline-flex h-8 md:h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
             View Menu
@@ -197,7 +197,7 @@ const MenusSection: React.FC = () => {
         </p>
         <button
           onClick={handleMenuClick}
-          className="group cursor-pointer relative inline-flex h-8 md:h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-4 md:px-8 py-2 md:py-3"
+          className="group relative inline-flex cursor-pointer h-8 md:h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-4 md:px-8 py-2 md:py-3"
         >
           <div className="inline-flex h-8 md:h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
             View Menu
@@ -223,7 +223,7 @@ const MenusSection: React.FC = () => {
   const Card4Layout: React.FC<CardLayoutProps> = ({ category }) => (
     <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-1 bg-amber-50 overflow-hidden  group">
       {/* First Image */}
-      <div className="col-span-1 overflow-hidden relative aspect-square">
+      <div className="col-span-1 overflow-hidden relative ">
         <div
           className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
           style={{
@@ -245,7 +245,7 @@ const MenusSection: React.FC = () => {
         </p>
         <button
           onClick={handleMenuClick}
-          className="group cursor-pointer relative inline-flex h-8 md:h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-4 md:px-8 py-2 md:py-3"
+          className="group relative inline-flex cursor-pointer h-8 md:h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-4 md:px-8 py-2 md:py-3"
         >
           <div className="inline-flex h-8 md:h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
             View Menu
@@ -257,25 +257,25 @@ const MenusSection: React.FC = () => {
       </div>
 
       {/* Remaining Images - Some hidden on smaller screens */}
-      <div className="col-span-1 overflow-hidden relative aspect-square hidden md:block">
+      <div className="col-span-1 overflow-hidden relative  hidden md:block">
         <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110 aspect-[9/16]"
           style={{
             backgroundImage: `url(${category.images[1]})`,
           }}
         />
       </div>
-      <div className="col-span-1 overflow-hidden relative aspect-square hidden lg:block">
+      <div className="col-span-1 overflow-hidden relative  hidden lg:block">
         <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110 aspect-[9/16]"
           style={{
             backgroundImage: `url(${category.images[2]})`,
           }}
         />
       </div>
-      <div className="col-span-1 overflow-hidden relative aspect-square hidden lg:block">
+      <div className="col-span-1 overflow-hidden relative  hidden lg:block">
         <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110 aspect-[9/16]"
           style={{
             backgroundImage: `url(${category.images[3]})`,
           }}
@@ -320,7 +320,7 @@ const MenusSection: React.FC = () => {
         </div>
         <button
           onClick={handleMenuClick}
-          className="group  relative inline-flex h-12 md:h-14 lg:h-16 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
+          className="group relative inline-flex cursor-pointer h-12 md:h-14 lg:h-16 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
         >
           <div className="inline-flex h-12 md:h-14 lg:h-16 translate-y-0 items-center justify-center bg-amber-300 text-lg md:text-xl lg:text-2xl px-6 md:px-8 lg:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none">
             View Full Menu (PDF)
