@@ -1,236 +1,291 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
-import type * as React from 'react';
-import { useCallback, useState } from 'react'; // Import useCallback for memoized functions
+interface Category {
+  id: number;
+  name: string;
+  description: string;
+  images: string[];
+  link: string;
+}
 
-const images = [
-  '/assets/00-Paris-Bambini.jpg',
-  '/assets/menus/brunch/1.jpg',
-  '/assets/menus/bar/3.jpg',
-  '/assets/08-Il-Bambini-Club.jpg',
-  '/assets/menus/brunch/2.jpg',
-  '/assets/menus/bar/1.jpg',
-  '/assets/menus/bar/2.jpg',
-  '/assets/menus/brunch/1.jpg',
-  '/assets/02-Il-Bambini-Club.jpg',
-  '/assets/menus/lunch/1.jpg',
-  '/assets/menus/lunch/2.jpg',
-  '/assets/01-Il-Bambini-Club.jpg',
-  '/assets/menus/lunch/1.jpg',
-  '/assets/menus/bar/4.jpg',
-];
+interface CardLayoutProps {
+  category: Category;
+}
 
-const GallerySection: React.FC = () => {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  // Store the index of the current image, not just the src
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const aspectRatios = [
-    { width: 500, height: 500 }, // Square
-    { width: 400, height: 600 }, // Portrait (2:3)
-    { width: 400, height: 550 }, // Slightly taller portrait
-    { width: 600, height: 400 }, // Landscape (3:2)
-    { width: 550, height: 400 }, // Slightly wider landscape
-    { width: 700, height: 450 }, // Wider landscape
-    { width: 450, height: 700 }, // Taller portrait
+const MenusSection: React.FC = () => {
+  const menuCategories: Category[] = [
+    {
+      id: 1,
+      name: 'BRUNCH',
+      description:
+        'Weekend indulgence with Italian flair. Fresh pastries, frittatas, and signature breakfast spuntini.',
+      images: [
+        '/assets/menus/brunch/1.jpg',
+        '/assets/menus/brunch/2.jpg',
+        '/assets/menus/brunch/1.jpg',
+      ],
+      link: '/menu/brunch',
+    },
+    {
+      id: 2,
+      name: 'LUNCH',
+      description:
+        'Midday classics featuring fresh insalata, crispy focaccia, and our famous spuntini selection.',
+      images: [
+        '/assets/menus/lunch/1.jpg',
+        '/assets/menus/lunch/2.jpg',
+        '/assets/menus/lunch/1.jpg',
+      ],
+      link: '/menu/lunch',
+    },
+    {
+      id: 3,
+      name: 'DINNER',
+      description:
+        'Evening elegance with octopus, caprese, and our full range of Italian culinary treasures.',
+      images: [
+        '/assets/menus/dinner/1.jpg',
+        '/assets/menus/dinner/2.jpg',
+        '/assets/menus/dinner/3.jpg',
+      ],
+      link: '/menu/dinner',
+    },
+    {
+      id: 4,
+      name: 'BAR',
+      description:
+        'Signature cocktails, sparkling spritz, and our special Spuntino 75 with Italian wines.',
+      images: [
+        '/assets/menus/bar/1.jpg',
+        '/assets/menus/bar/2.jpg',
+        '/assets/menus/bar/3.jpg',
+        '/assets/menus/bar/4.jpg',
+        '/assets/menus/bar/5.jpg',
+      ],
+      link: '/menu/bar',
+    },
   ];
 
-  const openLightbox = useCallback((index: number) => {
-    setCurrentImageIndex(index);
-    setLightboxOpen(true);
-  }, []);
-
-  const closeLightbox = useCallback(() => {
-    setLightboxOpen(false);
-    // Reset index after closing if desired, or keep it for next open
-    // setCurrentImageIndex(0);
-  }, []);
-
-  const goToNextImage = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation(); // Prevent closing lightbox
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    },
-    [images.length],
-  );
-
-  const goToPrevImage = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation(); // Prevent closing lightbox
-      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-    },
-    [images.length],
-  );
-
-  // Animation variants for individual gallery items
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  };
-
-  // Animation variants for the lightbox overlay
-  const lightboxVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.3 } },
-    exit: { opacity: 0, transition: { duration: 0.2 } },
-  };
-
-  // Animation variants for the image inside the lightbox (with a key prop change)
-  const lightboxImageVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-    },
-    exit: {
-      scale: 0.8,
-      opacity: 0,
-    },
-  };
-
-  return (
-    <section className="py-12 md:py-24 lg:py-32 px-4 md:px-6 relative overflow-hidden">
-      {/* Subtle Background Pattern/Texture */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 opacity-90 pointer-events-none z-0"></div>
-      {/* Ensure you have a subtle-pattern.png in public/assets or remove this div */}
-      <div
-        className="absolute inset-0 bg-repeat opacity-10 z-0"
-        style={{ backgroundImage: "url('/assets/subtle-pattern.png')", backgroundSize: '200px' }}
-      ></div>
-
-      <div className="container mx-auto relative z-10">
-        <motion.h2
-          className="text-3xl md:text-5xl font-extrabold text-center mb-8 md:mb-16 text-gray-900 dark:text-gray-100 tracking-tight leading-tight"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          Moments Captured, <br className="sm:hidden" /> Stories Unfold.
-        </motion.h2>
-
-        <motion.div
-          className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4"
-          initial="hidden"
-          animate="visible"
-          transition={{
-            staggerChildren: 0.07,
+  // Card 1: 1:1 image + text + 9:16 image (3 columns)
+  const Card1Layout: React.FC<CardLayoutProps> = ({ category }) => (
+    <div className="w-full bg-amber-5 grid grid-cols-6 gap-1 overflow-hidden cursor-pointer group">
+      {/* Left 1:1 Image */}
+      <div className="aspect-square overflow-hidden relative col-span-2">
+        <div
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          style={{
+            backgroundImage: `url(${category.images[0]})`,
           }}
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.07,
-              },
-            },
-          }}
-        >
-          {images.map((src, index) => {
-            const randomIndex = Math.floor(Math.random() * aspectRatios.length);
-            const ratio = aspectRatios[randomIndex];
-            return (
-              <motion.div
-                key={index}
-                className="mb-4 overflow-hidden rounded-lg shadow-lg break-inside-avoid cursor-pointer relative group"
-                variants={itemVariants}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-                onClick={() => openLightbox(index)}
-              >
-                {/* Use a simple div around Image if issues persist, but this direct approach often works */}
-                <Image
-                  src={src}
-                  alt={`Gallery image ${index + 1}`}
-                  width={ratio.width}
-                  height={ratio.height}
-                  className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:brightness-90"
-                />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-opacity-10 transition-opacity duration-300 rounded-lg"></div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        />
       </div>
 
-      {/* Lightbox Overlay with Framer Motion */}
-      <AnimatePresence>
-        {lightboxOpen && (
-          <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 bg-opacity-90 p-4 backdrop-blur-sm"
-            variants={lightboxVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            onClick={closeLightbox}
-          >
-            <motion.div
-              key={images[currentImageIndex]} // IMPORTANT: Change key to force re-render/animation
-              className="relative max-w-full max-h-full flex items-center justify-center"
-              variants={lightboxImageVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              transition={{
-                duration: 0.4,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on the image container
-            >
-              <Image
-                src={images[currentImageIndex]} // Use the currentImageIndex to get the src
-                alt={`Full view of gallery image ${currentImageIndex + 1}`}
-                width={1600}
-                height={1000}
-                className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border-2 border-white/20"
-                // Adding an intrinsic placeholder for better loading experience
-                // If you have base64 placeholders, use placeholder="blur" blurDataURL="..."
-                placeholder="empty"
-              />
+      {/* Middle Text Section */}
+      <div className="bg- flex flex-col justify-center items-center text-black p-8 col-span-3">
+        <h3 className="text-lg font-light tracking-widest mb-2 opacity-90">Big Spuntino</h3>
+        <h2 className="text-7xl font-bold mb-4 tracking-wide">{category.name}</h2>
+        <p className="text-center font-narrow text- opacity-80 mb-6 max-w-md">
+          {category.description}
+        </p>
+        <button className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-8 py-3">
+          <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+            View Menu
+          </div>
+          <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+            View Menu
+          </div>
+        </button>
+      </div>
 
-              {/* Navigation Buttons (Left/Right Arrows) */}
-              {images.length > 1 && ( // Only show buttons if there's more than one image
-                <>
-                  <motion.button
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl p-2 rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20"
-                    onClick={goToPrevImage}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    &#8249; {/* Unicode for left arrow */}
-                  </motion.button>
-                  <motion.button
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl p-2 rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20"
-                    onClick={goToNextImage}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    &#8250; {/* Unicode for right arrow */}
-                  </motion.button>
-                </>
-              )}
+      {/* Right 9:16 Image */}
+      <div className="overflow-hidden relative col-span-1">
+        <div
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          style={{
+            backgroundImage: `url(${category.images[1]})`,
+          }}
+        />
+      </div>
+    </div>
+  );
 
-              {/* Close button */}
-              <motion.button
-                className="absolute top-4 right-4 text-white text-4xl font-light p-2 rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20"
-                onClick={closeLightbox}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ delay: 0.2 }}
-              >
-                &times;
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+  // Card 2: Two 9/16 images + one 1/1 text (3 columns)
+  const Card2Layout: React.FC<CardLayoutProps> = ({ category }) => (
+    <div className="w-full grid grid-cols-3 gap-1 bg-amber-5  overflow-hidden cursor-pointer group">
+      {/* First 9/16 Image */}
+      <div className="aspect-square overflow-hidden relative">
+        <div
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          style={{
+            backgroundImage: `url(${category.images[0]})`,
+          }}
+        />
+      </div>
+
+      {/* Second 9/16 Image */}
+      <div className="aspect-square overflow-hidden relative">
+        <div
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          style={{
+            backgroundImage: `url(${category.images[1]})`,
+          }}
+        />
+      </div>
+
+      {/* Text Section (1/1) */}
+      <div className="bg- flex flex-col justify-center items-center text-black p-8 aspect-square">
+        <h3 className="text-lg font-light tracking-widest mb-2 opacity-90">Big Spuntino</h3>
+        <h2 className="text-7xl font-bold mb-4 tracking-wide">{category.name}</h2>
+        <p className="text-center font-narrow text- opacity-80 mb-6 max-w-md">
+          {category.description}
+        </p>
+        <button className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-8 py-3">
+          <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+            View Menu
+          </div>
+          <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+            View Menu
+          </div>
+        </button>
+      </div>
+    </div>
+  );
+
+  // Card 3: Image + Text + Image (3 columns)
+  const Card3Layout: React.FC<CardLayoutProps> = ({ category }) => (
+    <div className="w-full grid grid-cols-3 bg-amber-5 gap-1 overflow-hidden cursor-pointer group">
+      {/* Left Image */}
+      <div className="aspect-square overflow-hidden relative">
+        <div
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          style={{
+            backgroundImage: `url(${category.images[0]})`,
+          }}
+        />
+      </div>
+
+      {/* Middle Text Section */}
+      <div className="bg- flex flex-col justify-center items-center text-black p-8 aspect-square">
+        <h3 className="text-lg font-light tracking-widest mb-2 opacity-90">Big Spuntino</h3>
+        <h2 className="text-7xl font-bold mb-4 tracking-wide">{category.name}</h2>
+        <p className="text-center font-narrow text- opacity-80 mb-6 max-w-md">
+          {category.description}
+        </p>
+        <button className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-8 py-3">
+          <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+            View Menu
+          </div>
+          <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+            View Menu
+          </div>
+        </button>
+      </div>
+
+      {/* Right Image */}
+      <div className="aspect-square overflow-hidden relative">
+        <div
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          style={{
+            backgroundImage: `url(${category.images[1]})`,
+          }}
+        />
+      </div>
+    </div>
+  );
+
+  const Card4Layout: React.FC<CardLayoutProps> = ({ category }) => (
+    <div className="w-full grid grid-cols-6 gap-1 bg-amber-5  overflow-hidden cursor-pointer group">
+      <div className="col-span-1 overflow-hidden relative">
+        <div
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          style={{
+            backgroundImage: `url(${category.images[0]})`,
+          }}
+        />
+      </div>
+      <div className=" flex flex-col justify-center items-center  text-black p-8 col-span-2">
+        <h3 className="text-lg font-light tracking-widest mb-2 opacity-90">Big Spuntino</h3>
+        <h2 className="text-7xl font-bold mb-4 tracking-wide">{category.name}</h2>
+        <p className="text-center font-narrow text- opacity-80 mb-6 max-w-md">
+          {category.description}
+        </p>
+        <button className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-8 py-3">
+          <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+            View Menu
+          </div>
+          <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+            View Menu
+          </div>
+        </button>
+      </div>
+
+      <div className="col-span-1 overflow-hidden relative">
+        <div
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110 aspect-[9/16]"
+          style={{
+            backgroundImage: `url(${category.images[1]})`,
+          }}
+        />
+      </div>
+      <div className="col-span-1 overflow-hidden relative">
+        <div
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          style={{
+            backgroundImage: `url(${category.images[2]})`,
+          }}
+        />
+      </div>
+      <div className="col-span-1 overflow-hidden relative">
+        <div
+          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          style={{
+            backgroundImage: `url(${category.images[3]})`,
+          }}
+        />
+      </div>
+    </div>
+  );
+
+  return (
+    <section className="py-32 px-6">
+      <div className="mb-32">
+        <h2 className="text-7xl uppercase font-bold w-3/5 mx-auto text-center leading-16">
+          A Tavola
+        </h2>
+        <p className="text-center font-narrow pt-6 w-3/5 mx-auto text-lg leading-relaxed">
+          The menu at Big Spuntino is a warm tribute to Italy&apos;s culinary heritage. From
+          insalata, caprese and octopus to the crispiest foccacia, our menu offers an exquisite
+          selection of classic spuntini (*ital. &quot;snacks&quot;). Of course, this also applies to
+          the dolci: from the traditional crème the mascarpone to the fluffy light maritozzi, the
+          Big Spuntino sweetens everyday life with the churros all italiana – Neapolitan doughnut
+          sticks, served warm and perfect for dipping in melted chocolate with special toppings.
+        </p>
+      </div>
+
+      <div className="pt-16  mx-auto space-y-6">
+        <Card1Layout category={menuCategories[0]} />
+        <Card2Layout category={menuCategories[1]} />
+        <Card3Layout category={menuCategories[2]} />
+        <Card4Layout category={menuCategories[3]} />
+      </div>
+
+      <div className="pt-32 text-center">
+        <div className="max-w-2xl mx-auto mb-8">
+          <h3 className="text-6xl uppercase font-bold mb-6">Experience Big Spuntino</h3>
+          <p className="text-lg font-narrow leading-tight">
+            From morning cappuccino to evening aperitivo, every moment at Big Spuntino celebrates
+            the Italian way of life. Our warm atmosphere and authentic flavors create the perfect
+            setting for sharing good food and great company.
+          </p>
+        </div>
+        <button className="group relative inline-flex h-16 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium">
+          <div className="inline-flex h-16 translate-y-0 items-center justify-center bg-amber-300 text-2xl px-10 text-black transition group-hover:-translate-y-[150%] rounded-none">
+            View Full Menu (PDF)
+          </div>
+          <div className="absolute inline-flex h-16 w-full translate-y-[100%] items-center justify-center text-2xl bg-black px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+            View Full Menu (PDF)
+          </div>
+        </button>
+      </div>
     </section>
   );
 };
 
-export default GallerySection;
+export default MenusSection;

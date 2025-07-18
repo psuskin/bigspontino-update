@@ -8,7 +8,7 @@ const Footer = () => {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   return (
-    <footer className="bg-black text-white py-10 px-4 sm:py-16 sm:px-8 md:py-20 md:px-16 lg:py-24 lg:px-24 mx-2 sm:mx-4 md:mx-6 mb-2 sm:mb-4 md:mb-6 lg:mx-6 lg:mb-6 rounded-lg">
+    <footer className="bg-black text-white py-10 px-4 sm:py-16 sm:px-8 md:py-20 md:px-16 lg:py-24 lg:px-24 mx-2 sm:mx-4  md:mx-6 mb-2 sm:mb-4 md:mb-6 lg:mx-6 !lg:mb-6 rounded-none">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8">
         {/* BigSpontino Brand and Description */}
         <div className="col-span-full md:col-span-2 lg:col-span-2">
