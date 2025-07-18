@@ -3,6 +3,7 @@
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { AnimatedText } from '../animation/text/AnimatedText';
 
 const ItalianFlavors = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -112,12 +113,12 @@ const ItalianFlavors = () => {
         initial="hidden"
         animate={textInView ? 'visible' : 'hidden'}
       >
-        <motion.h2
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold w-full sm:w-4/5 md:w-3/4 lg:w-3/5 mx-auto text-center leading-tight sm:leading-snug md:leading-normal lg:leading-16"
-          variants={fadeInUp}
-        >
-          Italian Finest Flavors
-        </motion.h2>
+        <h2 className="">
+          <AnimatedText
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold w-full sm:w-4/5 md:w-3/4 lg:w-3/5 mx-auto text-center leading-tight sm:leading-snug md:leading-normal lg:leading-16"
+            text={['Italian Finest Flavors']}
+          ></AnimatedText>
+        </h2>
         <motion.p
           className="text-center font-narrow pt-4 sm:pt-5 md:pt-6 w-full sm:w-4/5 md:w-3/4 lg:w-3/5 mx-auto text-sm sm:text-base md:text-lg"
           variants={fadeInUp}

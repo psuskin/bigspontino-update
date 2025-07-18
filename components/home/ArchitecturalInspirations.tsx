@@ -1,45 +1,168 @@
+'use client';
+
+import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
+import { useRef } from 'react';
 
 const ArchitecturalInspirations = () => {
+  const textRef = useRef<HTMLDivElement>(null);
+
+  const secondImageRef = useRef<HTMLDivElement>(null);
+  const thirdImageRef = useRef<HTMLDivElement>(null);
+
+  // Intersection observers for animations
+  const textInView = useInView(textRef, { once: true, margin: '-100px' });
+
+  const secondImageInView = useInView(secondImageRef, { once: true, margin: '-50px' });
+  const thirdImageInView = useInView(thirdImageRef, { once: true, margin: '-50px' });
+
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    },
+  };
+
+  const imageRevealVariants = {
+    hidden: {
+      clipPath: 'inset(100% 0% 0% 0%)',
+      y: 100,
+    },
+    visible: {
+      clipPath: 'inset(0% 0% 0% 0%)',
+      y: 0,
+      transition: {
+        clipPath: {
+          duration: 1.2,
+          ease: [0.76, 0, 0.24, 1] as const,
+        },
+        y: {
+          duration: 1.2,
+          ease: [0.76, 0, 0.24, 1] as const,
+        },
+      },
+    },
+  };
+
+  const staggerContainer = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   return (
-    <section className="px-6 pt-3 pb-28">
-      <div className="grid grid-cols-2 gap-1 ">
+    <section className="px-4 sm:px-6 pt-3 pb-16 md:pb-28">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-1">
+        {/* First Column */}
         <div className="grid gap-1">
-          <div className="p-16 border-2 aspect-11/5">
-            <h2 className="text-6xl uppercase font-bold mx-auto  leading-16">
+          <motion.div
+            ref={textRef}
+            className="p-6 md:p-10 lg:p-16 border-2 aspect-auto lg:aspect-[11/5]"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={textInView ? 'visible' : 'hidden'}
+          >
+            <motion.h2
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase font-bold leading-tight lg:leading-16"
+              variants={fadeInUp}
+            >
               Italian Architectural Inspirations
-            </h2>
-            <p className=" font-narrow pt-4  mx-auto">
+            </motion.h2>
+            <motion.p className="font-narrow pt-4 text-sm sm:text-base" variants={fadeInUp}>
               Whether in the heart of the City of Light or at the summit of the mountains, guests
-              are greeted by a vivid setting from the moment they step through the door – it’s
+              are greeted by a vivid setting from the moment they step through the door – it&apos;s
               contrasting, playful, and sophisticated, evoking the dolce vita. Architects have drawn
               inspiration from the beautiful, the wildest, and the most joyful aspects of Italy,
               blending noble materials with natural ones.
-            </p>
+            </motion.p>
+          </motion.div>
+          <div className="aspect-[3/2] relative overflow-hidden">
+            <motion.div
+              ref={thirdImageRef}
+              variants={imageRevealVariants}
+              initial="hidden"
+              animate={thirdImageInView ? 'visible' : 'hidden'}
+              className="w-full h-full"
+            >
+              <Image
+                src="/assets/architectural-inspirations/11-Bambini-Paris.jpg"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover"
+                alt="Antipasti"
+                onError={(e) => {
+                  console.error('Image failed to load:', e.currentTarget.src);
+                }}
+                onLoad={() => {
+                  console.log(
+                    'Image loaded successfully:',
+                    '/assets/architectural-inspirations/11-Bambini-Paris.jpg',
+                  );
+                }}
+              />
+            </motion.div>
           </div>
-          <Image
-            src="/assets/architectural-inspirations/11-Bambini-Paris.jpg"
-            width={400}
-            className="w-full aspect-3/2 object-cover "
-            height={300}
-            alt="Pizza"
-          />
         </div>
-        <div className="grid gap-1">
-          <Image
-            src="/assets/architectural-inspirations/Cocktail_Mr_Lemon.jpg"
-            width={400}
-            className="w-full aspect-11/5 object-cover"
-            height={300}
-            alt="Pizza"
-          />
-          <Image
-            src="/assets/architectural-inspirations/Antipasti_credit_Joann.jpg"
-            width={400}
-            className="w-full aspect-3/2 object-cover"
-            height={300}
-            alt="Pizza"
-          />
+        {/* Second Column */}
+        <div className="grid gap-1 mt-4 lg:mt-0">
+          <div className="aspect-[11/5] relative overflow-hidden">
+            <motion.div
+              ref={secondImageRef}
+              variants={imageRevealVariants}
+              initial="hidden"
+              animate={secondImageInView ? 'visible' : 'hidden'}
+              className="w-full h-full"
+            >
+              <Image
+                src="/assets/architectural-inspirations/Cocktail_Mr_Lemon.jpg"
+                width={800}
+                height={400}
+                className="w-full h-full object-cover"
+                alt="Cocktail Mr Lemon"
+                onError={(e) => {
+                  console.error('Image failed to load:', e.currentTarget.src);
+                }}
+                onLoad={() => {
+                  console.log(
+                    'Image loaded successfully:',
+                    '/assets/architectural-inspirations/Cocktail_Mr_Lemon.jpg',
+                  );
+                }}
+              />
+            </motion.div>
+          </div>
+          <div className="aspect-[3/2] relative overflow-hidden">
+            <motion.div
+              ref={thirdImageRef}
+              variants={imageRevealVariants}
+              initial="hidden"
+              animate={thirdImageInView ? 'visible' : 'hidden'}
+              className="w-full h-full"
+            >
+              <Image
+                src="/assets/architectural-inspirations/Antipasti_credit_Joann.jpg"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover"
+                alt="Antipasti"
+                onError={(e) => {
+                  console.error('Image failed to load:', e.currentTarget.src);
+                }}
+                onLoad={() => {
+                  console.log(
+                    'Image loaded successfully:',
+                    '/assets/architectural-inspirations/Antipasti_credit_Joann.jpg',
+                  );
+                }}
+              />
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
