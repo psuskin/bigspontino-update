@@ -33,7 +33,7 @@ export default function BookingPopup() {
     email: '',
     phone: '',
   });
-  const [status, setStatus] = useState<'form' | 'success'>('form'); // 'form' or 'success' [^1][^2]
+  const [status, setStatus] = useState<'form' | 'success'>('form');
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,35 +45,36 @@ export default function BookingPopup() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Simulate API call
-    // In a real application, you would send formData to your backend here.
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500)); // Simulate network request
+      await new Promise((resolve) => setTimeout(resolve, 1500));
       console.log('Booking submitted:', {
         selectedDate: selectedDate?.toISOString(),
         selectedTime,
         selectedGuests,
         formData,
       });
-      setStatus('success'); // Set status to success after submission
+      setStatus('success');
     } catch (error) {
       console.error('Booking failed:', error);
-      // Handle error state here, e.g., setStatus('error') and display an error message
     }
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 w-[23rem] font-narrow bg-white shadow-2xl border border-black/5 z-50 font-sans">
+    <div className="fixed lg:bottom-6 lg:right-6 bottom-0 right-0 w-full lg:w-[23rem] font-narrow bg-white shadow-2xl border border-black/5 z-50 font-sans max-h-[100vh] overflow-y-auto">
       {/* Header */}
       <div className="bg-black text-white p-4">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-bold font-main">BigSpontino</h3>
-            <p className="text-sm opacity-90 ">Quick Reservations</p>
+            <p className="text-sm opacity-90">Quick Reservations</p>
           </div>
-          <button onClick={() => setIsOpen(false)} className="p-1 hover:bg-neutral-800">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="p-1 hover:bg-neutral-800"
+            aria-label="Close booking popup"
+          >
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -83,7 +84,7 @@ export default function BookingPopup() {
       <div className="p-4 space-y-4">
         {status === 'success' ? (
           // Success Message Content
-          <div className="text-center py-8">
+          <div className="text-center py-4 lg:py-8">
             <h3 className="text-xl font-bold mb-4">Reservation Confirmed!</h3>
             <p className="text-sm text-neutral-700 mb-2">
               Thank you, {formData.firstName} {formData.lastName}!
@@ -104,7 +105,7 @@ export default function BookingPopup() {
             </div>
             <Button
               onClick={() => setIsOpen(false)}
-              className="mt-6 h-8 bg-black hover:bg-neutral-800 text-white text-sm rounded-none w-full"
+              className="mt-6 h-10 lg:h-8 bg-black hover:bg-neutral-800 text-white text-sm rounded-none w-full"
             >
               Close
             </Button>
@@ -117,7 +118,7 @@ export default function BookingPopup() {
               <div className="col-span-4">
                 <Label className="text-xs text-neutral-700">Guests</Label>
                 <Select value={selectedGuests} onValueChange={setSelectedGuests}>
-                  <SelectTrigger className="h-8 w-full text-sm rounded-none">
+                  <SelectTrigger className="h-10 lg:h-8 w-full text-sm rounded-none">
                     <Users className="h-3 w-3 mr-1" />
                     <SelectValue />
                   </SelectTrigger>
@@ -136,7 +137,7 @@ export default function BookingPopup() {
                   <PopoverTrigger asChild>
                     <Button
                       variant="outline"
-                      className="h-9 w-full text-sm justify-start px-2 rounded-none border-black/5 text-black hover:bg-neutral-100 bg-transparent"
+                      className="h-10 lg:h-9 w-full text-sm justify-start px-2 rounded-none border-black/5 text-black hover:bg-neutral-100 bg-transparent"
                     >
                       <CalendarIcon className="h-3 w-3 mr-1" />
                       {format(selectedDate || new Date(), 'MMM. dd')}
@@ -155,7 +156,7 @@ export default function BookingPopup() {
               <div className="col-span-3">
                 <Label className="text-xs text-neutral-700">Time</Label>
                 <Select value={selectedTime} onValueChange={setSelectedTime}>
-                  <SelectTrigger className="h-8 w-full text-sm rounded-none">
+                  <SelectTrigger className="h-10 lg:h-8 w-full text-sm rounded-none">
                     <Clock className="h-3 w-3 mr-1" />
                     <SelectValue />
                   </SelectTrigger>
@@ -186,7 +187,7 @@ export default function BookingPopup() {
               </div>
             </div>
             {/* Quick Form */}
-            <div className="space-y-2">
+            <div className="space-y-3 lg:space-y-2">
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <Input
@@ -195,7 +196,7 @@ export default function BookingPopup() {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     required
-                    className="h-8 text-sm rounded-none border-black/5"
+                    className="h-10 lg:h-8 text-sm rounded-none border-black/5"
                   />
                 </div>
                 <div>
@@ -205,7 +206,7 @@ export default function BookingPopup() {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     required
-                    className="h-8 text-sm rounded-none border-black/5"
+                    className="h-10 lg:h-8 text-sm rounded-none border-black/5"
                   />
                 </div>
               </div>
@@ -216,7 +217,7 @@ export default function BookingPopup() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="h-8 text-sm rounded-none border-black/5"
+                className="h-10 lg:h-8 text-sm rounded-none border-black/5"
               />
               <Input
                 name="phone"
@@ -225,29 +226,21 @@ export default function BookingPopup() {
                 value={formData.phone}
                 onChange={handleInputChange}
                 required
-                className="h-8 text-sm rounded-none border-black/5"
+                className="h-10 lg:h-8 text-sm rounded-none border-black/5"
               />
               <div className="flex gap-2">
                 <Button
                   type="submit"
-                  className="flex-1 h-8 cursor-pointer bg-black hover:bg-neutral-800 text-white text-sm rounded-none"
+                  className="flex-1 h-10 lg:h-8 cursor-pointer bg-black hover:bg-neutral-800 text-white text-sm rounded-none"
                 >
                   Reserve
                 </Button>
-                {/* <Button
-                  variant="outline"
-                  className="px-3 h-8 text-sm rounded-none border-black/5 text-black hover:bg-neutral-100 bg-transparent"
-                  onClick={() => {
-                    // Handle "Buy voucher" action
-                    console.log('Buy voucher clicked');
-                  }}
-                >
-                  Voucher
-                </Button> */}
               </div>
             </div>
             {/* Footer text */}
-            <p className="text-xs text-neutral-600 text-center">Received a gift voucher?</p>
+            <p className="text-xs text-neutral-600 text-center mt-3 lg:mt-0">
+              Received a gift voucher?
+            </p>
           </form>
         )}
       </div>
