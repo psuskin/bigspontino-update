@@ -1,6 +1,6 @@
 // import ArchitecturalInspirations from '@/components/home/ArchitecturalInspirations';
 import HeroSection from '@/components/home/hero/HeroSection';
-// import ItalianFlavors from '@/components/home/ItalianFlavors';
+import ItalianFlavors from '@/components/home/ItalianFlavors';
 import Location from '@/components/home/Location';
 // import Newsletter from '@/components/home/Newsletter';
 // import Footer from '@/components/shared/footer/Footer';
@@ -11,8 +11,9 @@ export default function Home() {
     <main className="">
       <HeroSection />
       <Location />
-      {/*
       <ItalianFlavors />
+      {/*
+
       <ArchitecturalInspirations />
       <Newsletter />
       <BookingPopup />
