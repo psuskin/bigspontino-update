@@ -27,7 +27,7 @@ const slides: Slide[] = [
   },
   {
     id: 4,
-    image: '/assets/08-Il-Bambini-Club.jpg',
+    image: '/assets/bambini_club8.jpg',
     title: "Chef's Table Experience",
     description: 'Experience culinary artistry up close with our master chefs',
   },

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, type Variants } from 'framer-motion';
 import { ArrowRight, Upload } from 'lucide-react';
 import Image from 'next/image';
 import { type ChangeEvent, useRef, useState } from 'react';
@@ -34,7 +34,18 @@ const JobsSection = () => {
     agreeTerms: false,
   });
 
+  // Refs for intersection observers
   const sectionRef = useRef(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+
+  // Intersection observers for animations
+  const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
+  const imageInView = useInView(imageRef, { once: true, margin: '-100px' });
+  const formInView = useInView(formRef, { once: true, margin: '-100px' });
+
+  // Parallax effect for image
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -70,22 +81,108 @@ const JobsSection = () => {
   };
 
   // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
+  const fadeInUp: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 60,
+    },
     visible: {
       opacity: 1,
+      y: 0,
       transition: {
-        staggerChildren: 0.1,
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
       },
     },
   };
 
-  const fadeInUpVariants = {
-    hidden: { opacity: 0, y: 20 },
+  const fadeInLeft: Variants = {
+    hidden: {
+      opacity: 0,
+      x: -60,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const fadeInRight: Variants = {
+    hidden: {
+      opacity: 0,
+      x: 60,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const staggerContainer: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const imageRevealVariants: Variants = {
+    hidden: {
+      clipPath: 'inset(100% 0% 0% 0%)',
+      y: 100,
+    },
+    visible: {
+      clipPath: 'inset(0% 0% 0% 0%)',
+      y: 0,
+      transition: {
+        clipPath: {
+          duration: 1.2,
+          ease: [0.76, 0, 0.24, 1] as const,
+        },
+        y: {
+          duration: 1.2,
+          ease: [0.76, 0, 0.24, 1] as const,
+        },
+      },
+    },
+  };
+
+  const formFieldVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 },
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const buttonVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
     },
   };
 
@@ -95,8 +192,14 @@ const JobsSection = () => {
       className="py-12 sm:py-16 md:py-20 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-8"
     >
       <div className="">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-24 items-center">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUpVariants}>
+        <motion.div
+          ref={headerRef}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-24 items-center"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={headerInView ? 'visible' : 'hidden'}
+        >
+          <motion.div variants={fadeInLeft}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-narrow leading-tight">
               <span className="font-primary italic text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
                 Empowering
@@ -106,12 +209,7 @@ const JobsSection = () => {
               Future together
             </h2>
           </motion.div>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUpVariants}
-            className="self-start"
-          >
+          <motion.div className="self-start" variants={fadeInRight}>
             <p className="text-lg sm:text-xl md:text-2xl font-narrow my-6 sm:my-8">
               You want to become part of the Famiglia and work in the happiest day bar in Hamburg?
               Then get in touch with our team – we look forward to receiving your applications!
@@ -125,27 +223,32 @@ const JobsSection = () => {
               </div>
             </button>
           </motion.div>
-        </div>
-
-        <div className="mt-12 sm:mt-16 md:mt-20 lg:mt-32 h-[200px] sm:h-[300px] md:h-[400px] lg:h-[600px] overflow-hidden">
+        </motion.div>
+        <motion.div
+          ref={imageRef}
+          className="mt-12 sm:mt-16 md:mt-20 lg:mt-32 h-[200px] sm:h-[300px] md:h-[400px] lg:h-[600px] overflow-hidden"
+          variants={imageRevealVariants}
+          initial="visible"
+          animate={imageInView ? 'visible' : 'visible'}
+        >
           <motion.div style={{ y }} className="relative h-full">
             <Image
-              src="/assets/08-Il-Bambini-Club.jpg"
+              src="/assets/bambini_club8.jpg"
               layout="fill"
               objectFit="cover"
               alt="A lively restaurant scene"
             />
           </motion.div>
-        </div>
-
+        </motion.div>
         {/* Application Form */}
         <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
+          ref={formRef}
           className="mt-12 sm:mt-16 md:mt-20 w-full bg-gray-50 p-4 sm:p-6 md:p-8 lg:p-12 font-narrow rounded-lg"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={formInView ? 'visible' : 'hidden'}
         >
-          <motion.div variants={fadeInUpVariants} className="mb-8 sm:mb-10 md:mb-12">
+          <motion.div variants={fadeInUp} className="mb-8 sm:mb-10 md:mb-12">
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-narrow mb-3 sm:mb-4">
               Join Our <span className="font-primary italic">Famiglia</span>
             </h3>
@@ -153,12 +256,11 @@ const JobsSection = () => {
               Fill out the application form below and let&apos;s start your journey with us.
             </p>
           </motion.div>
-
           <form onSubmit={handleSubmit}>
-            <motion.div variants={containerVariants} className="space-y-6 sm:space-y-8">
+            <motion.div variants={staggerContainer} className="space-y-6 sm:space-y-8">
               {/* Personal Info Grid */}
               <motion.div
-                variants={fadeInUpVariants}
+                variants={formFieldVariants}
                 className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
               >
                 <div>
@@ -202,10 +304,9 @@ const JobsSection = () => {
                   </div>
                 </div>
               </motion.div>
-
               {/* Contact Grid */}
               <motion.div
-                variants={fadeInUpVariants}
+                variants={formFieldVariants}
                 className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
               >
                 <div>
@@ -255,21 +356,19 @@ const JobsSection = () => {
                       onChange={handleInputChange}
                       required
                       placeholder="your@email.com"
-                      className="w-full bg-white border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-white text-black border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     />
                   </div>
                 </div>
               </motion.div>
-
               {/* Position Details */}
               <motion.div
-                variants={fadeInUpVariants}
+                variants={formFieldVariants}
                 className="border-l-2 sm:border-l-4 border-black pl-4 sm:pl-6"
               >
                 <h3 className="text-base sm:text-lg md:text-xl font-black uppercase mb-3 sm:mb-4">
                   Position Details
                 </h3>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
                   <div>
                     <label
@@ -334,9 +433,8 @@ const JobsSection = () => {
                   </div>
                 </div>
               </motion.div>
-
               {/* CV Upload */}
-              <motion.div variants={fadeInUpVariants}>
+              <motion.div variants={formFieldVariants}>
                 <label
                   className="block text-xs sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-wide"
                   htmlFor="cv"
@@ -360,9 +458,8 @@ const JobsSection = () => {
                   </div>
                 </motion.div>
               </motion.div>
-
               {/* Message */}
-              <motion.div variants={fadeInUpVariants}>
+              <motion.div variants={formFieldVariants}>
                 <label
                   className="block text-xs sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-wide"
                   htmlFor="message"
@@ -381,9 +478,8 @@ const JobsSection = () => {
                   />
                 </div>
               </motion.div>
-
               {/* Terms */}
-              <motion.div variants={fadeInUpVariants} className="flex items-start gap-2 sm:gap-3">
+              <motion.div variants={formFieldVariants} className="flex items-start gap-2 sm:gap-3">
                 <input
                   type="checkbox"
                   id="agreeTerms"
@@ -405,9 +501,8 @@ const JobsSection = () => {
                   </a>
                 </label>
               </motion.div>
-
               {/* Submit */}
-              <motion.div variants={fadeInUpVariants} className="pt-4 sm:pt-6">
+              <motion.div variants={buttonVariants} className="pt-4 sm:pt-6">
                 <motion.button
                   whileHover={{ scale: 1.05, x: 5 }}
                   whileTap={{ scale: 0.95 }}

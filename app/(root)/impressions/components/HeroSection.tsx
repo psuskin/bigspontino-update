@@ -9,7 +9,7 @@ const HeroSection = () => {
     '/assets/00-Paris-Bambini.jpg',
     '/assets/01-Il-Bambini-Club.jpg',
     '/assets/02-Il-Bambini-Club.jpg',
-    '/assets/08-Il-Bambini-Club.jpg',
+    '/assets/bambini_club8.jpg',
     '/assets/menus/brunch/1.jpg',
     '/assets/menus/brunch/2.jpg',
     '/assets/menus/brunch/1.jpg',

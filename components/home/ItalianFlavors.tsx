@@ -143,7 +143,7 @@ const ItalianFlavors = () => {
           className="absolute inset-0 w-full h-[120%] will-change-transform"
         >
           <Image
-            src="/assets/08-Il-Bambini-Club.jpg"
+            src="/assets/bambini_club8.jpg"
             className="w-full h-full object-cover"
             alt="Italian restaurant ambiance"
             fill

@@ -8,7 +8,7 @@ import { useCallback, useRef, useState } from 'react';
 const images = [
   '/assets/00-Paris-Bambini.jpg',
   '/assets/menus/brunch/1.jpg',
-  '/assets/08-Il-Bambini-Club.jpg',
+  '/assets/bambini_club8.jpg',
   '/assets/menus/bar/3.jpg',
   '/assets/menus/brunch/2.jpg',
   '/assets/menus/bar/1.jpg',
