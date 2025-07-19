@@ -1,4 +1,5 @@
 'use client';
+
 import Lenis from 'lenis';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
@@ -23,9 +24,12 @@ export const useSmoothScroller = () => {
 
 export default function ScrollContext({ children }: ScrollContextProps) {
   const [lenisRef, setLenis] = useState<Lenis | null>(null);
-  const [rafState, setRaf] = useState<number | null>(null);
+  const [, setRaf] = useState<number | null>(null);
 
   useEffect(() => {
+    // Check if we're in the browser environment
+    // if (typeof window === 'undefined') return;
+
     const scroller = new Lenis();
     let rf: number;
 
@@ -39,14 +43,14 @@ export default function ScrollContext({ children }: ScrollContextProps) {
     setLenis(scroller);
 
     return () => {
-      if (rafState) {
-        cancelAnimationFrame(rafState);
+      if (rf) {
+        cancelAnimationFrame(rf);
       }
-      if (lenisRef) {
-        lenisRef.destroy();
+      if (scroller) {
+        scroller.destroy();
       }
     };
-  }, []);
+  }, []); // Empty dependency array is correct here
 
   return (
     <SmoothScrollerContext.Provider value={{ lenis: lenisRef }}>

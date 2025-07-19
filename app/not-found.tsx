@@ -1,9 +1,11 @@
 'use client';
 
+import type React from 'react';
+
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Food SVG Components with new format
 const PizzaIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
@@ -25,6 +27,7 @@ const PizzaIcon = ({ className, style }: { className?: string; style?: React.CSS
     <path d="M12 12v.01" />
   </svg>
 );
+
 const PastaIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
   <svg
     width="64"
@@ -581,10 +584,17 @@ interface FoodItemProps {
 
 const FoodItem = ({ item }: FoodItemProps) => {
   const [showOverlay, setShowOverlay] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const handleClick = () => {
-    router.push(item.link);
+    if (isMounted) {
+      router.push(item.link);
+    }
   };
 
   return (
@@ -606,7 +616,6 @@ const FoodItem = ({ item }: FoodItemProps) => {
         onClick={handleClick}
       >
         <item.icon className="w-12 h-12" style={{ color: item.color }} />
-
         {/* Overlay with same size as plate */}
         <AnimatePresence>
           {showOverlay && (
@@ -640,7 +649,6 @@ interface ConveyorBeltProps {
 
 const ConveyorBelt = ({ items, direction, speed }: ConveyorBeltProps) => {
   const [isHovered, setIsHovered] = useState(false);
-
   // Create multiple copies for seamless loop
   const repeatedItems = [...items, ...items, ...items];
 
@@ -698,16 +706,16 @@ export default function NotFound() {
         transition={{ duration: 0.8 }}
       >
         <motion.h1
-          className="text-6xl md:text-8xl font-bold text-gray-800 "
+          className="text-6xl md:text-8xl font-bold text-gray-800"
           initial={{ scale: 0.5 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.8, type: 'spring', bounce: 0.4 }}
         >
           404
         </motion.h1>
-        <div className="">
+        <div>
           <motion.h2
-            className="text-3xl md:text-4xl font-serif text-amber-700 mb-"
+            className="text-3xl md:text-4xl font-serif text-amber-700 mb-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -720,7 +728,7 @@ export default function NotFound() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Oops! This page got lost in our kitchen...
+            {'Oops! This page got lost in our kitchen...'}
           </motion.p>
         </div>
       </motion.header>
@@ -744,7 +752,7 @@ export default function NotFound() {
           transition={{ delay: 1, duration: 0.8 }}
         >
           <h3 className="text-2xl md:text-3xl font-serif text-gray-700 mb-1">
-            But don&apos;t worry, our delicious Italian cuisine is still here!
+            {"But don't worry, our delicious Italian cuisine is still here!"}
           </h3>
           <p className="text-gray-600 text-xs mb-6 max-w-3xl mx-auto font-narrow">
             Hover over our moving trays to explore our menu, or click on any dish to discover more
@@ -753,7 +761,7 @@ export default function NotFound() {
           <motion.div whileTap={{ scale: 0.95 }}>
             <Link
               href="/"
-              className="inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-3  transition-colors duration-300 shadow-lg"
+              className="inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-3 transition-colors duration-300 shadow-lg"
             >
               Return to Home
             </Link>
