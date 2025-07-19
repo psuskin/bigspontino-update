@@ -1,7 +1,9 @@
-import { AnimatePresence, motion } from 'framer-motion';
+'use client';
+
+import { AnimatePresence, motion, useInView, type Variants } from 'framer-motion';
 import Image from 'next/image';
 import type * as React from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 const images = [
   '/assets/00-Paris-Bambini.jpg',
@@ -23,6 +25,14 @@ const images = [
 const GallerySection: React.FC = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Refs for intersection observers
+  const headerRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+
+  // Intersection observers for animations
+  const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
+  const galleryInView = useInView(galleryRef, { once: true, margin: '-50px' });
 
   // Responsive aspect ratios
   const aspectRatios = {
@@ -89,9 +99,44 @@ const GallerySection: React.FC = () => {
     [images.length],
   );
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
+  // Animation variants
+  const fadeInUp: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 60,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const staggerContainer: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.07,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.1, 0.25, 1] as const,
+      },
+    },
   };
 
   const lightboxVariants = {
@@ -109,29 +154,35 @@ const GallerySection: React.FC = () => {
   return (
     <section className="py-8 sm:py-12 md:py-16 lg:py-24 px-4 sm:px-6 relative overflow-hidden">
       <div className="relative z-10 ">
-        <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase text-center tracking-tight leading-tight"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          Moments Captured, <br className="xs:hidden" /> Stories Unfold.
-        </motion.h2>
-        <p className="text-center font-narrow w-full sm:w-4/5 md:w-3/5 mx-auto my-4 sm:my-6 md:mb-12 lg:mb-20 text-sm sm:text-base">
-          Immerse yourself in the vibrant atmosphere and culinary delights of Big Spuntino through
-          our visual journey.
-        </p>
-
         <motion.div
-          className="columns-2 xs:columns-3 sm:columns-4 md:columns-3 lg:columns-4 gap-2 sm:gap-3 md:gap-4"
+          ref={headerRef}
+          variants={staggerContainer}
           initial="hidden"
-          animate="visible"
-          transition={{ staggerChildren: 0.07 }}
-          variants={{ visible: { transition: { staggerChildren: 0.07 } } }}
+          animate={headerInView ? 'visible' : 'hidden'}
+        >
+          <motion.h2
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase text-center tracking-tight leading-tight"
+            variants={fadeInUp}
+          >
+            Moments Captured, <br className="xs:hidden" /> Stories Unfold.
+          </motion.h2>
+          <motion.p
+            className="text-center font-narrow w-full sm:w-4/5 md:w-3/5 mx-auto my-4 sm:my-6 md:mb-12 lg:mb-20 text-sm sm:text-base"
+            variants={fadeInUp}
+          >
+            Immerse yourself in the vibrant atmosphere and culinary delights of Big Spuntino through
+            our visual journey.
+          </motion.p>
+        </motion.div>
+        <motion.div
+          ref={galleryRef}
+          className="columns-2 xs:columns-3 sm:columns-4 md:columns-3 lg:columns-4 gap-2 sm:gap-3 md:gap-4"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={galleryInView ? 'visible' : 'hidden'}
         >
           {images.map((src, index) => {
             const randomIndex = Math.floor(Math.random() * aspectRatios.sm.length);
-
             return (
               <motion.div
                 key={index}
@@ -145,54 +196,49 @@ const GallerySection: React.FC = () => {
                 {/* Mobile (sm) */}
                 <div className="block sm:hidden">
                   <Image
-                    src={src}
+                    src={src || '/placeholder.svg'}
                     alt={`Gallery image ${index + 1}`}
                     width={aspectRatios.sm[randomIndex].width}
                     height={aspectRatios.sm[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
                   />
                 </div>
-
                 {/* Small tablet (md) */}
                 <div className="hidden sm:block md:hidden">
                   <Image
-                    src={src}
+                    src={src || '/placeholder.svg'}
                     alt={`Gallery image ${index + 1}`}
                     width={aspectRatios.md[randomIndex].width}
                     height={aspectRatios.md[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
                   />
                 </div>
-
                 {/* Tablet (lg) */}
                 <div className="hidden md:block lg:hidden">
                   <Image
-                    src={src}
+                    src={src || '/placeholder.svg'}
                     alt={`Gallery image ${index + 1}`}
                     width={aspectRatios.lg[randomIndex].width}
                     height={aspectRatios.lg[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
                   />
                 </div>
-
                 {/* Desktop (xl) - original design */}
                 <div className="hidden lg:block">
                   <Image
-                    src={src}
+                    src={src || '/placeholder.svg'}
                     alt={`Gallery image ${index + 1}`}
                     width={aspectRatios.xl[randomIndex].width}
                     height={aspectRatios.xl[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
                   />
                 </div>
-
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-opacity-10 transition-opacity duration-300 rounded-lg"></div>
               </motion.div>
             );
           })}
         </motion.div>
       </div>
-
       {/* Lightbox Overlay */}
       <AnimatePresence>
         {lightboxOpen && (
@@ -215,14 +261,13 @@ const GallerySection: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={images[currentImageIndex]}
+                src={images[currentImageIndex] || '/placeholder.svg'}
                 alt={`Full view of gallery image ${currentImageIndex + 1}`}
                 width={1600}
                 height={1000}
                 className="max-w-full max-h-[90vh] sm:max-h-[93.5vh] object-contain rounded-none shadow-2xl border-2 border-white/20"
                 placeholder="empty"
               />
-
               {images.length > 1 && (
                 <>
                   <motion.button
@@ -247,7 +292,6 @@ const GallerySection: React.FC = () => {
                   </motion.button>
                 </>
               )}
-
               <motion.button
                 className="absolute top-2 sm:top-4 right-2 sm:right-4 text-white text-xl sm:text-2xl md:text-3xl font-light px-1 sm:px-2 py-1 rounded-none bg-red-800/80 hover:bg-red-800 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20"
                 onClick={closeLightbox}
