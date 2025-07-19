@@ -2,6 +2,7 @@ import { ThemeProvider } from '@/components/theme/theme-provider';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
+import { I18nProvider } from '@/components/lang/i18n-provider';
 import './globals.css';
 
 const appleGaramond = localFont({
@@ -54,7 +55,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <I18nProvider>{children}</I18nProvider>
         </ThemeProvider>
       </body>
     </html>

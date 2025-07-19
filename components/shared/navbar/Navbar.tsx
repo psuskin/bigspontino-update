@@ -14,21 +14,48 @@ import {
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isBookingSheetOpen, setIsBookingSheetOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const { t, i18n, ready } = useTranslation();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const changeLanguage = async (languageCode: string) => {
+    if (i18n && typeof i18n.changeLanguage === 'function') {
+      try {
+        await i18n.changeLanguage(languageCode);
+      } catch (error) {
+        console.error('Failed to change language:', error);
+      }
+    }
+  };
+
+  // Don't render language buttons until mounted and i18n is ready
+  const isI18nReady = mounted && ready && i18n;
+  const currentLanguage = isI18nReady ? i18n.language : 'en';
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/menus', label: 'Il Menu (menus)' },
-    { href: '/events', label: 'Events' },
-    { href: '/history', label: 'La Storia (history)' },
-    { href: '/impressions', label: 'Impressions (Bildgalerie)' },
-    { href: '/contact', label: 'Contatto (contact / opening hours)' },
-    { href: '/jobs', label: 'Jobs' },
+    { href: '/', label: t('navigation.home') || 'Home' },
+    { href: '/menus', label: `${t('navigation.menu') || 'Il Menu'} (menus)` },
+    { href: '/events', label: t('navigation.events') || 'Events' },
+    { href: '/history', label: `${t('navigation.history') || 'La Storia'} (history)` },
+    {
+      href: '/impressions',
+      label: `${t('navigation.impressions') || 'Impressions'} (Bildgalerie)`,
+    },
+    {
+      href: '/contact',
+      label: `${t('navigation.contact') || 'Contatto'} (contact / opening hours)`,
+    },
+    { href: '/jobs', label: t('navigation.jobs') || 'Jobs' },
   ];
 
   const socialLinks = [
@@ -52,7 +79,7 @@ const Navbar = () => {
     >
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
-          <span>Menu</span>
+          <span>{t('navigation.menu') || 'Menu'}</span>
           <div className="relative">
             <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.3 }}>
               <PlusIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
@@ -125,23 +152,33 @@ const Navbar = () => {
                   className="md:hidden block"
                 >
                   <div className="mt-10 mb-1 gap-4 w-full">
-                    <h5 className="text-lg text-center">Language</h5>
+                    <h5 className="text-lg text-center">{t('language.title') || 'Language'}</h5>
                   </div>
                   <motion.button
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      changeLanguage('de');
+                      setIsOpen(false);
+                    }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic"
+                    className={`block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
+                      currentLanguage === 'de' ? 'italic after:scale-x-100 ' : ''
+                    }`}
                   >
-                    German
+                    {t('language.german') || 'German'}
                   </motion.button>
                   <motion.button
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      changeLanguage('en');
+                      setIsOpen(false);
+                    }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic"
+                    className={`block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
+                      currentLanguage === 'en' ? 'italic after:scale-x-100 ' : ''
+                    }`}
                   >
-                    English
+                    {t('language.english') || 'English'}
                   </motion.button>
                 </motion.div>
 
@@ -156,7 +193,7 @@ const Navbar = () => {
                   className="md:hidden block"
                 >
                   <div className="mt-10 mb-1 gap-4 w-full">
-                    <h5 className="text-lg text-center">Social</h5>
+                    <h5 className="text-lg text-center">{t('social.title') || 'Social'}</h5>
                   </div>
                   {socialLinks.map((link, index) => (
                     <motion.div
@@ -226,27 +263,42 @@ const Navbar = () => {
 
         <div className="w-3 sm:w-4 h-[1px] lg:block hidden bg-gray-600"></div>
 
+        {/* Desktop Language Switcher */}
         <motion.div
           className="text-lg sm:text-xl md:text-2xl md:flex hidden items-center gap-1 px-2 sm:px-3"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <motion.button
-            className="hover:text-amber-500"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            De
-          </motion.button>
-          ,
-          <motion.button
-            className="hover:text-amber-500"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            En
-          </motion.button>
+          {isI18nReady ? (
+            <>
+              <motion.button
+                onClick={() => changeLanguage('de')}
+                className={`transition-colors duration-200 ${
+                  currentLanguage === 'de' ? 'text-amber-500 font-bold' : 'hover:text-amber-500'
+                }`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                De
+              </motion.button>
+              ,
+              <motion.button
+                onClick={() => changeLanguage('en')}
+                className={`transition-colors duration-200 ${
+                  currentLanguage === 'en' ? 'text-amber-500 font-bold' : 'hover:text-amber-500'
+                }`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                En
+              </motion.button>
+            </>
+          ) : (
+            <>
+              <span className="opacity-50">De</span>,<span className="opacity-50">En</span>
+            </>
+          )}
         </motion.div>
 
         {/* Booking Sheet Integration */}
@@ -261,12 +313,12 @@ const Navbar = () => {
               whileTap={{ scale: 0.98 }}
             >
               <div className="inline-flex h-8 sm:h-9 md:h-10 translate-y-0 items-center justify-center bg-amber-300 text-sm sm:text-lg md:text-xl lg:text-2xl px-3 sm:px-4 md:px-6 text-black transition group-hover:-translate-y-[150%] rounded-none">
-                <span className="hidden sm:inline">Book A Table</span>
-                <span className="sm:hidden">Book</span>
+                <span className="hidden sm:inline">{t('buttons.bookTable') || 'Book A Table'}</span>
+                <span className="sm:hidden">{t('buttons.book') || 'Book'}</span>
               </div>
               <div className="absolute inline-flex h-8 sm:h-9 md:h-10 w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-black px-3 sm:px-4 md:px-6 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
-                <span className="hidden sm:inline">Book A Table</span>
-                <span className="sm:hidden">Book </span>
+                <span className="hidden sm:inline">{t('buttons.bookTable') || 'Book A Table'}</span>
+                <span className="sm:hidden">{t('buttons.book') || 'Book'}</span>
               </div>
             </motion.button>
           </SheetTrigger>

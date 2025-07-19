@@ -14,7 +14,6 @@ export default function Home() {
       <ItalianFlavors />
       <ArchitecturalInspirations />
       <Newsletter />
-
       <BookingPopup />
       <Footer />
     </main>
