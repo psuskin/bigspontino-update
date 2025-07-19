@@ -6,13 +6,14 @@ import { AnimatedText } from '@/components/animation/text/AnimatedText';
 import { AnimatePresence, motion, useInView, type Variants } from 'framer-motion';
 import Image from 'next/image';
 import { useCallback, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Event {
   src: string;
-  date: string;
-  time: string;
-  title: string;
-  description: string;
+  dateKey: string;
+  timeKey: string;
+  titleKey: string;
+  descriptionKey: string;
   aspectRatio: string;
 }
 
@@ -24,7 +25,7 @@ const EventSection = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
-
+  const { t } = useTranslation();
   // Intersection observers for animations
   const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
   const galleryInView = useInView(galleryRef, { once: true, margin: '-50px' });
@@ -37,35 +38,34 @@ const EventSection = () => {
   const events: Event[] = [
     {
       src: '/assets/events/1.jpg',
-      date: '15.03.2024',
-      time: '18:00',
-      title: 'Aperitivo Serale',
-      description:
-        'Join us for an authentic Italian aperitivo experience with cicchetti and spritz',
+      dateKey: 'events.eventList.0.date',
+      timeKey: 'events.eventList.0.time',
+      titleKey: 'events.eventList.0.title',
+      descriptionKey: 'events.eventList.0.description',
       aspectRatio: 'aspect-4/3',
     },
     {
       src: '/assets/events/2.jpg',
-      date: '22.03.2024',
-      time: '19:30',
-      title: 'Wine Tasting Evening',
-      description: 'Discover the finest Italian wines paired with artisanal antipasti',
+      dateKey: 'events.eventList.1.date',
+      timeKey: 'events.eventList.1.time',
+      titleKey: 'events.eventList.1.title',
+      descriptionKey: 'events.eventList.1.description',
       aspectRatio: 'aspect-square',
     },
     {
       src: '/assets/events/3.jpg',
-      date: '28.03.2024',
-      time: '11:00',
-      title: 'Brunch Domenicale',
-      description: 'Sunday brunch with fresh cornetti, prosciutto, and Italian coffee',
+      dateKey: 'events.eventList.2.date',
+      timeKey: 'events.eventList.2.time',
+      titleKey: 'events.eventList.2.title',
+      descriptionKey: 'events.eventList.2.description',
       aspectRatio: 'aspect-5/3',
     },
     {
       src: '/assets/events/4.jpg',
-      date: '05.04.2024',
-      time: '20:00',
-      title: 'Cena Privata',
-      description: "Exclusive private dining experience with our chef's special menu",
+      dateKey: 'events.eventList.3.date',
+      timeKey: 'events.eventList.3.time',
+      titleKey: 'events.eventList.3.title',
+      descriptionKey: 'events.eventList.3.description',
       aspectRatio: 'aspect-3/2',
     },
   ];
@@ -177,17 +177,14 @@ const EventSection = () => {
         <motion.h2 variants={fadeInUp}>
           <AnimatedText
             className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-snug sm:leading-tight lg:leading-16"
-            text={['YOUR NEXT FAVORITE EVENT IS HERE – APERITIVO TO BRUNCH*']}
+            text={[t('events.heroTitle')]}
           ></AnimatedText>
         </motion.h2>
         <motion.p
           className="text-center font-narrow py-4 lg:py-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-xs sm:text-sm md:text-base"
           variants={fadeInUp}
         >
-          *La vita é bella ... and there is always a reason to celebrate. The Big Spuntino lives
-          Italian hospitality and coming together – and not only in the day bar itself, but also in
-          its own private or business premises. Get in touch with our team to discuss your
-          tailor-made events for the most special moments of pleasure.
+          {t('events.heroDescription')}
         </motion.p>
         {/* Contatto Button */}
         <div className="flex items-center justify-center mt-2 sm:mt-4">
@@ -197,10 +194,10 @@ const EventSection = () => {
             variants={buttonVariants}
           >
             <div className="inline-flex h-10 sm:h-12 md:h-14 lg:h-16 translate-y-0 items-center justify-center bg-amber-300 text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase px-6 sm:px-8 md:px-12 lg:px-16 text-black transition group-hover:-translate-y-[150%] rounded-none">
-              Contatto
+              {t('events.contactButton')}
             </div>
             <div className="absolute inline-flex h-10 sm:h-12 md:h-14 lg:h-16 w-full translate-y-[100%] items-center justify-center text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase bg-black px-6 sm:px-8 md:px-12 lg:px-16 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
-              Contatto
+              {t('events.contactButton')}
             </div>
           </motion.button>
         </div>
@@ -226,18 +223,18 @@ const EventSection = () => {
                   width={400}
                   height={300}
                   className={`w-full ${event.aspectRatio} object-cover transition-transform duration-300 group-hover:scale-105 group-hover:brightness-90`}
-                  alt={event.title}
+                  alt={t(event.titleKey)}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="text-white uppercase px-3 py-1 text-xs sm:text-sm font-medium rounded">
-                    View Details
+                    {t('events.viewDetails')}
                   </div>
                 </div>
               </div>
               <div className="pt-2 sm:pt-3 lg:pt-2 ps-2 sm:ps-3 font-narrow font-semibold opacity-65">
                 <code className="text-xs lg:text-sm text-gray-600">
-                  {event.date} • {event.time}
+                  {t(event.dateKey)} • {t(event.timeKey)}
                 </code>
               </div>
             </motion.div>
@@ -253,8 +250,7 @@ const EventSection = () => {
         animate={footerInView ? 'visible' : 'hidden'}
       >
         <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6 lg:mb-8 w-full md:w-4/5 lg:w-3/5 mx-auto">
-          The Big Spuntino is already working diligently on spettacolo event series – at aperitif
-          hour, dinner time, and of course, fantastico brunch. Soon to come – stay tuned.
+          {t('events.footerText')}
         </p>
       </motion.div>
       {/* Lightbox Overlay */}
@@ -283,7 +279,7 @@ const EventSection = () => {
             >
               <Image
                 src={events[currentImageIndex].src || '/placeholder.svg'}
-                alt={events[currentImageIndex].title}
+                alt={t(events[currentImageIndex].titleKey)}
                 width={800}
                 height={600}
                 className="max-w-full max-h-[60vh] sm:max-h-[70vh] object-contain rounded-none shadow-2xl border-2 border-white/20"
@@ -292,13 +288,13 @@ const EventSection = () => {
               {/* Event Details */}
               <div className="mt-4 sm:mt-6 text-start text-white max-w-xs sm:max-w-md">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">
-                  {events[currentImageIndex].title}
+                  {t(events[currentImageIndex].titleKey)}
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3">
-                  {events[currentImageIndex].date} • {events[currentImageIndex].time}
+                  {t(events[currentImageIndex].dateKey)} • {t(events[currentImageIndex].timeKey)}
                 </p>
                 <p className="text-xs sm:text-sm leading-relaxed font-narrow">
-                  {events[currentImageIndex].description}
+                  {t(events[currentImageIndex].descriptionKey)}
                 </p>
               </div>
               {/* Navigation Buttons */}

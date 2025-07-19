@@ -156,6 +156,42 @@ const resources = {
         },
         brandName: 'Big Spuntino',
       },
+      events: {
+        heroTitle: 'YOUR NEXT FAVORITE EVENT IS HERE – APERITIVO TO BRUNCH*',
+        heroDescription:
+          '*La vita é bella ... and there is always a reason to celebrate. The Big Spuntino lives Italian hospitality and coming together – and not only in the day bar itself, but also in its own private or business premises. Get in touch with our team to discuss your tailor-made events for the most special moments of pleasure.',
+        contactButton: 'Contatto',
+        viewDetails: 'View Details',
+        footerText:
+          'The Big Spuntino is already working diligently on spettacolo event series – at aperitif hour, dinner time, and of course, fantastico brunch. Soon to come – stay tuned.',
+        eventList: [
+          {
+            date: '15.03.2024',
+            time: '18:00',
+            title: 'Aperitivo Serale',
+            description:
+              'Join us for an authentic Italian aperitivo experience with cicchetti and spritz',
+          },
+          {
+            date: '22.03.2024',
+            time: '19:30',
+            title: 'Wine Tasting Evening',
+            description: 'Discover the finest Italian wines paired with artisanal antipasti',
+          },
+          {
+            date: '28.03.2024',
+            time: '11:00',
+            title: 'Brunch Domenicale',
+            description: 'Sunday brunch with fresh cornetti, prosciutto, and Italian coffee',
+          },
+          {
+            date: '05.04.2024',
+            time: '20:00',
+            title: 'Cena Privata',
+            description: "Exclusive private dining experience with our chef's special menu",
+          },
+        ],
+      },
     },
   },
   de: {
@@ -307,6 +343,45 @@ const resources = {
           },
         },
         brandName: 'Big Spuntino',
+      },
+      events: {
+        heroTitle: 'IHR NÄCHSTES LIEBLINGSEVENT – VOM APERITIVO BIS ZUM BRUNCH*',
+        heroDescription:
+          '*La vita é bella ... und es gibt immer einen Grund zu feiern. Der Big Spuntino lebt italienische Gastfreundschaft und Zusammensein – und das nicht nur in der Tagesbar selbst, sondern auch in Ihren privaten oder geschäftlichen Räumlichkeiten. Kontaktieren Sie unser Team, um Ihre maßgeschneiderten Events für die besonderen Genussmomente zu besprechen.',
+        contactButton: 'Kontakt',
+        viewDetails: 'Details anzeigen',
+        footerText:
+          'Der Big Spuntino arbeitet bereits fleißig an spettacolo Event-Serien – zur Aperitif-Stunde, zum Abendessen und natürlich fantastico Brunch. Kommt bald – bleiben Sie dran.',
+        eventList: [
+          {
+            date: '15.03.2024',
+            time: '18:00',
+            title: 'Abendlicher Aperitivo',
+            description:
+              'Erleben Sie einen authentischen italienischen Aperitivo mit Cicchetti und Spritz',
+          },
+          {
+            date: '22.03.2024',
+            time: '19:30',
+            title: 'Weinverkostungsabend',
+            description:
+              'Entdecken Sie die feinsten italienischen Weine, kombiniert mit handwerklich hergestellten Antipasti',
+          },
+          {
+            date: '28.03.2024',
+            time: '11:00',
+            title: 'Sonntagsbrunch',
+            description:
+              'Sonntagsbrunch mit frischen Cornetti, Prosciutto und italienischem Kaffee',
+          },
+          {
+            date: '05.04.2024',
+            time: '20:00',
+            title: 'Privates Abendessen',
+            description:
+              'Exklusives Private-Dining-Erlebnis mit dem Spezialmenü unseres Küchenchefs',
+          },
+        ],
       },
     },
   },
