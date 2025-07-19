@@ -360,6 +360,65 @@ const resources = {
         lastUpdated: 'Last updated: July 2025',
         backToHome: 'Back to Home',
       },
+      cookie: {
+        title: 'Cookie Policy',
+        subtitle: 'Cookie Usage • Big Spuntino',
+        introduction:
+          'This Cookie Policy explains how Big Spuntino uses cookies and similar technologies when you visit our website. By using our website, you consent to the use of cookies in accordance with this policy.',
+        policyTitle: 'COOKIE POLICY',
+        sections: {
+          1: {
+            title: '1. What Are Cookies',
+            content:
+              'Cookies are small text files that are stored on your device when you visit a website. They are widely used to make websites work more efficiently and to provide information to the website owners.',
+          },
+          2: {
+            title: '2. How We Use Cookies',
+            content:
+              'We use cookies to enhance your experience on our website, analyze site usage, and assist in our marketing efforts. Some cookies are essential for the website to function properly.',
+          },
+          3: {
+            title: '3. Types of Cookies We Use',
+            content:
+              'We use session cookies (temporary) and persistent cookies (remain on your device). These include essential, analytics, preference, and marketing cookies as detailed in the table below.',
+          },
+          4: {
+            title: '4. Managing Cookies',
+            content:
+              'You can control or delete cookies through your browser settings. However, disabling essential cookies may affect the functionality of our website.',
+          },
+        },
+        tableTitle: 'COOKIES WE USE',
+        tableHeaders: {
+          name: 'Cookie Name',
+          purpose: 'Purpose',
+          duration: 'Duration',
+        },
+        cookies: {
+          essential: {
+            name: 'session_id',
+            purpose: 'Maintain user session and security',
+            duration: 'Session',
+          },
+          analytics: {
+            name: '_ga',
+            purpose: 'Track website usage and performance',
+            duration: '2 years',
+          },
+          preferences: {
+            name: 'lang_pref',
+            purpose: 'Store language preferences',
+            duration: '1 year',
+          },
+          marketing: {
+            name: '_fbp',
+            purpose: 'Track effectiveness of advertising',
+            duration: '3 months',
+          },
+        },
+        lastUpdated: 'Last updated: July 2025',
+        backToHome: 'Back to Home',
+      },
     },
   },
   de: {
@@ -714,6 +773,65 @@ const resources = {
             title: '4. Ihre Rechte',
             content:
               'Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten. Kontaktieren Sie uns gerne unter den oben genannten Kontaktdaten.',
+          },
+        },
+        lastUpdated: 'Stand: Juli 2025',
+        backToHome: 'Zurück zur Startseite',
+      },
+      cookie: {
+        title: 'Cookie-Richtlinie',
+        subtitle: 'Cookie-Verwendung • Big Spuntino',
+        introduction:
+          'Diese Cookie-Richtlinie erklärt, wie Big Spuntino Cookies und ähnliche Technologien verwendet, wenn Sie unsere Website besuchen. Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies gemäß dieser Richtlinie zu.',
+        policyTitle: 'COOKIE-RICHTLINIE',
+        sections: {
+          1: {
+            title: '1. Was sind Cookies',
+            content:
+              'Cookies sind kleine Textdateien, die auf Ihrem Gerät gespeichert werden, wenn Sie eine Website besuchen. Sie werden häufig verwendet, um Websites effizienter arbeiten zu lassen und Informationen an die Website-Betreiber zu liefern.',
+          },
+          2: {
+            title: '2. Wie wir Cookies verwenden',
+            content:
+              'Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern, die Nutzung der Website zu analysieren und unsere Marketingbemühungen zu unterstützen. Einige Cookies sind für die ordnungsgemäße Funktion der Website unerlässlich.',
+          },
+          3: {
+            title: '3. Arten von Cookies, die wir verwenden',
+            content:
+              'Wir verwenden Session-Cookies (temporär) und persistente Cookies (bleiben auf Ihrem Gerät). Dazu gehören essentielle, Analyse-, Präferenz- und Marketing-Cookies, wie in der folgenden Tabelle detailliert beschrieben.',
+          },
+          4: {
+            title: '4. Cookies verwalten',
+            content:
+              'Sie können Cookies über Ihre Browsereinstellungen kontrollieren oder löschen. Das Deaktivieren essentieller Cookies kann jedoch die Funktionalität unserer Website beeinträchtigen.',
+          },
+        },
+        tableTitle: 'VERWENDETE COOKIES',
+        tableHeaders: {
+          name: 'Cookie-Name',
+          purpose: 'Zweck',
+          duration: 'Dauer',
+        },
+        cookies: {
+          essential: {
+            name: 'session_id',
+            purpose: 'Benutzersitzung und Sicherheit aufrechterhalten',
+            duration: 'Sitzung',
+          },
+          analytics: {
+            name: '_ga',
+            purpose: 'Website-Nutzung und Leistung verfolgen',
+            duration: '2 Jahre',
+          },
+          preferences: {
+            name: 'lang_pref',
+            purpose: 'Spracheinstellungen speichern',
+            duration: '1 Jahr',
+          },
+          marketing: {
+            name: '_fbp',
+            purpose: 'Wirksamkeit der Werbung verfolgen',
+            duration: '3 Monate',
           },
         },
         lastUpdated: 'Stand: Juli 2025',
