@@ -15,6 +15,20 @@ body {
 .font-narrow {
   font-family: var(--font-arial-narrow);
 }
+/* SCROLL BAR  */
+/* html {
+  scroll-behavior: smooth;
+} */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #ffd230;
+  border-right: 2px solid #ffffff5b;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+}
 /* @custom-variant light (&:is(.light *)); */
 
 @theme inline {

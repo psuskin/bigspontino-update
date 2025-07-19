@@ -1,12 +1,15 @@
-import { AnimatePresence, motion } from 'framer-motion';
+'use client';
+
+import { AnimatePresence, motion, useInView, type Variants } from 'framer-motion';
 import Image from 'next/image';
 import type * as React from 'react';
-import { useCallback, useState } from 'react'; // Import useCallback for memoized functions
+import { useCallback, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const images = [
   '/assets/00-Paris-Bambini.jpg',
   '/assets/menus/brunch/1.jpg',
-  '/assets/08-Il-Bambini-Club.jpg',
+  '/assets/bambini_club8.jpg',
   '/assets/menus/bar/3.jpg',
   '/assets/menus/brunch/2.jpg',
   '/assets/menus/bar/1.jpg',
@@ -21,13 +24,30 @@ const images = [
 ];
 
 const GallerySection: React.FC = () => {
+  const { t } = useTranslation();
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  // Store the index of the current image, not just the src
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Responsive aspect ratios - smaller for mobile, medium for tablet, original for lg+
+  // Refs for intersection observers
+  const headerRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+
+  // Intersection observers for animations
+  const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
+  const galleryInView = useInView(galleryRef, { once: true, margin: '-50px' });
+
+  // Responsive aspect ratios
   const aspectRatios = {
-    mobile: [
+    sm: [
+      { width: 160, height: 160 }, // Square
+      { width: 120, height: 180 }, // Portrait (2:3)
+      { width: 120, height: 165 }, // Slightly taller portrait
+      { width: 180, height: 120 }, // Landscape (3:2)
+      { width: 165, height: 120 }, // Slightly wider landscape
+      { width: 210, height: 135 }, // Wider landscape
+      { width: 135, height: 210 }, // Taller portrait
+    ],
+    md: [
       { width: 200, height: 200 }, // Square
       { width: 160, height: 240 }, // Portrait (2:3)
       { width: 160, height: 220 }, // Slightly taller portrait
@@ -36,7 +56,7 @@ const GallerySection: React.FC = () => {
       { width: 280, height: 180 }, // Wider landscape
       { width: 180, height: 280 }, // Taller portrait
     ],
-    tablet: [
+    lg: [
       { width: 300, height: 300 }, // Square
       { width: 240, height: 360 }, // Portrait (2:3)
       { width: 240, height: 330 }, // Slightly taller portrait
@@ -45,7 +65,7 @@ const GallerySection: React.FC = () => {
       { width: 420, height: 270 }, // Wider landscape
       { width: 270, height: 420 }, // Taller portrait
     ],
-    desktop: [
+    xl: [
       { width: 500, height: 500 }, // Square
       { width: 400, height: 600 }, // Portrait (2:3)
       { width: 400, height: 550 }, // Slightly taller portrait
@@ -63,13 +83,11 @@ const GallerySection: React.FC = () => {
 
   const closeLightbox = useCallback(() => {
     setLightboxOpen(false);
-    // Reset index after closing if desired, or keep it for next open
-    // setCurrentImageIndex(0);
   }, []);
 
   const goToNextImage = useCallback(
     (e: React.MouseEvent) => {
-      e.stopPropagation(); // Prevent closing lightbox
+      e.stopPropagation();
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     },
     [images.length],
@@ -77,130 +95,155 @@ const GallerySection: React.FC = () => {
 
   const goToPrevImage = useCallback(
     (e: React.MouseEvent) => {
-      e.stopPropagation(); // Prevent closing lightbox
+      e.stopPropagation();
       setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
     },
     [images.length],
   );
 
-  // Animation variants for individual gallery items
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
+  // Animation variants
+  const fadeInUp: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 60,
+    },
     visible: {
       opacity: 1,
       y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
     },
   };
 
-  // Animation variants for the lightbox overlay
+  const staggerContainer: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.07,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.1, 0.25, 1] as const,
+      },
+    },
+  };
+
   const lightboxVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.3 } },
     exit: { opacity: 0, transition: { duration: 0.2 } },
   };
 
-  // Animation variants for the image inside the lightbox (with a key prop change)
   const lightboxImageVariants = {
     hidden: { scale: 0.8, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-    },
-    exit: {
-      scale: 0.8,
-      opacity: 0,
-    },
+    visible: { scale: 1, opacity: 1 },
+    exit: { scale: 0.8, opacity: 0 },
   };
 
   return (
-    <section className="py-12 md:py-24 lg:py-32 px-4 md:px-6 relative overflow-hidden">
-      <div className="relative z-10">
-        <motion.h2
-          className="text-3xl md:text-5xl font-extrabold uppercase text-center  tracking-tight leading-tight"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          Moments Captured, <br className="sm:hidden" /> Stories Unfold.
-        </motion.h2>
-        <p className="text-center font-narrow w-3/5 mx-auto mb-8 md:mb-20 ">
-          immerse yourself in the vibrant atmosphere and culinary delights of Big Spuntino through
-          our visual journey.
-        </p>
-
+    <section className="py-8 sm:py-12 md:py-16 lg:py-24 px-4 sm:px-6 relative overflow-hidden">
+      <div className="relative z-10 ">
         <motion.div
-          className="columns-2 md:columns-3 lg:columns-4 gap-2 md:gap-4"
+          ref={headerRef}
+          variants={staggerContainer}
           initial="hidden"
-          animate="visible"
-          transition={{
-            staggerChildren: 0.07,
-          }}
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.07,
-              },
-            },
-          }}
+          animate={headerInView ? 'visible' : 'hidden'}
+        >
+          <motion.h2
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase text-center tracking-tight leading-tight"
+            variants={fadeInUp}
+            dangerouslySetInnerHTML={{ __html: t('gallery.title') }}
+          />
+          <motion.p
+            className="text-center font-narrow w-full sm:w-4/5 md:w-3/5 mx-auto my-4 sm:my-6 md:mb-12 lg:mb-20 text-sm sm:text-base"
+            variants={fadeInUp}
+          >
+            {t('gallery.description')}
+          </motion.p>
+        </motion.div>
+        <motion.div
+          ref={galleryRef}
+          className="columns-2 xs:columns-3 sm:columns-4 md:columns-3 lg:columns-4 gap-2 sm:gap-3 md:gap-4"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={galleryInView ? 'visible' : 'hidden'}
         >
           {images.map((src, index) => {
-            const randomIndex = Math.floor(Math.random() * aspectRatios.mobile.length);
-
+            const randomIndex = Math.floor(Math.random() * aspectRatios.sm.length);
             return (
               <motion.div
                 key={index}
-                className="mb-2 md:mb-4 overflow-hidden rounded-none shadow-lg break-inside-avoid cursor-pointer relative group"
+                className="mb-2 sm:mb-3 md:mb-4 overflow-hidden rounded-none shadow-lg break-inside-avoid cursor-pointer relative group"
                 variants={itemVariants}
                 whileHover={{ scale: 1.03, zIndex: 1, boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                 onClick={() => openLightbox(index)}
               >
-                {/* Mobile (default) - 2 columns */}
-                <div className="block md:hidden">
+                {/* Mobile (sm) */}
+                <div className="block sm:hidden">
                   <Image
-                    src={src}
-                    alt={`Gallery image ${index + 1}`}
-                    width={aspectRatios.mobile[randomIndex].width}
-                    height={aspectRatios.mobile[randomIndex].height}
+                    src={src || '/placeholder.svg'}
+                    alt={`Galeriebild ${index + 1}`}
+                    width={aspectRatios.sm[randomIndex].width}
+                    height={aspectRatios.sm[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
                   />
                 </div>
-
-                {/* Tablet - 3 columns */}
+                {/* Small tablet (md) */}
+                <div className="hidden sm:block md:hidden">
+                  <Image
+                    src={src || '/placeholder.svg'}
+                    alt={`Galeriebild ${index + 1}`}
+                    width={aspectRatios.md[randomIndex].width}
+                    height={aspectRatios.md[randomIndex].height}
+                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
+                  />
+                </div>
+                {/* Tablet (lg) */}
                 <div className="hidden md:block lg:hidden">
                   <Image
-                    src={src}
-                    alt={`Gallery image ${index + 1}`}
-                    width={aspectRatios.tablet[randomIndex].width}
-                    height={aspectRatios.tablet[randomIndex].height}
+                    src={src || '/placeholder.svg'}
+                    alt={`Galeriebild ${index + 1}`}
+                    width={aspectRatios.lg[randomIndex].width}
+                    height={aspectRatios.lg[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
                   />
                 </div>
-
-                {/* Desktop - 4 columns (original design) */}
+                {/* Desktop (xl) - original design */}
                 <div className="hidden lg:block">
                   <Image
-                    src={src}
-                    alt={`Gallery image ${index + 1}`}
-                    width={aspectRatios.desktop[randomIndex].width}
-                    height={aspectRatios.desktop[randomIndex].height}
+                    src={src || '/placeholder.svg'}
+                    alt={`Galeriebild ${index + 1}`}
+                    width={aspectRatios.xl[randomIndex].width}
+                    height={aspectRatios.xl[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
                   />
                 </div>
-
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-opacity-10 transition-opacity duration-300 rounded-lg"></div>
               </motion.div>
             );
           })}
         </motion.div>
       </div>
-
-      {/* Lightbox Overlay with Framer Motion */}
+      {/* Lightbox Overlay */}
       <AnimatePresence>
         {lightboxOpen && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 bg-opacity-90 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 bg-opacity-90 p-2 sm:p-4 backdrop-blur-sm"
             variants={lightboxVariants}
             initial="hidden"
             animate="visible"
@@ -208,42 +251,37 @@ const GallerySection: React.FC = () => {
             onClick={closeLightbox}
           >
             <motion.div
-              key={images[currentImageIndex]} // IMPORTANT: Change key to force re-render/animation
+              key={images[currentImageIndex]}
               className="relative max-w-full max-h-full flex items-center justify-center"
               variants={lightboxImageVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
-              transition={{
-                duration: 0.4,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on the image container
+              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+              onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={images[currentImageIndex]} // Use the currentImageIndex to get the src
-                alt={`Full view of gallery image ${currentImageIndex + 1}`}
+                src={images[currentImageIndex] || '/placeholder.svg'}
+                alt={`Vollansicht von Galeriebild ${currentImageIndex + 1}`}
                 width={1600}
                 height={1000}
-                className="max-w-full max-h-[93.5vh] object-contain rounded-none shadow-2xl border-2 border-white/20"
+                className="max-w-full max-h-[90vh] sm:max-h-[93.5vh] object-contain rounded-none shadow-2xl border-2 border-white/20"
                 placeholder="empty"
               />
-
-              {/* Navigation Buttons (Left/Right Arrows) */}
-              {images.length > 1 && ( // Only show buttons if there's more than one image
+              {images.length > 1 && (
                 <>
                   <motion.button
-                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white text-3xl md:text-5xl w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20 pb-1 md:pb-2"
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white text-2xl sm:text-3xl md:text-4xl w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20 pb-1 sm:pb-2"
                     onClick={goToPrevImage}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ delay: 0.2 }}
                   >
-                    &#8249; {/* Unicode for left arrow */}
+                    &#8249;
                   </motion.button>
                   <motion.button
-                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white text-3xl md:text-5xl w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20 pb-1 md:pb-2"
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white text-2xl sm:text-3xl md:text-4xl w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20 pb-1 sm:pb-2"
                     onClick={goToNextImage}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -254,10 +292,8 @@ const GallerySection: React.FC = () => {
                   </motion.button>
                 </>
               )}
-
-              {/* Close button */}
               <motion.button
-                className="absolute top-2 md:top-4 right-2 md:right-4 text-white text-2xl md:text-4xl font-light px-1 md:px-2 py-1 rounded-none bg-red-800/80 hover:bg-red-800 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20"
+                className="absolute top-2 sm:top-4 right-2 sm:right-4 text-white text-xl sm:text-2xl md:text-3xl font-light px-1 sm:px-2 py-1 rounded-none bg-red-800/80 hover:bg-red-800 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20"
                 onClick={closeLightbox}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -1,9 +1,13 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { AnimatedText } from '../animation/text/AnimatedText';
 
 const Location = () => {
+  const { t } = useTranslation();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const locations = [
@@ -33,69 +37,174 @@ const Location = () => {
     },
   ] as const;
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 60,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+    },
+  };
+
   return (
-    <section className="py-40">
-      <div className="">
-        <h2 className="text-7xl uppercase font-bold w-3/5 mx-auto text-center leading-16">
-          Don’t overthink it, if it’s tasty and inexpensive, it’ll already be phenomenal*
-        </h2>
-        <p className="text-center font-narrow pt-6  w-3/5 mx-auto">
-          BigSpontino, a world where the spirit of Italy is captured in every corner and each dish.
-          Here, the sociable atmosphere is matched only by the authentic and wholesome Italian
-          cuisine that brings family and friends together for an unfeigned and delightful
-          experience. At BigSpontino, the traditional meets the contemporary and it is reflected in
-          the lush fabrics and warm lighting that invite guests to a space of domestic comfort.
-        </p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16 max-w-7xl mx-auto px-4">
-        {locations.map((location) => (
-          <div
+    <section className="py-20 lg:py-40 px-4 sm:px-6">
+      {/* Header Section */}
+      <motion.div
+        className="w-full lg:w-3/5 mx-auto"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <AnimatedText
+          className="text-xl sm:text-2xl md:text-5xl lg:text-7xl uppercase font-bold text-center leading-tight lg:leading-16"
+          text={[t('location.title')]}
+        />
+
+        <motion.p
+          className="text-center font-narrow pt-4 sm:pt-6 text-sm sm:text-base w-full md:w-4/5 lg:w-3/5 mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          {t('location.description')}
+        </motion.p>
+      </motion.div>
+
+      {/* Location Cards Grid */}
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12 lg:mt-16 max-w-7xl mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-50px' }}
+        variants={containerVariants}
+      >
+        {locations.map((location, index) => (
+          <motion.div
             key={location.id}
             className="relative overflow-hidden rounded-none shadow-lg cursor-pointer group"
             style={{ aspectRatio: '9/16' }}
+            variants={cardVariants}
+            transition={{
+              duration: 0.8,
+              ease: 'easeOut',
+            }}
+            whileHover={{
+              y: -10,
+              transition: { duration: 0.3 },
+            }}
             onMouseEnter={() => setHoveredCard(location.id)}
             onMouseLeave={() => setHoveredCard(null)}
           >
             {/* Background Image */}
-            <div
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out"
+            <motion.div
+              className="absolute inset-0 bg-cover bg-center"
               style={{
                 backgroundImage: `url(${location.image})`,
-                transform: hoveredCard === location.id ? 'scale(1.1)' : 'scale(1)',
+              }}
+              animate={{
+                scale: hoveredCard === location.id ? 1.1 : 1,
+              }}
+              transition={{
+                duration: 0.7,
               }}
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/40 transition-opacity duration-300 group-hover:bg-opacity-50" />
+            <motion.div
+              className="absolute inset-0 bg-black/40"
+              animate={{
+                backgroundColor:
+                  hoveredCard === location.id ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.4)',
+              }}
+              transition={{ duration: 0.3 }}
+            />
 
             {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-6">
-              <div className="text-center">
-                <h3 className=" font-light tracking-widest mb-2 opacity-90">BigSpontino</h3>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-wide">
-                  {location.name}
-                </h2>
-                <Link
-                  href={location?.location}
-                  className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full border-2 border-white font-narrow px-8 py-3"
+            <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-4 sm:p-6">
+              <motion.div
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.3 + index * 0.1,
+                  duration: 0.6,
+                }}
+                viewport={{ once: true }}
+              >
+                <motion.h3
+                  className="font-light tracking-widest mb-1 sm:mb-2 opacity-90 text-xs sm:text-sm"
+                  animate={{
+                    y: hoveredCard === location.id ? -5 : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-sm font-medium tracking-widest uppercase text-white transition group-hover:-translate-y-[150%]">
-                    Explore
-                  </div>
-                  <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-white text-sm font-medium tracking-widest uppercase text-black transition duration-300 group-hover:translate-y-0">
-                    Explore
-                  </div>
-                </Link>
-              </div>
+                  BigSpontino
+                </motion.h3>
+
+                <motion.h2
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-wide"
+                  animate={{
+                    y: hoveredCard === location.id ? -5 : 0,
+                  }}
+                  transition={{ duration: 0.3, delay: 0.05 }}
+                >
+                  {location.name}
+                </motion.h2>
+
+                <motion.div
+                  animate={{
+                    y: hoveredCard === location.id ? -5 : 0,
+                  }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                >
+                  <Link
+                    href={location?.location}
+                    className="group relative inline-flex h-8 sm:h-10 items-center justify-center overflow-hidden rounded-full border-2 border-white font-narrow px-6 sm:px-8 py-2 sm:py-3"
+                  >
+                    <div className="inline-flex h-8 sm:h-10 translate-y-0 items-center justify-center bg-transparent text-xs sm:text-sm font-medium tracking-widest uppercase text-white transition group-hover:-translate-y-[150%]">
+                      {t('location.explore')}
+                    </div>
+                    <div className="absolute inline-flex h-8 sm:h-10 w-full translate-y-[100%] items-center justify-center bg-white text-xs sm:text-sm font-medium tracking-widest uppercase text-black transition duration-300 group-hover:translate-y-0">
+                      {t('location.explore')}
+                    </div>
+                  </Link>
+                </motion.div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
-      <div className="">
-        <h2 className="text-sm font-narrow w-2/5 mx-auto  text-center font-bold mt-10">
-          Experience the Heart of Italy at BigSpontino*
+      </motion.div>
+
+      {/* Footer Text */}
+      <motion.div
+        className="w-full lg:w-2/5 mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        viewport={{ once: true, margin: '-50px' }}
+      >
+        <h2 className="text-xs sm:text-sm font-narrow text-center font-bold mt-6 sm:mt-8 lg:mt-10">
+          {t('location.footer')}
         </h2>
-      </div>
+      </motion.div>
     </section>
   );
 };

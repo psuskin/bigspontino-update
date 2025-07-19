@@ -1,10 +1,12 @@
 'use client';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { AnimatedText } from '../animation/text/AnimatedText';
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-
+  const { t } = useTranslation();
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!acceptedTerms) {
@@ -16,25 +18,31 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="pb-28 px-6">
-      <div className="w-6xl mx-auto border- py-16 px-16 grid grid-cols-9 items-start gap-6 bg-gray-100 relative overflow-hidden border">
-        <div className="w-20 h-20 bg-white rounded-full absolute -bottom-12 border left-10"></div>
-        <div className="w-20 h-20 bg-white rounded-full absolute -bottom-12 border left-36"></div>
-        <div className="w-20 h-20 bg-white rounded-full absolute -bottom-12 border right-10"></div>
-        <div className="w-20 h-20 bg-white rounded-full absolute -bottom-12 border right-36"></div>
-        <div className="col-span-3">
-          <h2 className="text-2xl uppercase font-bold mx-auto leading-6">
-            Subscribe for news, recipes & love-letters
-          </h2>
+    <section className="pb-20 lg:pb-28 px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto py-8 lg:py-16 px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-9 items-start gap-6 bg-gray-100 relative overflow-hidden border">
+        {/* Circles - hidden on mobile, shown on lg+ */}
+        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-white rounded-full absolute -bottom-6 lg:-bottom-12 border left-4 lg:left-10"></div>
+        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-white rounded-full absolute -bottom-6 lg:-bottom-12 border left-16 lg:left-36"></div>
+        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-white rounded-full absolute -bottom-6 lg:-bottom-12 border right-4 lg:right-10"></div>
+        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-white rounded-full absolute -bottom-6 lg:-bottom-12 border right-16 lg:right-36"></div>
+
+        {/* Title - spans full width on mobile, 3 cols on lg */}
+        <div className="md:col-span-2 lg:col-span-3">
+          <AnimatedText
+            className="text-xl sm:text-2xl uppercase font-bold leading-6 text-center lg:text-left"
+            text={[t('newsletter.title')]}
+          ></AnimatedText>
         </div>
-        <div className="col-span-4">
+
+        {/* Form - spans full width on mobile, 4 cols on lg */}
+        <div className="md:col-span-1 lg:col-span-4 w-full">
           <div className="space-y-4">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-4 rounded-none font-narrow placeholder:text-cente border-b-2 border-black bg-white focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder="Enter your email"
+              className="w-full px-4 py-3 sm:py-4 rounded-none font-narrow placeholder:text-center lg:placeholder:text-left border-b-2 border-black bg-white focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder={t('newsletter.placeholder')}
               required
             />
 
@@ -48,18 +56,28 @@ const Newsletter = () => {
                 className="w-4 h-4 text-primary mt-1 flex-shrink-0 !rounded-none"
                 required
               />
-              <label htmlFor="OPT_IN" className="text-sm font-narrow pt-0.5 leading-tight">
-                I accept the privacy policy and the terms of use
+              <label
+                htmlFor="OPT_IN"
+                className="text-xs sm:text-sm font-narrow pt-0.5 leading-tight"
+              >
+                {t('newsletter.terms')}
               </label>
             </div>
           </div>
         </div>
-        <div className="col-span-2">
+
+        {/* Button - spans full width on mobile, 2 cols on lg */}
+        <div className="md:col-span-1 lg:col-span-2 w-full flex justify-center lg:justify-end">
           <button
             onClick={handleSubmit}
-            className="px-6 py-3 w-full border border-amber-300 bg-amber-300 text-2xl hover:bg-amber-400 transition-colors"
+            className="group relative inline-flex h-10 sm:h-12 lg:h-[3.7rem] w-full md:w-auto items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
           >
-            Subscribe
+            <div className="inline-flex h-10 sm:h-12 lg:h-[3.7rem] translate-y-0 items-center justify-center bg-amber-300 text-sm sm:text-lg md:text-xl lg:text-2xl px-4 sm:px-6 lg:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none w-full">
+              <span>{t('newsletter.submit')}</span>
+            </div>
+            <div className="absolute inline-flex h-10 sm:h-12 lg:h-[3.7rem] w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-black px-4 sm:px-6 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+              <span>{t('newsletter.submit')}</span>
+            </div>
           </button>
         </div>
       </div>

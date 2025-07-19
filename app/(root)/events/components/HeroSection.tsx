@@ -7,7 +7,7 @@ const HeroSection = () => {
       <Image
         width={1920}
         height={1080}
-        src={'/assets/architectural-inspirations/Antipasti_credit_Joann.jpg'}
+        src={'/assets/events/4.jpg'}
         alt={'Antipasti dish'}
         className="w-full h-full object-cover"
       />
@@ -19,8 +19,8 @@ const HeroSection = () => {
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-full max-w-xl md:max-w-2xl lg:max-w-4xl h-32 px-4 md:px-8">
           <MotionPressureText
-            text="IL MENU"
-            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold"
+            text="Events"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold pt-8"
             staggerDelay={0.15}
             animationDuration={0.8}
             initialY={60}
