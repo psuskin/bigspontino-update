@@ -113,7 +113,7 @@ const OurStory = () => {
           </motion.div>
           <motion.div variants={imageRevealVariants}>
             <Image
-              src="/assets/history/2.jpg"
+              src="/assets/history/h2image.jpg"
               width={400}
               className="w-full aspect-3/2 object-cover"
               height={300}

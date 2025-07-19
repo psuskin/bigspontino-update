@@ -509,6 +509,14 @@ const resources = {
         lastUpdated: 'Last updated: July 2025',
         backToHome: 'Back to Home',
       },
+      cookieConsent: {
+        title: 'We Use Cookies',
+        description:
+          'We use cookies to enhance your experience on our website. By clicking "Accept", you consent to our use of cookies.',
+        learnMore: 'Learn more',
+        accept: 'Accept',
+        decline: 'Decline',
+      },
     },
   },
   de: {
@@ -1015,6 +1023,14 @@ const resources = {
         companyInfo: 'Firmeninformationen',
         lastUpdated: 'Stand: Juli 2025',
         backToHome: 'Zurück zur Startseite',
+      },
+      cookieConsent: {
+        title: 'Wir verwenden Cookies',
+        description:
+          'Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. Durch Klicken auf "Akzeptieren" stimmen Sie der Verwendung von Cookies zu.',
+        learnMore: 'Mehr erfahren',
+        accept: 'Akzeptieren',
+        decline: 'Ablehnen',
       },
     },
   },

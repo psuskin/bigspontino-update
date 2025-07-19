@@ -71,8 +71,26 @@ const loadingMessages = [
 ];
 
 export default function Loading() {
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const [currentMessage, setCurrentMessage] = useState(0);
   const [progress, setProgress] = useState(0);
+
+  // Add useEffect to handle window measurements
+  useEffect(() => {
+    const updateWindowSize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    // Initial size
+    updateWindowSize();
+
+    // Update on resize
+    window.addEventListener('resize', updateWindowSize);
+    return () => window.removeEventListener('resize', updateWindowSize);
+  }, []);
 
   useEffect(() => {
     // Cycle through loading messages
@@ -106,8 +124,8 @@ export default function Loading() {
             key={i}
             className="absolute w-2 h-2 bg-amber-200 rounded-full opacity-30"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (windowSize.width || 1000),
+              y: Math.random() * (windowSize.height || 800),
             }}
             animate={{
               y: [0, -20, 0],
