@@ -120,6 +120,42 @@ const resources = {
         legal: 'LEGAL NOTICE',
         sitemap: 'SITEMAP',
       },
+      // Add this to your existing i18n.ts file under both 'en' and 'de' translations
+
+      menus: {
+        heroTitle: 'MENU',
+        sectionTitle: 'A Tavola',
+        sectionDescription:
+          'The menu at Big Spuntino is a warm tribute to Italy\'s culinary heritage. From insalata, caprese and octopus to the crispiest foccacia, our menu offers an exquisite selection of classic spuntini (*ital. "snacks"). Of course, this also applies to the dolci: from the traditional crème the mascarpone to the fluffy light maritozzi, the Big Spuntino sweetens everyday life with the churros all italiana – Neapolitan doughnut sticks, served warm and perfect for dipping in melted chocolate with special toppings. In addition to the culinary experience, classic Italian cosmopolitan cocktails and wines from North and South can be tasted. The essence of an Italian summer is brought to life with a sparkling spritz, while the special aromas of our signature cocktail Spuntino 75 are the perfect prelude to an indulgent evening.',
+        experienceTitle: 'Experience Big Spuntino',
+        experienceDescription:
+          'From morning cappuccino to evening aperitivo, every moment at Big Spuntino celebrates the Italian way of life. Our warm atmosphere and authentic flavors create the perfect setting for sharing good food and great company.',
+        viewMenu: 'View Menu',
+        viewFullMenu: 'View Full Menu (PDF)',
+        categories: {
+          brunch: {
+            name: 'BRUNCH',
+            description:
+              'Weekend indulgence with Italian flair. Fresh pastries, frittatas, and signature breakfast spuntini.',
+          },
+          lunch: {
+            name: 'LUNCH',
+            description:
+              'Midday classics featuring fresh insalata, crispy focaccia, and our famous spuntini selection.',
+          },
+          dinner: {
+            name: 'DINNER',
+            description:
+              'Evening elegance with octopus, caprese, and our full range of Italian culinary treasures.',
+          },
+          bar: {
+            name: 'BAR',
+            description:
+              'Signature cocktails, sparkling spritz, and our special Spuntino 75 with Italian wines.',
+          },
+        },
+        brandName: 'Big Spuntino',
+      },
     },
   },
   de: {
@@ -187,7 +223,7 @@ const resources = {
       flavors: {
         title: 'Italiens feinste Aromen',
         description:
-          'Die Küche der BigSpontino-Restaurants erzählt eine Geschichte von Aromen, wobei jedes Gericht ein Kapitel aus dem Herzen der italienischen Küchentraditionen darstellt. Klassische Gerichte wie Tagliatelle Al Tartufo, Pistachio Pesto Trofie und das ikonische Mailänder Schnitzel werden mit den feinsten Erzeugnissen italienischer Böden verziert. Währenddessen enthüllt die Theaterkunst unseres handwerklichen Pizzaofens Krusten, die die luftige Leichtigkeit Neapels mit dem knusprigen Flüstern Roms verbinden. Das kulinarische Erlebnis wird dann mit einer Auswahl großzügiger italienischer Desserts abgerundet.',
+          'Die Speisekarte des Big Spuntino ist ein herzliche Hommage an Italiens kulinarisches Erbe. Von Insalata Caprese und Pulpo bis hin zu den knusprigsten Foccacia bietet unsere Speisekarte eine exquisite Auswahl an klassischen Spuntini (*ital. „Snacks“). Dies natürlich auch bei den Dolci: Von der traditionellen Creme die Mascarpone bis hin zu den fluffig leichten Maritozzi versüßt das Big Spuntino den Alltag mit den Churros all italiana – neapolitanische Doughnut-Stangen, warm serviert und perfekt zum Eintauchen in geschmolzene Schokolade mit special Toppings. Ergänzend zum kulinarischen Erlebnis können klassische italienisch-kosmopolitische Cocktails und Weine aus Nord und Süd verköstigt werden. Die Essenz eines italienischen Sommers wird mit einem spritzigen Spritz zum Leben erweckt, während die besonderen Aromen unseres Signature-Cocktails Spuntino 75 der perfekten Auftakt für einen genussvollen Abend sind.',
       },
       architecture: {
         title: 'Italienische Architektur-Inspirationen',
@@ -237,6 +273,40 @@ const resources = {
         ethics: 'ETHIK-KODEX',
         legal: 'IMPRESSUM',
         sitemap: 'SITEMAP',
+      },
+      menus: {
+        heroTitle: 'IL MENU',
+        sectionTitle: 'A Tavola',
+        sectionDescription:
+          'Die Speisekarte von Big Spuntino ist eine liebevolle Hommage an das kulinarische Erbe Italiens. Von Insalata, Caprese und Octopus bis zum knusprigsten Foccacia bietet unsere Karte eine exquisite Auswahl klassischer Spuntini (*ital. "Snacks"). Natürlich gilt das auch für die Dolci: vom traditionellen Crème Mascarpone bis zu den fluffig-leichten Maritozzi versüßt Big Spuntino den Alltag mit den Churros all italiana - neapolitanische Donut-Stäbchen, warm serviert und perfekt zum Eintauchen in geschmolzene Schokolade mit besonderen Toppings.',
+        experienceTitle: 'Erleben Sie Big Spuntino',
+        experienceDescription:
+          'Vom morgendlichen Cappuccino bis zum abendlichen Aperitivo feiert jeder Moment bei Big Spuntino die italienische Lebensart. Unsere warme Atmosphäre und authentischen Aromen schaffen die perfekte Kulisse für gutes Essen und gute Gesellschaft.',
+        viewMenu: 'Speisekarte ansehen',
+        viewFullMenu: 'Vollständige Speisekarte ansehen (PDF)',
+        categories: {
+          brunch: {
+            name: 'BRUNCH',
+            description:
+              'Wochenendverwöhnung mit italienischem Flair. Frische Gebäck, Frittatas und unsere signature Frühstücks-Spuntini.',
+          },
+          lunch: {
+            name: 'MITTAGESSEN',
+            description:
+              'Klassiker zur Mittagszeit mit frischer Insalata, knuspriger Focaccia und unserer berühmten Spuntini-Auswahl.',
+          },
+          dinner: {
+            name: 'ABENDESSEN',
+            description:
+              'Abendliche Eleganz mit Octopus, Caprese und unserer ganzen Palette italienischer kulinarischer Schätze.',
+          },
+          bar: {
+            name: 'BAR',
+            description:
+              'Signature Cocktails, prickelnde Spritz und unser besonderer Spuntino 75 mit italienischen Weinen.',
+          },
+        },
+        brandName: 'Big Spuntino',
       },
     },
   },

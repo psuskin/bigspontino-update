@@ -4,11 +4,12 @@ import { AnimatedText } from '@/components/animation/text/AnimatedText';
 import { motion, useInView, type Variants } from 'framer-motion';
 import type React from 'react';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Category {
   id: number;
-  name: string;
-  description: string;
+  nameKey: string;
+  descriptionKey: string;
   images: string[];
   link: string;
 }
@@ -21,16 +22,15 @@ interface CardLayoutProps {
 const MenusSection: React.FC = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
-
+  const { t } = useTranslation();
   const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
   const footerInView = useInView(footerRef, { once: true, margin: '-100px' });
 
   const menuCategories: Category[] = [
     {
       id: 1,
-      name: 'BRUNCH',
-      description:
-        'Weekend indulgence with Italian flair. Fresh pastries, frittatas, and signature breakfast spuntini.',
+      nameKey: 'menus.categories.brunch.name',
+      descriptionKey: 'menus.categories.brunch.description',
       images: [
         '/assets/menus/brunch/1.jpg',
         '/assets/menus/brunch/2.jpg',
@@ -40,9 +40,8 @@ const MenusSection: React.FC = () => {
     },
     {
       id: 2,
-      name: 'LUNCH',
-      description:
-        'Midday classics featuring fresh insalata, crispy focaccia, and our famous spuntini selection.',
+      nameKey: 'menus.categories.lunch.name',
+      descriptionKey: 'menus.categories.lunch.description',
       images: [
         '/assets/menus/lunch/1.jpg',
         '/assets/menus/lunch/2.jpg',
@@ -52,9 +51,8 @@ const MenusSection: React.FC = () => {
     },
     {
       id: 3,
-      name: 'DINNER',
-      description:
-        'Evening elegance with octopus, caprese, and our full range of Italian culinary treasures.',
+      nameKey: 'menus.categories.dinner.name',
+      descriptionKey: 'menus.categories.dinner.description',
       images: [
         '/assets/menus/dinner/1.jpg',
         '/assets/menus/dinner/2.jpg',
@@ -64,9 +62,8 @@ const MenusSection: React.FC = () => {
     },
     {
       id: 4,
-      name: 'BAR',
-      description:
-        'Signature cocktails, sparkling spritz, and our special Spuntino 75 with Italian wines.',
+      nameKey: 'menus.categories.bar.name',
+      descriptionKey: 'menus.categories.bar.description',
       images: [
         '/assets/menus/bar/1.jpg',
         '/assets/menus/bar/2.jpg',
@@ -149,6 +146,7 @@ const MenusSection: React.FC = () => {
   // Card 1: 1:1 image + text + 9:16 image (3 columns)
   const Card1Layout: React.FC<CardLayoutProps> = ({ category }) => {
     const cardRef = useRef<HTMLDivElement>(null);
+    const { t } = useTranslation();
     const cardInView = useInView(cardRef, { once: true, margin: '-50px' });
 
     return (
@@ -188,13 +186,13 @@ const MenusSection: React.FC = () => {
             className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
             variants={fadeInUp}
           >
-            {category.name}
+            {t(category.nameKey)}
           </motion.h2>
           <motion.p
             className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
             variants={fadeInUp}
           >
-            {category.description}
+            {t(category.descriptionKey)}
           </motion.p>
           <motion.button
             onClick={handleMenuClick}
@@ -202,10 +200,10 @@ const MenusSection: React.FC = () => {
             variants={fadeInUp}
           >
             <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-              View Menu
+              {t('menus.viewMenu')}
             </div>
             <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-              View Menu
+              {t('menus.viewMenu')}
             </div>
           </motion.button>
         </motion.div>
@@ -279,13 +277,13 @@ const MenusSection: React.FC = () => {
             className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
             variants={fadeInUp}
           >
-            {category.name}
+            {t(category.nameKey)}
           </motion.h2>
           <motion.p
             className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
             variants={fadeInUp}
           >
-            {category.description}
+            {t(category.descriptionKey)}
           </motion.p>
           <motion.button
             onClick={handleMenuClick}
@@ -293,10 +291,10 @@ const MenusSection: React.FC = () => {
             variants={fadeInUp}
           >
             <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-              View Menu
+              {t('menus.viewMenu')}
             </div>
             <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-              View Menu
+              {t('menus.viewMenu')}
             </div>
           </motion.button>
         </motion.div>
@@ -346,13 +344,13 @@ const MenusSection: React.FC = () => {
             className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
             variants={fadeInUp}
           >
-            {category.name}
+            {t(category.nameKey)}
           </motion.h2>
           <motion.p
             className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
             variants={fadeInUp}
           >
-            {category.description}
+            {t(category.descriptionKey)}
           </motion.p>
           <motion.button
             onClick={handleMenuClick}
@@ -360,10 +358,10 @@ const MenusSection: React.FC = () => {
             variants={fadeInUp}
           >
             <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-              View Menu
+              {t('menus.viewMenu')}
             </div>
             <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-              View Menu
+              {t('menus.viewMenu')}
             </div>
           </motion.button>
         </motion.div>
@@ -424,13 +422,13 @@ const MenusSection: React.FC = () => {
             className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
             variants={fadeInUp}
           >
-            {category.name}
+            {t(category.nameKey)}
           </motion.h2>
           <motion.p
             className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
             variants={fadeInUp}
           >
-            {category.description}
+            {t(category.descriptionKey)}
           </motion.p>
           <motion.button
             onClick={handleMenuClick}
@@ -438,10 +436,10 @@ const MenusSection: React.FC = () => {
             variants={fadeInUp}
           >
             <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-              View Menu
+              {t('menus.viewMenu')}
             </div>
             <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-              View Menu
+              {t('menus.viewMenu')}
             </div>
           </motion.button>
         </motion.div>
@@ -502,12 +500,7 @@ const MenusSection: React.FC = () => {
           className="text-center font-narrow pt-4 md:pt-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-sm md:text-lg leading-relaxed px-4"
           variants={fadeInUp}
         >
-          The menu at Big Spuntino is a warm tribute to Italy&apos;s culinary heritage. From
-          insalata, caprese and octopus to the crispiest foccacia, our menu offers an exquisite
-          selection of classic spuntini (*ital. &quot;snacks&quot;). Of course, this also applies to
-          the dolci: from the traditional crème the mascarpone to the fluffy light maritozzi, the
-          Big Spuntino sweetens everyday life with the churros all italiana – Neapolitan doughnut
-          sticks, served warm and perfect for dipping in melted chocolate with special toppings.
+          {t('menus.sectionDescription')}
         </motion.p>
       </motion.div>
       <div className="pt-8 md:pt-12 lg:pt-16 mx-auto space-y-2 md:space-y-4 lg:space-y-6">
@@ -529,12 +522,9 @@ const MenusSection: React.FC = () => {
               className="text-2xl md:text-5xl lg:text-6xl uppercase font-bold mb-4 md:mb-6"
               text={['Experience Big Spuntino']}
             ></AnimatedText>
-            Experience Big Spuntino
           </motion.h3>
           <motion.p className="text-sm md:text-lg font-narrow leading-tight" variants={fadeInUp}>
-            From morning cappuccino to evening aperitivo, every moment at Big Spuntino celebrates
-            the Italian way of life. Our warm atmosphere and authentic flavors create the perfect
-            setting for sharing good food and great company.
+            {t('menus.experienceDescription')}
           </motion.p>
         </motion.div>
         <motion.button
@@ -543,10 +533,10 @@ const MenusSection: React.FC = () => {
           variants={fadeInUp}
         >
           <div className="inline-flex h-12 md:h-14 lg:h-16 translate-y-0 items-center justify-center bg-amber-300 text-lg md:text-xl lg:text-2xl px-6 md:px-8 lg:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none">
-            View Full Menu (PDF)
+            {t('menus.viewFullMenu')}
           </div>
           <div className="absolute inline-flex h-12 md:h-14 lg:h-16 w-full translate-y-[100%] items-center justify-center text-lg md:text-xl lg:text-2xl bg-black px-6 md:px-8 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
-            View Full Menu (PDF)
+            {t('menus.viewFullMenu')}
           </div>
         </motion.button>
       </motion.div>

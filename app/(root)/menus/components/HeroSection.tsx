@@ -20,7 +20,7 @@ const HeroSection = () => {
         <div className="w-full max-w-xl md:max-w-2xl lg:max-w-4xl h-32 px-4 md:px-8">
           <MotionPressureText
             text="IL MENU"
-            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold pt-20"
             staggerDelay={0.15}
             animationDuration={0.8}
             initialY={60}
