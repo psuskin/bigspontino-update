@@ -11,14 +11,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isBookingSheetOpen, setIsBookingSheetOpen] = useState(false); // New state for booking sheet
+  const [isBookingSheetOpen, setIsBookingSheetOpen] = useState(false);
   const pathname = usePathname();
+
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/menus', label: 'Il Menu (menus)' },
@@ -28,29 +30,33 @@ const Navbar = () => {
     { href: '/contact', label: 'Contatto (contact / opening hours)' },
     { href: '/jobs', label: 'Jobs' },
   ];
+
   const socialLinks = [
     { href: 'https://www.instagram.com/', label: 'Instagram' },
     { href: 'https://www.facebook.com/', label: 'Facebook' },
   ];
+
   const processText = (text: string) => {
     const parts = text.split('(');
     const mainText = parts[0].trim();
     const bracketed = parts[1] ? `(${parts[1]}` : '';
-
     return { mainText, bracketed };
   };
 
   return (
-    <header className="flex items-center px-3 sm:px-4 md:px-6 bg-white sticky top-0 z-50 w-full">
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="flex items-center px-3 sm:px-4 md:px-6 bg-white sticky top-0 z-50 w-full"
+    >
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
           <span>Menu</span>
           <div className="relative">
-            <PlusIcon
-              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-300 ease-in-out ${
-                isOpen ? 'rotate-45' : 'rotate-0'
-              }`}
-            />
+            <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.3 }}>
+              <PlusIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            </motion.div>
           </div>
         </SheetTrigger>
         <SheetContent
@@ -63,102 +69,197 @@ const Navbar = () => {
               <SheetDescription></SheetDescription>
               <div
                 style={{ height: 'calc(100vh - 2rem)' }}
-                className="w-full flex gap-0.5 flex-col h-full items-center justify-center px-4 sm:px-8 md:ps-16 md:pe-10 "
+                className="w-full flex gap-0.5 flex-col h-full items-center justify-center px-4 sm:px-8 md:ps-16 md:pe-10"
               >
-                {/* <div className="flex items-center mb-4 gap-4">
-                  <h5 className="text-xl mb-2 font-narrow">Menu</h5>
-                  <div className="w-8 h-[1px] bg-gray-600"></div>
-                </div> */}
-                {navLinks.map((link) => {
-                  const { mainText, bracketed } = processText(link.label);
+                {/* Navigation Links */}
+                <div className="flex flex-col gap-0.5 items-center w-full">
+                  {navLinks.map((link, index) => {
+                    const { mainText, bracketed } = processText(link.label);
+                    return (
+                      <motion.div
+                        key={link.href}
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{
+                          opacity: isOpen ? 1 : 0,
+                          x: isOpen ? 0 : -30,
+                        }}
+                        transition={{
+                          duration: 0.5,
+                          delay: isOpen ? index * 0.1 : 0,
+                        }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full flex justify-center"
+                      >
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className={`block font-medium text-center relative after:absolute md:after:bottom-1.5 after:bottom-0.5 after:left-0 md:after:h-[3px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic  ${
+                            pathname === link.href ? 'italic after:scale-x-100' : ''
+                          }`}
+                        >
+                          <div className="flex items-center gap-1 sm:gap-2 md:gap-2.5">
+                            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
+                              {mainText}
+                            </span>
+                            {bracketed && (
+                              <span className="text-xs sm:text-sm md:text-lg lg:text-xl uppercase leading-tight">
+                                {bracketed.split('(')[1].split(')')[0]}
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
 
-                  return (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`block font-medium text-center relative after:absolute md:after:bottom-1.5 after:bottom-0.5 after:left-0 md:after:h-[3px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic  ${
-                        pathname === link.href ? 'italic after:scale-x-100' : ''
-                      }`}
-                    >
-                      <div className="flex items-center gap-1 sm:gap-2 md:gap-2.5">
-                        <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
-                          {mainText}
-                        </span>
-                        {bracketed && (
-                          <span className="text-xs sm:text-sm md:text-lg lg:text-xl uppercase leading-tight">
-                            {bracketed.split('(')[1].split(')')[0]}
-                          </span>
-                        )}
-                      </div>
-                    </Link>
-                  );
-                })}
-                <div className="md:hidden block">
+                {/* Language Section - Mobile Only */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{
+                    opacity: isOpen ? 1 : 0,
+                    y: isOpen ? 0 : 20,
+                  }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  className="md:hidden block"
+                >
                   <div className="mt-10 mb-1 gap-4 w-full">
-                    <h5 className="text-lg text-center ">Language</h5>
+                    <h5 className="text-lg text-center">Language</h5>
                   </div>
-
-                  <button
+                  <motion.button
                     onClick={() => setIsOpen(false)}
-                    className={`block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic `}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic"
                   >
                     German
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
                     onClick={() => setIsOpen(false)}
-                    className={`block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic `}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic"
                   >
                     English
-                  </button>
-                </div>
-                <div className="md:hidden block">
+                  </motion.button>
+                </motion.div>
+
+                {/* Social Section - Mobile Only */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{
+                    opacity: isOpen ? 1 : 0,
+                    y: isOpen ? 0 : 20,
+                  }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                  className="md:hidden block"
+                >
                   <div className="mt-10 mb-1 gap-4 w-full">
-                    <h5 className="text-lg text-center ">Social</h5>
+                    <h5 className="text-lg text-center">Social</h5>
                   </div>
-                  {socialLinks.map((link) => (
-                    <Link
+                  {socialLinks.map((link, index) => (
+                    <motion.div
                       key={link.href}
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
-                        pathname === link.href ? 'italic after:scale-x-100' : ''
-                      }`}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{
+                        opacity: isOpen ? 1 : 0,
+                        x: isOpen ? 0 : -20,
+                      }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 1.2 + index * 0.1,
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      {link.label}
-                    </Link>
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
+                          pathname === link.href ? 'italic after:scale-x-100' : ''
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </div>
             </SheetHeader>
           </div>
         </SheetContent>
       </Sheet>
+
       {/* Centered title */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <Link href={'/'} className="">
-          <h1 className="text-lg sm:text-xl md:text-2xl">BigSpontino</h1>
+          <motion.h1
+            className="text-lg sm:text-xl md:text-2xl"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            BigSpontino
+          </motion.h1>
         </Link>
       </div>
+
       {/* Right side content */}
       <div className="flex items-center ml-auto z-20">
-        <div className="lg:flex hidden items-center gap-1 sm:gap-2 pe-2 sm:pe-3">
-          <Link href={'https://www.google.com'} className="text-primary">
-            <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6" />
-          </Link>
-          <Link href={'https://www.google.com'} className="text-primary">
-            <FacebookIcon className="w-5 h-5 sm:w-6 sm:h-6" />
-          </Link>
-        </div>
+        <motion.div
+          className="lg:flex hidden items-center gap-1 sm:gap-2 pe-2 sm:pe-3"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
+            <Link href={'https://www.google.com'} className="text-primary">
+              <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1, rotate: -5 }} whileTap={{ scale: 0.9 }}>
+            <Link href={'https://www.google.com'} className="text-primary">
+              <FacebookIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+            </Link>
+          </motion.div>
+        </motion.div>
+
         <div className="w-3 sm:w-4 h-[1px] lg:block hidden bg-gray-600"></div>
-        <div className="text-lg sm:text-xl  md:text-2xl md:flex hidden items-center gap-1 px-2 sm:px-3">
-          <button className="hover:text-amber-500">De</button>,
-          <button className="hover:text-amber-500">En</button>
-        </div>
+
+        <motion.div
+          className="text-lg sm:text-xl md:text-2xl md:flex hidden items-center gap-1 px-2 sm:px-3"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <motion.button
+            className="hover:text-amber-500"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            De
+          </motion.button>
+          ,
+          <motion.button
+            className="hover:text-amber-500"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            En
+          </motion.button>
+        </motion.div>
+
         {/* Booking Sheet Integration */}
         <Sheet open={isBookingSheetOpen} onOpenChange={setIsBookingSheetOpen}>
           <SheetTrigger asChild>
-            <button className="group relative inline-flex h-8 sm:h-9 md:h-10 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium">
+            <motion.button
+              className="group relative inline-flex h-8 sm:h-9 md:h-10 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <div className="inline-flex h-8 sm:h-9 md:h-10 translate-y-0 items-center justify-center bg-amber-300 text-sm sm:text-lg md:text-xl lg:text-2xl px-3 sm:px-4 md:px-6 text-black transition group-hover:-translate-y-[150%] rounded-none">
                 <span className="hidden sm:inline">Book A Table</span>
                 <span className="sm:hidden">Book</span>
@@ -167,7 +268,7 @@ const Navbar = () => {
                 <span className="hidden sm:inline">Book A Table</span>
                 <span className="sm:hidden">Book </span>
               </div>
-            </button>
+            </motion.button>
           </SheetTrigger>
           <SheetContent
             side="right"
@@ -177,7 +278,7 @@ const Navbar = () => {
           </SheetContent>
         </Sheet>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
