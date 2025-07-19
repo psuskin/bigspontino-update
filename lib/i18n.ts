@@ -321,6 +321,45 @@ const resources = {
           },
         },
       },
+      privacy: {
+        title: 'Privacy Policy',
+        subtitle: 'Data Protection • Big Spuntino',
+        contactTitle: 'CONTACT',
+        addressTitle: 'Big Spuntino',
+        addressLine1: 'Mühlenkamp 8',
+        addressLine2: '22303 Hamburg',
+        phone: 'Tel',
+        phoneNumber: '040 / 69 45 68 28',
+        email: 'Email',
+        emailAddress: 'mail@bigspuntino.de',
+        website: 'Web',
+        websiteUrl: 'bigspuntino.de',
+        policyTitle: 'PRIVACY POLICY',
+        sections: {
+          1: {
+            title: '1. Responsible Party',
+            content:
+              'Big Spuntino, Mühlenkamp 8, 22303 Hamburg, Germany. Tel: +49 40 / 69 45 68 28, Email: mail@bigspuntino.de',
+          },
+          2: {
+            title: '2. Collection of Personal Data',
+            content:
+              'We only collect personal data when you voluntarily provide it to us, for example when making reservations or contact inquiries. We use this data exclusively to process your request.',
+          },
+          3: {
+            title: '3. Cookies and Tracking',
+            content:
+              'Our website only uses technically necessary cookies. We do not use additional tracking tools or analytics services.',
+          },
+          4: {
+            title: '4. Your Rights',
+            content:
+              'You have the right to information, correction, deletion, and restriction of processing of your personal data. Please contact us using the contact details provided.',
+          },
+        },
+        lastUpdated: 'Last updated: July 2025',
+        backToHome: 'Back to Home',
+      },
     },
   },
   de: {
@@ -640,6 +679,45 @@ const resources = {
             message: 'Erzählen Sie uns, was Sie daran begeistert, unserem Team beizutreten...',
           },
         },
+      },
+      privacy: {
+        title: 'Datenschutz',
+        subtitle: 'Datenschutz • Big Spuntino',
+        contactTitle: 'KONTAKT',
+        addressTitle: 'Big Spuntino',
+        addressLine1: 'Mühlenkamp 8',
+        addressLine2: '22303 Hamburg',
+        phone: 'Tel',
+        phoneNumber: '040 / 69 45 68 28',
+        email: 'E-Mail',
+        emailAddress: 'mail@bigspuntino.de',
+        website: 'Web',
+        websiteUrl: 'bigspuntino.de',
+        policyTitle: 'DATENSCHUTZERKLÄRUNG',
+        sections: {
+          1: {
+            title: '1. Verantwortlicher',
+            content:
+              'Big Spuntino, Mühlenkamp 8, 22303 Hamburg. Tel: 040 / 69 45 68 28, E-Mail: mail@bigspuntino.de',
+          },
+          2: {
+            title: '2. Erhebung personenbezogener Daten',
+            content:
+              'Wir erheben personenbezogene Daten nur, wenn Sie uns diese freiwillig mitteilen, beispielsweise bei Reservierungen oder Kontaktanfragen. Diese Daten verwenden wir ausschließlich zur Bearbeitung Ihrer Anfrage.',
+          },
+          3: {
+            title: '3. Cookies und Tracking',
+            content:
+              'Unsere Website verwendet nur technisch notwendige Cookies. Weitere Tracking-Tools oder Analysedienste setzen wir nicht ein.',
+          },
+          4: {
+            title: '4. Ihre Rechte',
+            content:
+              'Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten. Kontaktieren Sie uns gerne unter den oben genannten Kontaktdaten.',
+          },
+        },
+        lastUpdated: 'Stand: Juli 2025',
+        backToHome: 'Zurück zur Startseite',
       },
     },
   },

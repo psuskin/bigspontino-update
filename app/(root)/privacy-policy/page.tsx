@@ -1,5 +1,11 @@
+import PrivacyPolicyPage from './components/PrivacyPolicyPage';
+
 const PrivacyPolicy = () => {
-  return <main className=""></main>;
+  return (
+    <main className="">
+      <PrivacyPolicyPage />
+    </main>
+  );
 };
 
 export default PrivacyPolicy;
