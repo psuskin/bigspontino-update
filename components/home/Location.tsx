@@ -3,9 +3,11 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AnimatedText } from '../animation/text/AnimatedText';
 
 const Location = () => {
+  const { t } = useTranslation();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const locations = [
@@ -72,7 +74,7 @@ const Location = () => {
       >
         <AnimatedText
           className="text-xl sm:text-2xl md:text-5xl lg:text-7xl uppercase font-bold text-center leading-tight lg:leading-16"
-          text={["Don't overthink it, if it's tasty and inexpensive, it'll already be phenomenal*"]}
+          text={[t('location.title')]}
         />
 
         <motion.p
@@ -82,11 +84,7 @@ const Location = () => {
           transition={{ delay: 0.4, duration: 0.6 }}
           viewport={{ once: true, margin: '-100px' }}
         >
-          BigSpontino, a world where the spirit of Italy is captured in every corner and each dish.
-          Here, the sociable atmosphere is matched only by the authentic and wholesome Italian
-          cuisine that brings family and friends together for an unfeigned and delightful
-          experience. At BigSpontino, the traditional meets the contemporary and it is reflected in
-          the lush fabrics and warm lighting that invite guests to a space of domestic comfort.
+          {t('location.description')}
         </motion.p>
       </motion.div>
 
@@ -182,10 +180,10 @@ const Location = () => {
                     className="group relative inline-flex h-8 sm:h-10 items-center justify-center overflow-hidden rounded-full border-2 border-white font-narrow px-6 sm:px-8 py-2 sm:py-3"
                   >
                     <div className="inline-flex h-8 sm:h-10 translate-y-0 items-center justify-center bg-transparent text-xs sm:text-sm font-medium tracking-widest uppercase text-white transition group-hover:-translate-y-[150%]">
-                      Explore
+                      {t('location.explore')}
                     </div>
                     <div className="absolute inline-flex h-8 sm:h-10 w-full translate-y-[100%] items-center justify-center bg-white text-xs sm:text-sm font-medium tracking-widest uppercase text-black transition duration-300 group-hover:translate-y-0">
-                      Explore
+                      {t('location.explore')}
                     </div>
                   </Link>
                 </motion.div>
@@ -204,7 +202,7 @@ const Location = () => {
         viewport={{ once: true, margin: '-50px' }}
       >
         <h2 className="text-xs sm:text-sm font-narrow text-center font-bold mt-6 sm:mt-8 lg:mt-10">
-          Experience the Heart of Italy at BigSpontino*
+          {t('location.footer')}
         </h2>
       </motion.div>
     </section>

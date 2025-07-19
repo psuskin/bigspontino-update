@@ -1,11 +1,12 @@
 'use client';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AnimatedText } from '../animation/text/AnimatedText';
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-
+  const { t } = useTranslation();
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!acceptedTerms) {
@@ -29,7 +30,7 @@ const Newsletter = () => {
         <div className="md:col-span-2 lg:col-span-3">
           <AnimatedText
             className="text-xl sm:text-2xl uppercase font-bold leading-6 text-center lg:text-left"
-            text={['Subscribe for news, recipes & love-letters']}
+            text={[t('newsletter.title')]}
           ></AnimatedText>
         </div>
 
@@ -41,7 +42,7 @@ const Newsletter = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 sm:py-4 rounded-none font-narrow placeholder:text-center lg:placeholder:text-left border-b-2 border-black bg-white focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder="Enter your email"
+              placeholder={t('newsletter.placeholder')}
               required
             />
 
@@ -59,7 +60,7 @@ const Newsletter = () => {
                 htmlFor="OPT_IN"
                 className="text-xs sm:text-sm font-narrow pt-0.5 leading-tight"
               >
-                I accept the privacy policy and the terms of use
+                {t('newsletter.terms')}
               </label>
             </div>
           </div>
@@ -72,10 +73,10 @@ const Newsletter = () => {
             className="group relative inline-flex h-10 sm:h-12 lg:h-[3.7rem] w-full md:w-auto items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
           >
             <div className="inline-flex h-10 sm:h-12 lg:h-[3.7rem] translate-y-0 items-center justify-center bg-amber-300 text-sm sm:text-lg md:text-xl lg:text-2xl px-4 sm:px-6 lg:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none w-full">
-              <span>Subscribe</span>
+              <span>{t('newsletter.submit')}</span>
             </div>
             <div className="absolute inline-flex h-10 sm:h-12 lg:h-[3.7rem] w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-black px-4 sm:px-6 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
-              <span>Subscribe</span>
+              <span>{t('newsletter.submit')}</span>
             </div>
           </button>
         </div>

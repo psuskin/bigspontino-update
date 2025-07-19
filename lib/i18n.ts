@@ -1,3 +1,4 @@
+// i18n.ts
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
@@ -43,6 +44,82 @@ const resources = {
           message: 'Enter your message',
         },
       },
+      hero: {
+        slide1: {
+          title: 'Il Bambini Club',
+          description: 'Intimate Italian dining with authentic culinary traditions',
+        },
+        slide2: {
+          title: 'Private Dining Room',
+          description: 'Exclusive setting perfect for special occasions and celebrations',
+        },
+        slide3: {
+          title: "Chef's Table Experience",
+          description: 'Experience culinary artistry up close with our master chefs',
+        },
+        explore: 'EXPLORE',
+      },
+      location: {
+        title: "Don't overthink it, if it's tasty and inexpensive, it'll already be phenomenal*",
+        description:
+          'BigSpontino, a world where the spirit of Italy is captured in every corner and each dish. Here, the sociable atmosphere is matched only by the authentic and wholesome Italian cuisine that brings family and friends together for an unfeigned and delightful experience. At BigSpontino, the traditional meets the contemporary and it is reflected in the lush fabrics and warm lighting that invite guests to a space of domestic comfort.',
+        footer: 'Experience the Heart of Italy at BigSpontino*',
+        explore: 'Explore',
+      },
+      flavors: {
+        title: 'Italian Finest Flavors',
+        description:
+          "The cuisine at BigSpontino restaurants tells a narrative of flavors, with each plate representing a chapter from the heart of Italy's culinary traditions. Classic dishes such as Tagliatelle Al Tartufo, Pistachio Pesto Trofie, and the iconic Milanese Cutlet are adorned with the finest harvests from Italian soils. Meanwhile, the theatrics of our artisanal pizza oven unveil crusts that combine the ethereal fluff of Naples with the crisp whisper of Rome. The dining experience is then completed with a selection of generous Italian desserts.",
+      },
+      architecture: {
+        title: 'Italian Architectural Inspirations',
+        description:
+          "Whether in the heart of the City of Light or at the summit of the mountains, guests are greeted by a vivid setting from the moment they step through the door – it's contrasting, playful, and sophisticated, evoking the dolce vita. Architects have drawn inspiration from the beautiful, the wildest, and the most joyful aspects of Italy, blending noble materials with natural ones.",
+      },
+      newsletter: {
+        title: 'Subscribe for news, recipes & love-letters',
+        placeholder: 'Enter your email',
+        terms: 'I accept the privacy policy and the terms of use',
+        submit: 'Subscribe',
+      },
+      booking: {
+        title: 'BigSpontino',
+        subtitle: 'Quick Reservations',
+        guests: 'Guests',
+        date: 'Date',
+        time: 'Time',
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        email: 'Email Address',
+        phone: 'Phone Number',
+        reserve: 'Reserve',
+        voucher: 'Received a gift voucher?',
+        confirmation: 'Reservation Confirmed!',
+        confirmationText: 'Thank you, {{firstName}} {{lastName}}!',
+        confirmationDetails: 'Table for {{guests}} • {{date}} • {{time}}',
+        location: 'Veteranenstraße 9, Berlin',
+        emailSent: 'A confirmation email has been sent to {{email}}.',
+        lookingForward: 'We look forward to seeing you!',
+        close: 'Close',
+      },
+      footer: {
+        brand: 'BigSpontino',
+        description:
+          'We are a team of passionate and creative individuals who are dedicated to providing the best possible experience for our guests.',
+        portfolio: 'PORTFOLIO',
+        careers: 'CAREERS WITH US',
+        press: 'PRESS',
+        contact: 'CONTACT',
+        consulting: 'CONSULTING',
+        about: 'ABOUT',
+        privacy: 'PRIVACY POLICY',
+        cookies: 'COOKIE POLICY',
+        manageCookies: 'MANAGE COOKIES',
+        terms: 'TERMS AND CONDITIONS',
+        ethics: 'CODE OF ETHICS',
+        legal: 'LEGAL NOTICE',
+        sitemap: 'SITEMAP',
+      },
     },
   },
   de: {
@@ -66,9 +143,9 @@ const resources = {
         title: 'Soziale Medien',
       },
       buttons: {
-        bookTable: 'Tisch Reservieren',
+        bookTable: 'Tisch reservieren',
         book: 'Buchen',
-        submit: 'Senden',
+        submit: 'Absenden',
         cancel: 'Abbrechen',
       },
       welcome: 'Willkommen',
@@ -79,10 +156,87 @@ const resources = {
         email: 'E-Mail',
         message: 'Nachricht',
         placeholder: {
-          name: 'Geben Sie Ihren Namen ein',
-          email: 'Geben Sie Ihre E-Mail ein',
-          message: 'Geben Sie Ihre Nachricht ein',
+          name: 'Ihren Namen eingeben',
+          email: 'Ihre E-Mail eingeben',
+          message: 'Ihre Nachricht eingeben',
         },
+      },
+      hero: {
+        slide1: {
+          title: 'Il Bambini Club',
+          description: 'Intimes italienisches Essen mit authentischen kulinarischen Traditionen',
+        },
+        slide2: {
+          title: 'Privater Speiseraum',
+          description: 'Exklusive Umgebung perfekt für besondere Anlässe und Feiern',
+        },
+        slide3: {
+          title: "Chef's Table Erlebnis",
+          description: 'Erleben Sie kulinarische Kunst hautnah mit unseren Meisterköchen',
+        },
+        explore: 'ENTDECKEN',
+      },
+      location: {
+        title:
+          'Denken Sie nicht zu viel nach, wenn es lecker und preiswert ist, wird es schon phänomenal sein*',
+        description:
+          'BigSpontino, eine Welt, in der der Geist Italiens in jeder Ecke und jedem Gericht eingefangen wird. Hier wird die gesellige Atmosphäre nur von der authentischen und gesunden italienischen Küche übertroffen, die Familie und Freunde für ein ungekünsteltes und bezauberndes Erlebnis zusammenbringt. Bei BigSpontino trifft Tradition auf Moderne und spiegelt sich in den üppigen Stoffen und der warmen Beleuchtung wider, die Gäste in einen Raum häuslicher Gemütlichkeit einlädt.',
+        footer: 'Erleben Sie das Herz Italiens bei BigSpontino*',
+        explore: 'Entdecken',
+      },
+      flavors: {
+        title: 'Italiens feinste Aromen',
+        description:
+          'Die Küche der BigSpontino-Restaurants erzählt eine Geschichte von Aromen, wobei jedes Gericht ein Kapitel aus dem Herzen der italienischen Küchentraditionen darstellt. Klassische Gerichte wie Tagliatelle Al Tartufo, Pistachio Pesto Trofie und das ikonische Mailänder Schnitzel werden mit den feinsten Erzeugnissen italienischer Böden verziert. Währenddessen enthüllt die Theaterkunst unseres handwerklichen Pizzaofens Krusten, die die luftige Leichtigkeit Neapels mit dem knusprigen Flüstern Roms verbinden. Das kulinarische Erlebnis wird dann mit einer Auswahl großzügiger italienischer Desserts abgerundet.',
+      },
+      architecture: {
+        title: 'Italienische Architektur-Inspirationen',
+        description:
+          'Ob im Herzen der Stadt des Lichts oder auf dem Gipfel der Berge - die Gäste werden vom Moment des Eintritts an von einer lebendigen Kulisse begrüßt - sie ist kontrastreich, verspielt und anspruchsvoll und erinnert an die Dolce Vita. Die Architekten haben sich von den schönsten, wildesten und fröhlichsten Aspekten Italiens inspirieren lassen und edle Materialien mit natürlichen kombiniert.',
+      },
+      newsletter: {
+        title: 'Abonnieren Sie Neuigkeiten, Rezepte & Liebesbriefe',
+        placeholder: 'Ihre E-Mail eingeben',
+        terms: 'Ich akzeptiere die Datenschutzrichtlinie und die Nutzungsbedingungen',
+        submit: 'Abonnieren',
+      },
+      booking: {
+        title: 'BigSpontino',
+        subtitle: 'Schnelle Reservierungen',
+        guests: 'Gäste',
+        date: 'Datum',
+        time: 'Uhrzeit',
+        firstName: 'Vorname',
+        lastName: 'Nachname',
+        email: 'E-Mail-Adresse',
+        phone: 'Telefonnummer',
+        reserve: 'Reservieren',
+        voucher: 'Haben Sie einen Geschenkgutschein erhalten?',
+        confirmation: 'Reservierung bestätigt!',
+        confirmationText: 'Vielen Dank, {{firstName}} {{lastName}}!',
+        confirmationDetails: 'Tisch für {{guests}} • {{date}} • {{time}}',
+        location: 'Veteranenstraße 9, Berlin',
+        emailSent: 'Eine Bestätigungs-E-Mail wurde an {{email}} gesendet.',
+        lookingForward: 'Wir freuen uns auf Ihren Besuch!',
+        close: 'Schließen',
+      },
+      footer: {
+        brand: 'BigSpontino',
+        description:
+          'Wir sind ein Team leidenschaftlicher und kreativer Menschen, die sich dafür einsetzen, unseren Gästen das bestmögliche Erlebnis zu bieten.',
+        portfolio: 'PORTFOLIO',
+        careers: 'KARRIERE BEI UNS',
+        press: 'PRESSE',
+        contact: 'KONTAKT',
+        consulting: 'BERATUNG',
+        about: 'ÜBER UNS',
+        privacy: 'DATENSCHUTZERKLÄRUNG',
+        cookies: 'COOKIE-RICHTLINIE',
+        manageCookies: 'COOKIES VERWALTEN',
+        terms: 'ALLGEMEINE GESCHÄFTSBEDINGUNGEN',
+        ethics: 'ETHIK-KODEX',
+        legal: 'IMPRESSUM',
+        sitemap: 'SITEMAP',
       },
     },
   },

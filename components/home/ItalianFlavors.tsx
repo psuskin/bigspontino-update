@@ -3,13 +3,14 @@
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AnimatedText } from '../animation/text/AnimatedText';
 
 const ItalianFlavors = () => {
   const containerRef = useRef<HTMLElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-
+  const { t } = useTranslation();
   const secondImageRef = useRef<HTMLDivElement>(null);
 
   // Update the parallax setup
@@ -116,20 +117,14 @@ const ItalianFlavors = () => {
         <h2 className="">
           <AnimatedText
             className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold w-full sm:w-4/5 md:w-3/4 lg:w-3/5 mx-auto text-center leading-tight sm:leading-snug md:leading-normal lg:leading-16"
-            text={['Italian Finest Flavors']}
+            text={[t('flavors.title')]}
           ></AnimatedText>
         </h2>
         <motion.p
           className="text-center font-narrow pt-4 sm:pt-5 md:pt-6 w-full sm:w-4/5 md:w-3/4 lg:w-3/5 mx-auto text-sm sm:text-base md:text-lg"
           variants={fadeInUp}
         >
-          The cuisine at BigSpontino restaurants tells a narrative of flavors, with each plate
-          representing a chapter from the heart of Italy&apos;s culinary traditions. Classic dishes
-          such as Tagliatelle Al Tartufo, Pistachio Pesto Trofie, and the iconic Milanese Cutlet are
-          adorned with the finest harvests from Italian soils. Meanwhile, the theatrics of our
-          artisanal pizza oven unveil crusts that combine the ethereal fluff of Naples with the
-          crisp whisper of Rome. The dining experience is then completed with a selection of
-          generous Italian desserts.
+          {t('flavors.description')}
         </motion.p>
       </motion.div>
 

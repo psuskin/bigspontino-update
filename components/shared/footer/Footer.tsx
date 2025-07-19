@@ -3,6 +3,7 @@
 import { motion, useInView, type Variants } from 'framer-motion';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ const Footer = () => {
   const brandInView = useInView(brandRef, { once: true, margin: '-50px' });
   const navColumn1InView = useInView(navColumn1Ref, { once: true, margin: '-50px' });
   const navColumn2InView = useInView(navColumn2Ref, { once: true, margin: '-50px' });
-
+  const { t } = useTranslation();
   // Animation variants
   const fadeInUp: Variants = {
     hidden: {
@@ -112,14 +113,13 @@ const Footer = () => {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal"
               variants={titleVariants}
             >
-              BigSpontino
+              {t('footer.brand')}
             </motion.h1>
             <motion.p
               className="text-sm sm:text-base pt-6 sm:pt-8 md:pt-10 max-w-full sm:max-w-md lg:max-w-lg text-gray-300 font-narrow"
               variants={fadeInUp}
             >
-              We are a team of passionate and creative individuals who are dedicated to providing
-              the best possible experience for our guests.
+              {t('footer.description')}
             </motion.p>
             <motion.div
               className="space-y-4 max-w-full sm:max-w-sm md:max-w-md mt-8 sm:mt-10"
@@ -174,7 +174,7 @@ const Footer = () => {
                   href="/portfolio"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  PORTFOLIO
+                  {t('footer.portfolio')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -182,7 +182,7 @@ const Footer = () => {
                   href="/jobs"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  CAREERS WITH US
+                  {t('footer.careers')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -190,7 +190,7 @@ const Footer = () => {
                   href="/press"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  PRESS
+                  {t('footer.press')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -198,7 +198,7 @@ const Footer = () => {
                   href="/contact"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  CONTACT
+                  {t('footer.contact')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -206,7 +206,7 @@ const Footer = () => {
                   href="/consulting"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  CONSULTING
+                  {t('footer.consulting')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -214,7 +214,7 @@ const Footer = () => {
                   href="/history"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  ABOUT
+                  {t('footer.about')}
                 </Link>
               </motion.li>
             </ul>
@@ -233,7 +233,7 @@ const Footer = () => {
                   href="/privacy-policy"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  PRIVACY POLICY
+                  {t('footer.privacy')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -241,7 +241,7 @@ const Footer = () => {
                   href="/cookie-policy"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  COOKIE POLICY
+                  {t('footer.cookies')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -249,7 +249,7 @@ const Footer = () => {
                   href="/manage-cookies"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  MANAGE COOKIES
+                  {t('footer.manageCookies')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -257,7 +257,7 @@ const Footer = () => {
                   href="/terms-and-conditions"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  TERMS AND CONDITIONS
+                  {t('footer.terms')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -265,7 +265,7 @@ const Footer = () => {
                   href="/code-of-ethics"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  CODE OF ETHICS
+                  {t('footer.ethics')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -273,7 +273,7 @@ const Footer = () => {
                   href="/legal-notice"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  LEGAL NOTICE
+                  {t('footer.legal')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -281,7 +281,7 @@ const Footer = () => {
                   href="/sitemap"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  SITEMAP
+                  {t('footer.sitemap')}
                 </Link>
               </motion.li>
             </ul>

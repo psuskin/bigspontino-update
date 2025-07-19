@@ -14,6 +14,7 @@ import {
 import { format } from 'date-fns';
 import { CalendarIcon, Clock, MapPin, Users, X } from 'lucide-react';
 import { type ChangeEvent, type FormEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
   firstName: string;
@@ -24,6 +25,7 @@ interface FormData {
 
 export default function BookingPopup() {
   const [isOpen, setIsOpen] = useState(true);
+  const { t } = useTranslation();
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState('17:00');
   const [selectedGuests, setSelectedGuests] = useState('2');
@@ -68,7 +70,7 @@ export default function BookingPopup() {
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-bold font-main">BigSpontino</h3>
-            <p className="text-sm opacity-90">Quick Reservations</p>
+            <p className="text-sm opacity-90">{t('booking.subtitle')}</p>
           </div>
           <button
             onClick={() => setIsOpen(false)}
@@ -85,29 +87,35 @@ export default function BookingPopup() {
         {status === 'success' ? (
           // Success Message Content
           <div className="text-center py-4 lg:py-8">
-            <h3 className="text-xl font-bold mb-4">Reservation Confirmed!</h3>
+            <h3 className="text-xl font-bold mb-4">{t('booking.confirmation')}</h3>
             <p className="text-sm text-neutral-700 mb-2">
-              Thank you, {formData.firstName} {formData.lastName}!
+              {t('booking.confirmationText', {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+              })}
             </p>
             <div className="bg-neutral-100 p-3 text-sm border border-black/5 text-left">
               <p className="font-medium text-black mb-1">
-                Table for {selectedGuests} • {format(selectedDate || new Date(), 'MMM. dd')} •{' '}
-                {selectedTime}
+                {t('booking.confirmationDetails', {
+                  guests: selectedGuests,
+                  date: format(selectedDate || new Date(), 'MMM. dd'),
+                  time: selectedTime,
+                })}
               </p>
               <div className="flex items-center text-neutral-700 text-xs">
                 <MapPin className="h-3 w-3 mr-1" />
-                Veteranenstraße 9, Berlin
+                {t('booking.location')}
               </div>
               <p className="text-xs text-neutral-700 mt-2">
-                A confirmation email has been sent to {formData.email}.
+                {t('booking.emailSent', { email: formData.email })}
               </p>
-              <p className="text-xs text-neutral-700">We look forward to seeing you!</p>
+              <p className="text-xs text-neutral-700">{t('booking.lookingForward')}</p>
             </div>
             <Button
               onClick={() => setIsOpen(false)}
               className="mt-6 h-10 lg:h-8 bg-black hover:bg-neutral-800 text-white text-sm rounded-none w-full"
             >
-              Close
+              {t('booking.close')}
             </Button>
           </div>
         ) : (
@@ -116,7 +124,7 @@ export default function BookingPopup() {
             {/* Quick Selection */}
             <div className="grid grid-cols-10 gap-2 text-sm mb-2">
               <div className="col-span-4">
-                <Label className="text-xs text-neutral-700">Guests</Label>
+                <Label className="text-xs text-neutral-700">{t('booking.guests')}</Label>
                 <Select value={selectedGuests} onValueChange={setSelectedGuests}>
                   <SelectTrigger className="h-10 lg:h-8 w-full text-sm rounded-none">
                     <Users className="h-3 w-3 mr-1" />
@@ -125,14 +133,14 @@ export default function BookingPopup() {
                   <SelectContent className="rounded-none">
                     {Array.from({ length: 8 }, (_, i) => (
                       <SelectItem key={i + 1} value={String(i + 1)}>
-                        {i + 1} Guest{i > 0 ? 's' : ''}
+                        {i + 1} {i === 0 ? t('booking.guests') : t('booking.guests')}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
               <div className="col-span-3">
-                <Label className="text-xs text-neutral-700">Date</Label>
+                <Label className="text-xs text-neutral-700">{t('booking.date')}</Label>
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
@@ -154,7 +162,7 @@ export default function BookingPopup() {
                 </Popover>
               </div>
               <div className="col-span-3">
-                <Label className="text-xs text-neutral-700">Time</Label>
+                <Label className="text-xs text-neutral-700">{t('booking.time')}</Label>
                 <Select value={selectedTime} onValueChange={setSelectedTime}>
                   <SelectTrigger className="h-10 lg:h-8 w-full text-sm rounded-none">
                     <Clock className="h-3 w-3 mr-1" />
@@ -178,12 +186,15 @@ export default function BookingPopup() {
             {/* Quick Info */}
             <div className="bg-neutral-100 p-3 text-sm border border-black/5 mb-2">
               <p className="font-medium text-black mb-1">
-                Table for {selectedGuests} • {format(selectedDate || new Date(), 'MMM. dd')} •{' '}
-                {selectedTime}
+                {t('booking.confirmationDetails', {
+                  guests: selectedGuests,
+                  date: format(selectedDate || new Date(), 'MMM. dd'),
+                  time: selectedTime,
+                })}
               </p>
               <div className="flex items-center text-neutral-700 text-xs">
                 <MapPin className="h-3 w-3 mr-1" />
-                Veteranenstraße 9, Berlin
+                {t('booking.location')}
               </div>
             </div>
             {/* Quick Form */}
@@ -192,7 +203,7 @@ export default function BookingPopup() {
                 <div>
                   <Input
                     name="firstName"
-                    placeholder="First Name"
+                    placeholder={t('booking.firstName')}
                     value={formData.firstName}
                     onChange={handleInputChange}
                     required
@@ -202,7 +213,7 @@ export default function BookingPopup() {
                 <div>
                   <Input
                     name="lastName"
-                    placeholder="Last Name"
+                    placeholder={t('booking.lastName')}
                     value={formData.lastName}
                     onChange={handleInputChange}
                     required
@@ -213,7 +224,7 @@ export default function BookingPopup() {
               <Input
                 name="email"
                 type="email"
-                placeholder="Email Address"
+                placeholder={t('booking.email')}
                 value={formData.email}
                 onChange={handleInputChange}
                 required
@@ -222,7 +233,7 @@ export default function BookingPopup() {
               <Input
                 name="phone"
                 type="tel"
-                placeholder="Phone Number"
+                placeholder={t('booking.phone')}
                 value={formData.phone}
                 onChange={handleInputChange}
                 required
@@ -233,13 +244,13 @@ export default function BookingPopup() {
                   type="submit"
                   className="flex-1 h-10 lg:h-8 cursor-pointer bg-black hover:bg-neutral-800 text-white text-sm rounded-none"
                 >
-                  Reserve
+                  {t('booking.reserve')}
                 </Button>
               </div>
             </div>
             {/* Footer text */}
             <p className="text-xs text-neutral-600 text-center mt-3 lg:mt-0">
-              Received a gift voucher?
+              {t('booking.voucher')}
             </p>
           </form>
         )}

@@ -4,39 +4,40 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Slide {
   id: number;
   image: string;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
 }
 
 const slides: Slide[] = [
   {
     id: 2,
     image: '/assets/01-Il-Bambini-Club.jpg',
-    title: 'Il Bambini Club',
-    description: 'Intimate Italian dining with authentic culinary traditions',
+    titleKey: 'hero.slide1.title',
+    descriptionKey: 'hero.slide1.description',
   },
   {
     id: 3,
     image: '/assets/02-Il-Bambini-Club.jpg',
-    title: 'Private Dining Room',
-    description: 'Exclusive setting perfect for special occasions and celebrations',
+    titleKey: 'hero.slide2.title',
+    descriptionKey: 'hero.slide2.description',
   },
   {
     id: 4,
     image: '/assets/bambini_club8.jpg',
-    title: "Chef's Table Experience",
-    description: 'Experience culinary artistry up close with our master chefs',
+    titleKey: 'hero.slide3.title',
+    descriptionKey: 'hero.slide3.description',
   },
 ];
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-
+  const { t } = useTranslation();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-advance functionality
@@ -123,7 +124,7 @@ export default function HeroSection() {
                 width={1920}
                 height={1080}
                 src={slides[currentSlide].image}
-                alt={slides[currentSlide].title}
+                alt={t(slides[currentSlide].titleKey)}
                 className="w-full h-full object-cover"
                 priority
               />
@@ -144,9 +145,11 @@ export default function HeroSection() {
                   }}
                   className="text-start text-white max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl"
                 >
-                  <h2 className="text-xl sm:text-2xl  italic">{slides[currentSlide].title}</h2>
+                  <h2 className="text-xl sm:text-2xl  italic">
+                    {t(slides[currentSlide].titleKey)}
+                  </h2>
                   <p className="text-xs sm:text-sm  opacity-90 font-narrow mt-1 sm:mt-0.5 lg:-mt-1.5">
-                    {slides[currentSlide].description}
+                    {t(slides[currentSlide].descriptionKey)}
                   </p>
                 </motion.div>
               </div>
@@ -206,7 +209,7 @@ export default function HeroSection() {
         {/* Explore Button */}
         <div className="absolute bottom-2 sm:bottom-3 lg:bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
           <button className="text-sm sm:text-base lg:text-lg font-semibold text-white rounded-full transition-all duration-200">
-            EXPLORE
+            {t('hero.explore')}
           </button>
           <motion.svg
             fill="#fff"

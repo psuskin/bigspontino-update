@@ -3,10 +3,11 @@
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ArchitecturalInspirations = () => {
   const textRef = useRef<HTMLDivElement>(null);
-
+  const { t } = useTranslation();
   const secondImageRef = useRef<HTMLDivElement>(null);
   const thirdImageRef = useRef<HTMLDivElement>(null);
 
@@ -72,14 +73,10 @@ const ArchitecturalInspirations = () => {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase font-bold leading-tight lg:leading-16"
               variants={fadeInUp}
             >
-              Italian Architectural Inspirations
+              {t('architecture.title')}
             </motion.h2>
             <motion.p className="font-narrow pt-4 text-sm sm:text-base" variants={fadeInUp}>
-              Whether in the heart of the City of Light or at the summit of the mountains, guests
-              are greeted by a vivid setting from the moment they step through the door – it&apos;s
-              contrasting, playful, and sophisticated, evoking the dolce vita. Architects have drawn
-              inspiration from the beautiful, the wildest, and the most joyful aspects of Italy,
-              blending noble materials with natural ones.
+              {t('architecture.description')}
             </motion.p>
           </motion.div>
           <div className="aspect-[3/2] relative overflow-hidden">
