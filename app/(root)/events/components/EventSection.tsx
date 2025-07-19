@@ -1,6 +1,11 @@
-import { AnimatePresence, motion } from 'framer-motion';
+'use client';
+
+import type React from 'react';
+
+import { AnimatedText } from '@/components/animation/text/AnimatedText';
+import { AnimatePresence, motion, useInView, type Variants } from 'framer-motion';
 import Image from 'next/image';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 interface Event {
   src: string;
@@ -14,6 +19,16 @@ interface Event {
 const EventSection = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Refs for intersection observers
+  const headerRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+
+  // Intersection observers for animations
+  const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
+  const galleryInView = useInView(galleryRef, { once: true, margin: '-50px' });
+  const footerInView = useInView(footerRef, { once: true, margin: '-100px' });
 
   const handleContactClick = () => {
     window.location.href = 'mailto:mail@bigspuntino.de?subject=Event Inquiry';
@@ -80,6 +95,63 @@ const EventSection = () => {
     [events.length],
   );
 
+  // Animation variants
+  const fadeInUp: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 60,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const staggerContainer: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const imageRevealVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.95,
+      y: 40,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const buttonVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
   // Animation variants for the lightbox
   const lightboxVariants = {
     hidden: { opacity: 0 },
@@ -95,21 +167,34 @@ const EventSection = () => {
 
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-40 px-4 sm:px-6 lg:px-6">
-      <div className="">
-        <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-snug sm:leading-tight lg:leading-16">
-          YOUR NEXT FAVORITE EVENT IS HERE – APERITIVO TO BRUNCH*
-        </h2>
-        <p className="text-center font-narrow py-4 lg:py-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-xs sm:text-sm md:text-base">
+      <motion.div
+        ref={headerRef}
+        className=""
+        variants={staggerContainer}
+        initial="hidden"
+        animate={headerInView ? 'visible' : 'hidden'}
+      >
+        <motion.h2 variants={fadeInUp}>
+          <AnimatedText
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-snug sm:leading-tight lg:leading-16"
+            text={['YOUR NEXT FAVORITE EVENT IS HERE – APERITIVO TO BRUNCH*']}
+          ></AnimatedText>
+        </motion.h2>
+        <motion.p
+          className="text-center font-narrow py-4 lg:py-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-xs sm:text-sm md:text-base"
+          variants={fadeInUp}
+        >
           *La vita é bella ... and there is always a reason to celebrate. The Big Spuntino lives
           Italian hospitality and coming together – and not only in the day bar itself, but also in
           its own private or business premises. Get in touch with our team to discuss your
           tailor-made events for the most special moments of pleasure.
-        </p>
+        </motion.p>
         {/* Contatto Button */}
         <div className="flex items-center justify-center mt-2 sm:mt-4">
-          <button
+          <motion.button
             onClick={handleContactClick}
             className="group relative inline-flex h-10 sm:h-12 md:h-14 lg:h-16 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
+            variants={buttonVariants}
           >
             <div className="inline-flex h-10 sm:h-12 md:h-14 lg:h-16 translate-y-0 items-center justify-center bg-amber-300 text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase px-6 sm:px-8 md:px-12 lg:px-16 text-black transition group-hover:-translate-y-[150%] rounded-none">
               Contatto
@@ -117,17 +202,27 @@ const EventSection = () => {
             <div className="absolute inline-flex h-10 sm:h-12 md:h-14 lg:h-16 w-full translate-y-[100%] items-center justify-center text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase bg-black px-6 sm:px-8 md:px-12 lg:px-16 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
               Contatto
             </div>
-          </button>
+          </motion.button>
         </div>
-      </div>
-
-      <div className="pt-10 sm:pt-12 md:pt-14 lg:pt-28">
+      </motion.div>
+      <motion.div
+        ref={galleryRef}
+        className="pt-10 sm:pt-12 md:pt-14 lg:pt-28"
+        variants={staggerContainer}
+        initial="hidden"
+        animate={galleryInView ? 'visible' : 'hidden'}
+      >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-2 lg:gap-1">
           {events.map((event, index) => (
-            <div key={index} className="group cursor-pointer" onClick={() => openLightbox(index)}>
+            <motion.div
+              key={index}
+              className="group cursor-pointer"
+              onClick={() => openLightbox(index)}
+              variants={imageRevealVariants}
+            >
               <div className="relative overflow-hidden">
                 <Image
-                  src={event.src}
+                  src={event.src || '/placeholder.svg'}
                   width={400}
                   height={300}
                   className={`w-full ${event.aspectRatio} object-cover transition-transform duration-300 group-hover:scale-105 group-hover:brightness-90`}
@@ -145,19 +240,23 @@ const EventSection = () => {
                   {event.date} • {event.time}
                 </code>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
-
+      </motion.div>
       {/* Relevant text added below the image gallery */}
-      <div className="pt-8 sm:pt-10 md:pt-12 lg:pt-16 text-center">
+      <motion.div
+        ref={footerRef}
+        className="pt-8 sm:pt-10 md:pt-12 lg:pt-16 text-center"
+        variants={fadeInUp}
+        initial="hidden"
+        animate={footerInView ? 'visible' : 'hidden'}
+      >
         <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6 lg:mb-8 w-full md:w-4/5 lg:w-3/5 mx-auto">
           The Big Spuntino is already working diligently on spettacolo event series – at aperitif
           hour, dinner time, and of course, fantastico brunch. Soon to come – stay tuned.
         </p>
-      </div>
-
+      </motion.div>
       {/* Lightbox Overlay */}
       <AnimatePresence>
         {lightboxOpen && (
@@ -183,14 +282,13 @@ const EventSection = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={events[currentImageIndex].src}
+                src={events[currentImageIndex].src || '/placeholder.svg'}
                 alt={events[currentImageIndex].title}
                 width={800}
                 height={600}
                 className="max-w-full max-h-[60vh] sm:max-h-[70vh] object-contain rounded-none shadow-2xl border-2 border-white/20"
                 placeholder="empty"
               />
-
               {/* Event Details */}
               <div className="mt-4 sm:mt-6 text-start text-white max-w-xs sm:max-w-md">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">
@@ -203,7 +301,6 @@ const EventSection = () => {
                   {events[currentImageIndex].description}
                 </p>
               </div>
-
               {/* Navigation Buttons */}
               {events.length > 1 && (
                 <>
@@ -229,7 +326,6 @@ const EventSection = () => {
                   </motion.button>
                 </>
               )}
-
               {/* Close button */}
               <motion.button
                 className="absolute top-1 sm:top-2 md:top-4 right-1 sm:right-2 md:right-4 text-white text-xl sm:text-2xl md:text-4xl font-light px-1 md:px-2 py-1 rounded-none bg-red-800/80 hover:bg-red-800 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 z-20"
