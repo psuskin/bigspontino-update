@@ -3,6 +3,7 @@
 import { motion, useInView, type Variants } from 'framer-motion';
 import { Clock, Globe, Mail, MapPin, Phone } from 'lucide-react';
 import { type ChangeEvent, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
   firstName: string;
@@ -17,6 +18,7 @@ interface FormData {
 }
 
 const ContactSection = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -53,7 +55,6 @@ const ContactSection = () => {
   };
 
   // Animation variants
-
   const fadeInLeft: Variants = {
     hidden: {
       opacity: 0,
@@ -138,7 +139,7 @@ const ContactSection = () => {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold"
             variants={fadeInLeft}
           >
-            Get in touch with Big Spuntino
+            {t('contact.title')}
           </motion.h2>
           {/* Contact Information */}
           <motion.div
@@ -149,8 +150,8 @@ const ContactSection = () => {
             <motion.div className="flex items-start gap-3 sm:gap-4" variants={contactItemVariants}>
               <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mt-1 text-gray-600 flex-shrink-0" />
               <div>
-                <h4 className="font-semibold mb-1 text-sm sm:text-base">Address</h4>
-                <p className="text-base sm:text-lg">Mühlenkamp 8, 22303 Hamburg</p>
+                <h4 className="font-semibold mb-1 text-sm sm:text-base">{t('contact.address')}</h4>
+                <p className="text-base sm:text-lg">{t('contact.addressValue')}</p>
               </div>
             </motion.div>
             {/* Contact Grid */}
@@ -164,8 +165,8 @@ const ContactSection = () => {
               >
                 <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-sm sm:text-base">Phone</h4>
-                  <p className="text-base sm:text-lg">040 / 69 45 68 28</p>
+                  <h4 className="font-semibold text-sm sm:text-base">{t('contact.phone')}</h4>
+                  <p className="text-base sm:text-lg">{t('contact.phoneValue')}</p>
                 </div>
               </motion.div>
               <motion.div
@@ -174,8 +175,8 @@ const ContactSection = () => {
               >
                 <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-sm sm:text-base">Email</h4>
-                  <p className="text-base sm:text-lg">mail@bigspuntino.de</p>
+                  <h4 className="font-semibold text-sm sm:text-base">{t('contact.email')}</h4>
+                  <p className="text-base sm:text-lg">{t('contact.emailValue')}</p>
                 </div>
               </motion.div>
               <motion.div
@@ -184,8 +185,8 @@ const ContactSection = () => {
               >
                 <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-sm sm:text-base">Website</h4>
-                  <p className="text-base sm:text-lg">bigspuntino.de</p>
+                  <h4 className="font-semibold text-sm sm:text-base">{t('contact.website')}</h4>
+                  <p className="text-base sm:text-lg">{t('contact.websiteValue')}</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -193,47 +194,57 @@ const ContactSection = () => {
             <motion.div className="flex items-start gap-3 sm:gap-4" variants={contactItemVariants}>
               <Clock className="w-5 h-5 sm:w-6 sm:h-6 mt-1 text-gray-600 flex-shrink-0" />
               <div className="w-full">
-                <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Opening Hours</h4>
+                <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">
+                  {t('contact.openingHours')}
+                </h4>
                 <div className="grid grid-cols-3 xs:grid-cols-7 gap-2 sm:gap-3 md:gap-4 text-center">
                   <div>
                     <div className="font-semibold text-gray-400 mb-1 sm:mb-2 text-xs sm:text-sm">
-                      MON
+                      {t('days.mon')}
                     </div>
-                    <div className="text-xs sm:text-sm text-gray-400">Closed</div>
+                    <div className="text-xs sm:text-sm text-gray-400">{t('contact.closed')}</div>
                   </div>
                   <div>
                     <div className="font-semibold text-gray-400 mb-1 sm:mb-2 text-xs sm:text-sm">
-                      TUE
+                      {t('days.tue')}
                     </div>
-                    <div className="text-xs sm:text-sm text-gray-400">Closed</div>
+                    <div className="text-xs sm:text-sm text-gray-400">{t('contact.closed')}</div>
                   </div>
                   <div>
-                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">WED</div>
-                    <div className="text-xs sm:text-sm">11:00 - 23:00</div>
+                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">
+                      {t('days.wed')}
+                    </div>
+                    <div className="text-xs sm:text-sm">{t('contact.wedHours')}</div>
                   </div>
                   <div>
-                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">THU</div>
-                    <div className="text-xs sm:text-sm">11:00 - 23:00</div>
+                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">
+                      {t('days.thu')}
+                    </div>
+                    <div className="text-xs sm:text-sm">{t('contact.thuHours')}</div>
                   </div>
                   <div>
-                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">FRI</div>
-                    <div className="text-xs sm:text-sm">11:00 - 23:00</div>
+                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">
+                      {t('days.fri')}
+                    </div>
+                    <div className="text-xs sm:text-sm">{t('contact.friHours')}</div>
                   </div>
                   <div>
-                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">SAT</div>
-                    <div className="text-xs sm:text-sm">10:00 - 23:00</div>
+                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">
+                      {t('days.sat')}
+                    </div>
+                    <div className="text-xs sm:text-sm">{t('contact.satHours')}</div>
                   </div>
                   <div>
-                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">SUN</div>
-                    <div className="text-xs sm:text-sm">10:00 - 17:00</div>
+                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">
+                      {t('days.sun')}
+                    </div>
+                    <div className="text-xs sm:text-sm">{t('contact.sunHours')}</div>
                   </div>
                 </div>
               </div>
             </motion.div>
             <motion.div className="mt-8 sm:mt-10 md:mt-12" variants={contactItemVariants}>
-              <p className="mb-4 text-sm sm:text-base">
-                The Big Spuntino is a classic day bar where the Spuntini can be tasted all day long.
-              </p>
+              <p className="mb-4 text-sm sm:text-base">{t('contact.description')}</p>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -249,7 +260,7 @@ const ContactSection = () => {
             className="text-2xl sm:text-3xl md:text-4xl uppercase font-bold"
             variants={fadeInRight}
           >
-            Your Details
+            {t('contact.form.yourDetails')}
           </motion.h2>
           <motion.div
             className="w-full h-[1px] bg-black mb-6 sm:mb-8 lg:mb-10 mt-4 sm:mt-5 lg:mt-6"
@@ -262,27 +273,27 @@ const ContactSection = () => {
           >
             <motion.div className="w-full" variants={formFieldVariants}>
               <label className="pb-2 ps-3 text-sm sm:text-base" htmlFor="firstName">
-                First Name*
+                {t('contact.form.firstName')}*
               </label>
               <input
                 id="firstName"
                 value={formData.firstName}
                 onChange={handleInputChange}
                 required
-                placeholder="Your first name"
+                placeholder={t('contact.form.placeholders.firstName')}
                 className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
               />
             </motion.div>
             <motion.div className="w-full" variants={formFieldVariants}>
               <label className="pb-2 ps-3 text-sm sm:text-base" htmlFor="lastName">
-                Last Name*
+                {t('contact.form.lastName')}*
               </label>
               <input
                 id="lastName"
                 value={formData.lastName}
                 onChange={handleInputChange}
                 required
-                placeholder="Your last name"
+                placeholder={t('contact.form.placeholders.lastName')}
                 className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
               />
             </motion.div>
@@ -295,7 +306,7 @@ const ContactSection = () => {
             <motion.div className="w-full" variants={formFieldVariants}>
               <div>
                 <label className="pb-2 text-sm sm:text-base" htmlFor="phone">
-                  Phone Number*
+                  {t('contact.form.phone')}*
                 </label>
                 <div className="flex gap-2">
                   <select
@@ -313,7 +324,7 @@ const ContactSection = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    placeholder="Your phone number"
+                    placeholder={t('contact.form.placeholders.phone')}
                     className="flex-1 bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
                   />
                 </div>
@@ -322,7 +333,7 @@ const ContactSection = () => {
             <motion.div className="w-full" variants={formFieldVariants}>
               <div>
                 <label className="pb-2 text-sm sm:text-base" htmlFor="email">
-                  Email Address*
+                  {t('contact.form.email')}*
                 </label>
                 <input
                   id="email"
@@ -330,7 +341,7 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  placeholder="name@emailaddress.com"
+                  placeholder={t('contact.form.placeholders.email')}
                   className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
                 />
               </div>
@@ -341,7 +352,7 @@ const ContactSection = () => {
             className="text-2xl sm:text-3xl md:text-4xl uppercase font-bold mt-8 sm:mt-12 lg:mt-16"
             variants={fadeInRight}
           >
-            Your Enquiry
+            {t('contact.form.yourEnquiry')}
           </motion.h2>
           <motion.div
             className="w-full h-[1px] bg-black mb-6 sm:mb-8 lg:mb-10 mt-4 sm:mt-5 lg:mt-6"
@@ -349,7 +360,7 @@ const ContactSection = () => {
           ></motion.div>
           <motion.div className="mt-4 sm:mt-6 p-1 font-narrow" variants={formFieldVariants}>
             <label className="pb-2 text-sm sm:text-base" htmlFor="enquiryType">
-              What is your enquiry about?
+              {t('contact.form.enquiryAbout')}
             </label>
             <select
               id="enquiryType"
@@ -357,23 +368,23 @@ const ContactSection = () => {
               onChange={(e) => handleSelectChange('enquiryType', e.target.value)}
               className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
             >
-              <option value="">Please choose</option>
-              <option value="reservation">Table Reservation</option>
-              <option value="events">Private Events</option>
-              <option value="catering">Catering</option>
-              <option value="general">General Information</option>
-              <option value="other">Other</option>
+              <option value="">{t('contact.form.pleaseChoose')}</option>
+              <option value="reservation">{t('contact.form.reservation')}</option>
+              <option value="events">{t('contact.form.events')}</option>
+              <option value="catering">{t('contact.form.catering')}</option>
+              <option value="general">{t('contact.form.generalInfo')}</option>
+              <option value="other">{t('contact.form.other')}</option>
             </select>
           </motion.div>
           <motion.div className="mt-4 sm:mt-6 p-1 font-narrow" variants={formFieldVariants}>
             <label className="pb-2 text-sm sm:text-base" htmlFor="message">
-              Please share your enquiry
+              {t('contact.form.shareEnquiry')}
             </label>
             <textarea
               id="message"
               value={formData.message}
               onChange={handleInputChange}
-              placeholder="Type your message here..."
+              placeholder={t('contact.form.placeholders.message')}
               rows={6}
               className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border resize-vertical text-sm sm:text-base"
             />
@@ -388,13 +399,13 @@ const ContactSection = () => {
                 className="mt-1 w-4 h-4 sm:w-5 sm:h-5"
               />
               <span className="text-xs sm:text-sm">
-                I have read and agreed to the{' '}
+                {t('contact.form.agreeTerms1')}{' '}
                 <a href="#" className="underline">
-                  Terms and Conditions
+                  {t('contact.form.terms')}
                 </a>{' '}
-                and the{' '}
+                {t('contact.form.agreeTerms2')}{' '}
                 <a href="#" className="underline">
-                  Privacy Policy
+                  {t('contact.form.privacyPolicy')}
                 </a>
                 .
               </span>
@@ -402,7 +413,7 @@ const ContactSection = () => {
           </motion.div>
           <motion.div className="mt-6 sm:mt-8" variants={formFieldVariants}>
             <button className="bg-black text-white px-8 sm:px-12 py-3 sm:py-4 rounded-none font-semibold hover:bg-gray-800 transition-colors duration-300 text-sm sm:text-base lg:text-lg uppercase w-full sm:w-auto">
-              Submit Your Enquiry
+              {t('contact.form.submit')}
             </button>
           </motion.div>
         </motion.div>

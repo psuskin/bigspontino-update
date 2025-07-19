@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useInView, type Variants } from 'framer-motion
 import Image from 'next/image';
 import type * as React from 'react';
 import { useCallback, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const images = [
   '/assets/00-Paris-Bambini.jpg',
@@ -23,6 +24,7 @@ const images = [
 ];
 
 const GallerySection: React.FC = () => {
+  const { t } = useTranslation();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -163,15 +165,13 @@ const GallerySection: React.FC = () => {
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase text-center tracking-tight leading-tight"
             variants={fadeInUp}
-          >
-            Moments Captured, <br className="xs:hidden" /> Stories Unfold.
-          </motion.h2>
+            dangerouslySetInnerHTML={{ __html: t('gallery.title') }}
+          />
           <motion.p
             className="text-center font-narrow w-full sm:w-4/5 md:w-3/5 mx-auto my-4 sm:my-6 md:mb-12 lg:mb-20 text-sm sm:text-base"
             variants={fadeInUp}
           >
-            Immerse yourself in the vibrant atmosphere and culinary delights of Big Spuntino through
-            our visual journey.
+            {t('gallery.description')}
           </motion.p>
         </motion.div>
         <motion.div
@@ -197,7 +197,7 @@ const GallerySection: React.FC = () => {
                 <div className="block sm:hidden">
                   <Image
                     src={src || '/placeholder.svg'}
-                    alt={`Gallery image ${index + 1}`}
+                    alt={`Galeriebild ${index + 1}`}
                     width={aspectRatios.sm[randomIndex].width}
                     height={aspectRatios.sm[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
@@ -207,7 +207,7 @@ const GallerySection: React.FC = () => {
                 <div className="hidden sm:block md:hidden">
                   <Image
                     src={src || '/placeholder.svg'}
-                    alt={`Gallery image ${index + 1}`}
+                    alt={`Galeriebild ${index + 1}`}
                     width={aspectRatios.md[randomIndex].width}
                     height={aspectRatios.md[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
@@ -217,7 +217,7 @@ const GallerySection: React.FC = () => {
                 <div className="hidden md:block lg:hidden">
                   <Image
                     src={src || '/placeholder.svg'}
-                    alt={`Gallery image ${index + 1}`}
+                    alt={`Galeriebild ${index + 1}`}
                     width={aspectRatios.lg[randomIndex].width}
                     height={aspectRatios.lg[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
@@ -227,7 +227,7 @@ const GallerySection: React.FC = () => {
                 <div className="hidden lg:block">
                   <Image
                     src={src || '/placeholder.svg'}
-                    alt={`Gallery image ${index + 1}`}
+                    alt={`Galeriebild ${index + 1}`}
                     width={aspectRatios.xl[randomIndex].width}
                     height={aspectRatios.xl[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
@@ -262,7 +262,7 @@ const GallerySection: React.FC = () => {
             >
               <Image
                 src={images[currentImageIndex] || '/placeholder.svg'}
-                alt={`Full view of gallery image ${currentImageIndex + 1}`}
+                alt={`Vollansicht von Galeriebild ${currentImageIndex + 1}`}
                 width={1600}
                 height={1000}
                 className="max-w-full max-h-[90vh] sm:max-h-[93.5vh] object-contain rounded-none shadow-2xl border-2 border-white/20"

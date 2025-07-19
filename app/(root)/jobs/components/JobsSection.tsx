@@ -4,6 +4,7 @@ import { motion, useInView, useScroll, useTransform, type Variants } from 'frame
 import { ArrowRight, Upload } from 'lucide-react';
 import Image from 'next/image';
 import { type ChangeEvent, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
   firstName: string;
@@ -20,6 +21,7 @@ interface FormData {
 }
 
 const JobsSection = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -202,24 +204,23 @@ const JobsSection = () => {
           <motion.div variants={fadeInLeft}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-narrow leading-tight">
               <span className="font-primary italic text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-                Empowering
+                {t('jobs.empowering')}
               </span>{' '}
-              the
+              {t('jobs.theFuture')}
               <br />
-              Future together
+              {t('jobs.together')}
             </h2>
           </motion.div>
           <motion.div className="self-start" variants={fadeInRight}>
             <p className="text-lg sm:text-xl md:text-2xl font-narrow my-6 sm:my-8">
-              You want to become part of the Famiglia and work in the happiest day bar in Hamburg?
-              Then get in touch with our team – we look forward to receiving your applications!
+              {t('jobs.description')}
             </p>
             <button className="group relative inline-flex h-12 sm:h-14 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium text-base sm:text-lg">
               <div className="inline-flex h-full translate-y-0 items-center justify-center bg-amber-300 uppercase px-6 sm:px-8 md:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none">
-                Apply Now
+                {t('jobs.applyNow')}
               </div>
               <div className="absolute inline-flex h-full w-full translate-y-[100%] items-center justify-center uppercase bg-black px-6 sm:px-8 md:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
-                Apply Now
+                {t('jobs.applyNow')}
               </div>
             </button>
           </motion.div>
@@ -250,10 +251,10 @@ const JobsSection = () => {
         >
           <motion.div variants={fadeInUp} className="mb-8 sm:mb-10 md:mb-12">
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-narrow mb-3 sm:mb-4">
-              Join Our <span className="font-primary italic">Famiglia</span>
+              {t('jobs.joinOur')} <span className="font-primary italic">{t('jobs.famiglia')}</span>
             </h3>
             <p className="text-sm sm:text-base md:text-lg text-gray-700">
-              Fill out the application form below and let&apos;s start your journey with us.
+              {t('jobs.formDescription')}
             </p>
           </motion.div>
           <form onSubmit={handleSubmit}>
@@ -268,7 +269,7 @@ const JobsSection = () => {
                     className="block text-xs sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-wide"
                     htmlFor="firstName"
                   >
-                    First Name*
+                    {t('jobs.form.firstName')}*
                   </label>
                   <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
                     <motion.input
@@ -278,7 +279,7 @@ const JobsSection = () => {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                      placeholder="Your first name"
+                      placeholder={t('jobs.form.placeholders.firstName')}
                       className="w-full bg-white text-black border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     />
                   </div>
@@ -288,7 +289,7 @@ const JobsSection = () => {
                     className="block text-xs sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-wide"
                     htmlFor="lastName"
                   >
-                    Last Name*
+                    {t('jobs.form.lastName')}*
                   </label>
                   <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
                     <motion.input
@@ -298,7 +299,7 @@ const JobsSection = () => {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
-                      placeholder="Your last name"
+                      placeholder={t('jobs.form.placeholders.lastName')}
                       className="w-full bg-white text-black border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     />
                   </div>
@@ -314,7 +315,7 @@ const JobsSection = () => {
                     className="block text-xs sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-wide"
                     htmlFor="phone"
                   >
-                    Phone*
+                    {t('jobs.form.phone')}*
                   </label>
                   <div className="flex gap-2">
                     <select
@@ -334,7 +335,7 @@ const JobsSection = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                        placeholder="Phone number"
+                        placeholder={t('jobs.form.placeholders.phone')}
                         className="w-full bg-white border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                       />
                     </div>
@@ -345,7 +346,7 @@ const JobsSection = () => {
                     className="block text-xs sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-wide"
                     htmlFor="email"
                   >
-                    Email*
+                    {t('jobs.form.email')}*
                   </label>
                   <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
                     <motion.input
@@ -355,7 +356,7 @@ const JobsSection = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      placeholder="your@email.com"
+                      placeholder={t('jobs.form.placeholders.email')}
                       className="w-full bg-white text-black border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     />
                   </div>
@@ -367,7 +368,7 @@ const JobsSection = () => {
                 className="border-l-2 sm:border-l-4 border-black pl-4 sm:pl-6"
               >
                 <h3 className="text-base sm:text-lg md:text-xl font-black uppercase mb-3 sm:mb-4">
-                  Position Details
+                  {t('jobs.form.positionDetails')}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
                   <div>
@@ -375,7 +376,7 @@ const JobsSection = () => {
                       className="block text-xs sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-wide"
                       htmlFor="position"
                     >
-                      Position*
+                      {t('jobs.form.position')}*
                     </label>
                     <select
                       id="position"
@@ -383,12 +384,12 @@ const JobsSection = () => {
                       onChange={(e) => handleSelectChange('position', e.target.value)}
                       className="w-full bg-white border-2 border-gray-300 focus:border-black py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     >
-                      <option value="">Choose</option>
-                      <option value="server">Server</option>
-                      <option value="bartender">Bartender</option>
-                      <option value="kitchen">Kitchen</option>
-                      <option value="host">Host</option>
-                      <option value="other">Other</option>
+                      <option value="">{t('jobs.form.choose')}</option>
+                      <option value="server">{t('jobs.form.positions.server')}</option>
+                      <option value="bartender">{t('jobs.form.positions.bartender')}</option>
+                      <option value="kitchen">{t('jobs.form.positions.kitchen')}</option>
+                      <option value="host">{t('jobs.form.positions.host')}</option>
+                      <option value="other">{t('jobs.form.positions.other')}</option>
                     </select>
                   </div>
                   <div>
@@ -396,7 +397,7 @@ const JobsSection = () => {
                       className="block text-xs sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-wide"
                       htmlFor="experience"
                     >
-                      Experience
+                      {t('jobs.form.experience')}
                     </label>
                     <select
                       id="experience"
@@ -404,11 +405,11 @@ const JobsSection = () => {
                       onChange={(e) => handleSelectChange('experience', e.target.value)}
                       className="w-full bg-white border-2 border-gray-300 focus:border-black py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     >
-                      <option value="">Choose</option>
-                      <option value="entry">Entry Level</option>
-                      <option value="1-2years">1-2 Years</option>
-                      <option value="3-5years">3-5 Years</option>
-                      <option value="5plus">5+ Years</option>
+                      <option value="">{t('jobs.form.choose')}</option>
+                      <option value="entry">{t('jobs.form.experiences.entry')}</option>
+                      <option value="1-2years">{t('jobs.form.experiences.1-2years')}</option>
+                      <option value="3-5years">{t('jobs.form.experiences.3-5years')}</option>
+                      <option value="5plus">{t('jobs.form.experiences.5plus')}</option>
                     </select>
                   </div>
                   <div className="sm:col-span-2 lg:col-span-1">
@@ -416,7 +417,7 @@ const JobsSection = () => {
                       className="block text-xs sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-wide"
                       htmlFor="availability"
                     >
-                      Availability
+                      {t('jobs.form.availability')}
                     </label>
                     <select
                       id="availability"
@@ -424,11 +425,11 @@ const JobsSection = () => {
                       onChange={(e) => handleSelectChange('availability', e.target.value)}
                       className="w-full bg-white border-2 border-gray-300 focus:border-black py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     >
-                      <option value="">Choose</option>
-                      <option value="fulltime">Full-time</option>
-                      <option value="parttime">Part-time</option>
-                      <option value="weekends">Weekends</option>
-                      <option value="flexible">Flexible</option>
+                      <option value="">{t('jobs.form.choose')}</option>
+                      <option value="fulltime">{t('jobs.form.availabilities.fulltime')}</option>
+                      <option value="parttime">{t('jobs.form.availabilities.parttime')}</option>
+                      <option value="weekends">{t('jobs.form.availabilities.weekends')}</option>
+                      <option value="flexible">{t('jobs.form.availabilities.flexible')}</option>
                     </select>
                   </div>
                 </div>
@@ -439,7 +440,7 @@ const JobsSection = () => {
                   className="block text-xs sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-wide"
                   htmlFor="cv"
                 >
-                  CV/Resume*
+                  {t('jobs.form.cvResume')}*
                 </label>
                 <motion.div whileHover={{ scale: 1.02 }} className="relative">
                   <input
@@ -452,9 +453,9 @@ const JobsSection = () => {
                   <div className="bg-white border-2 border-dashed border-gray-400 hover:border-black py-4 sm:py-6 px-3 sm:px-4 text-center transition-all duration-300">
                     <Upload className="w-6 sm:w-8 h-6 sm:h-8 mx-auto mb-1 sm:mb-2 text-gray-600" />
                     <p className="text-gray-600 font-medium text-xs sm:text-sm md:text-base">
-                      {formData.cv ? formData.cv.name : 'Drop your CV here or click to browse'}
+                      {formData.cv ? formData.cv.name : t('jobs.form.uploadText')}
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">PDF, DOC, DOCX up to 10MB</p>
+                    <p className="text-xs text-gray-500 mt-1">{t('jobs.form.fileTypes')}</p>
                   </div>
                 </motion.div>
               </motion.div>
@@ -464,7 +465,7 @@ const JobsSection = () => {
                   className="block text-xs sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-wide"
                   htmlFor="message"
                 >
-                  Why Join Us?
+                  {t('jobs.form.whyJoin')}
                 </label>
                 <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
                   <motion.textarea
@@ -472,7 +473,7 @@ const JobsSection = () => {
                     id="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="Tell us what excites you about joining our team..."
+                    placeholder={t('jobs.form.placeholders.message')}
                     rows={4}
                     className="w-full bg-white border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 resize-y transition-all duration-300 text-sm sm:text-base"
                   />
@@ -491,13 +492,13 @@ const JobsSection = () => {
                   htmlFor="agreeTerms"
                   className="text-xs sm:text-sm text-gray-700 cursor-pointer"
                 >
-                  I agree to the{' '}
+                  {t('jobs.form.agreeTerms1')}{' '}
                   <a href="#" className="underline font-bold hover:text-black">
-                    Terms & Conditions
+                    {t('jobs.form.terms')}
                   </a>{' '}
-                  and{' '}
+                  {t('jobs.form.agreeTerms2')}{' '}
                   <a href="#" className="underline font-bold hover:text-black">
-                    Privacy Policy
+                    {t('jobs.form.privacyPolicy')}
                   </a>
                 </label>
               </motion.div>
@@ -509,7 +510,7 @@ const JobsSection = () => {
                   type="submit"
                   className="bg-black text-white py-3 sm:py-4 px-6 sm:px-8 md:px-10 font-black uppercase tracking-widest hover:bg-gray-800 transition-colors duration-300 flex items-center gap-2 sm:gap-3 text-sm sm:text-base"
                 >
-                  Submit Application
+                  {t('jobs.form.submit')}
                   <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5" />
                 </motion.button>
               </motion.div>
