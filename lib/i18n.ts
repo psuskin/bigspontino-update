@@ -419,6 +419,58 @@ const resources = {
         lastUpdated: 'Last updated: July 2025',
         backToHome: 'Back to Home',
       },
+
+      terms: {
+        title: 'Terms & Conditions',
+        subtitle: 'Legal Information • Big Spuntino',
+        introduction:
+          'These Terms and Conditions govern your use of our website and services. By accessing or using our website, you agree to be bound by these Terms and all applicable laws and regulations.',
+        termsTitle: 'TERMS & CONDITIONS',
+        sections: {
+          1: {
+            title: '1. Definitions',
+            content:
+              '"We", "Us", "Our" refers to Big Spuntino. "You", "Your" refers to the user of our website. "Services" refers to all services provided through our website.',
+          },
+          2: {
+            title: '2. Use of Website',
+            content:
+              'You agree to use our website only for lawful purposes. You must not use our website in any way that causes damage or impairs its availability or accessibility.',
+          },
+          3: {
+            title: '3. Reservations',
+            content:
+              'Table reservations made through our website are subject to availability. We reserve the right to refuse or cancel reservations at our discretion.',
+          },
+          4: {
+            title: '4. Intellectual Property',
+            content:
+              'All content on this website, including text, graphics, logos, and images, is our property and protected by copyright laws.',
+          },
+          5: {
+            title: '5. Limitation of Liability',
+            content:
+              'We shall not be liable for any indirect, incidental, special, or consequential damages resulting from your use of our website or services.',
+          },
+          6: {
+            title: '6. Changes to Terms',
+            content:
+              'We may revise these Terms at any time without notice. By continuing to use our website, you agree to be bound by the current version of these Terms.',
+          },
+        },
+        contactTitle: 'CONTACT INFORMATION',
+        addressTitle: 'Big Spuntino',
+        addressLine1: 'Mühlenkamp 8',
+        addressLine2: '22303 Hamburg, Germany',
+        phone: 'Tel',
+        phoneNumber: '040 / 69 45 68 28',
+        email: 'Email',
+        emailAddress: 'mail@bigspuntino.de',
+        website: 'Web',
+        websiteUrl: 'bigspuntino.de',
+        lastUpdated: 'Last updated: July 2025',
+        backToHome: 'Back to Home',
+      },
     },
   },
   de: {
@@ -834,6 +886,57 @@ const resources = {
             duration: '3 Monate',
           },
         },
+        lastUpdated: 'Stand: Juli 2025',
+        backToHome: 'Zurück zur Startseite',
+      },
+      terms: {
+        title: 'Allgemeine Geschäftsbedingungen',
+        subtitle: 'Rechtliche Informationen • Big Spuntino',
+        introduction:
+          'Diese Allgemeinen Geschäftsbedingungen regeln Ihre Nutzung unserer Website und Dienstleistungen. Durch den Zugriff auf oder die Nutzung unserer Website erklären Sie sich mit diesen Bedingungen und allen geltenden Gesetzen und Vorschriften einverstanden.',
+        termsTitle: 'ALLGEMEINE GESCHÄFTSBEDINGUNGEN',
+        sections: {
+          1: {
+            title: '1. Definitionen',
+            content:
+              '"Wir", "Uns", "Unser" bezieht sich auf Big Spuntino. "Sie", "Ihr" bezieht sich auf den Nutzer unserer Website. "Dienstleistungen" bezieht sich auf alle über unsere Website angebotenen Dienstleistungen.',
+          },
+          2: {
+            title: '2. Nutzung der Website',
+            content:
+              'Sie erklären sich damit einverstanden, unsere Website nur für rechtmäßige Zwecke zu nutzen. Sie dürfen unsere Website nicht in einer Weise nutzen, die Schäden verursacht oder deren Verfügbarkeit oder Zugänglichkeit beeinträchtigt.',
+          },
+          3: {
+            title: '3. Reservierungen',
+            content:
+              'Tischreservierungen über unsere Website unterliegen der Verfügbarkeit. Wir behalten uns das Recht vor, Reservierungen nach unserem Ermessen abzulehnen oder zu stornieren.',
+          },
+          4: {
+            title: '4. Geistiges Eigentum',
+            content:
+              'Alle Inhalte dieser Website, einschließlich Texte, Grafiken, Logos und Bilder, sind unser Eigentum und durch Urheberrechtsgesetze geschützt.',
+          },
+          5: {
+            title: '5. Haftungsbeschränkung',
+            content:
+              'Wir haften nicht für indirekte, zufällige, besondere oder Folgeschäden, die sich aus Ihrer Nutzung unserer Website oder Dienstleistungen ergeben.',
+          },
+          6: {
+            title: '6. Änderungen der Bedingungen',
+            content:
+              'Wir können diese Bedingungen jederzeit ohne vorherige Ankündigung überarbeiten. Durch die weitere Nutzung unserer Website erklären Sie sich mit der aktuellen Version dieser Bedingungen einverstanden.',
+          },
+        },
+        contactTitle: 'KONTAKTINFORMATIONEN',
+        addressTitle: 'Big Spuntino',
+        addressLine1: 'Mühlenkamp 8',
+        addressLine2: '22303 Hamburg, Deutschland',
+        phone: 'Tel',
+        phoneNumber: '040 / 69 45 68 28',
+        email: 'E-Mail',
+        emailAddress: 'mail@bigspuntino.de',
+        website: 'Web',
+        websiteUrl: 'bigspuntino.de',
         lastUpdated: 'Stand: Juli 2025',
         backToHome: 'Zurück zur Startseite',
       },
