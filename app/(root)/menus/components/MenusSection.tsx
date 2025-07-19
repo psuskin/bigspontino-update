@@ -1,4 +1,9 @@
-import React from 'react';
+'use client';
+
+import { AnimatedText } from '@/components/animation/text/AnimatedText';
+import { motion, useInView, type Variants } from 'framer-motion';
+import type React from 'react';
+import { useRef } from 'react';
 
 interface Category {
   id: number;
@@ -10,9 +15,16 @@ interface Category {
 
 interface CardLayoutProps {
   category: Category;
+  index: number;
 }
 
 const MenusSection: React.FC = () => {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+
+  const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
+  const footerInView = useInView(footerRef, { once: true, margin: '-100px' });
+
   const menuCategories: Category[] = [
     {
       id: 1,
@@ -73,254 +85,462 @@ const MenusSection: React.FC = () => {
     );
   };
 
+  // Animation variants with proper typing
+  const fadeInUp: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 60,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const imageRevealVariants: Variants = {
+    hidden: {
+      clipPath: 'inset(100% 0% 0% 0%)',
+      y: 100,
+    },
+    visible: {
+      clipPath: 'inset(0% 0% 0% 0%)',
+      y: 0,
+      transition: {
+        clipPath: {
+          duration: 1.2,
+          ease: [0.76, 0, 0.24, 1] as const,
+        },
+        y: {
+          duration: 1.2,
+          ease: [0.76, 0, 0.24, 1] as const,
+        },
+      },
+    },
+  };
+
+  const staggerContainer: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 80,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
   // Card 1: 1:1 image + text + 9:16 image (3 columns)
-  const Card1Layout: React.FC<CardLayoutProps> = ({ category }) => (
-    <div className="w-full bg-amber-50 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-1 overflow-hidden group">
-      {/* Left 1:1 Image - Full width on mobile, then responsive */}
-      <div className="aspect-square h-full overflow-hidden relative md:col-span-1 lg:col-span-2">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-          style={{
-            backgroundImage: `url(${category.images[0]})`,
-          }}
-        />
-      </div>
+  const Card1Layout: React.FC<CardLayoutProps> = ({ category }) => {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const cardInView = useInView(cardRef, { once: true, margin: '-50px' });
 
-      {/* Middle Text Section - Full width on mobile, then responsive */}
-      <div className="bg-amber-50 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 md:col-span-1 lg:col-span-3 aspect-square md:aspect-auto">
-        <h3 className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90">
-          Big Spuntino
-        </h3>
-        <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center">
-          {category.name}
-        </h2>
-        <p className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2">
-          {category.description}
-        </p>
-        <button
-          onClick={handleMenuClick}
-          className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
+    return (
+      <motion.div
+        ref={cardRef}
+        className="w-full bg-amber-50 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-1 overflow-hidden group"
+        variants={cardVariants}
+        initial="hidden"
+        animate={cardInView ? 'visible' : 'hidden'}
+      >
+        {/* Left 1:1 Image - Full width on mobile, then responsive */}
+        <div className="aspect-square h-full overflow-hidden relative md:col-span-1 lg:col-span-2">
+          <motion.div
+            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${category.images[0]})`,
+            }}
+            variants={imageRevealVariants}
+            initial="hidden"
+            animate={cardInView ? 'visible' : 'hidden'}
+          />
+        </div>
+        {/* Middle Text Section - Full width on mobile, then responsive */}
+        <motion.div
+          className="bg-amber-50 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 md:col-span-1 lg:col-span-3 aspect-square md:aspect-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={cardInView ? 'visible' : 'hidden'}
         >
-          <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-            View Menu
-          </div>
-          <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-            View Menu
-          </div>
-        </button>
-      </div>
-
-      {/* Right 9:16 Image - Hidden on mobile, then responsive */}
-      <div className="hidden h-full md:block overflow-hidden relative md:col-span-1 lg:col-span-1 aspect-square md:aspect-[9/16]">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-          style={{
-            backgroundImage: `url(${category.images[1]})`,
-          }}
-        />
-      </div>
-    </div>
-  );
+          <motion.h3
+            className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
+            variants={fadeInUp}
+          >
+            Big Spuntino
+          </motion.h3>
+          <motion.h2
+            className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+            variants={fadeInUp}
+          >
+            {category.name}
+          </motion.h2>
+          <motion.p
+            className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
+            variants={fadeInUp}
+          >
+            {category.description}
+          </motion.p>
+          <motion.button
+            onClick={handleMenuClick}
+            className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
+            variants={fadeInUp}
+          >
+            <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+              View Menu
+            </div>
+            <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+              View Menu
+            </div>
+          </motion.button>
+        </motion.div>
+        {/* Right 9:16 Image - Hidden on mobile, then responsive */}
+        <div className="hidden h-full md:block overflow-hidden relative md:col-span-1 lg:col-span-1 aspect-square md:aspect-[9/16]">
+          <motion.div
+            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${category.images[1]})`,
+            }}
+            variants={imageRevealVariants}
+            initial="hidden"
+            animate={cardInView ? 'visible' : 'hidden'}
+          />
+        </div>
+      </motion.div>
+    );
+  };
 
   // Card 2: Two 9/16 images + one 1/1 text (3 columns)
-  const Card2Layout: React.FC<CardLayoutProps> = ({ category }) => (
-    <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-1 bg-amber-50 overflow-hidden group">
-      {/* First 9/16 Image - Full width on mobile */}
-      <div className="aspect-square overflow-hidden relative">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-          style={{
-            backgroundImage: `url(${category.images[0]})`,
-          }}
-        />
-      </div>
+  const Card2Layout: React.FC<CardLayoutProps> = ({ category }) => {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const cardInView = useInView(cardRef, { once: true, margin: '-50px' });
 
-      {/* Second 9/16 Image - Hidden on mobile */}
-      <div className="hidden md:block aspect-square overflow-hidden relative">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-          style={{
-            backgroundImage: `url(${category.images[1]})`,
-          }}
-        />
-      </div>
-
-      {/* Text Section (1/1) - Full width on mobile */}
-      <div className="bg-amber-50 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square">
-        <h3 className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90">
-          Big Spuntino
-        </h3>
-        <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center">
-          {category.name}
-        </h2>
-        <p className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2">
-          {category.description}
-        </p>
-        <button
-          onClick={handleMenuClick}
-          className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
+    return (
+      <motion.div
+        ref={cardRef}
+        className="w-full grid grid-cols-1 md:grid-cols-3 gap-1 bg-amber-50 overflow-hidden group"
+        variants={cardVariants}
+        initial="hidden"
+        animate={cardInView ? 'visible' : 'hidden'}
+      >
+        {/* First 9/16 Image - Full width on mobile */}
+        <div className="aspect-square h-full overflow-hidden relative">
+          <motion.div
+            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${category.images[0]})`,
+            }}
+            variants={imageRevealVariants}
+            initial="hidden"
+            animate={cardInView ? 'visible' : 'hidden'}
+          />
+        </div>
+        {/* Second 9/16 Image - Hidden on mobile */}
+        <div className="hidden md:block h-full aspect-square overflow-hidden relative">
+          <motion.div
+            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${category.images[1]})`,
+            }}
+            variants={imageRevealVariants}
+            initial="hidden"
+            animate={cardInView ? 'visible' : 'hidden'}
+          />
+        </div>
+        {/* Text Section (1/1) - Full width on mobile */}
+        <motion.div
+          className="bg-amber-50 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={cardInView ? 'visible' : 'hidden'}
         >
-          <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-            View Menu
-          </div>
-          <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-            View Menu
-          </div>
-        </button>
-      </div>
-    </div>
-  );
+          <motion.h3
+            className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
+            variants={fadeInUp}
+          >
+            Big Spuntino
+          </motion.h3>
+          <motion.h2
+            className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+            variants={fadeInUp}
+          >
+            {category.name}
+          </motion.h2>
+          <motion.p
+            className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
+            variants={fadeInUp}
+          >
+            {category.description}
+          </motion.p>
+          <motion.button
+            onClick={handleMenuClick}
+            className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
+            variants={fadeInUp}
+          >
+            <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+              View Menu
+            </div>
+            <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+              View Menu
+            </div>
+          </motion.button>
+        </motion.div>
+      </motion.div>
+    );
+  };
 
   // Card 3: Image + Text + Image (3 columns)
-  const Card3Layout: React.FC<CardLayoutProps> = ({ category }) => (
-    <div className="w-full grid grid-cols-1 md:grid-cols-3 bg-amber-50 gap-1 overflow-hidden group">
-      {/* Left Image - Full width on mobile */}
-      <div className="aspect-square overflow-hidden relative">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-          style={{
-            backgroundImage: `url(${category.images[0]})`,
-          }}
-        />
-      </div>
+  const Card3Layout: React.FC<CardLayoutProps> = ({ category }) => {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const cardInView = useInView(cardRef, { once: true, margin: '-50px' });
 
-      {/* Middle Text Section - Full width on mobile */}
-      <div className="bg-amber-50 flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square">
-        <h3 className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90">
-          Big Spuntino
-        </h3>
-        <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center">
-          {category.name}
-        </h2>
-        <p className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2">
-          {category.description}
-        </p>
-        <button
-          onClick={handleMenuClick}
-          className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
+    return (
+      <motion.div
+        ref={cardRef}
+        className="w-full grid grid-cols-1 md:grid-cols-3 bg-amber-50 gap-1 overflow-hidden group"
+        variants={cardVariants}
+        initial="hidden"
+        animate={cardInView ? 'visible' : 'hidden'}
+      >
+        {/* Left Image - Full width on mobile */}
+        <div className="aspect-square h-full overflow-hidden relative">
+          <motion.div
+            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${category.images[0]})`,
+            }}
+            variants={imageRevealVariants}
+            initial="hidden"
+            animate={cardInView ? 'visible' : 'hidden'}
+          />
+        </div>
+        {/* Middle Text Section - Full width on mobile */}
+        <motion.div
+          className="bg-amber-50 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={cardInView ? 'visible' : 'hidden'}
         >
-          <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-            View Menu
-          </div>
-          <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-            View Menu
-          </div>
-        </button>
-      </div>
+          <motion.h3
+            className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
+            variants={fadeInUp}
+          >
+            Big Spuntino
+          </motion.h3>
+          <motion.h2
+            className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+            variants={fadeInUp}
+          >
+            {category.name}
+          </motion.h2>
+          <motion.p
+            className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
+            variants={fadeInUp}
+          >
+            {category.description}
+          </motion.p>
+          <motion.button
+            onClick={handleMenuClick}
+            className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
+            variants={fadeInUp}
+          >
+            <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+              View Menu
+            </div>
+            <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+              View Menu
+            </div>
+          </motion.button>
+        </motion.div>
+        {/* Right Image - Hidden on mobile */}
+        <div className="hidden md:block h-full aspect-square overflow-hidden relative">
+          <motion.div
+            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${category.images[1]})`,
+            }}
+            variants={imageRevealVariants}
+            initial="hidden"
+            animate={cardInView ? 'visible' : 'hidden'}
+          />
+        </div>
+      </motion.div>
+    );
+  };
 
-      {/* Right Image - Hidden on mobile */}
-      <div className="hidden md:block aspect-square overflow-hidden relative">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-          style={{
-            backgroundImage: `url(${category.images[1]})`,
-          }}
-        />
-      </div>
-    </div>
-  );
+  const Card4Layout: React.FC<CardLayoutProps> = ({ category }) => {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const cardInView = useInView(cardRef, { once: true, margin: '-50px' });
 
-  const Card4Layout: React.FC<CardLayoutProps> = ({ category }) => (
-    <div className="w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-1 bg-amber-50 overflow-hidden group">
-      {/* First Image - Full width on mobile */}
-      <div className="aspect-square overflow-hidden relative md:col-span-1">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-          style={{
-            backgroundImage: `url(${category.images[0]})`,
-          }}
-        />
-      </div>
-
-      {/* Text Section - Full width on mobile */}
-      <div className="bg-amber-50 flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square md:col-span-2 lg:col-span-2">
-        <h3 className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90">
-          Big Spuntino
-        </h3>
-        <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center">
-          {category.name}
-        </h2>
-        <p className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2">
-          {category.description}
-        </p>
-        <button
-          onClick={handleMenuClick}
-          className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
+    return (
+      <motion.div
+        ref={cardRef}
+        className="w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-1 bg-amber-50 overflow-hidden group"
+        variants={cardVariants}
+        initial="hidden"
+        animate={cardInView ? 'visible' : 'hidden'}
+      >
+        {/* First Image - Full width on mobile */}
+        <div className="md:aspect-[9/16] aspect-square h-full overflow-hidden relative md:col-span-1">
+          <motion.div
+            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${category.images[0]})`,
+            }}
+            variants={imageRevealVariants}
+            initial="hidden"
+            animate={cardInView ? 'visible' : 'hidden'}
+          />
+        </div>
+        {/* Text Section - Full width on mobile */}
+        <motion.div
+          className="bg-amber-50 flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square md:col-span-2 lg:col-span-2"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={cardInView ? 'visible' : 'hidden'}
         >
-          <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-            View Menu
-          </div>
-          <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-            View Menu
-          </div>
-        </button>
-      </div>
-
-      {/* Remaining Images - Hidden on mobile, shown on larger screens */}
-      <div className="hidden md:block overflow-hidden relative aspect-[9/16]">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-          style={{
-            backgroundImage: `url(${category.images[1]})`,
-          }}
-        />
-      </div>
-      <div className="hidden lg:block overflow-hidden relative aspect-[9/16]">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-          style={{
-            backgroundImage: `url(${category.images[2]})`,
-          }}
-        />
-      </div>
-      <div className="hidden lg:block overflow-hidden relative aspect-[9/16]">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-          style={{
-            backgroundImage: `url(${category.images[3]})`,
-          }}
-        />
-      </div>
-    </div>
-  );
+          <motion.h3
+            className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
+            variants={fadeInUp}
+          >
+            Big Spuntino
+          </motion.h3>
+          <motion.h2
+            className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+            variants={fadeInUp}
+          >
+            {category.name}
+          </motion.h2>
+          <motion.p
+            className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
+            variants={fadeInUp}
+          >
+            {category.description}
+          </motion.p>
+          <motion.button
+            onClick={handleMenuClick}
+            className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
+            variants={fadeInUp}
+          >
+            <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+              View Menu
+            </div>
+            <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+              View Menu
+            </div>
+          </motion.button>
+        </motion.div>
+        {/* Remaining Images - Hidden on mobile, shown on larger screens */}
+        <div className="hidden md:block overflow-hidden relative h-full aspect-[9/16]">
+          <motion.div
+            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${category.images[1]})`,
+            }}
+            variants={imageRevealVariants}
+            initial="hidden"
+            animate={cardInView ? 'visible' : 'hidden'}
+          />
+        </div>
+        <div className="hidden lg:block overflow-hidden relative h-full aspect-[9/16]">
+          <motion.div
+            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${category.images[2]})`,
+            }}
+            variants={imageRevealVariants}
+            initial="hidden"
+            animate={cardInView ? 'visible' : 'hidden'}
+          />
+        </div>
+        <div className="hidden lg:block overflow-hidden relative h-full aspect-[9/16]">
+          <motion.div
+            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${category.images[3]})`,
+            }}
+            variants={imageRevealVariants}
+            initial="hidden"
+            animate={cardInView ? 'visible' : 'hidden'}
+          />
+        </div>
+      </motion.div>
+    );
+  };
 
   return (
     <section className="py-12 md:py-24 lg:py-32 px-4 md:px-6">
-      <div className="mb-12 md:mb-24 lg:mb-32">
-        <h2 className="text-3xl md:text-6xl lg:text-7xl uppercase font-bold w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-tight">
-          A Tavola
-        </h2>
-        <p className="text-center font-narrow pt-4 md:pt-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-sm md:text-lg leading-relaxed px-4">
+      <motion.div
+        ref={headerRef}
+        className="mb-12 md:mb-24 lg:mb-32"
+        variants={staggerContainer}
+        initial="hidden"
+        animate={headerInView ? 'visible' : 'hidden'}
+      >
+        <motion.h2 variants={fadeInUp}>
+          <AnimatedText
+            className="text-3xl md:text-6xl lg:text-7xl uppercase font-bold w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-tight"
+            text={['A Tavola']}
+          ></AnimatedText>
+        </motion.h2>
+        <motion.p
+          className="text-center font-narrow pt-4 md:pt-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-sm md:text-lg leading-relaxed px-4"
+          variants={fadeInUp}
+        >
           The menu at Big Spuntino is a warm tribute to Italy&apos;s culinary heritage. From
           insalata, caprese and octopus to the crispiest foccacia, our menu offers an exquisite
           selection of classic spuntini (*ital. &quot;snacks&quot;). Of course, this also applies to
           the dolci: from the traditional crème the mascarpone to the fluffy light maritozzi, the
           Big Spuntino sweetens everyday life with the churros all italiana – Neapolitan doughnut
           sticks, served warm and perfect for dipping in melted chocolate with special toppings.
-        </p>
-      </div>
-
+        </motion.p>
+      </motion.div>
       <div className="pt-8 md:pt-12 lg:pt-16 mx-auto space-y-2 md:space-y-4 lg:space-y-6">
-        <Card1Layout category={menuCategories[0]} />
-        <Card2Layout category={menuCategories[1]} />
-        <Card3Layout category={menuCategories[2]} />
-        <Card4Layout category={menuCategories[3]} />
+        <Card1Layout category={menuCategories[0]} index={0} />
+        <Card2Layout category={menuCategories[1]} index={1} />
+        <Card3Layout category={menuCategories[2]} index={2} />
+        <Card4Layout category={menuCategories[3]} index={3} />
       </div>
-
-      <div className="pt-12 md:pt-24 lg:pt-32 text-center">
-        <div className="max-w-2xl mx-auto mb-6 md:mb-8 px-4">
-          <h3 className="text-2xl md:text-5xl lg:text-6xl uppercase font-bold mb-4 md:mb-6">
+      <motion.div
+        ref={footerRef}
+        className="pt-12 md:pt-24 lg:pt-32 text-center"
+        variants={staggerContainer}
+        initial="hidden"
+        animate={footerInView ? 'visible' : 'hidden'}
+      >
+        <motion.div className="max-w-2xl mx-auto mb-6 md:mb-8 px-4" variants={fadeInUp}>
+          <motion.h3 variants={fadeInUp}>
+            <AnimatedText
+              className="text-2xl md:text-5xl lg:text-6xl uppercase font-bold mb-4 md:mb-6"
+              text={['Experience Big Spuntino']}
+            ></AnimatedText>
             Experience Big Spuntino
-          </h3>
-          <p className="text-sm md:text-lg font-narrow leading-tight">
+          </motion.h3>
+          <motion.p className="text-sm md:text-lg font-narrow leading-tight" variants={fadeInUp}>
             From morning cappuccino to evening aperitivo, every moment at Big Spuntino celebrates
             the Italian way of life. Our warm atmosphere and authentic flavors create the perfect
             setting for sharing good food and great company.
-          </p>
-        </div>
-        <button
+          </motion.p>
+        </motion.div>
+        <motion.button
           onClick={handleMenuClick}
           className="group relative inline-flex cursor-pointer h-12 md:h-14 lg:h-16 items-center justify-center overflow-hidden rounded-none font-medium"
+          variants={fadeInUp}
         >
           <div className="inline-flex h-12 md:h-14 lg:h-16 translate-y-0 items-center justify-center bg-amber-300 text-lg md:text-xl lg:text-2xl px-6 md:px-8 lg:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none">
             View Full Menu (PDF)
@@ -328,8 +548,8 @@ const MenusSection: React.FC = () => {
           <div className="absolute inline-flex h-12 md:h-14 lg:h-16 w-full translate-y-[100%] items-center justify-center text-lg md:text-xl lg:text-2xl bg-black px-6 md:px-8 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
             View Full Menu (PDF)
           </div>
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
     </section>
   );
 };
