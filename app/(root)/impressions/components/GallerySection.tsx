@@ -7,7 +7,7 @@ import { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const images = [
-  '/assets/00-Paris-Bambini.jpg',
+  '/assets/bambiniclub.jpg',
   '/assets/menus/brunch/1.jpg',
   '/assets/bambini_club8.jpg',
   '/assets/menus/bar/3.jpg',
@@ -15,10 +15,10 @@ const images = [
   '/assets/menus/bar/1.jpg',
   '/assets/menus/bar/2.jpg',
   '/assets/menus/brunch/1.jpg',
-  '/assets/02-Il-Bambini-Club.jpg',
+  '/assets/bambiniclub02.jpg',
   '/assets/menus/lunch/1.jpg',
   '/assets/menus/lunch/2.jpg',
-  '/assets/01-Il-Bambini-Club.jpg',
+  '/assets/bambiniclub01.jpg',
   '/assets/menus/lunch/1.jpg',
   '/assets/menus/bar/4.jpg',
 ];
