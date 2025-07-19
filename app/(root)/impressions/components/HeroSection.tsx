@@ -6,9 +6,9 @@ import Image from 'next/image';
 const HeroSection = () => {
   // Define images for the mouse trail - you can customize these
   const trailImages = [
-    '/assets/00-Paris-Bambini.jpg',
-    '/assets/01-Il-Bambini-Club.jpg',
-    '/assets/02-Il-Bambini-Club.jpg',
+    '/assets/bambiniclub.jpg',
+    '/assets/bambiniclub01.jpg',
+    '/assets/bambiniclub02.jpg',
     '/assets/bambini_club8.jpg',
     '/assets/menus/brunch/1.jpg',
     '/assets/menus/brunch/2.jpg',

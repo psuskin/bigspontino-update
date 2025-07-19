@@ -16,13 +16,13 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 2,
-    image: '/assets/01-Il-Bambini-Club.jpg',
+    image: '/assets/bambiniclub01.jpg',
     titleKey: 'hero.slide1.title',
     descriptionKey: 'hero.slide1.description',
   },
   {
     id: 3,
-    image: '/assets/02-Il-Bambini-Club.jpg',
+    image: '/assets/bambiniclub02.jpg',
     titleKey: 'hero.slide2.title',
     descriptionKey: 'hero.slide2.description',
   },

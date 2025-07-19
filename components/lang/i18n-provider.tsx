@@ -1,5 +1,6 @@
 'use client';
 
+import Loading from '@/app/loading';
 import i18n from '@/lib/i18n';
 import type React from 'react';
 import { useEffect, useState } from 'react';
@@ -28,7 +29,7 @@ export function I18nProvider({ children }: I18nProviderProps) {
   }, []);
 
   if (!isInitialized) {
-    return <div>Loading...</div>;
+    return <Loading></Loading>;
   }
 
   return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
