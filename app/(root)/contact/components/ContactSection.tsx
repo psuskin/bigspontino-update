@@ -1,6 +1,8 @@
 'use client';
+
+import { motion, useInView, type Variants } from 'framer-motion';
 import { Clock, Globe, Mail, MapPin, Phone } from 'lucide-react';
-import { ChangeEvent, useState } from 'react';
+import { type ChangeEvent, useRef, useState } from 'react';
 
 interface FormData {
   firstName: string;
@@ -27,6 +29,14 @@ const ContactSection = () => {
     agreeTerms: false,
   });
 
+  // Refs for intersection observers
+  const leftColumnRef = useRef<HTMLDivElement>(null);
+  const rightColumnRef = useRef<HTMLDivElement>(null);
+
+  // Intersection observers for animations
+  const leftColumnInView = useInView(leftColumnRef, { once: true, margin: '-100px' });
+  const rightColumnInView = useInView(rightColumnRef, { once: true, margin: '-100px' });
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value, type } = e.target;
     setFormData((prev) => ({
@@ -42,55 +52,145 @@ const ContactSection = () => {
     }));
   };
 
+  // Animation variants
+
+  const fadeInLeft: Variants = {
+    hidden: {
+      opacity: 0,
+      x: -60,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const fadeInRight: Variants = {
+    hidden: {
+      opacity: 0,
+      x: 60,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const staggerContainer: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const contactItemVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const formFieldVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
   return (
     <section className="py-8 md:py-16 lg:py-32 px-4 sm:px-6 max-w-[1920px] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
         {/* Left Column - Contact Info */}
-        <div className="p-4 sm:p-6 md:p-8 lg:p-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold">
+        <motion.div
+          ref={leftColumnRef}
+          className="p-4 sm:p-6 md:p-8 lg:p-16"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={leftColumnInView ? 'visible' : 'hidden'}
+        >
+          <motion.h2
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold"
+            variants={fadeInLeft}
+          >
             Get in touch with Big Spuntino
-          </h2>
-
+          </motion.h2>
           {/* Contact Information */}
-          <div className="space-y-6 sm:space-y-7 md:space-y-8 lg:space-y-10 mt-8 md:mt-12 lg:mt-20 font-narrow">
+          <motion.div
+            className="space-y-6 sm:space-y-7 md:space-y-8 lg:space-y-10 mt-8 md:mt-12 lg:mt-20 font-narrow"
+            variants={staggerContainer}
+          >
             {/* Address */}
-            <div className="flex items-start gap-3 sm:gap-4">
+            <motion.div className="flex items-start gap-3 sm:gap-4" variants={contactItemVariants}>
               <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mt-1 text-gray-600 flex-shrink-0" />
               <div>
                 <h4 className="font-semibold mb-1 text-sm sm:text-base">Address</h4>
                 <p className="text-base sm:text-lg">Mühlenkamp 8, 22303 Hamburg</p>
               </div>
-            </div>
-
+            </motion.div>
             {/* Contact Grid */}
-            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-6 md:mt-8 lg:mt-10">
-              <div className="flex items-center gap-3 sm:gap-4">
+            <motion.div
+              className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-6 md:mt-8 lg:mt-10"
+              variants={staggerContainer}
+            >
+              <motion.div
+                className="flex items-center gap-3 sm:gap-4"
+                variants={contactItemVariants}
+              >
                 <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 flex-shrink-0" />
                 <div>
                   <h4 className="font-semibold text-sm sm:text-base">Phone</h4>
                   <p className="text-base sm:text-lg">040 / 69 45 68 28</p>
                 </div>
-              </div>
-
-              <div className="flex items-center gap-3 sm:gap-4">
+              </motion.div>
+              <motion.div
+                className="flex items-center gap-3 sm:gap-4"
+                variants={contactItemVariants}
+              >
                 <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 flex-shrink-0" />
                 <div>
                   <h4 className="font-semibold text-sm sm:text-base">Email</h4>
                   <p className="text-base sm:text-lg">mail@bigspuntino.de</p>
                 </div>
-              </div>
-
-              <div className="flex items-center gap-3 sm:gap-4 xs:col-span-2 lg:col-span-1 xl:col-span-2">
+              </motion.div>
+              <motion.div
+                className="flex items-center gap-3 sm:gap-4 xs:col-span-2 lg:col-span-1 xl:col-span-2"
+                variants={contactItemVariants}
+              >
                 <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 flex-shrink-0" />
                 <div>
                   <h4 className="font-semibold text-sm sm:text-base">Website</h4>
                   <p className="text-base sm:text-lg">bigspuntino.de</p>
                 </div>
-              </div>
-            </div>
-
+              </motion.div>
+            </motion.div>
             {/* Opening Hours */}
-            <div className="flex items-start gap-3 sm:gap-4">
+            <motion.div className="flex items-start gap-3 sm:gap-4" variants={contactItemVariants}>
               <Clock className="w-5 h-5 sm:w-6 sm:h-6 mt-1 text-gray-600 flex-shrink-0" />
               <div className="w-full">
                 <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Opening Hours</h4>
@@ -129,24 +229,38 @@ const ContactSection = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="mt-8 sm:mt-10 md:mt-12">
+            </motion.div>
+            <motion.div className="mt-8 sm:mt-10 md:mt-12" variants={contactItemVariants}>
               <p className="mb-4 text-sm sm:text-base">
                 The Big Spuntino is a classic day bar where the Spuntini can be tasted all day long.
               </p>
-            </div>
-          </div>
-        </div>
-
+            </motion.div>
+          </motion.div>
+        </motion.div>
         {/* Right Column - Form */}
-        <div className="p-4 sm:p-6 md:p-8 lg:p-16 lg:mt-58 lg:me-16 bg-gray-100 order-first lg:order-last">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl uppercase font-bold">Your Details</h2>
-          <div className="w-full h-[1px] bg-black mb-6 sm:mb-8 lg:mb-10 mt-4 sm:mt-5 lg:mt-6"></div>
-
+        <motion.div
+          ref={rightColumnRef}
+          className="p-4 sm:p-6 md:p-8 lg:p-16 lg:mt-58 lg:me-16 bg-gray-100 order-first lg:order-last"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={rightColumnInView ? 'visible' : 'hidden'}
+        >
+          <motion.h2
+            className="text-2xl sm:text-3xl md:text-4xl uppercase font-bold"
+            variants={fadeInRight}
+          >
+            Your Details
+          </motion.h2>
+          <motion.div
+            className="w-full h-[1px] bg-black mb-6 sm:mb-8 lg:mb-10 mt-4 sm:mt-5 lg:mt-6"
+            variants={fadeInRight}
+          ></motion.div>
           {/* Name Fields */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mt-4 sm:mt-6 p-1 font-narrow">
-            <div className="w-full">
+          <motion.div
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mt-4 sm:mt-6 p-1 font-narrow"
+            variants={staggerContainer}
+          >
+            <motion.div className="w-full" variants={formFieldVariants}>
               <label className="pb-2 ps-3 text-sm sm:text-base" htmlFor="firstName">
                 First Name*
               </label>
@@ -158,8 +272,8 @@ const ContactSection = () => {
                 placeholder="Your first name"
                 className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
               />
-            </div>
-            <div className="w-full">
+            </motion.div>
+            <motion.div className="w-full" variants={formFieldVariants}>
               <label className="pb-2 ps-3 text-sm sm:text-base" htmlFor="lastName">
                 Last Name*
               </label>
@@ -171,12 +285,14 @@ const ContactSection = () => {
                 placeholder="Your last name"
                 className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
               />
-            </div>
-          </div>
-
+            </motion.div>
+          </motion.div>
           {/* Contact Fields */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mt-4 sm:mt-6 p-1 font-narrow">
-            <div className="w-full">
+          <motion.div
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mt-4 sm:mt-6 p-1 font-narrow"
+            variants={staggerContainer}
+          >
+            <motion.div className="w-full" variants={formFieldVariants}>
               <div>
                 <label className="pb-2 text-sm sm:text-base" htmlFor="phone">
                   Phone Number*
@@ -202,8 +318,8 @@ const ContactSection = () => {
                   />
                 </div>
               </div>
-            </div>
-            <div className="w-full">
+            </motion.div>
+            <motion.div className="w-full" variants={formFieldVariants}>
               <div>
                 <label className="pb-2 text-sm sm:text-base" htmlFor="email">
                   Email Address*
@@ -218,16 +334,20 @@ const ContactSection = () => {
                   className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
                 />
               </div>
-            </div>
-          </div>
-
+            </motion.div>
+          </motion.div>
           {/* Enquiry Section */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl uppercase font-bold mt-8 sm:mt-12 lg:mt-16">
+          <motion.h2
+            className="text-2xl sm:text-3xl md:text-4xl uppercase font-bold mt-8 sm:mt-12 lg:mt-16"
+            variants={fadeInRight}
+          >
             Your Enquiry
-          </h2>
-          <div className="w-full h-[1px] bg-black mb-6 sm:mb-8 lg:mb-10 mt-4 sm:mt-5 lg:mt-6"></div>
-
-          <div className="mt-4 sm:mt-6 p-1 font-narrow">
+          </motion.h2>
+          <motion.div
+            className="w-full h-[1px] bg-black mb-6 sm:mb-8 lg:mb-10 mt-4 sm:mt-5 lg:mt-6"
+            variants={fadeInRight}
+          ></motion.div>
+          <motion.div className="mt-4 sm:mt-6 p-1 font-narrow" variants={formFieldVariants}>
             <label className="pb-2 text-sm sm:text-base" htmlFor="enquiryType">
               What is your enquiry about?
             </label>
@@ -244,9 +364,8 @@ const ContactSection = () => {
               <option value="general">General Information</option>
               <option value="other">Other</option>
             </select>
-          </div>
-
-          <div className="mt-4 sm:mt-6 p-1 font-narrow">
+          </motion.div>
+          <motion.div className="mt-4 sm:mt-6 p-1 font-narrow" variants={formFieldVariants}>
             <label className="pb-2 text-sm sm:text-base" htmlFor="message">
               Please share your enquiry
             </label>
@@ -258,9 +377,8 @@ const ContactSection = () => {
               rows={6}
               className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border resize-vertical text-sm sm:text-base"
             />
-          </div>
-
-          <div className="mt-6 sm:mt-8 p-1">
+          </motion.div>
+          <motion.div className="mt-6 sm:mt-8 p-1" variants={formFieldVariants}>
             <label className="flex items-start space-x-3 cursor-pointer">
               <input
                 type="checkbox"
@@ -281,14 +399,13 @@ const ContactSection = () => {
                 .
               </span>
             </label>
-          </div>
-
-          <div className="mt-6 sm:mt-8">
+          </motion.div>
+          <motion.div className="mt-6 sm:mt-8" variants={formFieldVariants}>
             <button className="bg-black text-white px-8 sm:px-12 py-3 sm:py-4 rounded-none font-semibold hover:bg-gray-800 transition-colors duration-300 text-sm sm:text-base lg:text-lg uppercase w-full sm:w-auto">
               Submit Your Enquiry
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
