@@ -471,6 +471,44 @@ const resources = {
         lastUpdated: 'Last updated: July 2025',
         backToHome: 'Back to Home',
       },
+      legal: {
+        title: 'Legal Notice',
+        subtitle: 'Legal Information • Big Spuntino',
+        legalTitle: 'LEGAL INFORMATION',
+        sections: {
+          provider: {
+            title: 'Service Provider',
+            content: 'Big Spuntino\nMühlenkamp 8\n22303 Hamburg, Germany',
+          },
+          contact: {
+            title: 'Contact',
+            content: 'Phone: +49 40 69 45 68 28\nEmail: mail@bigspuntino.de',
+          },
+          vat: {
+            title: 'VAT Information',
+            content: 'VAT Identification Number: DE123456789',
+          },
+          disclaimer: {
+            title: 'Disclaimer',
+            content:
+              'Despite careful content control, we assume no liability for the content of external links. The operators of linked pages are solely responsible for their content.',
+          },
+        },
+        copyrightTitle: 'COPYRIGHT',
+        copyrightContent:
+          'All content and works on this website are protected by copyright. Any duplication, processing, distribution, or any form of commercialization beyond the scope of copyright law shall require the prior written consent of Big Spuntino.',
+        lastUpdated: 'Last updated: July 2025',
+        backToHome: 'Back to Home',
+      },
+      sitemap: {
+        title: 'Sitemap',
+        subtitle: 'Website Navigation • Big Spuntino',
+        mainPages: 'Main Pages',
+        legalPages: 'Legal Pages',
+        companyInfo: 'Company Info',
+        lastUpdated: 'Last updated: July 2025',
+        backToHome: 'Back to Home',
+      },
     },
   },
   de: {
@@ -937,6 +975,44 @@ const resources = {
         emailAddress: 'mail@bigspuntino.de',
         website: 'Web',
         websiteUrl: 'bigspuntino.de',
+        lastUpdated: 'Stand: Juli 2025',
+        backToHome: 'Zurück zur Startseite',
+      },
+      legal: {
+        title: 'Impressum',
+        subtitle: 'Rechtliche Informationen • Big Spuntino',
+        legalTitle: 'RECHTLICHE HINWEISE',
+        sections: {
+          provider: {
+            title: 'Dienstanbieter',
+            content: 'Big Spuntino\nMühlenkamp 8\n22303 Hamburg, Deutschland',
+          },
+          contact: {
+            title: 'Kontakt',
+            content: 'Telefon: +49 40 69 45 68 28\nE-Mail: mail@bigspuntino.de',
+          },
+          vat: {
+            title: 'Umsatzsteuer',
+            content: 'Umsatzsteuer-Identifikationsnummer: DE123456789',
+          },
+          disclaimer: {
+            title: 'Haftungsausschluss',
+            content:
+              'Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.',
+          },
+        },
+        copyrightTitle: 'URHEBERRECHT',
+        copyrightContent:
+          'Alle Inhalte und Werke auf dieser Website sind urheberrechtlich geschützt. Jede Vervielfältigung, Bearbeitung, Verbreitung oder jede andere Form der Verwertung außerhalb der Grenzen des Urheberrechts bedarf der vorherigen schriftlichen Zustimmung von Big Spuntino.',
+        lastUpdated: 'Stand: Juli 2025',
+        backToHome: 'Zurück zur Startseite',
+      },
+      sitemap: {
+        title: 'Sitemap',
+        subtitle: 'Website Navigation • Big Spuntino',
+        mainPages: 'Hauptseiten',
+        legalPages: 'Rechtliche Seiten',
+        companyInfo: 'Firmeninformationen',
         lastUpdated: 'Stand: Juli 2025',
         backToHome: 'Zurück zur Startseite',
       },
