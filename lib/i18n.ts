@@ -46,7 +46,7 @@ const resources = {
       },
       hero: {
         slide1: {
-          title: 'Il Bambini Club',
+          title: 'Big Spuntino',
           description: 'Intimate Italian dining with authentic culinary traditions',
         },
         slide2: {
@@ -560,7 +560,7 @@ const resources = {
       },
       hero: {
         slide1: {
-          title: 'Il Bambini Club',
+          title: 'Big Spuntino',
           description: 'Intimes italienisches Essen mit authentischen kulinarischen Traditionen',
         },
         slide2: {
