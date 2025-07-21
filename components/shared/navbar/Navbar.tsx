@@ -236,7 +236,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            BigSpontino
+            Big Spuntino
           </motion.h1>
         </Link>
       </div>

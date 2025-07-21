@@ -69,7 +69,7 @@ export default function BookingPopup() {
       <div className="bg-black text-white p-4">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-bold font-main">BigSpontino</h3>
+            <h3 className="text-lg font-bold font-main">Big Spuntino</h3>
             <p className="text-sm opacity-90">{t('booking.subtitle')}</p>
           </div>
           <button

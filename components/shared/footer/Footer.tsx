@@ -101,7 +101,7 @@ const Footer = () => {
         animate={footerInView ? 'visible' : 'hidden'}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8">
-          {/* BigSpontino Brand and Description */}
+          {/* Big Spuntino Brand and Description */}
           <motion.div
             ref={brandRef}
             className="col-span-full md:col-span-2 lg:col-span-2"

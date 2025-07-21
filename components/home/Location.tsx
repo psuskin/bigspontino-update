@@ -156,7 +156,7 @@ const Location = () => {
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  BigSpontino
+                  Big Spuntino
                 </motion.h3>
 
                 <motion.h2

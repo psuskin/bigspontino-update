@@ -39,7 +39,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
     birthdayDay: '',
     birthdayMonth: '',
     postalCode: '',
-    language: 'English',
+    language: 'German',
     receiveNews: false,
     agreeTerms: false,
   });
@@ -88,7 +88,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
       {/* Custom Header */}
       <div className="flex items-center justify-between p-4 sm:p-6 bg-amber-400 text-black rounded-none">
         <div className="flex items-center gap-2">
-          <span className="text-xl sm:text-2xl font-bold font-primary">BigSpontino</span>
+          <span className="text-xl sm:text-2xl font-bold font-primary">Big Spuntino</span>
         </div>
         <button
           onClick={() => setIsOpen(false)}
@@ -208,7 +208,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                 We are thrilled to have you join us! Secure your spot for up to 8 people 30 days
                 ahead of a date; for larger groups (from 9 up to 30), 30 days ahead of a date, with
                 a set menu. For reservations beyond 30 people and special occasions, reach out to us
-                at info@bigspontino.com.
+                at info@Big Spuntino.com.
               </p>
 
               <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
@@ -236,7 +236,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
               </div>
 
               <div className="space-y-3 sm:space-y-4">
-                <h3 className="text-base sm:text-lg font-semibold font-primary">BigSpontino</h3>
+                <h3 className="text-base sm:text-lg font-semibold font-primary">Big Spuntino</h3>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9473.194251943753!2d9.999320882146023!3d53.5881341947725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b18942c5a586cf%3A0x3676e8aa6ee953ea!2sBIG%20SPUNTINO%20%7C%20Tagesbar!5e0!3m2!1sen!2sbd!4v1752800811621!5m2!1sen!2sbd"
                   width="100%"
@@ -599,7 +599,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                       birthdayDay: '',
                       birthdayMonth: '',
                       postalCode: '',
-                      language: 'English',
+                      language: 'German',
                       receiveNews: false,
                       agreeTerms: false,
                     });

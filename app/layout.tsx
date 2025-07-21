@@ -36,9 +36,9 @@ const arialNarrow = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'BigSpontino',
+  title: 'Big Spuntino',
   description:
-    'A restaurant website showcasing Italian cuisine and culture. Featuring elegant design, rich imagery, and a focus on the culinary arts, it invites visitors to explore the flavors of Italy through its menu, architectural inspirations, and cultural heritage. With sections dedicated to the restaurant’s story, job opportunities, and frequently asked questions, it provides a comprehensive view of the BigSpontino experience. The site also includes a newsletter subscription form to keep guests updated on events and offers. The overall aesthetic combines modern web design with a touch of Italian elegance, making it a delightful online destination for food lovers.',
+    'A restaurant website showcasing Italian cuisine and culture. Featuring elegant design, rich imagery, and a focus on the culinary arts, it invites visitors to explore the flavors of Italy through its menu, architectural inspirations, and cultural heritage. With sections dedicated to the restaurant’s story, job opportunities, and frequently asked questions, it provides a comprehensive view of the Big Spuntino experience. The site also includes a newsletter subscription form to keep guests updated on events and offers. The overall aesthetic combines modern web design with a touch of Italian elegance, making it a delightful online destination for food lovers.',
 };
 
 export default function RootLayout({

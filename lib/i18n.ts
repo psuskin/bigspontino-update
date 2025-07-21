@@ -62,14 +62,14 @@ const resources = {
       location: {
         title: "Don't overthink it, if it's tasty and inexpensive, it'll already be phenomenal*",
         description:
-          'BigSpontino, a world where the spirit of Italy is captured in every corner and each dish. Here, the sociable atmosphere is matched only by the authentic and wholesome Italian cuisine that brings family and friends together for an unfeigned and delightful experience. At BigSpontino, the traditional meets the contemporary and it is reflected in the lush fabrics and warm lighting that invite guests to a space of domestic comfort.',
-        footer: 'Experience the Heart of Italy at BigSpontino*',
+          'Big Spuntino, a world where the spirit of Italy is captured in every corner and each dish. Here, the sociable atmosphere is matched only by the authentic and wholesome Italian cuisine that brings family and friends together for an unfeigned and delightful experience. At Big Spuntino, the traditional meets the contemporary and it is reflected in the lush fabrics and warm lighting that invite guests to a space of domestic comfort.',
+        footer: 'Experience the Heart of Italy at Big Spuntino*',
         explore: 'Explore',
       },
       flavors: {
         title: 'Italian Finest Flavors',
         description:
-          "The cuisine at BigSpontino restaurants tells a narrative of flavors, with each plate representing a chapter from the heart of Italy's culinary traditions. Classic dishes such as Tagliatelle Al Tartufo, Pistachio Pesto Trofie, and the iconic Milanese Cutlet are adorned with the finest harvests from Italian soils. Meanwhile, the theatrics of our artisanal pizza oven unveil crusts that combine the ethereal fluff of Naples with the crisp whisper of Rome. The dining experience is then completed with a selection of generous Italian desserts.",
+          "The cuisine at Big Spuntino restaurants tells a narrative of flavors, with each plate representing a chapter from the heart of Italy's culinary traditions. Classic dishes such as Tagliatelle Al Tartufo, Pistachio Pesto Trofie, and the iconic Milanese Cutlet are adorned with the finest harvests from Italian soils. Meanwhile, the theatrics of our artisanal pizza oven unveil crusts that combine the ethereal fluff of Naples with the crisp whisper of Rome. The dining experience is then completed with a selection of generous Italian desserts.",
       },
       architecture: {
         title: 'Italian Architectural Inspirations',
@@ -83,7 +83,7 @@ const resources = {
         submit: 'Subscribe',
       },
       booking: {
-        title: 'BigSpontino',
+        title: 'Big Spuntino',
         subtitle: 'Quick Reservations',
         guests: 'Guests',
         date: 'Date',
@@ -103,7 +103,7 @@ const resources = {
         close: 'Close',
       },
       footer: {
-        brand: 'BigSpontino',
+        brand: 'Big Spuntino',
         description:
           'We are a team of passionate and creative individuals who are dedicated to providing the best possible experience for our guests.',
         portfolio: 'PORTFOLIO',
@@ -577,8 +577,8 @@ const resources = {
         title:
           'Denken Sie nicht zu viel nach, wenn es lecker und preiswert ist, wird es schon phänomenal sein*',
         description:
-          'BigSpontino, eine Welt, in der der Geist Italiens in jeder Ecke und jedem Gericht eingefangen wird. Hier wird die gesellige Atmosphäre nur von der authentischen und gesunden italienischen Küche übertroffen, die Familie und Freunde für ein ungekünsteltes und bezauberndes Erlebnis zusammenbringt. Bei BigSpontino trifft Tradition auf Moderne und spiegelt sich in den üppigen Stoffen und der warmen Beleuchtung wider, die Gäste in einen Raum häuslicher Gemütlichkeit einlädt.',
-        footer: 'Erleben Sie das Herz Italiens bei BigSpontino*',
+          'Big Spuntino, eine Welt, in der der Geist Italiens in jeder Ecke und jedem Gericht eingefangen wird. Hier wird die gesellige Atmosphäre nur von der authentischen und gesunden italienischen Küche übertroffen, die Familie und Freunde für ein ungekünsteltes und bezauberndes Erlebnis zusammenbringt. Bei Big Spuntino trifft Tradition auf Moderne und spiegelt sich in den üppigen Stoffen und der warmen Beleuchtung wider, die Gäste in einen Raum häuslicher Gemütlichkeit einlädt.',
+        footer: 'Erleben Sie das Herz Italiens bei Big Spuntino*',
         explore: 'Entdecken',
       },
       flavors: {
@@ -598,7 +598,7 @@ const resources = {
         submit: 'Abonnieren',
       },
       booking: {
-        title: 'BigSpontino',
+        title: 'Big Spuntino',
         subtitle: 'Schnelle Reservierungen',
         guests: 'Gäste',
         date: 'Datum',
@@ -618,7 +618,7 @@ const resources = {
         close: 'Schließen',
       },
       footer: {
-        brand: 'BigSpontino',
+        brand: 'Big Spuntino',
         description:
           'Wir sind ein Team leidenschaftlicher und kreativer Menschen, die sich dafür einsetzen, unseren Gästen das bestmögliche Erlebnis zu bieten.',
         portfolio: 'PORTFOLIO',
@@ -1043,9 +1043,9 @@ if (!i18n.isInitialized) {
     .use(initReactI18next)
     .init({
       resources,
-      fallbackLng: 'en',
+      fallbackLng: 'de',
       debug: false,
-      lng: 'en', // Set default language
+      lng: 'de', // Set default language to German
       interpolation: {
         escapeValue: false,
       },
