@@ -248,7 +248,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  Veteranenstraße 9, Berlin, Germany, 10119
+                  Mühlenkamp 8, Hamburg, Germany 22303
                 </p>
               </div>
             </div>

@@ -1,5 +1,5 @@
 'use client';
-import FacebookIcon from '@/components/icons/FacebookIcon';
+// import FacebookIcon from '@/components/icons/FacebookIcon';
 import InstagramIcon from '@/components/icons/InstagramIcon';
 import PlusIcon from '@/components/icons/PlusIcon';
 import BookingSheet from '@/components/ui/booking-sheet';
@@ -250,15 +250,15 @@ const Navbar = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
-            <Link href={'https://www.google.com'} className="text-primary">
+            <Link href={'https://www.instagram.com/bigspuntino/'} className="text-primary">
               <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6" />
             </Link>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.1, rotate: -5 }} whileTap={{ scale: 0.9 }}>
+          {/* <motion.div whileHover={{ scale: 1.1, rotate: -5 }} whileTap={{ scale: 0.9 }}>
             <Link href={'https://www.google.com'} className="text-primary">
               <FacebookIcon className="w-5 h-5 sm:w-6 sm:h-6" />
             </Link>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
 
         <div className="w-3 sm:w-4 h-[1px] lg:block hidden bg-gray-600"></div>
