@@ -19,7 +19,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative w-[97.2%] mx-auto h-[93.5vh] overflow-hidden bg-black">
+    <section className="relative  h-[93.5vh] overflow-hidden bg-black">
       {/* Background Image */}
       <Image
         width={1920}
@@ -30,7 +30,7 @@ const HeroSection = () => {
       />
 
       {/* Overlay for better text visibility */}
-      <div className="absolute inset-0 bg-gray-200/25" />
+      <div className="absolute inset-0 bg-black/35" />
 
       {/* Mouse Trail Container */}
       <div className="absolute inset-0">
@@ -58,7 +58,7 @@ const HeroSection = () => {
                 width={true}
                 weight={true}
                 italic={true}
-                textColor="#000000"
+                textColor="#ffffff"
                 strokeColor="#ff0000"
                 minFontSize={48}
                 scale={true}
