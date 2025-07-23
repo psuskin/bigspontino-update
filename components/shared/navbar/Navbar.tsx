@@ -3,6 +3,7 @@ import RevealText from '@/components/animation/text/RevealText';
 import DownArrowIcon from '@/components/icons/DownArrowIcon';
 import InstagramIcon from '@/components/icons/InstagramIcon';
 import PlusIcon from '@/components/icons/PlusIcon';
+
 import BookingSheet from '@/components/ui/booking-sheet';
 import {
   Sheet,
@@ -13,6 +14,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -40,6 +42,13 @@ const Navbar = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   // Don't render language buttons until mounted and i18n is ready
   const isI18nReady = mounted && ready && i18n;
   const currentLanguage = isI18nReady ? i18n.language : 'en';
@@ -47,7 +56,7 @@ const Navbar = () => {
   const navLinks = [
     { href: '/', label: t('navigation.home') || 'Home' },
     { href: '/menus', label: `${t('navigation.menu') || 'Il Menu'} (menus)` },
-    { href: '/events', label: t('navigation.events') || 'Events' },
+    { href: '/events', label: `${t('navigation.events') || 'Eventi'} (events)` },
     { href: '/history', label: `${t('navigation.history') || 'La Storia'} (history)` },
     {
       href: '/impressions',
@@ -78,7 +87,7 @@ const Navbar = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="flex items-center px-3 sm:px-4 md:px-6 bg-white sticky top-0 z-50 w-full"
+        className="flex items-center px-3 sm:px-4 py-10 text-white md:px-6 bg-transparent fixed top-0 z-50 w-full"
       >
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
@@ -89,16 +98,13 @@ const Navbar = () => {
               </motion.div>
             </div>
           </SheetTrigger>
-          <SheetContent
-            className="my-4 sm:my-6 md:my-10 mx-3 sm:mx-4 md:mx-6 rounded-none border border-amber-300 bg-transparent pointer-events-none w-full sm:w-xl"
-            style={{ height: 'calc(100vh - 2rem)' }}
-          >
+          <SheetContent className=" rounded-none border border-amber-300 bg-transparent pointer-events-none w-full sm:w-xl">
             <div className="w-full h-full bg-amber-300 pointer-events-auto rounded-none">
               <SheetHeader>
                 <SheetTitle></SheetTitle>
                 <SheetDescription></SheetDescription>
                 <div
-                  style={{ height: 'calc(100vh - 2rem)' }}
+                  style={{ height: 'calc(100vh)' }}
                   className="w-full flex gap-0.5 flex-col h-full items-center justify-center px-4 sm:px-8 md:ps-16 md:pe-10"
                 >
                   {/* Navigation Links */}
@@ -234,13 +240,20 @@ const Navbar = () => {
         {/* Centered title */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <Link href={'/'} className="">
-            <motion.h1
+            {/* <motion.h1
               className="text-lg sm:text-xl md:text-2xl"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Big Spuntino
-            </motion.h1>
+            </motion.h1> */}
+            <Image
+              src="/assets/logo-white.png"
+              alt="BigSpuntino"
+              width={100}
+              height={100}
+              className="w-auto h-10 sm:h-12 md:h-16 lg:h-20  "
+            />
           </Link>
         </div>
 
@@ -259,7 +272,7 @@ const Navbar = () => {
             </motion.div>
           </motion.div>
 
-          <div className="w-3 sm:w-4 h-[1px] lg:block hidden bg-gray-600"></div>
+          <div className="w-3 sm:w-4 h-[1px] lg:block hidden bg-gray-100"></div>
 
           {/* language switcher */}
           <Sheet open={isLanguageSheetOpen} onOpenChange={setIsLanguageSheetOpen}>
@@ -267,31 +280,28 @@ const Navbar = () => {
               {currentLanguage === 'en' ? (
                 <motion.button
                   onClick={() => changeLanguage('en')}
-                  className={`transition-colors duration-200 flex items-center gap-1 px-3 ${
-                    currentLanguage === 'en' ? 'text-amber-500 font-bold' : 'hover:text-amber-500'
+                  className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
+                    currentLanguage === 'en' ? 'text-white font-bold' : 'hover:text-amber-500'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  En <DownArrowIcon className="!font-normal text-black" />
+                  En <DownArrowIcon className="!font-normal text-white" />
                 </motion.button>
               ) : (
                 <motion.button
                   onClick={() => changeLanguage('de')}
                   className={`transition-colors duration-200 flex items-center gap-1 px-3 ${
-                    currentLanguage === 'de' ? 'text-amber-500 font-bold' : 'hover:text-amber-500'
+                    currentLanguage === 'de' ? 'text-white font-bold' : 'hover:text-amber-500'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  De <DownArrowIcon className="!font-normal text-black" />
+                  De <DownArrowIcon className="!font-normal text-white" />
                 </motion.button>
               )}
             </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="  rounded-none pointer-events-none w-full sm:w-xl"
-            >
+            <SheetContent side="right" className="rounded-none pointer-events-none w-full sm:w-xl">
               <div className="w-full h-full bg-white pointer-events-auto rounded-none">
                 <SheetHeader>
                   <SheetTitle></SheetTitle>
@@ -319,7 +329,7 @@ const Navbar = () => {
                     <div className="">
                       <motion.button
                         onClick={() => changeLanguage('de')}
-                        className={`transition-colors text-4xl uppercase  duration-200 ${
+                        className={`transition-colors text-4xl uppercase duration-200 ${
                           currentLanguage === 'de' ? 'text-amber-500 ' : 'hover:text-amber-500'
                         }`}
                         whileHover={{ scale: 1.1 }}
@@ -352,7 +362,7 @@ const Navbar = () => {
                     </span>
                     <span className="sm:hidden">{t('buttons.book') || 'Book'}</span>
                   </div>
-                  <div className="absolute inline-flex h-8 sm:h-9 md:h-10 w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-black px-3 sm:px-4 md:px-6 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+                  <div className="absolute inline-flex h-8 sm:h-9 md:h-10 w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-white px-3 sm:px-4 md:px-6 text-black transition duration-300 group-hover:translate-y-0 rounded-none">
                     <span className="hidden sm:inline">
                       {t('buttons.bookTable') || 'Book A Table'}
                     </span>
@@ -371,33 +381,46 @@ const Navbar = () => {
         </div>
       </motion.header>
 
-      {/* Mobile Book A Table Button - Fixed at Bottom */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50">
-        <Sheet open={isBookingSheetOpen} onOpenChange={setIsBookingSheetOpen}>
-          <SheetTrigger asChild>
-            <motion.button
-              className="group relative inline-flex h-12 w-full items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <div className="inline-flex h-12 w-full translate-y-0 items-center justify-center bg-amber-300 text-lg px-6 text-black transition group-hover:-translate-y-[150%] rounded-none">
-                {t('buttons.bookTable') || 'Book A Table'}
-              </div>
-              <div className="absolute inline-flex h-12 w-full translate-y-[100%] items-center justify-center text-lg bg-black px-6 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
-                {t('buttons.bookTable') || 'Book A Table'}
-              </div>
-            </motion.button>
-          </SheetTrigger>
-          <SheetContent
-            side="right"
-            className="w-full sm:max-w-md p-0 [&>button]:hidden rounded-none"
-          >
-            <BookingSheet setIsOpen={setIsBookingSheetOpen} />
-          </SheetContent>
-        </Sheet>
+      {/* Mobile Bottom Bar with 3 buttons */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-white  flex justify-between items-center h-10 ">
+        {/* Book A Table Button */}
+        <div className="flex-1 ">
+          <Sheet open={isBookingSheetOpen} onOpenChange={setIsBookingSheetOpen}>
+            <SheetTrigger asChild>
+              <motion.button
+                className="group relative inline-flex h-10 w-full items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="inline-flex h-10 w-full translate-y-0 items-center justify-center bg-amber-300 text-sm px-2 text-black transition group-hover:-translate-y-[150%] rounded-none">
+                  {t('buttons.bookTable') || 'Book A Table'}
+                </div>
+                <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center text-sm bg-black px-2 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+                  {t('buttons.bookTable') || 'Book A Table'}
+                </div>
+              </motion.button>
+            </SheetTrigger>
+          </Sheet>
+        </div>
+        {/* Menu Button */}
+
+        <Link
+          href={'/menus'}
+          className="px-8 h-full flex items-center justify-center border-x-2 bg-amber-300 border-white"
+        >
+          Menu
+        </Link>
+
+        {/* Scroll to Top Button */}
+        <motion.button
+          className=" bg-amber-300 h-10 aspect-square flex items-center justify-center w-10"
+          onClick={scrollToTop}
+          whileTap={{ scale: 0.95 }}
+        >
+          <div className="flex flex-col items-center">
+            <DownArrowIcon className="w-5 h-5 rotate-180" />
+          </div>
+        </motion.button>
       </div>
     </>
   );

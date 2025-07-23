@@ -12,7 +12,7 @@ const resources = {
         home: 'Home',
         about: 'About',
         contact: 'Contact',
-        events: 'Events',
+        events: 'Eventi',
         history: 'La Storia',
         impressions: 'Impressions',
         jobs: 'Jobs',

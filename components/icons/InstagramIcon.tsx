@@ -18,7 +18,7 @@ const InstagramIcon: React.FC<InstagramIconProps> = ({
       className={className}
       viewBox="0 0 48 48"
       xmlns="http://www.w3.org/2000/svg"
-      fill="#000000"
+      fill="#ffffff"
     >
       <title>instagram</title>
       <g id="Layer_2" data-name="Layer 2">

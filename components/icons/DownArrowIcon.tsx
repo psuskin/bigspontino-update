@@ -13,7 +13,7 @@ const DownArrowIcon: React.FC<DownArrowIconProps> = ({
 }) => {
   return (
     <svg
-      fill="#000000"
+      fill="#ffffff"
       width={width}
       height={height}
       className={className}
