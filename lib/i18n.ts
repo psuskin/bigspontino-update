@@ -57,7 +57,7 @@ const resources = {
           title: "Chef's Table Experience",
           description: 'Experience culinary artistry up close with our master chefs',
         },
-        explore: 'EXPLORE',
+        explore: 'ESPLORARE',
       },
       location: {
         title: "Don't overthink it, if it's tasty and inexpensive, it'll already be phenomenal*",
@@ -571,7 +571,7 @@ const resources = {
           title: "Chef's Table Erlebnis",
           description: 'Erleben Sie kulinarische Kunst hautnah mit unseren Meisterköchen',
         },
-        explore: 'ENTDECKEN',
+        explore: 'ESPLORARE',
       },
       location: {
         title:

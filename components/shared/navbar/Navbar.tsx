@@ -1,4 +1,6 @@
 'use client';
+import RevealText from '@/components/animation/text/RevealText';
+import DownArrowIcon from '@/components/icons/DownArrowIcon';
 // import FacebookIcon from '@/components/icons/FacebookIcon';
 import InstagramIcon from '@/components/icons/InstagramIcon';
 import PlusIcon from '@/components/icons/PlusIcon';
@@ -20,6 +22,7 @@ import { useTranslation } from 'react-i18next';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isBookingSheetOpen, setIsBookingSheetOpen] = useState(false);
+  const [isLanguageSheetOpen, setIsLanguageSheetOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { t, i18n, ready } = useTranslation();
@@ -264,7 +267,7 @@ const Navbar = () => {
         <div className="w-3 sm:w-4 h-[1px] lg:block hidden bg-gray-600"></div>
 
         {/* Desktop Language Switcher */}
-        <motion.div
+        {/* <motion.div
           className="text-lg sm:text-xl md:text-2xl md:flex hidden items-center gap-1 px-2 sm:px-3"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -299,7 +302,76 @@ const Navbar = () => {
               <span className="opacity-50">De</span>,<span className="opacity-50">En</span>
             </>
           )}
-        </motion.div>
+        </motion.div> */}
+        {/* language switcher */}
+        <Sheet open={isLanguageSheetOpen} onOpenChange={setIsLanguageSheetOpen}>
+          <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
+            {currentLanguage === 'en' ? (
+              <motion.button
+                onClick={() => changeLanguage('en')}
+                className={`transition-colors duration-200 flex items-center gap-1 px-3 ${
+                  currentLanguage === 'en' ? 'text-amber-500 font-bold' : 'hover:text-amber-500'
+                }`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                En <DownArrowIcon className="!font-normal text-black" />
+              </motion.button>
+            ) : (
+              <motion.button
+                onClick={() => changeLanguage('de')}
+                className={`transition-colors duration-200 flex items-center gap-1 px-3 ${
+                  currentLanguage === 'de' ? 'text-amber-500 font-bold' : 'hover:text-amber-500'
+                }`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                De <DownArrowIcon className="!font-normal text-black" />
+              </motion.button>
+            )}
+          </SheetTrigger>
+          <SheetContent side="right" className="  rounded-none pointer-events-none w-full sm:w-xl">
+            <div className="w-full h-full bg-white pointer-events-auto rounded-none">
+              <SheetHeader>
+                <SheetTitle></SheetTitle>
+                <SheetDescription></SheetDescription>
+              </SheetHeader>
+              <div className="h-full w-full flex items-center justify-end text-end px-20">
+                <div className="">
+                  <h2 className="text-lg sm:text-xl lg:text-xl uppercase opacity-75 font-bold mb-10">
+                    {t('language.title') || 'Language'}
+                  </h2>
+
+                  <div className="">
+                    <motion.button
+                      onClick={() => changeLanguage('en')}
+                      className={`transition-colors text-4xl uppercase mb-6 duration-200 ${
+                        currentLanguage === 'en' ? 'text-amber-500 ' : 'hover:text-amber-500'
+                      }`}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <RevealText>English</RevealText>
+                    </motion.button>
+                  </div>
+
+                  <div className="">
+                    <motion.button
+                      onClick={() => changeLanguage('de')}
+                      className={`transition-colors text-4xl uppercase  duration-200 ${
+                        currentLanguage === 'de' ? 'text-amber-500 ' : 'hover:text-amber-500'
+                      }`}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <RevealText>German</RevealText>
+                    </motion.button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
 
         {/* Booking Sheet Integration */}
         <Sheet open={isBookingSheetOpen} onOpenChange={setIsBookingSheetOpen}>
