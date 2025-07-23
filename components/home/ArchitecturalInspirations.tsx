@@ -58,7 +58,10 @@ const ArchitecturalInspirations = () => {
   };
 
   return (
-    <section className="px-4 sm:px-6 pt-3 pb-16 md:pb-28">
+    <section
+      id="architectural-inspirations"
+      className="px-4 mt-1 md:mt-6 sm:px-6 pt-3 md:pt-6 pb-16 md:pb-28"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-1">
         {/* First Column */}
         <div className="grid gap-1">
