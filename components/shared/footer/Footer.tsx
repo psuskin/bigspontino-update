@@ -92,10 +92,10 @@ const Footer = () => {
   };
 
   return (
-    <footer className="pb-1">
+    <footer className="">
       <motion.div
         ref={footerRef}
-        className="bg-black text-white py-10 px-4 sm:py-16 sm:px-8 md:py-20 md:px-16 lg:py-24 lg:px-24 mx-2 sm:mx-4 md:mx-6 mb-2 sm:mb-4 md:mb-6 lg:mx-6 !lg:mb-6 rounded-none"
+        className="bg-black text-white py-10 px-4 sm:py-16 sm:px-8 md:py-20 md:px-16 lg:py-24 lg:px-24  rounded-none"
         variants={fadeInUp}
         initial="hidden"
         animate={footerInView ? 'visible' : 'hidden'}
