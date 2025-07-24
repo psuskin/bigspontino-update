@@ -19,7 +19,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative  h-[93.5vh] overflow-hidden bg-black">
+    <section className="relative  h-dvh md:h-[93.5vh]  overflow-hidden bg-black">
       {/* Background Image */}
       <Image
         width={1920}

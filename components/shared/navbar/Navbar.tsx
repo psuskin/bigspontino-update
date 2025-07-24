@@ -3,7 +3,6 @@ import RevealText from '@/components/animation/text/RevealText';
 import DownArrowIcon from '@/components/icons/DownArrowIcon';
 import InstagramIcon from '@/components/icons/InstagramIcon';
 import PlusIcon from '@/components/icons/PlusIcon';
-
 import BookingSheet from '@/components/ui/booking-sheet';
 import {
   Sheet,
@@ -35,7 +34,7 @@ const Navbar = () => {
 
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50); // Adjust this value to control when the effect triggers
+      setIsScrolled(scrollTop > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -59,30 +58,26 @@ const Navbar = () => {
     });
   };
 
-  // Don't render language buttons until mounted and i18n is ready
   const isI18nReady = mounted && ready && i18n;
   const currentLanguage = isI18nReady ? i18n.language : 'en';
 
   const navLinks = [
     { href: '/', label: t('navigation.home') || 'Home' },
-    { href: '/menus', label: `${t('navigation.menu') || 'Il Menu'} (menus)` },
-    { href: '/events', label: `${t('navigation.events') || 'Eventi'} (events)` },
-    { href: '/history', label: `${t('navigation.history') || 'La Storia'} (history)` },
+    { href: '/menus', label: `Il Menu (${t('navigation.menu') || 'menus'})` },
+    { href: '/events', label: `Eventi (${t('navigation.events') || 'events'})` },
+    { href: '/history', label: `La Storia (${t('navigation.history') || 'history'})` },
     {
       href: '/impressions',
-      label: `${t('navigation.impressions') || 'Impressions'} (Bildgalerie)`,
+      label: `Impressions (${t('navigation.impressions') || 'Bildgalerie'})`,
     },
     {
       href: '/contact',
-      label: `${t('navigation.contact') || 'Contatto'} (contact / opening hours)`,
+      label: `Contatto (${t('navigation.contact') || 'contact / opening hours'})`,
     },
     { href: '/jobs', label: t('navigation.jobs') || 'Jobs' },
   ];
 
-  const socialLinks = [
-    { href: 'https://www.instagram.com/', label: 'Instagram' },
-    // { href: 'https://www.facebook.com/', label: 'Facebook' },
-  ];
+  const socialLinks = [{ href: 'https://www.instagram.com/', label: 'Instagram' }];
 
   const processText = (text: string) => {
     const parts = text.split('(');
@@ -98,19 +93,54 @@ const Navbar = () => {
         animate={{
           opacity: 1,
           y: 0,
-          backgroundColor: isScrolled ? 'rgba(0, 0, 0, 0.7)' : 'rgba(0, 0, 0, 0)',
-          backdropFilter: isScrolled ? 'blur(10px)' : 'blur(0px)',
         }}
-        transition={{
-          duration: 0.6,
-          backgroundColor: { duration: 0.3 },
-          backdropFilter: { duration: 0.3 },
-        }}
+        transition={{ duration: 0.6 }}
         className={cn(
           'flex items-center px-3 sm:px-4 py-10 text-white md:px-6 fixed top-0 z-50 w-full',
           isScrolled && 'py-4',
         )}
       >
+        {/* Animated background overlay */}
+        <motion.div
+          className="absolute inset-0 bg-black/40 backdrop-blur-xs -z-10"
+          initial={{ y: '-100%' }}
+          animate={{
+            y: isScrolled ? '0%' : '-100%',
+          }}
+          transition={{
+            duration: 0.8,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+        />
+
+        {/* Layer 2 - Secondary layer with slight delay */}
+        <motion.div
+          className="absolute inset-0 bg-black/30 -z-10"
+          initial={{ y: '-100%' }}
+          animate={{
+            y: isScrolled ? '0%' : '-100%',
+          }}
+          transition={{
+            duration: 0.9,
+            delay: 0.1, // Slight delay for cascading effect
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+        />
+
+        {/* Layer 3 - Top layer with more delay */}
+        <motion.div
+          className="absolute inset-0 bg-black/20 -z-10"
+          initial={{ y: '-100%' }}
+          animate={{
+            y: isScrolled ? '0%' : '-100%',
+          }}
+          transition={{
+            duration: 1.0,
+            delay: 0.2, // More delay for deeper cascading
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+        />
+
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
             <span>{t('navigation.menu') || 'Menu'}</span>
@@ -127,10 +157,9 @@ const Navbar = () => {
                 <SheetDescription></SheetDescription>
                 <div
                   style={{ height: 'calc(100vh)' }}
-                  className="w-full flex gap-0.5 flex-col h-full items-center justify-center px-4 sm:px-8 md:ps-16 md:pe-10"
+                  className="w-full flex gap-0.5 flex-col h-full md:items-center items-start justify-center px-4 sm:px-8 md:ps-16 md:pe-10"
                 >
-                  {/* Navigation Links */}
-                  <div className="flex flex-col gap-0.5 items-center w-full">
+                  <div className="flex flex-col gap-0.5 md:items-center md:justify-center justify-start items-start w-full">
                     {navLinks.map((link, index) => {
                       const { mainText, bracketed } = processText(link.label);
                       return (
@@ -147,12 +176,12 @@ const Navbar = () => {
                           }}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="w-full flex justify-center"
+                          className="w-full md:flex md:justify-center flex justify-start"
                         >
                           <Link
                             href={link.href}
                             onClick={() => setIsOpen(false)}
-                            className={`block font-medium text-center relative after:absolute md:after:bottom-1.5 after:bottom-0.5 after:left-0 md:after:h-[3px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic  ${
+                            className={`block font-medium md:text-center text-start relative after:absolute md:after:bottom-1.5 after:bottom-0.5 after:left-0 md:after:h-[3px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic  ${
                               pathname === link.href ? 'italic after:scale-x-100' : ''
                             }`}
                           >
@@ -172,48 +201,6 @@ const Navbar = () => {
                     })}
                   </div>
 
-                  {/* Language Section - Mobile Only */}
-                  {/* <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{
-                      opacity: isOpen ? 1 : 0,
-                      y: isOpen ? 0 : 20,
-                    }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                    className="md:hidden block"
-                  >
-                    <div className="mt-10 mb-1 gap-4 w-full">
-                      <h5 className="text-lg text-center">{t('language.title') || 'Language'}</h5>
-                    </div>
-                    <motion.button
-                      onClick={() => {
-                        changeLanguage('de');
-                        setIsOpen(false);
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
-                        currentLanguage === 'de' ? 'italic after:scale-x-100 ' : ''
-                      }`}
-                    >
-                      {t('language.german') || 'German'}
-                    </motion.button>
-                    <motion.button
-                      onClick={() => {
-                        changeLanguage('en');
-                        setIsOpen(false);
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
-                        currentLanguage === 'en' ? 'italic after:scale-x-100 ' : ''
-                      }`}
-                    >
-                      {t('language.english') || 'English'}
-                    </motion.button>
-                  </motion.div> */}
-
-                  {/* Social Section - Mobile Only */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{
@@ -224,7 +211,7 @@ const Navbar = () => {
                     className="md:hidden block"
                   >
                     <div className="mt-10 mb-1 gap-4 w-full">
-                      <h5 className="text-lg text-center">{t('social.title') || 'Social'}</h5>
+                      <h5 className="text-lg text-left">{t('social.title') || 'Social'}</h5>
                     </div>
                     {socialLinks.map((link, index) => (
                       <motion.div
@@ -244,7 +231,7 @@ const Navbar = () => {
                         <Link
                           href={link.href}
                           onClick={() => setIsOpen(false)}
-                          className={`block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
+                          className={`block text-2xl font-medium text-left relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
                             pathname === link.href ? 'italic after:scale-x-100' : ''
                           }`}
                         >
@@ -259,16 +246,8 @@ const Navbar = () => {
           </SheetContent>
         </Sheet>
 
-        {/* Centered title */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <Link href={'/'} className="">
-            {/* <motion.h1
-              className="text-lg sm:text-xl md:text-2xl"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Big Spuntino
-            </motion.h1> */}
             <motion.div
               animate={{
                 scale: isScrolled ? 0.6 : 1,
@@ -286,7 +265,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Right side content */}
         <div className="flex items-center ml-auto z-20">
           <motion.div
             className="lg:flex hidden items-center gap-1 sm:gap-2 pe-2 sm:pe-3"
@@ -303,31 +281,30 @@ const Navbar = () => {
 
           <div className="w-3 sm:w-4 h-[1px] lg:block hidden bg-gray-100"></div>
 
-          {/* language switcher */}
           <Sheet open={isLanguageSheetOpen} onOpenChange={setIsLanguageSheetOpen}>
-            <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
+            <SheetTrigger className="cursor-pointer flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
               {currentLanguage === 'en' ? (
-                <motion.button
+                <motion.span
                   onClick={() => changeLanguage('en')}
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'en' ? 'text-white font-bold' : 'hover:text-amber-500'
+                    currentLanguage === 'en' ? 'text-white ' : 'hover:text-amber-500'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   En <DownArrowIcon className="!font-normal text-white" />
-                </motion.button>
+                </motion.span>
               ) : (
-                <motion.button
+                <motion.span
                   onClick={() => changeLanguage('de')}
-                  className={`transition-colors duration-200 flex items-center gap-1 px-3 ${
-                    currentLanguage === 'de' ? 'text-white font-bold' : 'hover:text-amber-500'
+                  className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
+                    currentLanguage === 'de' ? 'text-white ' : 'hover:text-amber-500'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   De <DownArrowIcon className="!font-normal text-white" />
-                </motion.button>
+                </motion.span>
               )}
             </SheetTrigger>
             <SheetContent side="right" className="rounded-none pointer-events-none w-full sm:w-xl">
@@ -373,7 +350,6 @@ const Navbar = () => {
             </SheetContent>
           </Sheet>
 
-          {/* Booking Sheet Integration - Desktop */}
           <div className="hidden sm:block">
             <Sheet open={isBookingSheetOpen} onOpenChange={setIsBookingSheetOpen}>
               <SheetTrigger asChild>
@@ -410,9 +386,7 @@ const Navbar = () => {
         </div>
       </motion.header>
 
-      {/* Mobile Bottom Bar with 3 buttons */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-white  flex justify-between items-center h-10 ">
-        {/* Book A Table Button */}
         <div className="flex-1 ">
           <Sheet open={isBookingSheetOpen} onOpenChange={setIsBookingSheetOpen}>
             <SheetTrigger asChild>
@@ -431,7 +405,6 @@ const Navbar = () => {
             </SheetTrigger>
           </Sheet>
         </div>
-        {/* Menu Button */}
 
         <Link
           href={'/menus'}
@@ -440,7 +413,6 @@ const Navbar = () => {
           Menu
         </Link>
 
-        {/* Scroll to Top Button */}
         <motion.button
           className=" bg-amber-300 h-10 aspect-square flex items-center justify-center w-10"
           onClick={scrollToTop}
