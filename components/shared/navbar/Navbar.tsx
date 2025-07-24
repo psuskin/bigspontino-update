@@ -282,9 +282,9 @@ const Navbar = () => {
           <div className="w-3 sm:w-4 h-[1px] lg:block hidden bg-gray-100"></div>
 
           <Sheet open={isLanguageSheetOpen} onOpenChange={setIsLanguageSheetOpen}>
-            <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
+            <SheetTrigger className="cursor-pointer flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
               {currentLanguage === 'en' ? (
-                <motion.button
+                <motion.span
                   onClick={() => changeLanguage('en')}
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
                     currentLanguage === 'en' ? 'text-white font-bold' : 'hover:text-amber-500'
@@ -293,9 +293,9 @@ const Navbar = () => {
                   whileTap={{ scale: 0.9 }}
                 >
                   En <DownArrowIcon className="!font-normal text-white" />
-                </motion.button>
+                </motion.span>
               ) : (
-                <motion.button
+                <motion.span
                   onClick={() => changeLanguage('de')}
                   className={`transition-colors duration-200 flex items-center gap-1 px-3 ${
                     currentLanguage === 'de' ? 'text-white font-bold' : 'hover:text-amber-500'
@@ -304,7 +304,7 @@ const Navbar = () => {
                   whileTap={{ scale: 0.9 }}
                 >
                   De <DownArrowIcon className="!font-normal text-white" />
-                </motion.button>
+                </motion.span>
               )}
             </SheetTrigger>
             <SheetContent side="right" className="rounded-none pointer-events-none w-full sm:w-xl">
