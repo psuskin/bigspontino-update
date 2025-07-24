@@ -13,6 +13,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -25,11 +26,20 @@ const Navbar = () => {
   const [isBookingSheetOpen, setIsBookingSheetOpen] = useState(false);
   const [isLanguageSheetOpen, setIsLanguageSheetOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { t, i18n, ready } = useTranslation();
 
   useEffect(() => {
     setMounted(true);
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50); // Adjust this value to control when the effect triggers
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const changeLanguage = async (languageCode: string) => {
@@ -71,7 +81,7 @@ const Navbar = () => {
 
   const socialLinks = [
     { href: 'https://www.instagram.com/', label: 'Instagram' },
-    { href: 'https://www.facebook.com/', label: 'Facebook' },
+    // { href: 'https://www.facebook.com/', label: 'Facebook' },
   ];
 
   const processText = (text: string) => {
@@ -85,9 +95,21 @@ const Navbar = () => {
     <>
       <motion.header
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="flex items-center px-3 sm:px-4 py-10 text-white md:px-6 bg-transparent fixed top-0 z-50 w-full"
+        animate={{
+          opacity: 1,
+          y: 0,
+          backgroundColor: isScrolled ? 'rgba(0, 0, 0, 0.7)' : 'rgba(0, 0, 0, 0)',
+          backdropFilter: isScrolled ? 'blur(10px)' : 'blur(0px)',
+        }}
+        transition={{
+          duration: 0.6,
+          backgroundColor: { duration: 0.3 },
+          backdropFilter: { duration: 0.3 },
+        }}
+        className={cn(
+          'flex items-center px-3 sm:px-4 py-10 text-white md:px-6 fixed top-0 z-50 w-full',
+          isScrolled && 'py-4',
+        )}
       >
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
@@ -151,7 +173,7 @@ const Navbar = () => {
                   </div>
 
                   {/* Language Section - Mobile Only */}
-                  <motion.div
+                  {/* <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{
                       opacity: isOpen ? 1 : 0,
@@ -189,7 +211,7 @@ const Navbar = () => {
                     >
                       {t('language.english') || 'English'}
                     </motion.button>
-                  </motion.div>
+                  </motion.div> */}
 
                   {/* Social Section - Mobile Only */}
                   <motion.div
@@ -247,13 +269,20 @@ const Navbar = () => {
             >
               Big Spuntino
             </motion.h1> */}
-            <Image
-              src="/assets/logo-white.png"
-              alt="BigSpuntino"
-              width={100}
-              height={100}
-              className="w-auto h-10 sm:h-12 md:h-16 lg:h-20  "
-            />
+            <motion.div
+              animate={{
+                scale: isScrolled ? 0.6 : 1,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image
+                src="/assets/logo-white.png"
+                alt="BigSpuntino"
+                width={100}
+                height={100}
+                className="w-auto h-10 sm:h-12 md:h-16 lg:h-20"
+              />
+            </motion.div>
           </Link>
         </div>
 
@@ -392,10 +421,10 @@ const Navbar = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <div className="inline-flex h-10 w-full translate-y-0 items-center justify-center bg-amber-300 text-sm px-2 text-black transition group-hover:-translate-y-[150%] rounded-none">
+                <div className="inline-flex h-10 w-full translate-y-0 items-center justify-center bg-amber-300  px-2 text-black transition group-hover:-translate-y-[150%] rounded-none">
                   {t('buttons.bookTable') || 'Book A Table'}
                 </div>
-                <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center text-sm bg-black px-2 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+                <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center  bg-black px-2 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
                   {t('buttons.bookTable') || 'Book A Table'}
                 </div>
               </motion.button>
@@ -418,7 +447,7 @@ const Navbar = () => {
           whileTap={{ scale: 0.95 }}
         >
           <div className="flex flex-col items-center">
-            <DownArrowIcon className="w-5 h-5 rotate-180" />
+            <DownArrowIcon className="w-5 h-5 rotate-180 text-black" />
           </div>
         </motion.button>
       </div>

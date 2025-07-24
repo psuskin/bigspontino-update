@@ -1,424 +1,288 @@
 'use client';
 
-import { motion, useInView, type Variants } from 'framer-motion';
-import { Clock, Globe, Mail, MapPin, Phone } from 'lucide-react';
-import { type ChangeEvent, useRef, useState } from 'react';
+import type React from 'react';
+
+import Image from 'next/image';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  phonePrefix: string;
-  enquiryType: string;
-  message: string;
-  receiveNews: boolean;
-  agreeTerms: boolean;
-}
-
 const ContactSection = () => {
-  const { t } = useTranslation();
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: '',
     phone: '',
     phonePrefix: '+49',
+    email: '',
     enquiryType: '',
     message: '',
     receiveNews: false,
     agreeTerms: false,
   });
+  const { t } = useTranslation();
 
-  // Refs for intersection observers
-  const leftColumnRef = useRef<HTMLDivElement>(null);
-  const rightColumnRef = useRef<HTMLDivElement>(null);
-
-  // Intersection observers for animations
-  const leftColumnInView = useInView(leftColumnRef, { once: true, margin: '-100px' });
-  const rightColumnInView = useInView(rightColumnRef, { once: true, margin: '-100px' });
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
     setFormData((prev) => ({
       ...prev,
-      [id]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
+      [id]: type === 'checkbox' ? checked : value,
     }));
   };
 
-  const handleSelectChange = (id: keyof FormData, value: string) => {
+  const handleSelectChange = (id: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [id]: value,
     }));
   };
 
-  // Animation variants
-  const fadeInLeft: Variants = {
-    hidden: {
-      opacity: 0,
-      x: -60,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    },
-  };
-
-  const fadeInRight: Variants = {
-    hidden: {
-      opacity: 0,
-      x: 60,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    },
-  };
-
-  const staggerContainer: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const contactItemVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    },
-  };
-
-  const formFieldVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    },
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
   };
 
   return (
-    <section className="py-8 md:py-16 lg:py-32 px-4 sm:px-6 max-w-[1920px] mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-        {/* Left Column - Contact Info */}
-        <motion.div
-          ref={leftColumnRef}
-          className="p-4 sm:p-6 md:p-8 lg:p-16"
-          variants={staggerContainer}
-          initial="hidden"
-          animate={leftColumnInView ? 'visible' : 'hidden'}
-        >
-          <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold"
-            variants={fadeInLeft}
-          >
-            {t('contact.title')}
-          </motion.h2>
-          {/* Contact Information */}
-          <motion.div
-            className="space-y-6 sm:space-y-7 md:space-y-8 lg:space-y-10 mt-8 md:mt-12 lg:mt-20 font-narrow"
-            variants={staggerContainer}
-          >
-            {/* Address */}
-            <motion.div className="flex items-start gap-3 sm:gap-4" variants={contactItemVariants}>
-              <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mt-1 text-gray-600 flex-shrink-0" />
-              <div>
-                <h4 className="font-semibold mb-1 text-sm sm:text-base">{t('contact.address')}</h4>
-                <p className="text-base sm:text-lg">{t('contact.addressValue')}</p>
+    <div className="w-full">
+      {/* First Section: Sticky Image + Contact Form */}
+      <section className="bg-amber-800 min-h-screen">
+        <div className="flex flex-col lg:flex-row min-h-screen">
+          {/* Left Column - Sticky Image */}
+          <div className="w-full lg:w-1/2 lg:sticky lg:top-0 h-[50vh] lg:h-screen">
+            <Image
+              src="/assets/contact/2.jpg"
+              className="w-full h-full object-cover"
+              alt="Bartender making cocktail"
+              width={600}
+              height={800}
+              priority
+            />
+          </div>
+
+          {/* Right Column - Contact Form */}
+          <div className="w-full lg:w-1/2 bg-amber-400 text-black">
+            <div className="p-6 sm:p-8 lg:p-20">
+              {/* Header */}
+              <div className="mb-12 lg:mb-20">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase mb-6 lg:mb-8">
+                  GET IN TOUCH WITH BIG SPUNTINO
+                </h1>
+                <p className="text-amber-900 font-narrow text-sm mb-10 sm:mb-16">
+                  We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon
+                  as possible.
+                </p>
+                <div className="w-full h-px bg-black"></div>
               </div>
-            </motion.div>
-            {/* Contact Grid */}
-            <motion.div
-              className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-6 md:mt-8 lg:mt-10"
-              variants={staggerContainer}
-            >
-              <motion.div
-                className="flex items-center gap-3 sm:gap-4"
-                variants={contactItemVariants}
-              >
-                <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold text-sm sm:text-base">{t('contact.phone')}</h4>
-                  <p className="text-base sm:text-lg">{t('contact.phoneValue')}</p>
+
+              {/* Your Details Section */}
+              <div className="mb-16 sm:mb-28">
+                <h2 className="text-lg sm:text-xl lg:text-2xl uppercase font-bold mb-6 sm:mb-10">
+                  YOUR DETAILS
+                </h2>
+                <div className="w-full h-px bg-black mb-10 sm:mb-16"></div>
+
+                {/* Name Fields */}
+                <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                  <div className="w-full">
+                    <input
+                      id="firstName"
+                      type="text"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      placeholder="FIRST NAME *"
+                      className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      required
+                    />
+                  </div>
+                  <div className="w-full">
+                    <input
+                      id="lastName"
+                      type="text"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      placeholder="LAST NAME *"
+                      className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      required
+                    />
+                  </div>
                 </div>
-              </motion.div>
-              <motion.div
-                className="flex items-center gap-3 sm:gap-4"
-                variants={contactItemVariants}
-              >
-                <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold text-sm sm:text-base">{t('contact.email')}</h4>
-                  <p className="text-base sm:text-lg">{t('contact.emailValue')}</p>
-                </div>
-              </motion.div>
-              <motion.div
-                className="flex items-center gap-3 sm:gap-4 xs:col-span-2 lg:col-span-1 xl:col-span-2"
-                variants={contactItemVariants}
-              >
-                <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold text-sm sm:text-base">{t('contact.website')}</h4>
-                  <p className="text-base sm:text-lg">{t('contact.websiteValue')}</p>
-                </div>
-              </motion.div>
-            </motion.div>
-            {/* Opening Hours */}
-            <motion.div className="flex items-start gap-3 sm:gap-4" variants={contactItemVariants}>
-              <Clock className="w-5 h-5 sm:w-6 sm:h-6 mt-1 text-gray-600 flex-shrink-0" />
-              <div className="w-full">
-                <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">
-                  {t('contact.openingHours')}
-                </h4>
-                <div className="grid grid-cols-3 xs:grid-cols-7 gap-2 sm:gap-3 md:gap-4 text-center">
-                  <div>
-                    <div className="font-semibold text-gray-400 mb-1 sm:mb-2 text-xs sm:text-sm">
-                      {t('days.mon')}
+
+                {/* Contact Fields */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="w-full">
+                    <div className="flex">
+                      <select
+                        value={formData.phonePrefix}
+                        onChange={(e) => handleSelectChange('phonePrefix', e.target.value)}
+                        className="bg-black/40 text-white py-4 sm:py-6 px-2 text-sm focus:outline-none"
+                      >
+                        <option value="+49">🇩🇪 +49</option>
+                        <option value="+33">🇫🇷 +33</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                      </select>
+                      <input
+                        id="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="YOUR PHONE NUMBER *"
+                        className="flex-1 bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                        required
+                      />
                     </div>
-                    <div className="text-xs sm:text-sm text-gray-400">{t('contact.closed')}</div>
                   </div>
-                  <div>
-                    <div className="font-semibold text-gray-400 mb-1 sm:mb-2 text-xs sm:text-sm">
-                      {t('days.tue')}
-                    </div>
-                    <div className="text-xs sm:text-sm text-gray-400">{t('contact.closed')}</div>
-                  </div>
-                  <div>
-                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">
-                      {t('days.wed')}
-                    </div>
-                    <div className="text-xs sm:text-sm">{t('contact.wedHours')}</div>
-                  </div>
-                  <div>
-                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">
-                      {t('days.thu')}
-                    </div>
-                    <div className="text-xs sm:text-sm">{t('contact.thuHours')}</div>
-                  </div>
-                  <div>
-                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">
-                      {t('days.fri')}
-                    </div>
-                    <div className="text-xs sm:text-sm">{t('contact.friHours')}</div>
-                  </div>
-                  <div>
-                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">
-                      {t('days.sat')}
-                    </div>
-                    <div className="text-xs sm:text-sm">{t('contact.satHours')}</div>
-                  </div>
-                  <div>
-                    <div className="font-semibold mb-1 sm:mb-2 text-xs sm:text-sm">
-                      {t('days.sun')}
-                    </div>
-                    <div className="text-xs sm:text-sm">{t('contact.sunHours')}</div>
+                  <div className="w-full">
+                    <input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="YOUR EMAIL ADDRESS *"
+                      className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      required
+                    />
                   </div>
                 </div>
               </div>
-            </motion.div>
-            <motion.div className="mt-8 sm:mt-10 md:mt-12" variants={contactItemVariants}>
-              <p className="mb-4 text-sm sm:text-base">{t('contact.description')}</p>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-        {/* Right Column - Form */}
-        <motion.div
-          ref={rightColumnRef}
-          className="p-4 sm:p-6 md:p-8 lg:p-16 lg:mt-58 lg:me-16 bg-gray-100 order-first lg:order-last"
-          variants={staggerContainer}
-          initial="hidden"
-          animate={rightColumnInView ? 'visible' : 'hidden'}
-        >
-          <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl uppercase font-bold"
-            variants={fadeInRight}
-          >
-            {t('contact.form.yourDetails')}
-          </motion.h2>
-          <motion.div
-            className="w-full h-[1px] bg-black mb-6 sm:mb-8 lg:mb-10 mt-4 sm:mt-5 lg:mt-6"
-            variants={fadeInRight}
-          ></motion.div>
-          {/* Name Fields */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mt-4 sm:mt-6 p-1 font-narrow"
-            variants={staggerContainer}
-          >
-            <motion.div className="w-full" variants={formFieldVariants}>
-              <label className="pb-2 ps-3 text-sm sm:text-base" htmlFor="firstName">
-                {t('contact.form.firstName')}*
-              </label>
-              <input
-                id="firstName"
-                value={formData.firstName}
-                onChange={handleInputChange}
-                required
-                placeholder={t('contact.form.placeholders.firstName')}
-                className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
-              />
-            </motion.div>
-            <motion.div className="w-full" variants={formFieldVariants}>
-              <label className="pb-2 ps-3 text-sm sm:text-base" htmlFor="lastName">
-                {t('contact.form.lastName')}*
-              </label>
-              <input
-                id="lastName"
-                value={formData.lastName}
-                onChange={handleInputChange}
-                required
-                placeholder={t('contact.form.placeholders.lastName')}
-                className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
-              />
-            </motion.div>
-          </motion.div>
-          {/* Contact Fields */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mt-4 sm:mt-6 p-1 font-narrow"
-            variants={staggerContainer}
-          >
-            <motion.div className="w-full" variants={formFieldVariants}>
+
+              {/* Your Enquiry Section */}
               <div>
-                <label className="pb-2 text-sm sm:text-base" htmlFor="phone">
-                  {t('contact.form.phone')}*
-                </label>
-                <div className="flex gap-2">
+                <div className="w-full h-px bg-black mb-8 sm:mb-14"></div>
+                <h2 className="text-lg sm:text-xl lg:text-2xl uppercase font-bold mb-6 sm:mb-10">
+                  YOUR ENQUIRY
+                </h2>
+
+                <p className="text-amber-900 text-sm mb-6 sm:mb-10">
+                  This form is secure and the information is encrypted transmitted to help ensure a
+                  safe reading through Squarelinx
+                </p>
+
+                <div className="space-y-4">
                   <select
-                    value={formData.phonePrefix}
-                    onChange={(e) => handleSelectChange('phonePrefix', e.target.value)}
-                    className="w-20 sm:w-24 bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-1 sm:px-2 border text-sm sm:text-base"
+                    id="enquiryType"
+                    value={formData.enquiryType}
+                    onChange={(e) => handleSelectChange('enquiryType', e.target.value)}
+                    className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm focus:outline-none"
                   >
-                    <option value="+49">🇩🇪 +49</option>
-                    <option value="+1">🇺🇸 +1</option>
-                    <option value="+44">🇬🇧 +44</option>
+                    <option value="">WHAT IS YOUR ENQUIRY ABOUT? *</option>
+                    <option value="reservation">Table Reservation</option>
+                    <option value="events">Private Events</option>
+                    <option value="catering">Catering Services</option>
+                    <option value="general">General Information</option>
+                    <option value="other">Other</option>
                   </select>
-                  <input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
+
+                  <textarea
+                    id="message"
+                    value={formData.message}
                     onChange={handleInputChange}
-                    required
-                    placeholder={t('contact.form.placeholders.phone')}
-                    className="flex-1 bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
-                  />
+                    placeholder="PLEASE SHARE YOUR ENQUIRY&#10;Add more details here..."
+                    rows={6}
+                    className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm placeholder-gray-50 focus:outline-none resize-none"
+                  ></textarea>
+
+                  <div className="mb-10 sm:mb-14">
+                    <label className="flex items-start space-x-3 cursor-pointer text-sm">
+                      <input
+                        type="checkbox"
+                        id="agreeTerms"
+                        checked={formData.agreeTerms}
+                        onChange={handleInputChange}
+                        className="mt-1 w-4 h-4 accent-amber-600"
+                      />
+                      <span className="text-black">
+                        I agree to the Terms and Conditions and Privacy Policy
+                      </span>
+                    </label>
+                  </div>
+
+                  <button
+                    onClick={handleSubmit}
+                    className="border-2 border-black text-black hover:bg-black hover:text-amber-400 px-8 sm:px-16 py-4 sm:py-6 font-bold uppercase tracking-wide transition-all duration-300 text-sm w-full sm:w-auto"
+                  >
+                    SUBMIT YOUR ENQUIRY
+                  </button>
                 </div>
               </div>
-            </motion.div>
-            <motion.div className="w-full" variants={formFieldVariants}>
-              <div>
-                <label className="pb-2 text-sm sm:text-base" htmlFor="email">
-                  {t('contact.form.email')}*
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  placeholder={t('contact.form.placeholders.email')}
-                  className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Second Section: Map + Contact Information */}
+      <section className="bg-gray-100 py-16 sm:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col lg:flex-row">
+            {/* Left Column - Map */}
+            <div className="w-full lg:w-1/2 relative bg-gray-200">
+              <div className="h-64 sm:h-96 lg:h-full flex items-center justify-center">
+                <Image
+                  src="/assets/contact/3.jpg"
+                  className="w-full h-full object-cover"
+                  alt="Location Map"
+                  width={600}
+                  height={400}
                 />
               </div>
-            </motion.div>
-          </motion.div>
-          {/* Enquiry Section */}
-          <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl uppercase font-bold mt-8 sm:mt-12 lg:mt-16"
-            variants={fadeInRight}
-          >
-            {t('contact.form.yourEnquiry')}
-          </motion.h2>
-          <motion.div
-            className="w-full h-[1px] bg-black mb-6 sm:mb-8 lg:mb-10 mt-4 sm:mt-5 lg:mt-6"
-            variants={fadeInRight}
-          ></motion.div>
-          <motion.div className="mt-4 sm:mt-6 p-1 font-narrow" variants={formFieldVariants}>
-            <label className="pb-2 text-sm sm:text-base" htmlFor="enquiryType">
-              {t('contact.form.enquiryAbout')}
-            </label>
-            <select
-              id="enquiryType"
-              value={formData.enquiryType}
-              onChange={(e) => handleSelectChange('enquiryType', e.target.value)}
-              className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border text-sm sm:text-base"
-            >
-              <option value="">{t('contact.form.pleaseChoose')}</option>
-              <option value="reservation">{t('contact.form.reservation')}</option>
-              <option value="events">{t('contact.form.events')}</option>
-              <option value="catering">{t('contact.form.catering')}</option>
-              <option value="general">{t('contact.form.generalInfo')}</option>
-              <option value="other">{t('contact.form.other')}</option>
-            </select>
-          </motion.div>
-          <motion.div className="mt-4 sm:mt-6 p-1 font-narrow" variants={formFieldVariants}>
-            <label className="pb-2 text-sm sm:text-base" htmlFor="message">
-              {t('contact.form.shareEnquiry')}
-            </label>
-            <textarea
-              id="message"
-              value={formData.message}
-              onChange={handleInputChange}
-              placeholder={t('contact.form.placeholders.message')}
-              rows={6}
-              className="w-full bg-white text-black border-gray-300 rounded-none py-2 sm:py-3 px-3 sm:px-4 border resize-vertical text-sm sm:text-base"
-            />
-          </motion.div>
-          <motion.div className="mt-6 sm:mt-8 p-1" variants={formFieldVariants}>
-            <label className="flex items-start space-x-3 cursor-pointer">
-              <input
-                type="checkbox"
-                id="agreeTerms"
-                checked={formData.agreeTerms}
-                onChange={handleInputChange}
-                className="mt-1 w-4 h-4 sm:w-5 sm:h-5"
-              />
-              <span className="text-xs sm:text-sm">
-                {t('contact.form.agreeTerms1')}{' '}
-                <a href="#" className="underline">
-                  {t('contact.form.terms')}
-                </a>{' '}
-                {t('contact.form.agreeTerms2')}{' '}
-                <a href="#" className="underline">
-                  {t('contact.form.privacyPolicy')}
-                </a>
-                .
-              </span>
-            </label>
-          </motion.div>
-          <motion.div className="mt-6 sm:mt-8" variants={formFieldVariants}>
-            <button className="bg-black text-white px-8 sm:px-12 py-3 sm:py-4 rounded-none font-semibold hover:bg-gray-800 transition-colors duration-300 text-sm sm:text-base lg:text-lg uppercase w-full sm:w-auto">
-              {t('contact.form.submit')}
-            </button>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
+            </div>
+
+            {/* Right Column - Contact Information */}
+            <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-16 flex flex-col justify-center bg-white">
+              <div className="max-w-md mx-auto w-full">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-amber-800 mb-4 uppercase">
+                  BIG SPUNTINO
+                </h2>
+                <p className="text-gray-700 mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
+                  {t('contact.description')}
+                </p>
+
+                <div className="space-y-0">
+                  {/* Address */}
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-t-2 py-4 sm:py-5">
+                    <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                      ADDRESS
+                    </div>
+                    <div className="text-gray-700 text-sm sm:text-base">
+                      <p className="text-amber-800 font-medium">Mühlenkamp 8, 22303 Hamburg</p>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
+                    <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                      PHONE
+                    </div>
+                    <div className="text-gray-700 text-sm sm:text-base">
+                      <p>040 / 69 45 68 28</p>
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5">
+                    <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                      EMAIL
+                    </div>
+                    <div className="text-gray-700 text-sm sm:text-base">
+                      <p>mail@bigspuntino.de</p>
+                    </div>
+                  </div>
+
+                  {/* Website */}
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
+                    <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                      WEBSITE
+                    </div>
+                    <div className="text-gray-700 text-sm sm:text-base">
+                      <p>bigspuntino.de</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
