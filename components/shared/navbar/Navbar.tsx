@@ -63,16 +63,16 @@ const Navbar = () => {
 
   const navLinks = [
     { href: '/', label: t('navigation.home') || 'Home' },
-    { href: '/menus', label: `${t('navigation.menu') || 'Il Menu'} (menus)` },
-    { href: '/events', label: `${t('navigation.events') || 'Eventi'} (events)` },
-    { href: '/history', label: `${t('navigation.history') || 'La Storia'} (history)` },
+    { href: '/menus', label: `Il Menu (${t('navigation.menu') || 'menus'})` },
+    { href: '/events', label: `Eventi (${t('navigation.events') || 'events'})` },
+    { href: '/history', label: `La Storia (${t('navigation.history') || 'history'})` },
     {
       href: '/impressions',
-      label: `${t('navigation.impressions') || 'Impressions'} (Bildgalerie)`,
+      label: `Impressions (${t('navigation.impressions') || 'Bildgalerie'})`,
     },
     {
       href: '/contact',
-      label: `${t('navigation.contact') || 'Contatto'} (contact / opening hours)`,
+      label: `Contatto (${t('navigation.contact') || 'contact / opening hours'})`,
     },
     { href: '/jobs', label: t('navigation.jobs') || 'Jobs' },
   ];
