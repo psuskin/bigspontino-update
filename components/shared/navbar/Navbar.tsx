@@ -73,7 +73,7 @@ const Navbar = () => {
     },
     {
       href: '/contact',
-      label: `Contatto (${t('navigation.contact') || 'contact / opening hours'})`,
+      label: `Contatto (${t('navigation.contact') || 'contact'} / opening hours)`,
     },
     { href: '/jobs', label: t('navigation.jobs') || 'Jobs' },
   ];
