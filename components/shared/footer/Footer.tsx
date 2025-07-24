@@ -134,7 +134,7 @@ const Footer = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-3 py-3 sm:px-4 sm:py-4 rounded-none font-narrow placeholder:text-center bg-white/15 border-none focus:outline-none"
-                  placeholder="Enter your email"
+                  placeholder={t('newsletter.placeholder')}
                   required
                 />
               </motion.div>
@@ -155,7 +155,7 @@ const Footer = () => {
                   htmlFor="OPT_IN"
                   className="text-xs sm:text-sm font-narrow pt-0.5 leading-tight"
                 >
-                  I accept the privacy policy and the terms of use
+                  {t('newsletter.terms')}
                 </label>
               </motion.div>
             </motion.div>

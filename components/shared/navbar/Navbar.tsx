@@ -113,32 +113,6 @@ const Navbar = () => {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         />
-        {/* Layer 2 - Secondary layer with slight delay */}
-        <motion.div
-          className="absolute inset-0 bg-black/30 -z-10"
-          initial={{ y: '-100%' }}
-          animate={{
-            y: isScrolled ? '0%' : '-100%',
-          }}
-          transition={{
-            duration: 0.9,
-            delay: 0.1, // Slight delay for cascading effect
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-        />
-        {/* Layer 3 - Top layer with more delay */}
-        <motion.div
-          className="absolute inset-0 bg-black/20 -z-10"
-          initial={{ y: '-100%' }}
-          animate={{
-            y: isScrolled ? '0%' : '-100%',
-          }}
-          transition={{
-            duration: 1.0,
-            delay: 0.2, // More delay for deeper cascading
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-        />
 
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
