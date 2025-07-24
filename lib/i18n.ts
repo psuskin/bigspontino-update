@@ -197,7 +197,7 @@ const resources = {
         subtitle:
           "*A brilliant man at East Mamma, whose name we don't remember, just a few weeks before opening.",
         paragraphs: [
-          'Siamo aperti Since the summer of 2025, the Big Spuntino has been the second Italian centerpiece of host Dario Pittarello. Dario opened the "Ristorante Pittarello" at Mühlenkamp in Hamburg-Winterhude back in 2015 and has been serving his guests with fine, authentic Italian cuisine ever since. But that wasn\'t enough – Dario couldn\'t miss the chance to visit the neighboring shop and has been welcoming old and new guests in a warm and lively day bar with spettacoloso snacks and drinks from Italian cuisine.',
+          'We are open Since the summer of 2025, the Big Spuntino has been the second Italian centerpiece of host Dario Pittarello. Dario opened the "Ristorante Pittarello" at Mühlenkamp in Hamburg-Winterhude back in 2015 and has been serving his guests with fine, authentic Italian cuisine ever since. But that wasn\'t enough – Dario couldn\'t miss the chance to visit the neighboring shop and has been welcoming old and new guests in a warm and lively day bar with spettacoloso snacks and drinks from Italian cuisine.',
           'The bright red interior combined with classic wood and brass elements that blend harmoniously with each other offers guests the ideal place to go for the "big times" and the alldry long: from boozy brunches on the weekends, to daily lunches to early aperitivo/dinner hour. Here, the Mediterranean joie de vivre of good enjoyment and good drinks as well as the celebration of being together can be perfectly lived. Here\'s to the "big times" with the small snacks!',
         ],
       },
@@ -208,6 +208,10 @@ const resources = {
       },
       contact: {
         title: 'Get in touch with Big Spuntino',
+        description:
+          'The Big Spuntino is a classic day bar where the Spuntini can be tasted all day long.',
+        welcomeMessage:
+          "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
         address: 'Address',
         addressValue: 'Mühlenkamp 8, 22303 Hamburg',
         phone: 'Phone',
@@ -223,8 +227,6 @@ const resources = {
         friHours: '11:00 - 23:00',
         satHours: '10:00 - 23:00',
         sunHours: '10:00 - 17:00',
-        description:
-          'The Big Spuntino is a classic day bar where the Spuntini can be tasted all day long.',
         form: {
           yourDetails: 'Your Details',
           firstName: 'First Name',
@@ -321,6 +323,7 @@ const resources = {
           },
         },
       },
+
       privacy: {
         title: 'Privacy Policy',
         subtitle: 'Data Protection • Big Spuntino',
@@ -714,7 +717,8 @@ const resources = {
         subtitle:
           '*Ein brillanter Mann bei East Mamma, dessen Namen wir uns nicht erinnern, nur wenige Wochen vor der Eröffnung.',
         paragraphs: [
-          'Seit Sommer 2025 ist das Big Spuntino das zweite italienische Herzstück des Gastgebers Dario Pittarello. Bereits 2015 eröffnete Dario das „Ristorante Pittarello“ am Mühlenkamp in Hamburg-Winterhude und bewirtet seither seine Gäste mit feiner, authentischer italienischen Küche. Doch damit sollte es nicht genug sein – die Chance auf den Nachbarladen konnte sich Dario nicht entgehen lassen und begrüßt zusätzlich nun seither alte wie neue Gäste in einer herzlich-lebhaften Tagesbar mit spettacoloso Snacks und Drinks aus der italienischen Küche.Das knallig rote Interieur kombiniert mit klassischen Holz-&Messing-Elementen, die harmonisch miteinander verschmelzen, bietet den Gästen die ideale Anlaufstelle für die „big times“ und das alldry long: von boozy Brunches an den Wochenenden, über daily Lunches bis hin zur earlier Aperitivo/Dinner-Hour. Hier kann die mediterrane Lebensfreude am guten Genuss und guten Getränken sowie dem Feiern des Zusammenseins perfekt gelebt werden. Auf die „big times“ mit den kleinen Snacks!',
+          'Seit Sommer 2025 ist das Big Spuntino das zweite italienische Herzstück des Gastgebers Dario Pittarello. Bereits 2015 eröffnete Dario das „Ristorante Pittarello" am Mühlenkamp in Hamburg-Winterhude und bewirtet seither seine Gäste mit feiner, authentischer italienischen Küche. Doch damit sollte es nicht genug sein – die Chance auf den Nachbarladen konnte sich Dario nicht entgehen lassen und begrüßt zusätzlich nun seither alte wie neue Gäste in einer herzlich-lebhaften Tagesbar mit spettacoloso Snacks und Drinks aus der italienischen Küche.',
+          'Das knallig rote Interieur kombiniert mit klassischen Holz-&Messing-Elementen, die harmonisch miteinander verschmelzen, bietet den Gästen die ideale Anlaufstelle für die „big times" und das alldry long: von boozy Brunches an den Wochenenden, über daily Lunches bis hin zur earlier Aperitivo/Dinner-Hour. Hier kann die mediterrane Lebensfreude am guten Genuss und guten Getränken sowie dem Feiern des Zusammenseins perfekt gelebt werden. Auf die „big times" mit den kleinen Snacks!',
         ],
       },
       gallery: {
@@ -724,6 +728,10 @@ const resources = {
       },
       contact: {
         title: 'Kontaktieren Sie Big Spuntino',
+        description:
+          'Das Big Spuntino ist eine klassische Tagesbar, in denen die Spuntini ganztags verköstigt werden können.',
+        welcomeMessage:
+          'Wir würden uns freuen, von Ihnen zu hören. Senden Sie uns eine Nachricht und wir werden uns so schnell wie möglich bei Ihnen melden.',
         address: 'Adresse',
         addressValue: 'Mühlenkamp 8, 22303 Hamburg',
         phone: 'Telefon',
@@ -739,8 +747,6 @@ const resources = {
         friHours: '11:00 - 23:00',
         satHours: '10:00 - 23:00',
         sunHours: '10:00 - 17:00',
-        description:
-          'Das Big Spuntino ist eine klassische Tagesbar, in denen die Spuntini ganztags verköstigt werden können.',
         form: {
           yourDetails: 'Ihre Daten',
           firstName: 'Vorname',

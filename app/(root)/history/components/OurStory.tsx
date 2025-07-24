@@ -3,8 +3,16 @@ import Newsletter from '@/components/home/Newsletter';
 import { motion, useInView, type Variants } from 'framer-motion';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const OurStory = () => {
+  const { t } = useTranslation();
+  const history = t('history', { returnObjects: true }) as {
+    title: string;
+    subtitle: string;
+    paragraphs: string[];
+  };
+
   // Refs for intersection observers
   const headerRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement>(null);
@@ -81,15 +89,13 @@ const OurStory = () => {
           className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-tight sm:leading-snug lg:leading-16"
           variants={fadeInUp}
         >
-          Don&apos;t overthink it, if it&apos;s tasty and inexpensive, it&apos;ll already be
-          phenomenal*
+          {history.title}
         </motion.h2>
         <motion.p
           className="text-center font-narrow pt-4 sm:pt-6 text-sm sm:text-base w-full md:w-4/5 lg:w-3/5 mx-auto"
           variants={fadeInUp}
         >
-          *A brilliant man at East Mamma, whose name we don&apos;t remember, just a few weeks before
-          opening.
+          {history.subtitle}
         </motion.p>
       </motion.div>
 
@@ -130,29 +136,15 @@ const OurStory = () => {
         initial="hidden"
         animate={storyInView ? 'visible' : 'hidden'}
       >
-        <motion.p
-          className="text-sm sm:text-base lg:text-3xl text-gray-700 text-center mb-4 sm:mb-6 lg:mb-8 w-full md:w-4/5 lg:w-3/5 mx-auto"
-          variants={fadeInUp}
-        >
-          Siamo aperti Since the summer of 2025, the Big Spuntino has been the second Italian
-          centerpiece of host Dario Pittarello. Dario opened the &quot;Ristorante Pittarello&quot;
-          at Mühlenkamp in Hamburg-Winterhude back in 2015 and has been serving his guests with
-          fine, authentic Italian cuisine ever since. But that wasn&apos;t enough – Dario
-          couldn&apos;t miss the chance to visit the neighboring shop and has been welcoming old and
-          new guests in a warm and lively day bar with spettacoloso snacks and drinks from Italian
-          cuisine.
-        </motion.p>
-        <motion.p
-          className="text-sm sm:text-base lg:text-3xl text-gray-700 text-center mb-4 sm:mb-6 lg:mb-8 w-full md:w-4/5 lg:w-3/5 mx-auto"
-          variants={fadeInUp}
-        >
-          The bright red interior combined with classic wood and brass elements that blend
-          harmoniously with each other offers guests the ideal place to go for the &quot;big
-          times&quot; and the alldry long: from boozy brunches on the weekends, to daily lunches to
-          early aperitivo/dinner hour. Here, the Mediterranean joie de vivre of good enjoyment and
-          good drinks as well as the celebration of being together can be perfectly lived.
-          Here&apos;s to the &quot;big times&quot; with the small snacks!
-        </motion.p>
+        {history.paragraphs.map((paragraph, index) => (
+          <motion.p
+            key={index}
+            className="text-sm sm:text-base lg:text-3xl text-gray-700 text-center mb-4 sm:mb-6 lg:mb-8 w-full md:w-4/5 lg:w-3/5 mx-auto"
+            variants={fadeInUp}
+          >
+            {paragraph}
+          </motion.p>
+        ))}
       </motion.div>
 
       <motion.div
