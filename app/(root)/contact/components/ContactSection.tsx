@@ -1,11 +1,57 @@
 'use client';
 
-import type React from 'react';
-
 import Image from 'next/image';
+import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+interface ContactTranslations {
+  title: string;
+  description: string;
+  address: string;
+  addressValue: string;
+  phone: string;
+  phoneValue: string;
+  email: string;
+  emailValue: string;
+  website: string;
+  websiteValue: string;
+  openingHours: string;
+  closed: string;
+  wedHours: string;
+  thuHours: string;
+  friHours: string;
+  satHours: string;
+  sunHours: string;
+  form: {
+    yourDetails: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    email: string;
+    yourEnquiry: string;
+    enquiryAbout: string;
+    pleaseChoose: string;
+    reservation: string;
+    events: string;
+    catering: string;
+    generalInfo: string;
+    other: string;
+    shareEnquiry: string;
+    agreeTerms1: string;
+    agreeTerms2: string;
+    terms: string;
+    privacyPolicy: string;
+    submit: string;
+    placeholders: {
+      firstName: string;
+      lastName: string;
+      phone: string;
+      email: string;
+      message: string;
+    };
+  };
+}
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -19,6 +65,7 @@ const ContactSection = () => {
     agreeTerms: false,
   });
   const { t } = useTranslation();
+  const contact = t('contact', { returnObjects: true }) as ContactTranslations;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value, type } = e.target;
@@ -62,21 +109,20 @@ const ContactSection = () => {
           <div className="w-full lg:w-1/2 bg-amber-400 text-black">
             <div className="p-6 sm:p-8 lg:p-20">
               {/* Header */}
-              <div className="mb-12 lg:mb-20">
+              <div className="mb-12 lg:mb-16">
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase mb-6 lg:mb-8">
-                  GET IN TOUCH WITH BIG SPUNTINO
+                  {t('contact.title')}
                 </h1>
                 <p className="text-amber-900 font-narrow text-sm mb-10 sm:mb-16">
-                  We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon
-                  as possible.
+                  {t('contact.welcomeMessage')}
                 </p>
                 <div className="w-full h-px bg-black"></div>
               </div>
 
               {/* Your Details Section */}
-              <div className="mb-16 sm:mb-28">
+              <div className="mb-16 sm:mb-20">
                 <h2 className="text-lg sm:text-xl lg:text-2xl uppercase font-bold mb-6 sm:mb-10">
-                  YOUR DETAILS
+                  {t('contact.form.yourDetails')}
                 </h2>
                 <div className="w-full h-px bg-black mb-10 sm:mb-16"></div>
 
@@ -88,7 +134,7 @@ const ContactSection = () => {
                       type="text"
                       value={formData.firstName}
                       onChange={handleInputChange}
-                      placeholder="FIRST NAME *"
+                      placeholder={`${t('contact.form.firstName')} *`}
                       className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
@@ -99,7 +145,7 @@ const ContactSection = () => {
                       type="text"
                       value={formData.lastName}
                       onChange={handleInputChange}
-                      placeholder="LAST NAME *"
+                      placeholder={`${t('contact.form.lastName')} *`}
                       className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
@@ -125,7 +171,7 @@ const ContactSection = () => {
                         type="tel"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        placeholder="YOUR PHONE NUMBER *"
+                        placeholder={`${t('contact.form.phone')} *`}
                         className="flex-1 bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                         required
                       />
@@ -137,7 +183,7 @@ const ContactSection = () => {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="YOUR EMAIL ADDRESS *"
+                      placeholder={`${t('contact.form.email')} *`}
                       className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
@@ -149,13 +195,8 @@ const ContactSection = () => {
               <div>
                 <div className="w-full h-px bg-black mb-8 sm:mb-14"></div>
                 <h2 className="text-lg sm:text-xl lg:text-2xl uppercase font-bold mb-6 sm:mb-10">
-                  YOUR ENQUIRY
+                  {t('contact.form.yourEnquiry')}
                 </h2>
-
-                <p className="text-amber-900 text-sm mb-6 sm:mb-10">
-                  This form is secure and the information is encrypted transmitted to help ensure a
-                  safe reading through Squarelinx
-                </p>
 
                 <div className="space-y-4">
                   <select
@@ -164,19 +205,19 @@ const ContactSection = () => {
                     onChange={(e) => handleSelectChange('enquiryType', e.target.value)}
                     className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm focus:outline-none"
                   >
-                    <option value="">WHAT IS YOUR ENQUIRY ABOUT? *</option>
-                    <option value="reservation">Table Reservation</option>
-                    <option value="events">Private Events</option>
-                    <option value="catering">Catering Services</option>
-                    <option value="general">General Information</option>
-                    <option value="other">Other</option>
+                    <option value="">{t('contact.form.enquiryAbout')} *</option>
+                    <option value="reservation">{t('contact.form.reservation')}</option>
+                    <option value="events">{t('contact.form.events')}</option>
+                    <option value="catering">{t('contact.form.catering')}</option>
+                    <option value="general">{t('contact.form.generalInfo')}</option>
+                    <option value="other">{t('contact.form.other')}</option>
                   </select>
 
                   <textarea
                     id="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="PLEASE SHARE YOUR ENQUIRY&#10;Add more details here..."
+                    placeholder={t('contact.form.placeholders.message')}
                     rows={6}
                     className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm placeholder-gray-50 focus:outline-none resize-none"
                   ></textarea>
@@ -191,7 +232,14 @@ const ContactSection = () => {
                         className="mt-1 w-4 h-4 accent-amber-600"
                       />
                       <span className="text-black">
-                        I agree to the Terms and Conditions and Privacy Policy
+                        {t('contact.form.agreeTerms1')}{' '}
+                        <a href="#" className="underline">
+                          {t('contact.form.terms')}
+                        </a>{' '}
+                        {t('contact.form.agreeTerms2')}{' '}
+                        <a href="#" className="underline">
+                          {t('contact.form.privacyPolicy')}
+                        </a>
                       </span>
                     </label>
                   </div>
@@ -200,7 +248,7 @@ const ContactSection = () => {
                     onClick={handleSubmit}
                     className="border-2 border-black text-black hover:bg-black hover:text-amber-400 px-8 sm:px-16 py-4 sm:py-6 font-bold uppercase tracking-wide transition-all duration-300 text-sm w-full sm:w-auto"
                   >
-                    SUBMIT YOUR ENQUIRY
+                    {t('contact.form.submit')}
                   </button>
                 </div>
               </div>
@@ -233,47 +281,59 @@ const ContactSection = () => {
                   BIG SPUNTINO
                 </h2>
                 <p className="text-gray-700 mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
-                  {t('contact.description')}
+                  {contact.description}
                 </p>
 
                 <div className="space-y-0">
                   {/* Address */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-t-2 py-4 sm:py-5">
                     <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
-                      ADDRESS
+                      {contact.address}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
-                      <p className="text-amber-800 font-medium">Mühlenkamp 8, 22303 Hamburg</p>
+                      <p className="text-amber-800 font-medium">{contact.addressValue}</p>
                     </div>
                   </div>
 
                   {/* Phone */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
                     <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
-                      PHONE
+                      {contact.phone}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
-                      <p>040 / 69 45 68 28</p>
+                      <p>{contact.phoneValue}</p>
                     </div>
                   </div>
 
                   {/* Email */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5">
                     <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
-                      EMAIL
+                      {contact.email}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
-                      <p>mail@bigspuntino.de</p>
+                      <p>{contact.emailValue}</p>
                     </div>
                   </div>
 
                   {/* Website */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
                     <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
-                      WEBSITE
+                      {contact.website}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
-                      <p>bigspuntino.de</p>
+                      <p>{contact.websiteValue}</p>
+                    </div>
+                  </div>
+
+                  {/* Opening Hours */}
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-t-2 py-4 sm:py-5">
+                    <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                      {contact.openingHours}
+                    </div>
+                    <div className="text-gray-700 text-sm sm:text-base">
+                      <p>Mi-Fr {contact.wedHours}</p>
+                      <p>Sa {contact.satHours}</p>
+                      <p>So {contact.sunHours}</p>
                     </div>
                   </div>
                 </div>

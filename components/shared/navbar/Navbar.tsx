@@ -78,7 +78,7 @@ const Navbar = () => {
     { href: '/jobs', label: t('navigation.jobs') || 'Jobs' },
   ];
 
-  const socialLinks = [{ href: 'https://www.instagram.com/', label: 'Instagram' }];
+  const socialLinks = [{ href: 'https://www.instagram.com/bigspuntino/', label: 'Instagram' }];
 
   const processText = (text: string) => {
     const parts = text.split('(');
@@ -202,6 +202,7 @@ const Navbar = () => {
                       >
                         <Link
                           href={link.href}
+                          target="_blank"
                           onClick={() => setIsOpen(false)}
                           className={`block text-3xl font-medium text-left relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
                             pathname === link.href ? 'italic after:scale-x-100' : ''
@@ -245,7 +246,11 @@ const Navbar = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
-              <Link href={'https://www.instagram.com/bigspuntino/'} className="text-primary">
+              <Link
+                target="_blank"
+                href={'https://www.instagram.com/bigspuntino/'}
+                className="text-primary"
+              >
                 <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6" />
               </Link>
             </motion.div>
