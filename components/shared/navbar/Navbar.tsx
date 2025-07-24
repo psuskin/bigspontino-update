@@ -31,7 +31,6 @@ const Navbar = () => {
 
   useEffect(() => {
     setMounted(true);
-
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 50);
@@ -45,6 +44,8 @@ const Navbar = () => {
     if (i18n && typeof i18n.changeLanguage === 'function') {
       try {
         await i18n.changeLanguage(languageCode);
+        // Close the language sheet after changing language
+        setIsLanguageSheetOpen(false);
       } catch (error) {
         console.error('Failed to change language:', error);
       }
@@ -112,7 +113,6 @@ const Navbar = () => {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         />
-
         {/* Layer 2 - Secondary layer with slight delay */}
         <motion.div
           className="absolute inset-0 bg-black/30 -z-10"
@@ -126,7 +126,6 @@ const Navbar = () => {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         />
-
         {/* Layer 3 - Top layer with more delay */}
         <motion.div
           className="absolute inset-0 bg-black/20 -z-10"
@@ -186,7 +185,7 @@ const Navbar = () => {
                             }`}
                           >
                             <div className="flex items-center gap-1 sm:gap-2 md:gap-2.5">
-                              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
+                              <span className="text-3xl md:text-4xl lg:text-5xl leading-tight">
                                 {mainText}
                               </span>
                               {bracketed && (
@@ -200,7 +199,6 @@ const Navbar = () => {
                       );
                     })}
                   </div>
-
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{
@@ -231,7 +229,7 @@ const Navbar = () => {
                         <Link
                           href={link.href}
                           onClick={() => setIsOpen(false)}
-                          className={`block text-2xl font-medium text-left relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
+                          className={`block text-3xl font-medium text-left relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
                             pathname === link.href ? 'italic after:scale-x-100' : ''
                           }`}
                         >
@@ -278,14 +276,11 @@ const Navbar = () => {
               </Link>
             </motion.div>
           </motion.div>
-
           <div className="w-3 sm:w-4 h-[1px] lg:block hidden bg-gray-100"></div>
-
           <Sheet open={isLanguageSheetOpen} onOpenChange={setIsLanguageSheetOpen}>
             <SheetTrigger className="cursor-pointer flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
               {currentLanguage === 'en' ? (
                 <motion.span
-                  onClick={() => changeLanguage('en')}
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
                     currentLanguage === 'en' ? 'text-white ' : 'hover:text-amber-500'
                   }`}
@@ -296,7 +291,6 @@ const Navbar = () => {
                 </motion.span>
               ) : (
                 <motion.span
-                  onClick={() => changeLanguage('de')}
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
                     currentLanguage === 'de' ? 'text-white ' : 'hover:text-amber-500'
                   }`}
@@ -315,10 +309,9 @@ const Navbar = () => {
                 </SheetHeader>
                 <div className="h-full w-full flex items-center justify-end text-end px-20">
                   <div className="">
-                    <h2 className="text-lg sm:text-xl lg:text-xl uppercase opacity-75 font-bold mb-10">
+                    <h2 className="text-lg sm:text-xl lg:text-xl  opacity-75 font-bold mb-10">
                       {t('language.title') || 'Language'}
                     </h2>
-
                     <div className="">
                       <motion.button
                         onClick={() => changeLanguage('en')}
@@ -331,7 +324,6 @@ const Navbar = () => {
                         <RevealText>English</RevealText>
                       </motion.button>
                     </div>
-
                     <div className="">
                       <motion.button
                         onClick={() => changeLanguage('de')}
@@ -349,7 +341,6 @@ const Navbar = () => {
               </div>
             </SheetContent>
           </Sheet>
-
           <div className="hidden sm:block">
             <Sheet open={isBookingSheetOpen} onOpenChange={setIsBookingSheetOpen}>
               <SheetTrigger asChild>
@@ -385,7 +376,6 @@ const Navbar = () => {
           </div>
         </div>
       </motion.header>
-
       <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-white  flex justify-between items-center h-10 ">
         <div className="flex-1 ">
           <Sheet open={isBookingSheetOpen} onOpenChange={setIsBookingSheetOpen}>
@@ -405,14 +395,12 @@ const Navbar = () => {
             </SheetTrigger>
           </Sheet>
         </div>
-
         <Link
           href={'/menus'}
           className="px-8 h-full flex items-center justify-center border-x-2 bg-amber-300 border-white"
         >
           Menu
         </Link>
-
         <motion.button
           className=" bg-amber-300 h-10 aspect-square flex items-center justify-center w-10"
           onClick={scrollToTop}
