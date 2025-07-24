@@ -2,6 +2,7 @@ import { ScrollTransition } from '@/components/animation/scroll/ScrollTransition
 import Footer from '@/components/shared/footer/Footer';
 import ContactSection from './components/ContactSection';
 import HeroSection from './components/HeroSection';
+import OpeningHours from './components/OpeningHours';
 
 export default function ContactPage() {
   return (
@@ -13,6 +14,7 @@ export default function ContactPage() {
     >
       <HeroSection />
       <div>
+        <OpeningHours />
         <ContactSection />
         <Footer />
       </div>
