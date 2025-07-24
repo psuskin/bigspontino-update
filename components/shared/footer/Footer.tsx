@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, useInView, type Variants } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -76,21 +77,6 @@ const Footer = () => {
     },
   };
 
-  const titleVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 80,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    },
-  };
-
   return (
     <footer className="">
       <motion.div
@@ -109,12 +95,13 @@ const Footer = () => {
             initial="hidden"
             animate={brandInView ? 'visible' : 'hidden'}
           >
-            <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal"
-              variants={titleVariants}
-            >
-              {t('footer.brand')}
-            </motion.h1>
+            <Image
+              src="/assets/logo-white.png"
+              alt="BigSpuntino"
+              width={100}
+              height={100}
+              className="w-auto mx-auto md:me-auto md:mx-0 h-14  md:h-16 lg:h-28"
+            />
             <motion.p
               className="text-sm sm:text-base pt-6 sm:pt-8 md:pt-10 max-w-full sm:max-w-md lg:max-w-lg text-gray-300 font-narrow"
               variants={fadeInUp}

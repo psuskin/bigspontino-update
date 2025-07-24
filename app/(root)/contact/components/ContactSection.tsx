@@ -52,6 +52,17 @@ interface ContactTranslations {
     };
   };
 }
+
+interface DaysTranslations {
+  mon: string;
+  tue: string;
+  wed: string;
+  thu: string;
+  fri: string;
+  sat: string;
+  sun: string;
+}
+
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -64,8 +75,10 @@ const ContactSection = () => {
     receiveNews: false,
     agreeTerms: false,
   });
+
   const { t } = useTranslation();
   const contact = t('contact', { returnObjects: true }) as ContactTranslations;
+  const days = t('days', { returnObjects: true }) as DaysTranslations;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value, type } = e.target;
@@ -111,7 +124,7 @@ const ContactSection = () => {
               {/* Header */}
               <div className="mb-12 lg:mb-16">
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase mb-6 lg:mb-8">
-                  {t('contact.title')}
+                  {contact.title}
                 </h1>
                 <p className="text-amber-900 font-narrow text-sm mb-10 sm:mb-16">
                   {t('contact.welcomeMessage')}
@@ -122,7 +135,7 @@ const ContactSection = () => {
               {/* Your Details Section */}
               <div className="mb-16 sm:mb-20">
                 <h2 className="text-lg sm:text-xl lg:text-2xl uppercase font-bold mb-6 sm:mb-10">
-                  {t('contact.form.yourDetails')}
+                  {contact.form.yourDetails}
                 </h2>
                 <div className="w-full h-px bg-black mb-10 sm:mb-16"></div>
 
@@ -134,7 +147,7 @@ const ContactSection = () => {
                       type="text"
                       value={formData.firstName}
                       onChange={handleInputChange}
-                      placeholder={`${t('contact.form.firstName')} *`}
+                      placeholder={`${contact.form.firstName} *`}
                       className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
@@ -145,7 +158,7 @@ const ContactSection = () => {
                       type="text"
                       value={formData.lastName}
                       onChange={handleInputChange}
-                      placeholder={`${t('contact.form.lastName')} *`}
+                      placeholder={`${contact.form.lastName} *`}
                       className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
@@ -171,7 +184,7 @@ const ContactSection = () => {
                         type="tel"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        placeholder={`${t('contact.form.phone')} *`}
+                        placeholder={`${contact.form.phone} *`}
                         className="flex-1 bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                         required
                       />
@@ -183,7 +196,7 @@ const ContactSection = () => {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder={`${t('contact.form.email')} *`}
+                      placeholder={`${contact.form.email} *`}
                       className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
@@ -195,7 +208,7 @@ const ContactSection = () => {
               <div>
                 <div className="w-full h-px bg-black mb-8 sm:mb-14"></div>
                 <h2 className="text-lg sm:text-xl lg:text-2xl uppercase font-bold mb-6 sm:mb-10">
-                  {t('contact.form.yourEnquiry')}
+                  {contact.form.yourEnquiry}
                 </h2>
 
                 <div className="space-y-4">
@@ -205,19 +218,19 @@ const ContactSection = () => {
                     onChange={(e) => handleSelectChange('enquiryType', e.target.value)}
                     className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm focus:outline-none"
                   >
-                    <option value="">{t('contact.form.enquiryAbout')} *</option>
-                    <option value="reservation">{t('contact.form.reservation')}</option>
-                    <option value="events">{t('contact.form.events')}</option>
-                    <option value="catering">{t('contact.form.catering')}</option>
-                    <option value="general">{t('contact.form.generalInfo')}</option>
-                    <option value="other">{t('contact.form.other')}</option>
+                    <option value="">{contact.form.enquiryAbout} *</option>
+                    <option value="reservation">{contact.form.reservation}</option>
+                    <option value="events">{contact.form.events}</option>
+                    <option value="catering">{contact.form.catering}</option>
+                    <option value="general">{contact.form.generalInfo}</option>
+                    <option value="other">{contact.form.other}</option>
                   </select>
 
                   <textarea
                     id="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder={t('contact.form.placeholders.message')}
+                    placeholder={contact.form.placeholders.message}
                     rows={6}
                     className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm placeholder-gray-50 focus:outline-none resize-none"
                   ></textarea>
@@ -232,13 +245,13 @@ const ContactSection = () => {
                         className="mt-1 w-4 h-4 accent-amber-600"
                       />
                       <span className="text-black">
-                        {t('contact.form.agreeTerms1')}{' '}
+                        {contact.form.agreeTerms1}{' '}
                         <a href="#" className="underline">
-                          {t('contact.form.terms')}
+                          {contact.form.terms}
                         </a>{' '}
-                        {t('contact.form.agreeTerms2')}{' '}
+                        {contact.form.agreeTerms2}{' '}
                         <a href="#" className="underline">
-                          {t('contact.form.privacyPolicy')}
+                          {contact.form.privacyPolicy}
                         </a>
                       </span>
                     </label>
@@ -248,7 +261,7 @@ const ContactSection = () => {
                     onClick={handleSubmit}
                     className="border-2 border-black text-black hover:bg-black hover:text-amber-400 px-8 sm:px-16 py-4 sm:py-6 font-bold uppercase tracking-wide transition-all duration-300 text-sm w-full sm:w-auto"
                   >
-                    {t('contact.form.submit')}
+                    {contact.form.submit}
                   </button>
                 </div>
               </div>
@@ -331,9 +344,15 @@ const ContactSection = () => {
                       {contact.openingHours}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
-                      <p>Mi-Fr {contact.wedHours}</p>
-                      <p>Sa {contact.satHours}</p>
-                      <p>So {contact.sunHours}</p>
+                      <p>
+                        {days.wed}-{days.fri} {contact.wedHours}
+                      </p>
+                      <p>
+                        {days.sat} {contact.satHours}
+                      </p>
+                      <p>
+                        {days.sun} {contact.sunHours}
+                      </p>
                     </div>
                   </div>
                 </div>
