@@ -142,6 +142,7 @@ const OurStory = () => {
             className="text-sm sm:text-base lg:text-3xl text-gray-700 text-center mb-4 sm:mb-6 lg:mb-8 w-full md:w-4/5 lg:w-3/5 mx-auto"
             variants={fadeInUp}
           >
+            {index === 0 && <i className="font-bold"> Siamo aperti </i>}
             {paragraph}
           </motion.p>
         ))}
