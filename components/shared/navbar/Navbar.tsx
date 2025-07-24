@@ -157,9 +157,9 @@ const Navbar = () => {
                 <SheetDescription></SheetDescription>
                 <div
                   style={{ height: 'calc(100vh)' }}
-                  className="w-full flex gap-0.5 flex-col h-full items-center justify-center px-4 sm:px-8 md:ps-16 md:pe-10"
+                  className="w-full flex gap-0.5 flex-col h-full md:items-center items-start justify-center px-4 sm:px-8 md:ps-16 md:pe-10"
                 >
-                  <div className="flex flex-col gap-0.5 items-center w-full">
+                  <div className="flex flex-col gap-0.5 md:items-center md:justify-center justify-start items-start w-full">
                     {navLinks.map((link, index) => {
                       const { mainText, bracketed } = processText(link.label);
                       return (
@@ -176,12 +176,12 @@ const Navbar = () => {
                           }}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="w-full flex justify-center"
+                          className="w-full md:flex md:justify-center flex justify-start"
                         >
                           <Link
                             href={link.href}
                             onClick={() => setIsOpen(false)}
-                            className={`block font-medium text-center relative after:absolute md:after:bottom-1.5 after:bottom-0.5 after:left-0 md:after:h-[3px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic  ${
+                            className={`block font-medium md:text-center text-start relative after:absolute md:after:bottom-1.5 after:bottom-0.5 after:left-0 md:after:h-[3px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic  ${
                               pathname === link.href ? 'italic after:scale-x-100' : ''
                             }`}
                           >
@@ -211,7 +211,7 @@ const Navbar = () => {
                     className="md:hidden block"
                   >
                     <div className="mt-10 mb-1 gap-4 w-full">
-                      <h5 className="text-lg text-center">{t('social.title') || 'Social'}</h5>
+                      <h5 className="text-lg text-left">{t('social.title') || 'Social'}</h5>
                     </div>
                     {socialLinks.map((link, index) => (
                       <motion.div
@@ -231,7 +231,7 @@ const Navbar = () => {
                         <Link
                           href={link.href}
                           onClick={() => setIsOpen(false)}
-                          className={`block text-2xl font-medium text-center relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
+                          className={`block text-2xl font-medium text-left relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
                             pathname === link.href ? 'italic after:scale-x-100' : ''
                           }`}
                         >
@@ -287,7 +287,7 @@ const Navbar = () => {
                 <motion.span
                   onClick={() => changeLanguage('en')}
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'en' ? 'text-white font-bold' : 'hover:text-amber-500'
+                    currentLanguage === 'en' ? 'text-white ' : 'hover:text-amber-500'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -297,8 +297,8 @@ const Navbar = () => {
               ) : (
                 <motion.span
                   onClick={() => changeLanguage('de')}
-                  className={`transition-colors duration-200 flex items-center gap-1 px-3 ${
-                    currentLanguage === 'de' ? 'text-white font-bold' : 'hover:text-amber-500'
+                  className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
+                    currentLanguage === 'de' ? 'text-white ' : 'hover:text-amber-500'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
