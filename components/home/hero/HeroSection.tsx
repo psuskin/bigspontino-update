@@ -74,7 +74,7 @@ export default function HeroSection() {
         </div>
 
         {/* Explore Button */}
-        <div className="absolute bottom-2 sm:bottom-3 lg:bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
+        <div className="absolute bottom-14 sm:bottom-16 lg:bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
           <button
             onClick={handleExploreClick}
             className="text-sm sm:text-base lg:text-lg font-semibold text-white rounded-full transition-all duration-200 hover:text-gray-200 cursor-pointer"
