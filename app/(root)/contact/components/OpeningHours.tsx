@@ -81,7 +81,7 @@ const OpeningHours = () => {
                 <div className="space-y-2 text-lg leading-relaxed">
                   <div className="text-center">
                     <div>
-                      {days.wed} to {days.fri} | {contact.wedHours}
+                      {days.wed} bis {days.fri} | {contact.wedHours}
                     </div>
                   </div>
                   <div className="text-center">

@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 interface Category {
   id: number;
   nameKey: string;
-  descriptionKey: string;
+  // descriptionKey: string;
   images: string[];
   link: string;
 }
@@ -21,16 +21,15 @@ interface CardLayoutProps {
 
 const MenusSection: React.FC = () => {
   const headerRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
+
   const { t } = useTranslation();
   const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
-  const footerInView = useInView(footerRef, { once: true, margin: '-100px' });
 
   const menuCategories: Category[] = [
     {
       id: 1,
       nameKey: 'menus.categories.brunch.name',
-      descriptionKey: 'menus.categories.brunch.description',
+      // descriptionKey: 'menus.categories.brunch.description',
       images: [
         '/assets/menus/brunch/1.jpg',
         '/assets/menus/brunch/2.jpg',
@@ -41,7 +40,7 @@ const MenusSection: React.FC = () => {
     {
       id: 2,
       nameKey: 'menus.categories.lunch.name',
-      descriptionKey: 'menus.categories.lunch.description',
+      // descriptionKey: 'menus.categories.lunch.description',
       images: [
         '/assets/menus/lunch/1.jpg',
         '/assets/menus/lunch/2.jpg',
@@ -52,7 +51,7 @@ const MenusSection: React.FC = () => {
     {
       id: 3,
       nameKey: 'menus.categories.dinner.name',
-      descriptionKey: 'menus.categories.dinner.description',
+      // descriptionKey: 'menus.categories.dinner.description',
       images: [
         '/assets/menus/dinner/1.jpg',
         '/assets/menus/dinner/2.jpg',
@@ -63,7 +62,7 @@ const MenusSection: React.FC = () => {
     {
       id: 4,
       nameKey: 'menus.categories.bar.name',
-      descriptionKey: 'menus.categories.bar.description',
+      // descriptionKey: 'menus.categories.bar.description',
       images: [
         '/assets/menus/bar/1.jpg',
         '/assets/menus/bar/2.jpg',
@@ -183,7 +182,7 @@ const MenusSection: React.FC = () => {
             Big Spuntino
           </motion.h3>
           <motion.h2
-            className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
             variants={fadeInUp}
           >
             {t(category.nameKey)}
@@ -192,7 +191,7 @@ const MenusSection: React.FC = () => {
             className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
             variants={fadeInUp}
           >
-            {t(category.descriptionKey)}
+            {/* {t(category.descriptionKey)} */}
           </motion.p>
           <motion.button
             onClick={handleMenuClick}
@@ -274,7 +273,7 @@ const MenusSection: React.FC = () => {
             Big Spuntino
           </motion.h3>
           <motion.h2
-            className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
             variants={fadeInUp}
           >
             {t(category.nameKey)}
@@ -283,7 +282,7 @@ const MenusSection: React.FC = () => {
             className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
             variants={fadeInUp}
           >
-            {t(category.descriptionKey)}
+            {/* {t(category.descriptionKey)} */}
           </motion.p>
           <motion.button
             onClick={handleMenuClick}
@@ -341,7 +340,7 @@ const MenusSection: React.FC = () => {
             Big Spuntino
           </motion.h3>
           <motion.h2
-            className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
             variants={fadeInUp}
           >
             {t(category.nameKey)}
@@ -350,7 +349,7 @@ const MenusSection: React.FC = () => {
             className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
             variants={fadeInUp}
           >
-            {t(category.descriptionKey)}
+            {/* {t(category.descriptionKey)} */}
           </motion.p>
           <motion.button
             onClick={handleMenuClick}
@@ -381,108 +380,108 @@ const MenusSection: React.FC = () => {
     );
   };
 
-  const Card4Layout: React.FC<CardLayoutProps> = ({ category }) => {
-    const cardRef = useRef<HTMLDivElement>(null);
-    const cardInView = useInView(cardRef, { once: true, margin: '-50px' });
+  // const Card4Layout: React.FC<CardLayoutProps> = ({ category }) => {
+  //   const cardRef = useRef<HTMLDivElement>(null);
+  //   const cardInView = useInView(cardRef, { once: true, margin: '-50px' });
 
-    return (
-      <motion.div
-        ref={cardRef}
-        className="w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-1 bg-amber-50 overflow-hidden group"
-        variants={cardVariants}
-        initial="hidden"
-        animate={cardInView ? 'visible' : 'hidden'}
-      >
-        {/* First Image - Full width on mobile */}
-        <div className="md:aspect-[9/16] aspect-square h-full overflow-hidden relative md:col-span-1">
-          <motion.div
-            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${category.images[0]})`,
-            }}
-            variants={imageRevealVariants}
-            initial="hidden"
-            animate={cardInView ? 'visible' : 'hidden'}
-          />
-        </div>
-        {/* Text Section - Full width on mobile */}
-        <motion.div
-          className="bg-amber-50 flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square md:col-span-2 lg:col-span-2"
-          variants={staggerContainer}
-          initial="hidden"
-          animate={cardInView ? 'visible' : 'hidden'}
-        >
-          <motion.h3
-            className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
-            variants={fadeInUp}
-          >
-            Big Spuntino
-          </motion.h3>
-          <motion.h2
-            className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
-            variants={fadeInUp}
-          >
-            {t(category.nameKey)}
-          </motion.h2>
-          <motion.p
-            className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
-            variants={fadeInUp}
-          >
-            {t(category.descriptionKey)}
-          </motion.p>
-          <motion.button
-            onClick={handleMenuClick}
-            className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
-            variants={fadeInUp}
-          >
-            <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-              {t('menus.viewMenu')}
-            </div>
-            <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-              {t('menus.viewMenu')}
-            </div>
-          </motion.button>
-        </motion.div>
-        {/* Remaining Images - Hidden on mobile, shown on larger screens */}
-        <div className="hidden md:block overflow-hidden relative h-full aspect-[9/16]">
-          <motion.div
-            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${category.images[1]})`,
-            }}
-            variants={imageRevealVariants}
-            initial="hidden"
-            animate={cardInView ? 'visible' : 'hidden'}
-          />
-        </div>
-        <div className="hidden lg:block overflow-hidden relative h-full aspect-[9/16]">
-          <motion.div
-            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${category.images[2]})`,
-            }}
-            variants={imageRevealVariants}
-            initial="hidden"
-            animate={cardInView ? 'visible' : 'hidden'}
-          />
-        </div>
-        <div className="hidden lg:block overflow-hidden relative h-full aspect-[9/16]">
-          <motion.div
-            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${category.images[3]})`,
-            }}
-            variants={imageRevealVariants}
-            initial="hidden"
-            animate={cardInView ? 'visible' : 'hidden'}
-          />
-        </div>
-      </motion.div>
-    );
-  };
+  //   return (
+  //     <motion.div
+  //       ref={cardRef}
+  //       className="w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-1 bg-amber-50 overflow-hidden group"
+  //       variants={cardVariants}
+  //       initial="hidden"
+  //       animate={cardInView ? 'visible' : 'hidden'}
+  //     >
+  //       {/* First Image - Full width on mobile */}
+  //       <div className="md:aspect-[9/16] aspect-square h-full overflow-hidden relative md:col-span-1">
+  //         <motion.div
+  //           className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+  //           style={{
+  //             backgroundImage: `url(${category.images[0]})`,
+  //           }}
+  //           variants={imageRevealVariants}
+  //           initial="hidden"
+  //           animate={cardInView ? 'visible' : 'hidden'}
+  //         />
+  //       </div>
+  //       {/* Text Section - Full width on mobile */}
+  //       <motion.div
+  //         className="bg-amber-50 flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square md:col-span-2 lg:col-span-2"
+  //         variants={staggerContainer}
+  //         initial="hidden"
+  //         animate={cardInView ? 'visible' : 'hidden'}
+  //       >
+  //         <motion.h3
+  //           className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
+  //           variants={fadeInUp}
+  //         >
+  //           Big Spuntino
+  //         </motion.h3>
+  //         <motion.h2
+  //           className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+  //           variants={fadeInUp}
+  //         >
+  //           {t(category.nameKey)}
+  //         </motion.h2>
+  //         <motion.p
+  //           className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
+  //           variants={fadeInUp}
+  //         >
+  // {t(category.descriptionKey)}
+  //         </motion.p>
+  //         <motion.button
+  //           onClick={handleMenuClick}
+  //           className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
+  //           variants={fadeInUp}
+  //         >
+  //           <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+  //             {t('menus.viewMenu')}
+  //           </div>
+  //           <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+  //             {t('menus.viewMenu')}
+  //           </div>
+  //         </motion.button>
+  //       </motion.div>
+  //       {/* Remaining Images - Hidden on mobile, shown on larger screens */}
+  //       <div className="hidden md:block overflow-hidden relative h-full aspect-[9/16]">
+  //         <motion.div
+  //           className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+  //           style={{
+  //             backgroundImage: `url(${category.images[1]})`,
+  //           }}
+  //           variants={imageRevealVariants}
+  //           initial="hidden"
+  //           animate={cardInView ? 'visible' : 'hidden'}
+  //         />
+  //       </div>
+  //       <div className="hidden lg:block overflow-hidden relative h-full aspect-[9/16]">
+  //         <motion.div
+  //           className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+  //           style={{
+  //             backgroundImage: `url(${category.images[2]})`,
+  //           }}
+  //           variants={imageRevealVariants}
+  //           initial="hidden"
+  //           animate={cardInView ? 'visible' : 'hidden'}
+  //         />
+  //       </div>
+  //       <div className="hidden lg:block overflow-hidden relative h-full aspect-[9/16]">
+  //         <motion.div
+  //           className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+  //           style={{
+  //             backgroundImage: `url(${category.images[3]})`,
+  //           }}
+  //           variants={imageRevealVariants}
+  //           initial="hidden"
+  //           animate={cardInView ? 'visible' : 'hidden'}
+  //         />
+  //       </div>
+  //     </motion.div>
+  //   );
+  // };
 
   return (
-    <section className="py-12 md:py-24 lg:py-32 px-4 md:px-6">
+    <section className="py-12 md:py-24 lg:pt-32 px-4 md:px-6">
       <motion.div
         ref={headerRef}
         className="mb-12 md:mb-24 lg:mb-32"
@@ -507,39 +506,8 @@ const MenusSection: React.FC = () => {
         <Card1Layout category={menuCategories[0]} index={0} />
         <Card2Layout category={menuCategories[1]} index={1} />
         <Card3Layout category={menuCategories[2]} index={2} />
-        <Card4Layout category={menuCategories[3]} index={3} />
+        {/* <Card4Layout category={menuCategories[3]} index={3} /> */}
       </div>
-      <motion.div
-        ref={footerRef}
-        className="pt-12 md:pt-24 lg:pt-32 text-center"
-        variants={staggerContainer}
-        initial="hidden"
-        animate={footerInView ? 'visible' : 'hidden'}
-      >
-        <motion.div className="max-w-2xl mx-auto mb-6 md:mb-8 px-4" variants={fadeInUp}>
-          <motion.h3 variants={fadeInUp}>
-            <AnimatedText
-              className="text-2xl md:text-5xl lg:text-6xl uppercase font-bold mb-4 md:mb-6"
-              text={['Experience Big Spuntino']}
-            ></AnimatedText>
-          </motion.h3>
-          <motion.p className="text-sm md:text-lg font-narrow leading-tight" variants={fadeInUp}>
-            {t('menus.experienceDescription')}
-          </motion.p>
-        </motion.div>
-        <motion.button
-          onClick={handleMenuClick}
-          className="group relative inline-flex cursor-pointer h-12 md:h-14 lg:h-16 items-center justify-center overflow-hidden rounded-none font-medium"
-          variants={fadeInUp}
-        >
-          <div className="inline-flex h-12 md:h-14 lg:h-16 translate-y-0 items-center justify-center bg-amber-300 text- md:text-xl lg:text-2xl px-6 md:px-8 lg:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none">
-            {t('menus.viewFullMenu')}
-          </div>
-          <div className="absolute inline-flex h-12 md:h-14 lg:h-16 w-full translate-y-[100%] items-center justify-center text- md:text-xl lg:text-2xl bg-black px-6 md:px-8 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
-            {t('menus.viewFullMenu')}
-          </div>
-        </motion.button>
-      </motion.div>
     </section>
   );
 };

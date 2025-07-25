@@ -222,6 +222,7 @@ const Navbar = () => {
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <Link href={'/'} className="">
             <motion.div
+              className="py-2"
               animate={{
                 scale: isScrolled ? 0.6 : 1,
               }}
@@ -232,7 +233,7 @@ const Navbar = () => {
                 alt="BigSpuntino"
                 width={100}
                 height={100}
-                className="w-auto h-10 sm:h-12 md:h-16 lg:h-20"
+                className="w-auto h-10 sm:h-12 md:h-20 lg:h-24"
               />
             </motion.div>
           </Link>
@@ -266,7 +267,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  En <DownArrowIcon className="!font-normal text-white" />
+                  English <DownArrowIcon className="!font-normal text-white" />
                 </motion.span>
               ) : (
                 <motion.span
@@ -276,7 +277,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  De <DownArrowIcon className="!font-normal text-white" />
+                  Deutsch <DownArrowIcon className="!font-normal text-white" />
                 </motion.span>
               )}
             </SheetTrigger>

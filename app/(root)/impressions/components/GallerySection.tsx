@@ -4,7 +4,6 @@ import { AnimatePresence, motion, useInView, type Variants } from 'framer-motion
 import Image from 'next/image';
 import type * as React from 'react';
 import { useCallback, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const images = [
   '/assets/bambiniclub.jpg',
@@ -24,16 +23,16 @@ const images = [
 ];
 
 const GallerySection: React.FC = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Refs for intersection observers
-  const headerRef = useRef<HTMLDivElement>(null);
+  // const headerRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
 
   // Intersection observers for animations
-  const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
+  // const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
   const galleryInView = useInView(galleryRef, { once: true, margin: '-50px' });
 
   // Responsive aspect ratios
@@ -85,37 +84,31 @@ const GallerySection: React.FC = () => {
     setLightboxOpen(false);
   }, []);
 
-  const goToNextImage = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation();
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    },
-    [images.length],
-  );
+  const goToNextImage = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  }, []);
 
-  const goToPrevImage = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation();
-      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-    },
-    [images.length],
-  );
+  const goToPrevImage = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  }, []);
 
   // Animation variants
-  const fadeInUp: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 60,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    },
-  };
+  // const fadeInUp: Variants = {
+  //   hidden: {
+  //     opacity: 0,
+  //     y: 60,
+  //   },
+  //   visible: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: {
+  //       duration: 0.8,
+  //       ease: [0.25, 0.46, 0.45, 0.94] as const,
+  //     },
+  //   },
+  // };
 
   const staggerContainer: Variants = {
     hidden: {},
@@ -154,9 +147,9 @@ const GallerySection: React.FC = () => {
   };
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 lg:py-24 px-4 sm:px-6 relative overflow-hidden">
+    <section className="py-8 sm:py-12 md:py-16 lg:pb-24 px-4 sm:px-6 relative overflow-hidden">
       <div className="relative z-10 ">
-        <motion.div
+        {/* <motion.div
           ref={headerRef}
           variants={staggerContainer}
           initial="hidden"
@@ -173,7 +166,7 @@ const GallerySection: React.FC = () => {
           >
             {t('gallery.description')}
           </motion.p>
-        </motion.div>
+        </motion.div> */}
         <motion.div
           ref={galleryRef}
           className="columns-2 xs:columns-3 sm:columns-4 md:columns-3 lg:columns-4 gap-2 sm:gap-3 md:gap-4"
