@@ -276,7 +276,7 @@ const resources = {
         sun: 'Sunday',
       },
       jobs: {
-        empowering: 'Empowering',
+        empowering: 'Andiamo',
         theFuture: 'the',
         together: 'Future together',
         description:
@@ -806,7 +806,7 @@ const resources = {
         sun: 'Sonntag',
       },
       jobs: {
-        empowering: 'Empowering',
+        empowering: 'Andiamo',
         theFuture: 'die',
         together: 'Zukunft gemeinsam',
         description:

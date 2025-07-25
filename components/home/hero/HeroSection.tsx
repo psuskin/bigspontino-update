@@ -14,12 +14,20 @@ const slideData = {
 export default function HeroSection() {
   const { t } = useTranslation();
 
-  const handleExploreClick = () => {
+  const handleNextSectionClick = () => {
     const nextSection = document.querySelector('#architectural-inspirations');
     if (nextSection) {
-      nextSection.scrollIntoView({
+      // Get the navbar height (adjust this value based on your actual navbar height)
+      const navbarHeight = 70; // Change this to match your navbar height in pixels
+
+      // Calculate the target position
+      const elementPosition = nextSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+      // Smooth scroll to the calculated position
+      window.scrollTo({
+        top: offsetPosition,
         behavior: 'smooth',
-        block: 'start',
       });
     }
   };
@@ -76,7 +84,7 @@ export default function HeroSection() {
         {/* Explore Button */}
         <div className="absolute bottom-14 sm:bottom-16 lg:bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
           <button
-            onClick={handleExploreClick}
+            onClick={handleNextSectionClick}
             className="text-sm sm:text-base lg:text-lg font-semibold text-white rounded-full transition-all duration-200 hover:text-gray-200 cursor-pointer"
           >
             {t('hero.explore')}

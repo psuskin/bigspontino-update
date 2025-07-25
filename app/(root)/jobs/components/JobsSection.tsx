@@ -81,6 +81,23 @@ const JobsSection = () => {
     e.preventDefault();
     console.log('Form submitted:', formData);
   };
+  const handleNextSectionClick = () => {
+    const nextSection = document.querySelector('#apply');
+    if (nextSection) {
+      // Get the navbar height (adjust this value based on your actual navbar height)
+      const navbarHeight = 80; // Change this to match your navbar height in pixels
+
+      // Calculate the target position
+      const elementPosition = nextSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+      // Smooth scroll to the calculated position
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   // Animation variants
   const fadeInUp: Variants = {
@@ -196,7 +213,7 @@ const JobsSection = () => {
       <div className="">
         <motion.div
           ref={headerRef}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-24 items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-24 items-start"
           variants={staggerContainer}
           initial="hidden"
           animate={headerInView ? 'visible' : 'hidden'}
@@ -206,16 +223,19 @@ const JobsSection = () => {
               <span className="font-primary italic text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
                 {t('jobs.empowering')}
               </span>{' '}
-              {t('jobs.theFuture')}
+              {/* {t('jobs.theFuture')}
               <br />
-              {t('jobs.together')}
+              {t('jobs.together')} */}
             </h2>
           </motion.div>
           <motion.div className="self-start" variants={fadeInRight}>
             <p className="text-lg sm:text-xl md:text-2xl font-narrow my-6 sm:my-8">
               {t('jobs.description')}
             </p>
-            <button className="group relative inline-flex h-12 sm:h-14 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium text-base sm:text-lg">
+            <button
+              onClick={handleNextSectionClick}
+              className="group relative inline-flex h-12 sm:h-14 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium text-base sm:text-lg"
+            >
               <div className="inline-flex h-full translate-y-0 items-center justify-center bg-amber-300 uppercase px-6 sm:px-8 md:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none">
                 {t('jobs.applyNow')}
               </div>
@@ -243,6 +263,7 @@ const JobsSection = () => {
         </motion.div>
         {/* Application Form */}
         <motion.div
+          id="apply"
           ref={formRef}
           className="mt-12 sm:mt-16 md:mt-20 w-full bg-gray-50 p-4 sm:p-6 md:p-8 lg:p-12 font-narrow rounded-lg"
           variants={staggerContainer}
