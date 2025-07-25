@@ -15,7 +15,7 @@ const resources = {
         events: 'Events',
         history: 'History',
         impressions: 'Impressions',
-        jobs: 'Jobs',
+        jobs: 'Positions',
       },
       language: {
         title: 'Language',
@@ -139,12 +139,12 @@ const resources = {
               'Weekend indulgence with Italian flair. Fresh pastries, frittatas, and signature breakfast spuntini.',
           },
           lunch: {
-            name: 'LUNCH',
+            name: 'Pranzo',
             description:
               'Midday classics featuring fresh insalata, crispy focaccia, and our famous spuntini selection.',
           },
           dinner: {
-            name: 'DINNER',
+            name: 'Cena',
             description:
               'Evening elegance with octopus, caprese, and our full range of Italian culinary treasures.',
           },
@@ -542,7 +542,7 @@ const resources = {
         events: 'Veranstaltungen',
         history: 'Geschichte',
         impressions: 'Impressioni',
-        jobs: 'Jobs',
+        jobs: 'Stellen',
       },
       language: {
         title: 'Sprache',

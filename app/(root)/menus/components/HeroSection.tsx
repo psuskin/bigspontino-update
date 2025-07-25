@@ -7,7 +7,7 @@ const HeroSection = () => {
       <Image
         width={1920}
         height={1080}
-        src={'/assets/architecturalInspirations/2.jpg'}
+        src={'/assets/bambiniclub01.jpg'}
         alt={'Antipasti dish'}
         className="w-full h-full object-cover"
       />

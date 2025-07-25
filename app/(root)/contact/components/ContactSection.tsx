@@ -104,12 +104,12 @@ const ContactSection = () => {
   return (
     <div className="w-full">
       {/* First Section: Sticky Image + Contact Form */}
-      <section className="bg-amber-800 min-h-screen">
+      <section className="bg-reg-800 min-h-screen">
         <div className="flex flex-col lg:flex-row min-h-screen">
           {/* Left Column - Sticky Image */}
           <div className="w-full lg:w-1/2 lg:sticky lg:top-0 h-[50vh] lg:h-screen">
             <Image
-              src="/assets/contact/2.jpg"
+              src="/assets/photos/7.jpg"
               className="w-full h-full object-cover"
               alt="Bartender making cocktail"
               width={600}
@@ -119,17 +119,17 @@ const ContactSection = () => {
           </div>
 
           {/* Right Column - Contact Form */}
-          <div className="w-full lg:w-1/2 bg-amber-400 text-black">
+          <div className="w-full lg:w-1/2 bg-red-800 text-white">
             <div className="p-6 sm:p-8 lg:p-20">
               {/* Header */}
               <div className="mb-12 lg:mb-16">
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase mb-6 lg:mb-8">
                   {contact.title}
                 </h1>
-                <p className="text-amber-900 font-narrow text-sm mb-10 sm:mb-16">
+                <p className="text-white-900 font-narrow text-sm mb-10 sm:mb-16">
                   {t('contact.welcomeMessage')}
                 </p>
-                <div className="w-full h-px bg-black"></div>
+                <div className="w-full h-px bg-white"></div>
               </div>
 
               {/* Your Details Section */}
@@ -137,7 +137,7 @@ const ContactSection = () => {
                 <h2 className="text-lg sm:text-xl lg:text-2xl uppercase font-bold mb-6 sm:mb-10">
                   {contact.form.yourDetails}
                 </h2>
-                <div className="w-full h-px bg-black mb-10 sm:mb-16"></div>
+                <div className="w-full h-px bg-white mb-10 sm:mb-16"></div>
 
                 {/* Name Fields */}
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
@@ -148,7 +148,7 @@ const ContactSection = () => {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       placeholder={`${contact.form.firstName} *`}
-                      className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      className="w-full bg-white/40 text-black  py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
                   </div>
@@ -159,7 +159,7 @@ const ContactSection = () => {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       placeholder={`${contact.form.lastName} *`}
-                      className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      className="w-full bg-white/40 text-black  py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
                   </div>
@@ -172,7 +172,7 @@ const ContactSection = () => {
                       <select
                         value={formData.phonePrefix}
                         onChange={(e) => handleSelectChange('phonePrefix', e.target.value)}
-                        className="bg-black/40 text-white py-4 sm:py-6 px-2 text-sm focus:outline-none"
+                        className="bg-white/40 text-white py-4 sm:py-6 px-2 text-sm focus:outline-none"
                       >
                         <option value="+49">🇩🇪 +49</option>
                         <option value="+33">🇫🇷 +33</option>
@@ -185,7 +185,7 @@ const ContactSection = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         placeholder={`${contact.form.phone} *`}
-                        className="flex-1 bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                        className="flex-1 bg-white/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                         required
                       />
                     </div>
@@ -197,7 +197,7 @@ const ContactSection = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder={`${contact.form.email} *`}
-                      className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      className="w-full bg-white/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
                   </div>
@@ -206,7 +206,7 @@ const ContactSection = () => {
 
               {/* Your Enquiry Section */}
               <div>
-                <div className="w-full h-px bg-black mb-8 sm:mb-14"></div>
+                <div className="w-full h-px bg-white mb-8 sm:mb-14"></div>
                 <h2 className="text-lg sm:text-xl lg:text-2xl uppercase font-bold mb-6 sm:mb-10">
                   {contact.form.yourEnquiry}
                 </h2>
@@ -216,7 +216,7 @@ const ContactSection = () => {
                     id="enquiryType"
                     value={formData.enquiryType}
                     onChange={(e) => handleSelectChange('enquiryType', e.target.value)}
-                    className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm focus:outline-none"
+                    className="w-full bg-white/40 text-white py-4 sm:py-6 px-4 text-sm focus:outline-none"
                   >
                     <option value="">{contact.form.enquiryAbout} *</option>
                     <option value="reservation">{contact.form.reservation}</option>
@@ -232,7 +232,7 @@ const ContactSection = () => {
                     onChange={handleInputChange}
                     placeholder={contact.form.placeholders.message}
                     rows={6}
-                    className="w-full bg-black/40 text-white py-4 sm:py-6 px-4 text-sm placeholder-gray-50 focus:outline-none resize-none"
+                    className="w-full bg-white/40 text-white py-4 sm:py-6 px-4 text-sm placeholder-gray-50 focus:outline-none resize-none"
                   ></textarea>
 
                   <div className="mb-10 sm:mb-14">
@@ -242,7 +242,7 @@ const ContactSection = () => {
                         id="agreeTerms"
                         checked={formData.agreeTerms}
                         onChange={handleInputChange}
-                        className="mt-1 w-4 h-4 accent-amber-600"
+                        className="mt-1 w-4 h-4 accent-red-600"
                       />
                       <span className="text-black">
                         {contact.form.agreeTerms1}{' '}
@@ -259,7 +259,7 @@ const ContactSection = () => {
 
                   <button
                     onClick={handleSubmit}
-                    className="border-2 border-black text-black hover:bg-black hover:text-amber-400 px-8 sm:px-16 py-4 sm:py-6 font-bold uppercase tracking-wide transition-all duration-300 text-sm w-full sm:w-auto"
+                    className="border-2 border-white text-white hover:bg-white hover:text-red-700 px-8 sm:px-16 py-4 sm:py-6 font-bold uppercase tracking-wide transition-all duration-300 text-sm w-full sm:w-auto"
                   >
                     {contact.form.submit}
                   </button>
@@ -290,7 +290,7 @@ const ContactSection = () => {
             {/* Right Column - Contact Information */}
             <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-16 flex flex-col justify-center bg-white">
               <div className="max-w-md mx-auto w-full">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-amber-800 mb-4 uppercase">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-700 mb-4 uppercase">
                   BIG SPUNTINO
                 </h2>
                 <p className="text-gray-700 mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
@@ -300,17 +300,17 @@ const ContactSection = () => {
                 <div className="space-y-0">
                   {/* Address */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-t-2 py-4 sm:py-5">
-                    <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-red-700 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.address}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
-                      <p className="text-amber-800 font-medium">{contact.addressValue}</p>
+                      <p className="text-red-700 font-medium">{contact.addressValue}</p>
                     </div>
                   </div>
 
                   {/* Phone */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
-                    <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-red-700 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.phone}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
@@ -320,7 +320,7 @@ const ContactSection = () => {
 
                   {/* Email */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5">
-                    <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-red-700 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.email}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
@@ -330,7 +330,7 @@ const ContactSection = () => {
 
                   {/* Website */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
-                    <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-red-700 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.website}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
@@ -340,7 +340,7 @@ const ContactSection = () => {
 
                   {/* Opening Hours */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-t-2 py-4 sm:py-5">
-                    <div className="text-amber-800 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-red-700 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.openingHours}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
