@@ -1,5 +1,4 @@
 'use client';
-import Newsletter from '@/components/home/Newsletter';
 import { motion, useInView, type Variants } from 'framer-motion';
 import Image from 'next/image';
 import { useRef } from 'react';
@@ -153,9 +152,7 @@ const OurStory = () => {
         variants={fadeInUp}
         initial="hidden"
         animate={newsletterInView ? 'visible' : 'hidden'}
-      >
-        <Newsletter />
-      </motion.div>
+      ></motion.div>
     </section>
   );
 };

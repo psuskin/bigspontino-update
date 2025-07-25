@@ -127,7 +127,7 @@ const ArchitecturalInspirations = () => {
               className="w-full h-full"
             >
               <Image
-                src="/assets/architecturalInspirations/1.jpg"
+                src="/assets/bambiniclub01.jpg"
                 width={800}
                 height={600}
                 className="w-full h-full object-cover"
@@ -151,7 +151,7 @@ const ArchitecturalInspirations = () => {
               className="w-full h-full"
             >
               <Image
-                src="/assets/architecturalInspirations/3.jpg"
+                src="/assets/photos/1.jpg"
                 width={800}
                 height={400}
                 className="w-full h-full object-cover"
@@ -171,7 +171,7 @@ const ArchitecturalInspirations = () => {
               className="w-full h-full"
             >
               <Image
-                src="/assets/architecturalInspirations/2.jpg"
+                src="/assets/photos/14.jpeg"
                 width={800}
                 height={600}
                 className="w-full h-full object-cover"

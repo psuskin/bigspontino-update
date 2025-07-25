@@ -236,7 +236,7 @@ const JobsSection = () => {
               onClick={handleNextSectionClick}
               className="group relative inline-flex h-12 sm:h-14 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium text-base sm:text-lg"
             >
-              <div className="inline-flex h-full translate-y-0 items-center justify-center bg-amber-300 uppercase px-6 sm:px-8 md:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none">
+              <div className="inline-flex h-full translate-y-0 items-center justify-center bg-red-700 uppercase px-6 sm:px-8 md:px-10 text-white transition group-hover:-translate-y-[150%] rounded-none">
                 {t('jobs.applyNow')}
               </div>
               <div className="absolute inline-flex h-full w-full translate-y-[100%] items-center justify-center uppercase bg-black px-6 sm:px-8 md:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">

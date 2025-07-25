@@ -73,9 +73,12 @@ const Navbar = () => {
     },
     {
       href: '/contact',
-      label: `Contatto (${t('navigation.contact') || 'contact'} / opening hours)`,
+      label: `Contatto (${t('navigation.contact') || 'contact'} )`,
     },
-    { href: '/jobs', label: t('navigation.jobs') || 'Jobs' },
+    {
+      href: '/jobs',
+      label: `Lavori (${t('navigation.jobs') || 'Stellen'})`,
+    },
   ];
 
   const socialLinks = [{ href: 'https://www.instagram.com/bigspuntino/', label: 'Instagram' }];
@@ -123,8 +126,8 @@ const Navbar = () => {
               </motion.div>
             </div>
           </SheetTrigger>
-          <SheetContent className=" rounded-none border border-amber-300 bg-transparent pointer-events-none w-full sm:w-xl">
-            <div className="w-full h-full bg-amber-300 pointer-events-auto rounded-none">
+          <SheetContent className=" rounded-none border border-red-700 bg-transparent pointer-events-none text-white w-full sm:w-xl">
+            <div className="w-full h-full bg-red-700 pointer-events-auto rounded-none">
               <SheetHeader>
                 <SheetTitle></SheetTitle>
                 <SheetDescription></SheetDescription>
@@ -154,12 +157,12 @@ const Navbar = () => {
                           <Link
                             href={link.href}
                             onClick={() => setIsOpen(false)}
-                            className={`block font-medium md:text-center text-start relative after:absolute md:after:bottom-1.5 after:bottom-0.5 after:left-0 md:after:h-[3px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic  ${
+                            className={`block font-medium md:text-center text-start relative after:absolute md:after:bottom-1.5 after:bottom-0.5 after:left-0 md:after:h-[3px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-white after:bg-white  after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic  ${
                               pathname === link.href ? 'italic after:scale-x-100' : ''
                             }`}
                           >
-                            <div className="flex items-center gap-1 sm:gap-2 md:gap-2.5">
-                              <span className="text-3xl md:text-4xl lg:text-5xl leading-tight">
+                            <div className="flex items-center gap-1 text-white sm:gap-2 md:gap-2.5">
+                              <span className="text-3xl md:text-4xl  lg:text-5xl leading-tight">
                                 {mainText}
                               </span>
                               {bracketed && (
@@ -262,7 +265,7 @@ const Navbar = () => {
               {currentLanguage === 'en' ? (
                 <motion.span
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'en' ? 'text-white ' : 'hover:text-amber-500'
+                    currentLanguage === 'en' ? 'text-white ' : 'hover:text-red-700'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -272,7 +275,7 @@ const Navbar = () => {
               ) : (
                 <motion.span
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'de' ? 'text-white ' : 'hover:text-amber-500'
+                    currentLanguage === 'de' ? 'text-white ' : 'hover:text-red-700'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -296,7 +299,7 @@ const Navbar = () => {
                       <motion.button
                         onClick={() => changeLanguage('en')}
                         className={`transition-colors text-4xl uppercase mb-6 duration-200 ${
-                          currentLanguage === 'en' ? 'text-amber-500 ' : 'hover:text-amber-500'
+                          currentLanguage === 'en' ? 'text-red-700 ' : 'hover:text-red-700'
                         }`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -308,7 +311,7 @@ const Navbar = () => {
                       <motion.button
                         onClick={() => changeLanguage('de')}
                         className={`transition-colors text-4xl uppercase duration-200 ${
-                          currentLanguage === 'de' ? 'text-amber-500 ' : 'hover:text-amber-500'
+                          currentLanguage === 'de' ? 'text-red-700 ' : 'hover:text-red-700'
                         }`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -332,7 +335,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="inline-flex h-8 sm:h-9 md:h-10 translate-y-0 items-center justify-center bg-amber-300 text-sm sm:text-lg md:text-xl lg:text-2xl px-3 sm:px-4 md:px-6 text-black transition group-hover:-translate-y-[150%] rounded-none">
+                  <div className="inline-flex h-8 sm:h-9 md:h-10 translate-y-0 items-center justify-center bg-red-700 text-sm sm:text-lg md:text-xl lg:text-2xl px-3 sm:px-4 md:px-6 text-white transition group-hover:-translate-y-[150%] rounded-none">
                     <span className="hidden sm:inline">
                       {t('buttons.bookTable') || 'Book A Table'}
                     </span>
@@ -365,7 +368,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <div className="inline-flex h-10 w-full translate-y-0 items-center justify-center bg-amber-300  px-2 text-black transition group-hover:-translate-y-[150%] rounded-none">
+                <div className="inline-flex h-10 w-full translate-y-0 items-center justify-center bg-red-700  px-2 text-black transition group-hover:-translate-y-[150%] rounded-none">
                   {t('buttons.bookTable') || 'Book A Table'}
                 </div>
                 <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center  bg-black px-2 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">

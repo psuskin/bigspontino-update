@@ -1,5 +1,4 @@
 'use client';
-
 import { AnimatedText } from '@/components/animation/text/AnimatedText';
 import { motion, useInView, type Variants } from 'framer-motion';
 import type React from 'react';
@@ -12,6 +11,7 @@ interface Category {
   // descriptionKey: string;
   images: string[];
   link: string;
+  pdfPath: string; // Added PDF path
 }
 
 interface CardLayoutProps {
@@ -21,7 +21,6 @@ interface CardLayoutProps {
 
 const MenusSection: React.FC = () => {
   const headerRef = useRef<HTMLDivElement>(null);
-
   const { t } = useTranslation();
   const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
 
@@ -36,6 +35,7 @@ const MenusSection: React.FC = () => {
         '/assets/menus/brunch/1.jpg',
       ],
       link: '/menu/brunch',
+      pdfPath: '/assets/menus/pdf/brunch.pdf', // Update with your actual PDF filename
     },
     {
       id: 2,
@@ -47,6 +47,7 @@ const MenusSection: React.FC = () => {
         '/assets/menus/lunch/1.jpg',
       ],
       link: '/menu/lunch',
+      pdfPath: '/assets/menus/pdf/lunch.pdf', // Update with your actual PDF filename
     },
     {
       id: 3,
@@ -58,27 +59,13 @@ const MenusSection: React.FC = () => {
         '/assets/menus/dinner/3.jpg',
       ],
       link: '/menu/dinner',
-    },
-    {
-      id: 4,
-      nameKey: 'menus.categories.bar.name',
-      // descriptionKey: 'menus.categories.bar.description',
-      images: [
-        '/assets/menus/bar/1.jpg',
-        '/assets/menus/bar/2.jpg',
-        '/assets/menus/bar/3.jpg',
-        '/assets/menus/bar/4.jpg',
-        '/assets/menus/bar/5.jpg',
-      ],
-      link: '/menu/bar',
+      pdfPath: '/assets/menus/pdf/dinner.pdf', // Update with your actual PDF filename
     },
   ];
 
-  const handleMenuClick = () => {
-    window.open(
-      'https://www.ujamaaresort.org/wp-content/uploads/2018/01/Ujamaa-restaurant-menu.pdf',
-      '_blank',
-    );
+  // Updated function to handle different PDFs
+  const handleMenuClick = (pdfPath: string) => {
+    window.open(pdfPath, '_blank');
   };
 
   // Animation variants with proper typing
@@ -151,7 +138,7 @@ const MenusSection: React.FC = () => {
     return (
       <motion.div
         ref={cardRef}
-        className="w-full bg-amber-50 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-1 overflow-hidden group"
+        className="w-full bg-red-50/15 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-1 overflow-hidden group"
         variants={cardVariants}
         initial="hidden"
         animate={cardInView ? 'visible' : 'hidden'}
@@ -170,7 +157,7 @@ const MenusSection: React.FC = () => {
         </div>
         {/* Middle Text Section - Full width on mobile, then responsive */}
         <motion.div
-          className="bg-amber-50 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 md:col-span-1 lg:col-span-3 aspect-square md:aspect-auto"
+          className="bg-red-50/15 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 md:col-span-1 lg:col-span-3 aspect-square md:aspect-auto"
           variants={staggerContainer}
           initial="hidden"
           animate={cardInView ? 'visible' : 'hidden'}
@@ -194,7 +181,7 @@ const MenusSection: React.FC = () => {
             {/* {t(category.descriptionKey)} */}
           </motion.p>
           <motion.button
-            onClick={handleMenuClick}
+            onClick={() => handleMenuClick(category.pdfPath)}
             className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
             variants={fadeInUp}
           >
@@ -230,7 +217,7 @@ const MenusSection: React.FC = () => {
     return (
       <motion.div
         ref={cardRef}
-        className="w-full grid grid-cols-1 md:grid-cols-3 gap-1 bg-amber-50 overflow-hidden group"
+        className="w-full grid grid-cols-1 md:grid-cols-3 gap-1 bg-red-50/15 overflow-hidden group"
         variants={cardVariants}
         initial="hidden"
         animate={cardInView ? 'visible' : 'hidden'}
@@ -261,7 +248,7 @@ const MenusSection: React.FC = () => {
         </div>
         {/* Text Section (1/1) - Full width on mobile */}
         <motion.div
-          className="bg-amber-50 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square"
+          className="bg-red-50/15 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square"
           variants={staggerContainer}
           initial="hidden"
           animate={cardInView ? 'visible' : 'hidden'}
@@ -285,7 +272,7 @@ const MenusSection: React.FC = () => {
             {/* {t(category.descriptionKey)} */}
           </motion.p>
           <motion.button
-            onClick={handleMenuClick}
+            onClick={() => handleMenuClick(category.pdfPath)}
             className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
             variants={fadeInUp}
           >
@@ -309,7 +296,7 @@ const MenusSection: React.FC = () => {
     return (
       <motion.div
         ref={cardRef}
-        className="w-full grid grid-cols-1 md:grid-cols-3 bg-amber-50 gap-1 overflow-hidden group"
+        className="w-full grid grid-cols-1 md:grid-cols-3 bg-red-50/15 gap-1 overflow-hidden group"
         variants={cardVariants}
         initial="hidden"
         animate={cardInView ? 'visible' : 'hidden'}
@@ -328,7 +315,7 @@ const MenusSection: React.FC = () => {
         </div>
         {/* Middle Text Section - Full width on mobile */}
         <motion.div
-          className="bg-amber-50 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square"
+          className="bg-red-50/15 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square"
           variants={staggerContainer}
           initial="hidden"
           animate={cardInView ? 'visible' : 'hidden'}
@@ -352,7 +339,7 @@ const MenusSection: React.FC = () => {
             {/* {t(category.descriptionKey)} */}
           </motion.p>
           <motion.button
-            onClick={handleMenuClick}
+            onClick={() => handleMenuClick(category.pdfPath)}
             className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
             variants={fadeInUp}
           >
@@ -379,106 +366,6 @@ const MenusSection: React.FC = () => {
       </motion.div>
     );
   };
-
-  // const Card4Layout: React.FC<CardLayoutProps> = ({ category }) => {
-  //   const cardRef = useRef<HTMLDivElement>(null);
-  //   const cardInView = useInView(cardRef, { once: true, margin: '-50px' });
-
-  //   return (
-  //     <motion.div
-  //       ref={cardRef}
-  //       className="w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-1 bg-amber-50 overflow-hidden group"
-  //       variants={cardVariants}
-  //       initial="hidden"
-  //       animate={cardInView ? 'visible' : 'hidden'}
-  //     >
-  //       {/* First Image - Full width on mobile */}
-  //       <div className="md:aspect-[9/16] aspect-square h-full overflow-hidden relative md:col-span-1">
-  //         <motion.div
-  //           className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-  //           style={{
-  //             backgroundImage: `url(${category.images[0]})`,
-  //           }}
-  //           variants={imageRevealVariants}
-  //           initial="hidden"
-  //           animate={cardInView ? 'visible' : 'hidden'}
-  //         />
-  //       </div>
-  //       {/* Text Section - Full width on mobile */}
-  //       <motion.div
-  //         className="bg-amber-50 flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square md:col-span-2 lg:col-span-2"
-  //         variants={staggerContainer}
-  //         initial="hidden"
-  //         animate={cardInView ? 'visible' : 'hidden'}
-  //       >
-  //         <motion.h3
-  //           className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
-  //           variants={fadeInUp}
-  //         >
-  //           Big Spuntino
-  //         </motion.h3>
-  //         <motion.h2
-  //           className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
-  //           variants={fadeInUp}
-  //         >
-  //           {t(category.nameKey)}
-  //         </motion.h2>
-  //         <motion.p
-  //           className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
-  //           variants={fadeInUp}
-  //         >
-  // {t(category.descriptionKey)}
-  //         </motion.p>
-  //         <motion.button
-  //           onClick={handleMenuClick}
-  //           className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
-  //           variants={fadeInUp}
-  //         >
-  //           <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-  //             {t('menus.viewMenu')}
-  //           </div>
-  //           <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-  //             {t('menus.viewMenu')}
-  //           </div>
-  //         </motion.button>
-  //       </motion.div>
-  //       {/* Remaining Images - Hidden on mobile, shown on larger screens */}
-  //       <div className="hidden md:block overflow-hidden relative h-full aspect-[9/16]">
-  //         <motion.div
-  //           className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-  //           style={{
-  //             backgroundImage: `url(${category.images[1]})`,
-  //           }}
-  //           variants={imageRevealVariants}
-  //           initial="hidden"
-  //           animate={cardInView ? 'visible' : 'hidden'}
-  //         />
-  //       </div>
-  //       <div className="hidden lg:block overflow-hidden relative h-full aspect-[9/16]">
-  //         <motion.div
-  //           className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-  //           style={{
-  //             backgroundImage: `url(${category.images[2]})`,
-  //           }}
-  //           variants={imageRevealVariants}
-  //           initial="hidden"
-  //           animate={cardInView ? 'visible' : 'hidden'}
-  //         />
-  //       </div>
-  //       <div className="hidden lg:block overflow-hidden relative h-full aspect-[9/16]">
-  //         <motion.div
-  //           className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-  //           style={{
-  //             backgroundImage: `url(${category.images[3]})`,
-  //           }}
-  //           variants={imageRevealVariants}
-  //           initial="hidden"
-  //           animate={cardInView ? 'visible' : 'hidden'}
-  //         />
-  //       </div>
-  //     </motion.div>
-  //   );
-  // };
 
   return (
     <section className="py-12 md:py-24 lg:pt-32 px-4 md:px-6">

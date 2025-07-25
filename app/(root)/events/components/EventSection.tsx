@@ -193,7 +193,7 @@ const EventSection = () => {
             className="group relative inline-flex h-10 sm:h-12 md:h-14 lg:h-16 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
             variants={buttonVariants}
           >
-            <div className="inline-flex h-10 sm:h-12 md:h-14 lg:h-16 translate-y-0 items-center justify-center bg-amber-300 text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase px-6 sm:px-8 md:px-12 lg:px-16 text-black transition group-hover:-translate-y-[150%] rounded-none">
+            <div className="inline-flex h-10 sm:h-12 md:h-14 lg:h-16 translate-y-0 items-center justify-center bg-red-700 text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase px-6 sm:px-8 md:px-12 lg:px-16 text-white transition group-hover:-translate-y-[150%] rounded-none">
               {t('events.contactButton')}
             </div>
             <div className="absolute inline-flex h-10 sm:h-12 md:h-14 lg:h-16 w-full translate-y-[100%] items-center justify-center text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase bg-black px-6 sm:px-8 md:px-12 lg:px-16 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
