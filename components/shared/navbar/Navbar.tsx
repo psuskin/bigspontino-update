@@ -383,7 +383,7 @@ const Navbar = () => {
                 alt="BigSpuntino"
                 width={100}
                 height={100}
-                className="w-auto h-10 sm:h-12 md:h-20 lg:h-24"
+                className="w-auto h-12 sm:h-14 md:h-20 lg:h-24"
               />
             </motion.div>
           </Link>
@@ -522,16 +522,10 @@ const Navbar = () => {
               <span className="">
                 {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
               </span>
-              <span className="sm:hidden">
-                {isBookingLoading ? '...' : t('buttons.book') || 'Book'}
-              </span>
             </div>
             <div className="absolute inline-flex h-11 md:h-11 w-full translate-y-[100%] items-center justify-center  bg-white px-3 sm:px-4 md:px-6 text-black transition duration-300 group-hover:translate-y-0 rounded-none">
               <span className="">
                 {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
-              </span>
-              <span className="sm:hidden">
-                {isBookingLoading ? '...' : t('buttons.book') || 'Book'}
               </span>
             </div>
           </motion.button>
