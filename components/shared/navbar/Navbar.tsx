@@ -265,7 +265,7 @@ const Navbar = () => {
               {currentLanguage === 'en' ? (
                 <motion.span
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'en' ? 'text-white ' : 'hover:text-amber-500'
+                    currentLanguage === 'en' ? 'text-white ' : 'hover:text-red-700'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -275,7 +275,7 @@ const Navbar = () => {
               ) : (
                 <motion.span
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'de' ? 'text-white ' : 'hover:text-amber-500'
+                    currentLanguage === 'de' ? 'text-white ' : 'hover:text-red-700'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -299,7 +299,7 @@ const Navbar = () => {
                       <motion.button
                         onClick={() => changeLanguage('en')}
                         className={`transition-colors text-4xl uppercase mb-6 duration-200 ${
-                          currentLanguage === 'en' ? 'text-amber-500 ' : 'hover:text-amber-500'
+                          currentLanguage === 'en' ? 'text-red-700 ' : 'hover:text-red-700'
                         }`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -311,7 +311,7 @@ const Navbar = () => {
                       <motion.button
                         onClick={() => changeLanguage('de')}
                         className={`transition-colors text-4xl uppercase duration-200 ${
-                          currentLanguage === 'de' ? 'text-amber-500 ' : 'hover:text-amber-500'
+                          currentLanguage === 'de' ? 'text-red-700 ' : 'hover:text-red-700'
                         }`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
