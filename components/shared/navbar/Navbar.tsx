@@ -383,7 +383,7 @@ const Navbar = () => {
                 alt="BigSpuntino"
                 width={100}
                 height={100}
-                className="w-auto h-10 sm:h-12 md:h-20 lg:h-24"
+                className="w-auto h-12 sm:h-14 md:h-20 lg:h-24"
               />
             </motion.div>
           </Link>
