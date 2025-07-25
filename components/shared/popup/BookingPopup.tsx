@@ -66,7 +66,7 @@ export default function BookingPopup() {
   return (
     <div className="fixed lg:bottom-6 lg:right-6 bottom-0 right-0 w-full lg:w-[23rem] font-narrow bg-white shadow-2xl border border-black/5 z-50 font-sans max-h-[100vh] overflow-y-auto">
       {/* Header */}
-      <div className="bg-black text-white p-4">
+      <div className="bg-red-700 text-white p-4">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-bold font-main">Big Spuntino</h3>
