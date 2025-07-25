@@ -182,7 +182,7 @@ const MenusSection: React.FC = () => {
             Big Spuntino
           </motion.h3>
           <motion.h2
-            className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
             variants={fadeInUp}
           >
             {t(category.nameKey)}
@@ -273,7 +273,7 @@ const MenusSection: React.FC = () => {
             Big Spuntino
           </motion.h3>
           <motion.h2
-            className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
             variants={fadeInUp}
           >
             {t(category.nameKey)}
@@ -340,7 +340,7 @@ const MenusSection: React.FC = () => {
             Big Spuntino
           </motion.h3>
           <motion.h2
-            className="text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
             variants={fadeInUp}
           >
             {t(category.nameKey)}

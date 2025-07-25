@@ -540,8 +540,8 @@ const resources = {
         about: 'Über uns',
         contact: 'Kontakt',
         events: 'Veranstaltungen',
-        history: 'La Storia',
-        impressions: 'Eindrücke',
+        history: 'Geschichte',
+        impressions: 'Impressioni',
         jobs: 'Jobs',
       },
       language: {
@@ -660,17 +660,17 @@ const resources = {
         viewFullMenu: 'Vollständige Speisekarte ansehen (PDF)',
         categories: {
           brunch: {
-            name: 'BRUNCH',
+            name: 'Italian Brunch',
             description:
               'Wochenendverwöhnung mit italienischem Flair. Frische Gebäck, Frittatas und unsere signature Frühstücks-Spuntini.',
           },
           lunch: {
-            name: 'MITTAGESSEN',
+            name: 'Pranzo',
             description:
               'Klassiker zur Mittagszeit mit frischer Insalata, knuspriger Focaccia und unserer berühmten Spuntini-Auswahl.',
           },
           dinner: {
-            name: 'ABENDESSEN',
+            name: 'Cena',
             description:
               'Abendliche Eleganz mit Octopus, Caprese und unserer ganzen Palette italienischer kulinarischer Schätze.',
           },
