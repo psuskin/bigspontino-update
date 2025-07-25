@@ -248,7 +248,7 @@ export default function BookingPopup() {
                 </Button>
               </div>
             </div>
-            {/* Footer text */}
+
             <p className="text-xs text-neutral-600 text-center mt-3 lg:mt-0">
               {t('booking.voucher')}
             </p>
