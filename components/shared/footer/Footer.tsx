@@ -3,13 +3,10 @@
 import { motion, useInView, type Variants } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
-
   // Refs for intersection observers
   const footerRef = useRef<HTMLDivElement>(null);
   const brandRef = useRef<HTMLDivElement>(null);
@@ -62,21 +59,6 @@ const Footer = () => {
     },
   };
 
-  const formElementVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    },
-  };
-
   return (
     <footer className="">
       <motion.div
@@ -108,44 +90,20 @@ const Footer = () => {
             >
               {t('footer.description')}
             </motion.p>
-            <motion.div
-              className="space-y-4 max-w-full sm:max-w-sm md:max-w-md mt-8 sm:mt-10"
-              variants={staggerContainer}
-            >
-              <motion.div
-                className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100"
-                variants={formElementVariants}
+            <div className="space-y-0.5 font-narrow mt-6 text-white font-light text-">
+              <a
+                href="tel:040694568 28"
+                className="block  decoration-1  hover:text-amber-300-600 transition-colors"
               >
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3 py-3 sm:px-4 sm:py-4 rounded-none font-narrow placeholder:text-center bg-white/15 border-none focus:outline-none"
-                  placeholder={t('newsletter.placeholder')}
-                  required
-                />
-              </motion.div>
-              <motion.div
-                className="flex items-start gap-2 sm:gap-3"
-                variants={formElementVariants}
+                <span className="font-bold"> Phone:</span> 040 / 69 45 68 28
+              </a>
+              <a
+                href="mailto:mail@bigspuntino.de"
+                className="block  decoration-1  hover:text-amber-300-600 transition-colors"
               >
-                <input
-                  type="checkbox"
-                  id="OPT_IN"
-                  name="OPT_IN"
-                  checked={acceptedTerms}
-                  onChange={(e) => setAcceptedTerms(e.target.checked)}
-                  className="w-4 h-4 text-primary mt-1 flex-shrink-0 !rounded-none"
-                  required
-                />
-                <label
-                  htmlFor="OPT_IN"
-                  className="text-xs sm:text-sm font-narrow pt-0.5 leading-tight"
-                >
-                  {t('newsletter.terms')}
-                </label>
-              </motion.div>
-            </motion.div>
+                <span className="font-bold">Email:</span> mail@bigspuntino.de
+              </a>
+            </div>
           </motion.div>
           {/* Navigation Links Column 1 */}
           <motion.div
