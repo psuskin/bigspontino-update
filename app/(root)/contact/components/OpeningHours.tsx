@@ -113,13 +113,13 @@ const OpeningHours = () => {
               <div className="space-y-3 text-black font-light text-lg">
                 <a
                   href="tel:040694568 28"
-                  className="block underline decoration-1 underline-offset-4 hover:text-green-600 transition-colors"
+                  className="block underline decoration-1 underline-offset-4 hover:text-red-700 transition-colors"
                 >
                   {contact.phoneValue}
                 </a>
                 <a
                   href="mailto:mail@bigspuntino.de"
-                  className="block underline decoration-1 underline-offset-4 hover:text-green-600 transition-colors"
+                  className="block underline decoration-1 underline-offset-4 hover:text-red-700 transition-colors"
                 >
                   {contact.emailValue}
                 </a>
@@ -127,7 +127,7 @@ const OpeningHours = () => {
                   href="https://bigspuntino.de"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block underline decoration-1 underline-offset-4 hover:text-green-600 transition-colors"
+                  className="block underline decoration-1 underline-offset-4 hover:text-red-700 transition-colors"
                 >
                   {contact.websiteValue}
                 </a>
@@ -175,13 +175,13 @@ const OpeningHours = () => {
             <div className="space-y-6 text-black font-light text-lg">
               <a
                 href="tel:040694568 28"
-                className="block underline decoration-1 underline-offset-4 hover:text-green-600 transition-colors"
+                className="block underline decoration-1 underline-offset-4 hover:text-red-700 transition-colors"
               >
                 {contact.phoneValue}
               </a>
               <a
                 href="mailto:mail@bigspuntino.de"
-                className="block underline decoration-1 underline-offset-4 hover:text-green-600 transition-colors"
+                className="block underline decoration-1 underline-offset-4 hover:text-red-700 transition-colors"
               >
                 {contact.emailValue}
               </a>
@@ -189,7 +189,7 @@ const OpeningHours = () => {
                 href="https://bigspuntino.de"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block underline decoration-1 underline-offset-4 hover:text-green-600 transition-colors"
+                className="block underline decoration-1 underline-offset-4 hover:text-red-700 transition-colors"
               >
                 {contact.websiteValue}
               </a>

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -119,7 +120,7 @@ const ContactSection = () => {
           </div>
 
           {/* Right Column - Contact Form */}
-          <div className="w-full lg:w-1/2 bg-red-800 text-white">
+          <div className="w-full lg:w-1/2 bg-[#ce2d19] text-white">
             <div className="p-6 sm:p-8 lg:p-20">
               {/* Header */}
               <div className="mb-12 lg:mb-16">
@@ -242,24 +243,24 @@ const ContactSection = () => {
                         id="agreeTerms"
                         checked={formData.agreeTerms}
                         onChange={handleInputChange}
-                        className="mt-1 w-4 h-4 accent-red-600"
+                        className="mt-1 w-4 h-4 accent-[#ce2d19]"
                       />
-                      <span className="text-black">
+                      <span className="text-white">
                         {contact.form.agreeTerms1}{' '}
-                        <a href="#" className="underline">
+                        <Link href="/terms-and-conditions" className="underline">
                           {contact.form.terms}
-                        </a>{' '}
+                        </Link>{' '}
                         {contact.form.agreeTerms2}{' '}
-                        <a href="#" className="underline">
+                        <Link href="/privacy-policy" className="underline">
                           {contact.form.privacyPolicy}
-                        </a>
+                        </Link>
                       </span>
                     </label>
                   </div>
 
                   <button
                     onClick={handleSubmit}
-                    className="border-2 border-white text-white hover:bg-white hover:text-red-700 px-8 sm:px-16 py-4 sm:py-6 font-bold uppercase tracking-wide transition-all duration-300 text-sm w-full sm:w-auto"
+                    className="border-2 border-white text-white hover:bg-white hover:text-[#ce2d19] px-8 sm:px-16 py-4 sm:py-6 font-bold uppercase tracking-wide transition-all duration-300 text-sm w-full sm:w-auto"
                   >
                     {contact.form.submit}
                   </button>
@@ -290,7 +291,7 @@ const ContactSection = () => {
             {/* Right Column - Contact Information */}
             <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-16 flex flex-col justify-center bg-white">
               <div className="max-w-md mx-auto w-full">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-700 mb-4 uppercase">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#ce2d19] mb-4 uppercase">
                   BIG SPUNTINO
                 </h2>
                 <p className="text-gray-700 mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
@@ -300,17 +301,17 @@ const ContactSection = () => {
                 <div className="space-y-0">
                   {/* Address */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-t-2 py-4 sm:py-5">
-                    <div className="text-red-700 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-[#ce2d19] font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.address}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
-                      <p className="text-red-700 font-medium">{contact.addressValue}</p>
+                      <p className="text-[#ce2d19] font-medium">{contact.addressValue}</p>
                     </div>
                   </div>
 
                   {/* Phone */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
-                    <div className="text-red-700 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-[#ce2d19] font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.phone}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
@@ -320,7 +321,7 @@ const ContactSection = () => {
 
                   {/* Email */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5">
-                    <div className="text-red-700 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-[#ce2d19] font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.email}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
@@ -330,7 +331,7 @@ const ContactSection = () => {
 
                   {/* Website */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
-                    <div className="text-red-700 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-[#ce2d19] font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.website}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
@@ -340,7 +341,7 @@ const ContactSection = () => {
 
                   {/* Opening Hours */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-t-2 py-4 sm:py-5">
-                    <div className="text-red-700 font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-[#ce2d19] font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.openingHours}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">

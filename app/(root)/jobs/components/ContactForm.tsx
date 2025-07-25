@@ -70,7 +70,7 @@ export default function ContactForm() {
               className="px-2 py-1 w-full sm:min-w-[200px] border-b-2 border-gray-300 bg-transparent placeholder:text-base sm:placeholder:text-xl placeholder:text-center focus:border-gray-900 outline-none transition-colors text-base sm:text-xl"
             />
             {errors.name && (
-              <span className="text-sm text-red-500 mt-1">{errors.name.message}</span>
+              <span className="text-sm text-[#ce2d19] mt-1">{errors.name.message}</span>
             )}
           </div>
           <span className="text-xl sm:text-3xl md:text-5xl lg:text-7xl">and I work with</span>
@@ -81,7 +81,7 @@ export default function ContactForm() {
               className="px-2 py-1 w-full sm:min-w-[200px] border-b-2 border-gray-300 bg-transparent placeholder:text-base sm:placeholder:text-xl placeholder:text-center focus:border-gray-900 outline-none transition-colors text-base sm:text-xl"
             />
             {errors.company && (
-              <span className="text-sm text-red-500 mt-1">{errors.company.message}</span>
+              <span className="text-sm text-[#ce2d19] mt-1">{errors.company.message}</span>
             )}
           </div>
         </motion.div>
@@ -97,7 +97,7 @@ export default function ContactForm() {
               className="px-2 py-1 w-full border-b-2 border-gray-300 bg-transparent placeholder:text-base sm:placeholder:text-xl placeholder:text-center focus:border-gray-900 outline-none transition-colors text-base sm:text-xl"
             />
             {errors.goal && (
-              <span className="text-sm text-red-500 mt-1">{errors.goal.message}</span>
+              <span className="text-sm text-[#ce2d19] mt-1">{errors.goal.message}</span>
             )}
           </div>
         </motion.div>
@@ -113,7 +113,7 @@ export default function ContactForm() {
               className="px-2 py-1 w-full sm:min-w-[200px] border-b-2 border-gray-300 bg-transparent placeholder:text-base sm:placeholder:text-xl placeholder:text-center focus:border-gray-900 outline-none transition-colors text-base sm:text-xl"
             />
             {errors.date && (
-              <span className="text-sm text-red-500 mt-1">{errors.date.message}</span>
+              <span className="text-sm text-[#ce2d19] mt-1">{errors.date.message}</span>
             )}
           </div>
         </motion.div>
@@ -133,7 +133,7 @@ export default function ContactForm() {
               <option value="25000-plus">$25,000 - 50,000+</option>
             </select>
             {errors.budget && (
-              <span className="text-sm text-red-500 mt-1">{errors.budget.message}</span>
+              <span className="text-sm text-[#ce2d19] mt-1">{errors.budget.message}</span>
             )}
           </div>
         </motion.div>
@@ -148,7 +148,7 @@ export default function ContactForm() {
               className="px-2 py-1 w-full sm:min-w-[250px] border-b-2 border-gray-300 bg-transparent placeholder:text-base sm:placeholder:text-xl placeholder:text-center focus:border-gray-900 outline-none transition-colors text-base sm:text-xl"
             />
             {errors.email && (
-              <span className="text-sm text-red-500 mt-1">{errors.email.message}</span>
+              <span className="text-sm text-[#ce2d19] mt-1">{errors.email.message}</span>
             )}
           </div>
           <span className="text-xl sm:text-3xl md:text-5xl lg:text-7xl">
@@ -183,7 +183,7 @@ export default function ContactForm() {
             </label>
           </div>
           {errors.privacyPolicy && (
-            <span className="text-sm text-red-500">{errors.privacyPolicy.message}</span>
+            <span className="text-sm text-[#ce2d19]">{errors.privacyPolicy.message}</span>
           )}
 
           <button type="submit" className="inline-block">

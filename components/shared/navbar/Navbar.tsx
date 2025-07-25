@@ -126,8 +126,8 @@ const Navbar = () => {
               </motion.div>
             </div>
           </SheetTrigger>
-          <SheetContent className=" rounded-none border border-red-700 bg-transparent pointer-events-none text-white w-full sm:w-xl">
-            <div className="w-full h-full bg-red-700 pointer-events-auto rounded-none">
+          <SheetContent className=" rounded-none border border-[#ce2d19] bg-transparent pointer-events-none text-white w-full sm:w-xl">
+            <div className="w-full h-full bg-[#ce2d19] pointer-events-auto rounded-none">
               <SheetHeader>
                 <SheetTitle></SheetTitle>
                 <SheetDescription></SheetDescription>
@@ -265,7 +265,7 @@ const Navbar = () => {
               {currentLanguage === 'en' ? (
                 <motion.span
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'en' ? 'text-white ' : 'hover:text-red-700'
+                    currentLanguage === 'en' ? 'text-white ' : 'hover:text-[#ce2d19]'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -275,7 +275,7 @@ const Navbar = () => {
               ) : (
                 <motion.span
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'de' ? 'text-white ' : 'hover:text-red-700'
+                    currentLanguage === 'de' ? 'text-white ' : 'hover:text-[#ce2d19]'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -299,7 +299,7 @@ const Navbar = () => {
                       <motion.button
                         onClick={() => changeLanguage('en')}
                         className={`transition-colors text-4xl uppercase mb-6 duration-200 ${
-                          currentLanguage === 'en' ? 'text-red-700 ' : 'hover:text-red-700'
+                          currentLanguage === 'en' ? 'text-[#ce2d19] ' : 'hover:text-[#ce2d19]'
                         }`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -311,7 +311,7 @@ const Navbar = () => {
                       <motion.button
                         onClick={() => changeLanguage('de')}
                         className={`transition-colors text-4xl uppercase duration-200 ${
-                          currentLanguage === 'de' ? 'text-red-700 ' : 'hover:text-red-700'
+                          currentLanguage === 'de' ? 'text-[#ce2d19] ' : 'hover:text-[#ce2d19]'
                         }`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -335,7 +335,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="inline-flex h-8 sm:h-9 md:h-10 translate-y-0 items-center justify-center bg-red-700 text-sm sm:text-lg md:text-xl lg:text-2xl px-3 sm:px-4 md:px-6 text-white transition group-hover:-translate-y-[150%] rounded-none">
+                  <div className="inline-flex h-8 sm:h-9 md:h-10 translate-y-0 items-center justify-center bg-[#ce2d19] text-sm sm:text-lg md:text-xl lg:text-2xl px-3 sm:px-4 md:px-6 text-white transition group-hover:-translate-y-[150%] rounded-none">
                     <span className="hidden sm:inline">
                       {t('buttons.bookTable') || 'Book A Table'}
                     </span>
@@ -368,7 +368,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <div className="inline-flex h-10 w-full translate-y-0 items-center justify-center bg-red-700  px-2 text-black transition group-hover:-translate-y-[150%] rounded-none">
+                <div className="inline-flex h-10 w-full translate-y-0 items-center justify-center bg-[#ce2d19]  px-2 text-black transition group-hover:-translate-y-[150%] rounded-none">
                   {t('buttons.bookTable') || 'Book A Table'}
                 </div>
                 <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center  bg-black px-2 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
