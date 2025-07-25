@@ -26,7 +26,7 @@ const resources = {
         title: 'Social',
       },
       buttons: {
-        bookTable: 'Book A Table',
+        bookTable: 'Reservation',
         book: 'Book',
         submit: 'Submit',
         cancel: 'Cancel',
