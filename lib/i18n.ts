@@ -553,7 +553,7 @@ const resources = {
         title: 'Soziale Medien',
       },
       buttons: {
-        bookTable: 'Tisch reservieren',
+        bookTable: 'Riservare',
         book: 'Buchen',
         submit: 'Absenden',
         cancel: 'Abbrechen',
@@ -652,7 +652,7 @@ const resources = {
         heroTitle: 'IL MENU',
         sectionTitle: 'A Tavola',
         sectionDescription:
-          'Die Speisekarte von Big Spuntino ist eine liebevolle Hommage an das kulinarische Erbe Italiens. Von Insalata, Caprese und Octopus bis zum knusprigsten Foccacia bietet unsere Karte eine exquisite Auswahl klassischer Spuntini (*ital. "Snacks"). Natürlich gilt das auch für die Dolci: vom traditionellen Crème Mascarpone bis zu den fluffig-leichten Maritozzi versüßt Big Spuntino den Alltag mit den Churros all italiana - neapolitanische Donut-Stäbchen, warm serviert und perfekt zum Eintauchen in geschmolzene Schokolade mit besonderen Toppings. Ergänzend zum kulinarischen Erlebnis können klassische italienisch-kosmopolitische Cocktails und Weine aus Nord und Süd verköstigt werden. Die Essenz eines italienischen Sommers wird mit einem spritzigen Spritz zum Leben erweckt, während die besonderen Aromen unseres Signature-Cocktails Spuntino 75 der perfekten Auftakt für einen genussvollen Abend sind.',
+          'Die Speisekarte des Big Spuntino ist ein herzliche Hommage an Italiens kulinarisches Erbe. Von Insalata Caprese und Pulpo bis hin zu den knusprigsten Foccacia bietet unsere Speisekarte eine exquisite Auswahl an klassischen Spuntini (*ital. „Snacks“). Dies natürlich auch bei den Dolci: Von der traditionellen Creme die Mascarpone bis hin zu den fluffig leichten Maritozzi versüßt das Big Spuntino den Alltag mit den Churros all italiana – neapolitanische Doughnut-Stangen, warm serviert und perfekt zum Eintauchen in geschmolzene Schokolade mit special Toppings. Ergänzend zum kulinarischen Erlebnis können klassische italienisch-kosmopolitische Cocktails und Weine aus Nord und Süd verköstigt werden. Die Essenz eines italienischen Sommers wird mit einem spritzigen Spritz zum Leben erweckt, während die besonderen Aromen unseres Signature-Cocktails Spuntino 75 der perfekten Auftakt für einen genussvollen Abend sind.',
         experienceTitle: 'Erleben Sie Big Spuntino',
         experienceDescription:
           'Vom morgendlichen Cappuccino bis zum abendlichen Aperitivo feiert jeder Moment bei Big Spuntino die italienische Lebensart. Unsere warme Atmosphäre und authentischen Aromen schaffen die perfekte Kulisse für gutes Essen und gute Gesellschaft.',
