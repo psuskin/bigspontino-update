@@ -519,7 +519,7 @@ const Navbar = () => {
             whileTap={{ scale: isBookingLoading ? 1 : 0.98 }}
           >
             <div className="inline-flex h-11 md:h-11 translate-y-0 items-center justify-center bg-[#ce2d19]  px-3 sm:px-4 md:px-6 text-white transition group-hover:-translate-y-[150%] rounded-none w-full">
-              <span className="hidden sm:inline">
+              <span className="">
                 {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
               </span>
               <span className="sm:hidden">
@@ -527,7 +527,7 @@ const Navbar = () => {
               </span>
             </div>
             <div className="absolute inline-flex h-11 md:h-11 w-full translate-y-[100%] items-center justify-center  bg-white px-3 sm:px-4 md:px-6 text-black transition duration-300 group-hover:translate-y-0 rounded-none">
-              <span className="hidden sm:inline">
+              <span className="">
                 {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
               </span>
               <span className="sm:hidden">
