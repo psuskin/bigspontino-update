@@ -27,7 +27,7 @@ const resources = {
       },
       buttons: {
         bookTable: 'Reservation',
-        book: 'Book',
+        book: 'Reservation',
         submit: 'Submit',
         cancel: 'Cancel',
       },
@@ -554,7 +554,7 @@ const resources = {
       },
       buttons: {
         bookTable: 'Riservare',
-        book: 'Buchen',
+        book: 'Riservare',
         submit: 'Absenden',
         cancel: 'Abbrechen',
       },
