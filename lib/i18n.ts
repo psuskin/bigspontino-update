@@ -541,7 +541,7 @@ const resources = {
         contact: 'Kontakt',
         events: 'Veranstaltungen',
         history: 'Geschichte',
-        impressions: 'Impressioni',
+        impressions: 'Eindrucke',
         jobs: 'Stellen',
       },
       language: {

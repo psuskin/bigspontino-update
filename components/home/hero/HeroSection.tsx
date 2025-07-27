@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 const slideData = {
   id: 3,
-  image: '/assets/bambiniclub02.jpg',
+  image: '/assets/startseite.jpeg',
   titleKey: 'hero.slide2.title',
   descriptionKey: 'hero.slide2.description',
 };
@@ -31,16 +31,6 @@ export default function HeroSection() {
       });
     }
   };
-  const contentVariants = {
-    enter: {
-      opacity: 0,
-      y: 20,
-    },
-    center: {
-      opacity: 1,
-      y: 0,
-    },
-  };
 
   return (
     <div className="relative w-full mx-auto h-dvh lg:w-full overflow-hidden bg-black">
@@ -60,7 +50,7 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-black/30" />
 
           {/* Content Overlay - Centered */}
-          <div className="absolute inset-0 flex items-center justify-center">
+          {/* <div className="absolute inset-0 flex items-center justify-center">
             <motion.div
               variants={contentVariants}
               initial="enter"
@@ -74,18 +64,15 @@ export default function HeroSection() {
               <h2 className="text-2xl sm:text-3xl lg:text-7xl uppercase font-bold mb-2 sm:mb-3">
                 {t(slideData.titleKey)}
               </h2>
-              {/* <p className="text-sm sm:text-base lg:text-lg opacity-90 font-narrow">
-                {t(slideData.descriptionKey)}
-              </p> */}
             </motion.div>
-          </div>
+          </div> */}
         </div>
 
         {/* Explore Button */}
         <div className="absolute bottom-14 sm:bottom-16 lg:bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
           <button
             onClick={handleNextSectionClick}
-            className="text-sm sm:text-base lg:text-lg font-semibold text-white rounded-full transition-all duration-200 hover:text-gray-200 cursor-pointer"
+            className="text-sm sm:text-base lg:text-lg font-semibold text-white rounded-full transition-all duration-200 hover:text-gray-200 cursor-pointer shadow-2xl"
           >
             {t('hero.explore')}
           </button>

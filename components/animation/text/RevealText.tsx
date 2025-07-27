@@ -20,7 +20,7 @@ const RevealText: React.FC<RevealTextProps> = ({ children }) => {
       whileHover="hovered"
       className={cn('relative block overflow-hidden whitespace-nowrap')}
       style={{
-        lineHeight: 0.75,
+        lineHeight: 0.95,
       }}
     >
       <div>

@@ -215,7 +215,7 @@ const Navbar = () => {
     { href: '/history', label: `La Storia (${t('navigation.history') || 'history'})` },
     {
       href: '/impressions',
-      label: `Impressions (${t('navigation.impressions') || 'Bildgalerie'})`,
+      label: `Impressioni (${t('navigation.impressions') || 'Bildgalerie'})`,
     },
     {
       href: '/contact',
@@ -453,7 +453,7 @@ const Navbar = () => {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >
-                        <RevealText>English</RevealText>
+                        <RevealText>{t('language.english') || 'English'}</RevealText>
                       </motion.button>
                     </div>
                     <div className="">
@@ -465,7 +465,7 @@ const Navbar = () => {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >
-                        <RevealText>German</RevealText>
+                        <RevealText>Deutsch</RevealText>
                       </motion.button>
                     </div>
                   </div>

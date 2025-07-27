@@ -127,7 +127,7 @@ const ArchitecturalInspirations = () => {
               className="w-full h-full"
             >
               <Image
-                src="/assets/bambiniclub01.jpg"
+                src="/assets/italian.jpeg"
                 width={800}
                 height={600}
                 className="w-full h-full object-cover"
