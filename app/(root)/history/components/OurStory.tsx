@@ -1,6 +1,5 @@
 'use client';
 import { motion, useInView, type Variants } from 'framer-motion';
-import Image from 'next/image';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -14,13 +13,13 @@ const OurStory = () => {
 
   // Refs for intersection observers
   const headerRef = useRef<HTMLDivElement>(null);
-  const imagesRef = useRef<HTMLDivElement>(null);
+  // const imagesRef = useRef<HTMLDivElement>(null);
   const storyRef = useRef<HTMLDivElement>(null);
   const newsletterRef = useRef<HTMLDivElement>(null);
 
   // Intersection observers for animations
   const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
-  const imagesInView = useInView(imagesRef, { once: true, margin: '-50px' });
+  // const imagesInView = useInView(imagesRef, { once: true, margin: '-50px' });
   const storyInView = useInView(storyRef, { once: true, margin: '-100px' });
   const newsletterInView = useInView(newsletterRef, { once: true, margin: '-100px' });
 
@@ -49,22 +48,22 @@ const OurStory = () => {
     },
   };
 
-  const imageRevealVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.95,
-      y: 40,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    },
-  };
+  // const imageRevealVariants: Variants = {
+  //   hidden: {
+  //     opacity: 0,
+  //     scale: 0.95,
+  //     y: 40,
+  //   },
+  //   visible: {
+  //     opacity: 1,
+  //     scale: 1,
+  //     y: 0,
+  //     transition: {
+  //       duration: 0.8,
+  //       ease: [0.25, 0.46, 0.45, 0.94] as const,
+  //     },
+  //   },
+  // };
 
   const textStaggerVariants: Variants = {
     hidden: {},
@@ -88,11 +87,11 @@ const OurStory = () => {
           className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-tight sm:leading-snug lg:leading-16"
           variants={fadeInUp}
         >
-          {history.title}
+          Siamo aperti
         </motion.h2>
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         ref={imagesRef}
         className="pt-12 sm:pt-20 lg:pt-28"
         variants={staggerContainer}
@@ -120,7 +119,7 @@ const OurStory = () => {
             />
           </motion.div>
         </div>
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
         ref={storyRef}
