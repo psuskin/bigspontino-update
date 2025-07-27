@@ -1,5 +1,5 @@
 import ImageMouseTrail from '@/components/animation/corsor/ImageMouseTrail';
-import MotionPressureText from '@/components/animation/text/MotionPressureText';
+import RevealTextOnView from '@/components/animation/text/RevealTextOnView';
 
 import Image from 'next/image';
 
@@ -45,26 +45,16 @@ const HeroSection = () => {
           className="w-full h-full bg-transparent"
         >
           {/* Text overlay with pressure animation */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-full max-w-4xl h-32 px-8">
-              <MotionPressureText
-                text="Impressions"
-                className="text-6xl md:text-8xl font-bold"
-                staggerDelay={0.15}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-full max-w-xl md:max-w-2xl lg:max-w-5xl h-32 px-4 md:px-8">
+              <RevealTextOnView
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-[.45em] pt-8 text-white text-center"
+                staggerDelay={0.08}
                 animationDuration={0.8}
-                initialY={60}
-                initialOpacity={0}
-                flex={true}
-                alpha={false}
-                stroke={false}
-                width={true}
-                weight={true}
-                italic={true}
-                textColor="#ffffff"
-                strokeColor="#ff0000"
-                minFontSize={48}
-                scale={true}
-              />
+                triggerOnce={true}
+              >
+                Impressioni
+              </RevealTextOnView>
             </div>
           </div>
         </ImageMouseTrail>

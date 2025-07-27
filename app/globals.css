@@ -2,19 +2,22 @@
 @import 'tw-animate-css';
 
 :root {
-  --font-apple-garamond: 'Apple Garamond', serif;
-  --font-arial-narrow: 'Arial Narrow', sans-serif;
+  --font-dream-orphans: 'Dream Orphans', serif;
+  --font-futura-cyrillic: 'Futura Cyrillic', sans-serif;
 }
 
 body {
-  font-family: var(--font-apple-garamond);
+  font-family: var(--font-dream-orphans);
 }
+
 .font-primary {
-  font-family: var(--font-apple-garamond);
+  font-family: var(--font-dream-orphans);
 }
+
 .font-narrow {
-  font-family: var(--font-arial-narrow);
+  font-family: var(--font-futura-cyrillic);
 }
+
 /* SCROLL BAR  */
 html {
   scroll-behavior: smooth;

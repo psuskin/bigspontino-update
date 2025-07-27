@@ -5,33 +5,28 @@ import localFont from 'next/font/local';
 import { I18nProvider } from '@/components/lang/i18n-provider';
 import './globals.css';
 
-const appleGaramond = localFont({
+const dreamOrphans = localFont({
   src: [
-    {
-      path: './fonts/AppleGaramond.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: './fonts/AppleGaramond-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: './fonts/AppleGaramond-Italic.woff2',
-      weight: '400',
-      style: 'italic',
-    },
+    { path: './fonts/DreamOrphans/DreamOrphans.otf', weight: '400', style: 'normal' },
+    { path: './fonts/DreamOrphans/DreamOrphansBd.otf', weight: '700', style: 'normal' },
+    { path: './fonts/DreamOrphans/DreamOrphansBdIt.otf', weight: '700', style: 'italic' },
+    { path: './fonts/DreamOrphans/DreamOrphansIt.otf', weight: '400', style: 'italic' },
   ],
-  variable: '--font-apple-garamond',
+  variable: '--font-dream-orphans',
   display: 'swap',
 });
 
-const arialNarrow = localFont({
-  src: './fonts/ArialNarrow.woff2',
-  variable: '--font-arial-narrow',
-  weight: '400',
-  style: 'normal',
+const futuraCyrillic = localFont({
+  src: [
+    { path: './fonts/FuturaCyrillic/FuturaCyrillicBook.ttf', weight: '400', style: 'normal' },
+    { path: './fonts/FuturaCyrillic/FuturaCyrillicBold.ttf', weight: '700', style: 'normal' },
+    { path: './fonts/FuturaCyrillic/FuturaCyrillicDemi.ttf', weight: '500', style: 'normal' },
+    { path: './fonts/FuturaCyrillic/FuturaCyrillicExtraBold.ttf', weight: '800', style: 'normal' },
+    { path: './fonts/FuturaCyrillic/FuturaCyrillicHeavy.ttf', weight: '900', style: 'normal' },
+    { path: './fonts/FuturaCyrillic/FuturaCyrillicLight.ttf', weight: '300', style: 'normal' },
+    { path: './fonts/FuturaCyrillic/FuturaCyrillicMedium.ttf', weight: '500', style: 'normal' },
+  ],
+  variable: '--font-futura-cyrillic',
   display: 'swap',
 });
 
@@ -48,7 +43,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${appleGaramond.variable} ${arialNarrow.variable} antialiased`}>
+      <head>
+        <link rel="preload" href="/assets/logo-white.png" as="image" />
+      </head>
+      <body className={`${dreamOrphans.variable} ${futuraCyrillic.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

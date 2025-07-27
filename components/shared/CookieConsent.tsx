@@ -62,7 +62,7 @@ const CookieConsent = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="inline-flex w-full h-8 sm:h-9 md:h-14 translate-y-0 items-center justify-center bg-amber-300 text-sm sm:text-lg md:text-xl lg:text-2xl px-3 xs:px-4 sm:px-8 lg:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none">
+                  <div className="inline-flex w-full h-8 sm:h-9 md:h-14 translate-y-0 items-center justify-center bg-[#ce2d19] text-sm sm:text-lg md:text-xl lg:text-2xl px-3 xs:px-4 sm:px-8 lg:px-10 text-white transition group-hover:-translate-y-[150%] rounded-none">
                     <span>{t('cookieConsent.accept')}</span>
                   </div>
                   <div className="absolute inline-flex w-full h-8 sm:h-9 md:h-14 translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-black px-3 xs:px-4 sm:px-8 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">

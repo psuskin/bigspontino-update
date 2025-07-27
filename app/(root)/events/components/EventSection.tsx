@@ -24,16 +24,16 @@ const EventSection = () => {
   // Refs for intersection observers
   const headerRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
+  // const footerRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
   // Intersection observers for animations
   const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
   const galleryInView = useInView(galleryRef, { once: true, margin: '-50px' });
-  const footerInView = useInView(footerRef, { once: true, margin: '-100px' });
+  // const footerInView = useInView(footerRef, { once: true, margin: '-100px' });
 
-  const handleContactClick = () => {
-    window.location.href = 'mailto:mail@bigspuntino.de?subject=Event Inquiry';
-  };
+  // const handleContactClick = () => {
+  //   window.location.href = 'mailto:mail@bigspuntino.de?subject=Event Inquiry';
+  // };
 
   const events: Event[] = [
     {
@@ -66,7 +66,7 @@ const EventSection = () => {
       timeKey: 'events.eventList.3.time',
       titleKey: 'events.eventList.3.title',
       descriptionKey: 'events.eventList.3.description',
-      aspectRatio: 'aspect-3/2',
+      aspectRatio: 'aspect-6/5',
     },
   ];
 
@@ -137,20 +137,20 @@ const EventSection = () => {
     },
   };
 
-  const buttonVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
-      },
-    },
-  };
+  // const buttonVariants: Variants = {
+  //   hidden: {
+  //     opacity: 0,
+  //     y: 30,
+  //   },
+  //   visible: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: {
+  //       duration: 0.6,
+  //       ease: [0.25, 0.46, 0.45, 0.94] as const,
+  //     },
+  //   },
+  // };
 
   // Animation variants for the lightbox
   const lightboxVariants = {
@@ -177,7 +177,7 @@ const EventSection = () => {
         <motion.h2 variants={fadeInUp}>
           <AnimatedText
             className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-snug sm:leading-tight lg:leading-16"
-            text={[t('events.heroTitle')]}
+            text={['La Vita è Bella']}
           ></AnimatedText>
         </motion.h2>
         <motion.p
@@ -187,7 +187,7 @@ const EventSection = () => {
           {t('events.heroDescription')}
         </motion.p>
         {/* Contatto Button */}
-        <div className="flex items-center justify-center mt-2 sm:mt-4">
+        {/* <div className="flex items-center justify-center mt-2 sm:mt-4">
           <motion.button
             onClick={handleContactClick}
             className="group relative inline-flex h-10 sm:h-12 md:h-14 lg:h-16 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
@@ -200,7 +200,7 @@ const EventSection = () => {
               {t('events.contactButton')}
             </div>
           </motion.button>
-        </div>
+        </div> */}
       </motion.div>
       <motion.div
         ref={galleryRef}
@@ -228,21 +228,21 @@ const EventSection = () => {
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="text-white uppercase px-3 py-1 text-xs sm:text-sm font-medium rounded">
-                    {t('events.viewDetails')}
+                    Big Spuntino
                   </div>
                 </div>
               </div>
-              <div className="pt-2 sm:pt-3 lg:pt-2 ps-2 sm:ps-3 font-narrow font-semibold opacity-65">
+              {/* <div className="pt-2 sm:pt-3 lg:pt-2 ps-2 sm:ps-3 font-narrow font-semibold opacity-65">
                 <code className="text-xs lg:text-sm text-gray-600">
                   {t(event.dateKey)} • {t(event.timeKey)}
                 </code>
-              </div>
+              </div> */}
             </motion.div>
           ))}
         </div>
       </motion.div>
       {/* Relevant text added below the image gallery */}
-      <motion.div
+      {/* <motion.div
         ref={footerRef}
         className="pt-8 sm:pt-10 md:pt-12 lg:pt-16 text-center"
         variants={fadeInUp}
@@ -252,7 +252,7 @@ const EventSection = () => {
         <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6 lg:mb-8 w-full md:w-4/5 lg:w-3/5 mx-auto">
           {t('events.footerText')}
         </p>
-      </motion.div>
+      </motion.div> */}
       {/* Lightbox Overlay */}
       <AnimatePresence>
         {lightboxOpen && (

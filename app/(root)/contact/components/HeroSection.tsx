@@ -1,9 +1,9 @@
-import MotionPressureText from '@/components/animation/text/MotionPressureText';
+import RevealTextOnView from '@/components/animation/text/RevealTextOnView';
 import Image from 'next/image';
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full   h-dvh md:h-[93.5vh]  overflow-hidden bg-black">
+    <section className="relative w-full h-dvh md:h-[93.5vh] overflow-hidden bg-black">
       <Image
         width={1920}
         height={1080}
@@ -18,24 +18,14 @@ const HeroSection = () => {
       {/* Text overlay */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-full max-w-xl md:max-w-2xl lg:max-w-4xl h-32 px-4 md:px-8">
-          <MotionPressureText
-            text="Contatto"
-            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold pt-8"
-            staggerDelay={0.15}
+          <RevealTextOnView
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-[.45em] pt-8 text-white text-center"
+            staggerDelay={0.08}
             animationDuration={0.8}
-            initialY={60}
-            initialOpacity={0}
-            flex={true}
-            alpha={false}
-            stroke={false}
-            width={true}
-            weight={true}
-            italic={true}
-            textColor="#ffffff"
-            strokeColor="#ff0000"
-            minFontSize={32} // Adjusted for smaller screens
-            scale={true}
-          />
+            triggerOnce={true}
+          >
+            Contatto
+          </RevealTextOnView>
         </div>
       </div>
     </section>

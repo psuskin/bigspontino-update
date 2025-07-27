@@ -116,14 +116,6 @@ const Footer = () => {
             <ul className="space-y-3 sm:space-y-4">
               <motion.li variants={linkVariants}>
                 <Link
-                  href="/portfolio"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
-                >
-                  {t('footer.portfolio')}
-                </Link>
-              </motion.li>
-              <motion.li variants={linkVariants}>
-                <Link
                   href="/jobs"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
@@ -132,10 +124,10 @@ const Footer = () => {
               </motion.li>
               <motion.li variants={linkVariants}>
                 <Link
-                  href="/press"
+                  href="/sitemap"
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
-                  {t('footer.press')}
+                  {t('footer.sitemap')}
                 </Link>
               </motion.li>
               <motion.li variants={linkVariants}>
@@ -219,14 +211,6 @@ const Footer = () => {
                   className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.legal')}
-                </Link>
-              </motion.li>
-              <motion.li variants={linkVariants}>
-                <Link
-                  href="/sitemap"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
-                >
-                  {t('footer.sitemap')}
                 </Link>
               </motion.li>
             </ul>

@@ -1,6 +1,6 @@
 'use client';
 import { AnimatedText } from '@/components/animation/text/AnimatedText';
-import { motion, useInView, type Variants } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, type Variants } from 'framer-motion';
 import type React from 'react';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,10 +8,9 @@ import { useTranslation } from 'react-i18next';
 interface Category {
   id: number;
   nameKey: string;
-  // descriptionKey: string;
-  images: string[];
+  image: string; // Changed from images array to single image
   link: string;
-  pdfPath: string; // Added PDF path
+  pdfPath: string;
 }
 
 interface CardLayoutProps {
@@ -28,47 +27,31 @@ const MenusSection: React.FC = () => {
     {
       id: 1,
       nameKey: 'menus.categories.brunch.name',
-      // descriptionKey: 'menus.categories.brunch.description',
-      images: [
-        '/assets/menus/brunch/1.jpg',
-        '/assets/menus/brunch/2.jpg',
-        '/assets/menus/brunch/1.jpg',
-      ],
+      image: '/assets/menus/brunch/italianBrunch.jpg', // Single image
       link: '/menu/brunch',
-      pdfPath: '/assets/menus/pdf/brunch.pdf', // Update with your actual PDF filename
+      pdfPath: '/assets/menus/pdf/brunch.pdf',
     },
     {
       id: 2,
       nameKey: 'menus.categories.lunch.name',
-      // descriptionKey: 'menus.categories.lunch.description',
-      images: [
-        '/assets/menus/lunch/1.jpg',
-        '/assets/menus/lunch/2.jpg',
-        '/assets/menus/lunch/1.jpg',
-      ],
+      image: '/assets/menus/lunch/pranzo.jpg', // Single image
       link: '/menu/lunch',
-      pdfPath: '/assets/menus/pdf/lunch.pdf', // Update with your actual PDF filename
+      pdfPath: '/assets/menus/pdf/lunch.pdf',
     },
     {
       id: 3,
       nameKey: 'menus.categories.dinner.name',
-      // descriptionKey: 'menus.categories.dinner.description',
-      images: [
-        '/assets/menus/dinner/1.jpg',
-        '/assets/menus/dinner/2.jpg',
-        '/assets/menus/dinner/3.jpg',
-      ],
+      image: '/assets/menus/dinner/cena.jpg', // Single image
       link: '/menu/dinner',
-      pdfPath: '/assets/menus/pdf/dinner.pdf', // Update with your actual PDF filename
+      pdfPath: '/assets/menus/pdf/dinner.pdf',
     },
   ];
 
-  // Updated function to handle different PDFs
   const handleMenuClick = (pdfPath: string) => {
     window.open(pdfPath, '_blank');
   };
 
-  // Animation variants with proper typing
+  // Animation variants
   const fadeInUp: Variants = {
     hidden: {
       opacity: 0,
@@ -129,126 +112,62 @@ const MenusSection: React.FC = () => {
     },
   };
 
-  // Card 1: 1:1 image + text + 9:16 image (3 columns)
-  const Card1Layout: React.FC<CardLayoutProps> = ({ category }) => {
-    const cardRef = useRef<HTMLDivElement>(null);
-    const { t } = useTranslation();
-    const cardInView = useInView(cardRef, { once: true, margin: '-50px' });
+  // Image component with parallax effect
+  const ParallaxImage: React.FC<{
+    src: string;
+    className?: string;
+    cardInView: boolean;
+  }> = ({ src, className = '', cardInView }) => {
+    const imageRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+      target: imageRef,
+      offset: ['start end', 'end start'],
+    });
+
+    const y = useTransform(scrollYProgress, [0, 1], ['-20%', '20%']);
 
     return (
-      <motion.div
-        ref={cardRef}
-        className="w-full bg-red-50/15 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-1 overflow-hidden group"
-        variants={cardVariants}
-        initial="hidden"
-        animate={cardInView ? 'visible' : 'hidden'}
-      >
-        {/* Left 1:1 Image - Full width on mobile, then responsive */}
-        <div className="aspect-square h-full overflow-hidden relative md:col-span-1 lg:col-span-2">
-          <motion.div
-            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${category.images[0]})`,
-            }}
-            variants={imageRevealVariants}
-            initial="hidden"
-            animate={cardInView ? 'visible' : 'hidden'}
-          />
-        </div>
-        {/* Middle Text Section - Full width on mobile, then responsive */}
+      <div ref={imageRef} className={`aspect-square overflow-hidden relative ${className}`}>
         <motion.div
-          className="bg-red-50/15 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 md:col-span-1 lg:col-span-3 aspect-square md:aspect-auto"
-          variants={staggerContainer}
+          className="w-full h-[120%] bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          style={{
+            backgroundImage: `url(${src})`,
+            y,
+          }}
+          variants={imageRevealVariants}
           initial="hidden"
           animate={cardInView ? 'visible' : 'hidden'}
-        >
-          <motion.h3
-            className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
-            variants={fadeInUp}
-          >
-            Big Spuntino
-          </motion.h3>
-          <motion.h2
-            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
-            variants={fadeInUp}
-          >
-            {t(category.nameKey)}
-          </motion.h2>
-          <motion.p
-            className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
-            variants={fadeInUp}
-          >
-            {/* {t(category.descriptionKey)} */}
-          </motion.p>
-          <motion.button
-            onClick={() => handleMenuClick(category.pdfPath)}
-            className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
-            variants={fadeInUp}
-          >
-            <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-              {t('menus.viewMenu')}
-            </div>
-            <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-              {t('menus.viewMenu')}
-            </div>
-          </motion.button>
-        </motion.div>
-        {/* Right 9:16 Image - Hidden on mobile, then responsive */}
-        <div className="hidden h-full md:block overflow-hidden relative md:col-span-1 lg:col-span-1 aspect-square md:aspect-[9/16]">
-          <motion.div
-            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${category.images[1]})`,
-            }}
-            variants={imageRevealVariants}
-            initial="hidden"
-            animate={cardInView ? 'visible' : 'hidden'}
-          />
-        </div>
-      </motion.div>
+        />
+      </div>
     );
   };
 
-  // Card 2: Two 9/16 images + one 1/1 text (3 columns)
-  const Card2Layout: React.FC<CardLayoutProps> = ({ category }) => {
+  // Unified card layout with image on left, text on right
+  const CardLayout: React.FC<CardLayoutProps> = ({ category, index }) => {
     const cardRef = useRef<HTMLDivElement>(null);
     const cardInView = useInView(cardRef, { once: true, margin: '-50px' });
+
+    // Alternate layout: even indices have image on left, odd on right
+    const isImageLeft = index % 2 === 0;
 
     return (
       <motion.div
         ref={cardRef}
-        className="w-full grid grid-cols-1 md:grid-cols-3 gap-1 bg-red-50/15 overflow-hidden group"
+        className="w-full bg-red-50/15 grid grid-cols-1 md:grid-cols-2 gap-1 overflow-hidden group"
         variants={cardVariants}
         initial="hidden"
         animate={cardInView ? 'visible' : 'hidden'}
       >
-        {/* First 9/16 Image - Full width on mobile */}
-        <div className="aspect-square h-full overflow-hidden relative">
-          <motion.div
-            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${category.images[0]})`,
-            }}
-            variants={imageRevealVariants}
-            initial="hidden"
-            animate={cardInView ? 'visible' : 'hidden'}
-          />
+        {/* Image Section */}
+        <div className={`${isImageLeft ? 'order-1 md:order-1' : 'order-1 md:order-2'}`}>
+          <ParallaxImage src={category.image} cardInView={cardInView} />
         </div>
-        {/* Second 9/16 Image - Hidden on mobile */}
-        <div className="hidden md:block h-full aspect-square overflow-hidden relative">
-          <motion.div
-            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${category.images[1]})`,
-            }}
-            variants={imageRevealVariants}
-            initial="hidden"
-            animate={cardInView ? 'visible' : 'hidden'}
-          />
-        </div>
-        {/* Text Section (1/1) - Full width on mobile */}
+
+        {/* Text Section */}
         <motion.div
-          className="bg-red-50/15 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square"
+          className={`bg-red-50/15 z-10 w-full flex flex-col justify-center items-center text-black p-8 md:p-12 lg:p-16 aspect-square ${
+            isImageLeft ? 'order-2 md:order-2' : 'order-2 md:order-1'
+          }`}
           variants={staggerContainer}
           initial="hidden"
           animate={cardInView ? 'visible' : 'hidden'}
@@ -260,109 +179,24 @@ const MenusSection: React.FC = () => {
             Big Spuntino
           </motion.h3>
           <motion.h2
-            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
+            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 tracking-wide text-center"
             variants={fadeInUp}
           >
             {t(category.nameKey)}
           </motion.h2>
-          <motion.p
-            className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
-            variants={fadeInUp}
-          >
-            {/* {t(category.descriptionKey)} */}
-          </motion.p>
           <motion.button
             onClick={() => handleMenuClick(category.pdfPath)}
-            className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
+            className="group relative inline-flex cursor-pointer h-12 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-8 md:px-10 py-2 mt-4"
             variants={fadeInUp}
           >
-            <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+            <div className="inline-flex h-12 translate-y-0 items-center justify-center bg-transparent text-sm md:text-base font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
               {t('menus.viewMenu')}
             </div>
-            <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+            <div className="absolute inline-flex h-12 w-full translate-y-[100%] items-center justify-center bg-black text-sm md:text-base font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
               {t('menus.viewMenu')}
             </div>
           </motion.button>
         </motion.div>
-      </motion.div>
-    );
-  };
-
-  // Card 3: Image + Text + Image (3 columns)
-  const Card3Layout: React.FC<CardLayoutProps> = ({ category }) => {
-    const cardRef = useRef<HTMLDivElement>(null);
-    const cardInView = useInView(cardRef, { once: true, margin: '-50px' });
-
-    return (
-      <motion.div
-        ref={cardRef}
-        className="w-full grid grid-cols-1 md:grid-cols-3 bg-red-50/15 gap-1 overflow-hidden group"
-        variants={cardVariants}
-        initial="hidden"
-        animate={cardInView ? 'visible' : 'hidden'}
-      >
-        {/* Left Image - Full width on mobile */}
-        <div className="aspect-square h-full overflow-hidden relative">
-          <motion.div
-            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${category.images[0]})`,
-            }}
-            variants={imageRevealVariants}
-            initial="hidden"
-            animate={cardInView ? 'visible' : 'hidden'}
-          />
-        </div>
-        {/* Middle Text Section - Full width on mobile */}
-        <motion.div
-          className="bg-red-50/15 z-10 w-full flex flex-col justify-center items-center text-black p-6 md:p-6 lg:p-8 aspect-square"
-          variants={staggerContainer}
-          initial="hidden"
-          animate={cardInView ? 'visible' : 'hidden'}
-        >
-          <motion.h3
-            className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
-            variants={fadeInUp}
-          >
-            Big Spuntino
-          </motion.h3>
-          <motion.h2
-            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 tracking-wide text-center"
-            variants={fadeInUp}
-          >
-            {t(category.nameKey)}
-          </motion.h2>
-          <motion.p
-            className="text-center font-narrow text-sm md:text-base opacity-80 mb-4 md:mb-6 max-w-md px-2"
-            variants={fadeInUp}
-          >
-            {/* {t(category.descriptionKey)} */}
-          </motion.p>
-          <motion.button
-            onClick={() => handleMenuClick(category.pdfPath)}
-            className="group relative inline-flex cursor-pointer h-10 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-6 md:px-8 py-2"
-            variants={fadeInUp}
-          >
-            <div className="inline-flex h-10 translate-y-0 items-center justify-center bg-transparent text-xs md:text-sm font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
-              {t('menus.viewMenu')}
-            </div>
-            <div className="absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center bg-black text-xs md:text-sm font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
-              {t('menus.viewMenu')}
-            </div>
-          </motion.button>
-        </motion.div>
-        {/* Right Image - Hidden on mobile */}
-        <div className="hidden md:block h-full aspect-square overflow-hidden relative">
-          <motion.div
-            className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${category.images[1]})`,
-            }}
-            variants={imageRevealVariants}
-            initial="hidden"
-            animate={cardInView ? 'visible' : 'hidden'}
-          />
-        </div>
       </motion.div>
     );
   };
@@ -389,11 +223,11 @@ const MenusSection: React.FC = () => {
           {t('menus.sectionDescription')}
         </motion.p>
       </motion.div>
-      <div className="pt-8 md:pt-12 lg:pt-16 mx-auto space-y-2 md:space-y-4 lg:space-y-6">
-        <Card1Layout category={menuCategories[0]} index={0} />
-        <Card2Layout category={menuCategories[1]} index={1} />
-        <Card3Layout category={menuCategories[2]} index={2} />
-        {/* <Card4Layout category={menuCategories[3]} index={3} /> */}
+
+      <div className="pt-8 md:pt-12 lg:pt-16 mx-auto ">
+        {menuCategories.map((category, index) => (
+          <CardLayout key={category.id} category={category} index={index} />
+        ))}
       </div>
     </section>
   );

@@ -42,7 +42,7 @@ const Navbar = () => {
     setMounted(true);
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50);
+      setIsScrolled(scrollTop > 100);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -215,7 +215,7 @@ const Navbar = () => {
     { href: '/history', label: `La Storia (${t('navigation.history') || 'history'})` },
     {
       href: '/impressions',
-      label: `Impressions (${t('navigation.impressions') || 'Bildgalerie'})`,
+      label: `Impressioni  (${t('navigation.impressions') || 'Bildgalerie'})`,
     },
     {
       href: '/contact',
@@ -241,18 +241,21 @@ const Navbar = () => {
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{
-          opacity: 1,
-          y: 0,
+          opacity: isScrolled ? 0 : 1,
+          y: isScrolled ? -100 : 0,
         }}
-        transition={{ duration: 0.6 }}
+        transition={{
+          duration: 0.6,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
         className={cn(
-          'flex items-center px-3 sm:px-4 py-10 text-white md:px-6 fixed top-0 z-50 w-full',
+          'flex items-center px-3 overflow-y-hidden sm:px-4 py-10 text-white md:px-6 fixed top-0 z-50 w-full',
           isScrolled && 'py-4',
         )}
       >
         {/* Animated background overlay */}
-        <motion.div
-          className="absolute inset-0 bg-black/40 backdrop-blur-xs -z-10"
+        {/* <motion.div
+          className="absolute inset-0 bg-black/10 backdrop-blur-sm -z-10"
           initial={{ y: '-100%' }}
           animate={{
             y: isScrolled ? '0%' : '-100%',
@@ -261,10 +264,10 @@ const Navbar = () => {
             duration: 0.8,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
-        />
+        /> */}
 
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
+          <SheetTrigger className="flex items-center gap-1 sm:gap-2 text-sm  md:text-2xl z-20">
             <span>{t('navigation.menu') || 'Menu'}</span>
             <div className="relative">
               <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.3 }}>
@@ -383,7 +386,7 @@ const Navbar = () => {
                 alt="BigSpuntino"
                 width={100}
                 height={100}
-                className="w-auto h-12 sm:h-14 md:h-20 lg:h-24"
+                className="w-auto h-16 md:h-20 lg:h-24"
               />
             </motion.div>
           </Link>
@@ -410,7 +413,7 @@ const Navbar = () => {
           <div className="w-3 sm:w-4 h-[1px] lg:block hidden bg-gray-100"></div>
 
           <Sheet open={isLanguageSheetOpen} onOpenChange={setIsLanguageSheetOpen}>
-            <SheetTrigger className="cursor-pointer flex items-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl z-20">
+            <SheetTrigger className="cursor-pointer flex items-center gap-1 text-sm sm:gap-2 md:text-2xl z-20">
               {currentLanguage === 'en' ? (
                 <motion.span
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
@@ -453,7 +456,7 @@ const Navbar = () => {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >
-                        <RevealText>English</RevealText>
+                        <RevealText>{t('language.english') || 'English'}</RevealText>
                       </motion.button>
                     </div>
                     <div className="">
@@ -465,7 +468,7 @@ const Navbar = () => {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >
-                        <RevealText>German</RevealText>
+                        <RevealText>Deutsch</RevealText>
                       </motion.button>
                     </div>
                   </div>
