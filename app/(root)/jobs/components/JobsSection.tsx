@@ -254,7 +254,7 @@ const JobsSection = () => {
         >
           <motion.div style={{ y }} className="relative h-full">
             <Image
-              src="/assets/bambini_club8.jpg"
+              src="/assets/jobs/2.jpeg"
               layout="fill"
               objectFit="cover"
               alt="A lively restaurant scene"
@@ -272,7 +272,10 @@ const JobsSection = () => {
         >
           <motion.div variants={fadeInUp} className="mb-8 sm:mb-10 md:mb-12">
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-narrow mb-3 sm:mb-4">
-              {t('jobs.joinOur')} <span className="font-primary italic">{t('jobs.famiglia')}</span>
+              <span className="font-primary italic">
+                {' '}
+                {t('jobs.joinOur')} {t('jobs.famiglia')}
+              </span>
             </h3>
             <p className="text-sm sm:text-base md:text-lg text-gray-700">
               {t('jobs.formDescription')}

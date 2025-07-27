@@ -90,12 +90,6 @@ const OurStory = () => {
         >
           {history.title}
         </motion.h2>
-        <motion.p
-          className="text-center font-narrow pt-4 sm:pt-6 text-sm sm:text-base w-full md:w-4/5 lg:w-3/5 mx-auto"
-          variants={fadeInUp}
-        >
-          {history.subtitle}
-        </motion.p>
       </motion.div>
 
       <motion.div

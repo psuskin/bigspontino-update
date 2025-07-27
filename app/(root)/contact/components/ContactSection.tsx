@@ -110,7 +110,7 @@ const ContactSection = () => {
           {/* Left Column - Sticky Image */}
           <div className="w-full lg:w-1/2 lg:sticky lg:top-0 h-[50vh] lg:h-screen">
             <Image
-              src="/assets/photos/7.jpg"
+              src="/assets/contact/2.jpg"
               className="w-full h-full object-cover"
               alt="Bartender making cocktail"
               width={600}

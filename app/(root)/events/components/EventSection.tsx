@@ -66,7 +66,7 @@ const EventSection = () => {
       timeKey: 'events.eventList.3.time',
       titleKey: 'events.eventList.3.title',
       descriptionKey: 'events.eventList.3.description',
-      aspectRatio: 'aspect-3/2',
+      aspectRatio: 'aspect-6/5',
     },
   ];
 
@@ -228,15 +228,15 @@ const EventSection = () => {
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="text-white uppercase px-3 py-1 text-xs sm:text-sm font-medium rounded">
-                    {t('events.viewDetails')}
+                    Big Spuntino
                   </div>
                 </div>
               </div>
-              <div className="pt-2 sm:pt-3 lg:pt-2 ps-2 sm:ps-3 font-narrow font-semibold opacity-65">
+              {/* <div className="pt-2 sm:pt-3 lg:pt-2 ps-2 sm:ps-3 font-narrow font-semibold opacity-65">
                 <code className="text-xs lg:text-sm text-gray-600">
                   {t(event.dateKey)} • {t(event.timeKey)}
                 </code>
-              </div>
+              </div> */}
             </motion.div>
           ))}
         </div>
