@@ -181,7 +181,7 @@ const EventSection = () => {
           ></AnimatedText>
         </motion.h2>
         <motion.p
-          className="text-center font-narrow py-4 lg:py-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-xs sm:text-sm md:text-base"
+          className="text-center font-narrow py-4 lg:py-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-sm md:text-xl"
           variants={fadeInUp}
         >
           {t('events.heroDescription')}
