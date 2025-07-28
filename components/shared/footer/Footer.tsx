@@ -63,7 +63,7 @@ const Footer = () => {
     <footer className="">
       <motion.div
         ref={footerRef}
-        className="bg-black text-white py-10 px-4 sm:py-16 sm:px-8 md:py-20 md:px-16 lg:py-24 lg:px-24  rounded-none"
+        className="bg-white border-t-2 border-black/5 text-black py-10 pb-16 md:pb-0 px-4 sm:py-16 sm:px-8 md:py-20 md:px-16 lg:py-24 lg:px-24  rounded-none"
         variants={fadeInUp}
         initial="hidden"
         animate={footerInView ? 'visible' : 'hidden'}
@@ -78,19 +78,19 @@ const Footer = () => {
             animate={brandInView ? 'visible' : 'hidden'}
           >
             <Image
-              src="/assets/logo-white.png"
+              src="/assets/logo.png"
               alt="BigSpuntino"
               width={100}
               height={100}
               className="w-auto mx-auto md:me-auto md:mx-0 h-14  md:h-16 lg:h-28"
             />
             <motion.p
-              className="text-sm sm:text-base pt-6 sm:pt-8 md:pt-10 max-w-full sm:max-w-md lg:max-w-lg text-gray-300 font-narrow"
+              className="text-sm sm:text-base pt-6 sm:pt-8 md:pt-10 max-w-full sm:max-w-md lg:max-w-lg text-gray-800 font-narrow"
               variants={fadeInUp}
             >
               {t('footer.description')}
             </motion.p>
-            <div className="space-y-0.5 font-narrow mt-6 text-white font-light text-">
+            <div className="space-y-0.5 font-narrow mt-6 text-black font-light text-">
               <a
                 href="tel:040694568 28"
                 className="block  decoration-1  hover:text-amber-300-600 transition-colors"
@@ -117,7 +117,7 @@ const Footer = () => {
               <motion.li variants={linkVariants}>
                 <Link
                   href="/jobs"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                  className="relative text-xs sm:text-sm text-gray-800 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.careers')}
                 </Link>
@@ -125,7 +125,7 @@ const Footer = () => {
               <motion.li variants={linkVariants}>
                 <Link
                   href="/sitemap"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                  className="relative text-xs sm:text-sm text-gray-800 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.sitemap')}
                 </Link>
@@ -133,7 +133,7 @@ const Footer = () => {
               <motion.li variants={linkVariants}>
                 <Link
                   href="/contact"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                  className="relative text-xs sm:text-sm text-gray-800 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.contact')}
                 </Link>
@@ -141,7 +141,7 @@ const Footer = () => {
               {/* <motion.li variants={linkVariants}>
                 <Link
                   href="/consulting"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                  className="relative text-xs sm:text-sm text-gray-800 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.consulting')}
                 </Link>
@@ -149,7 +149,7 @@ const Footer = () => {
               <motion.li variants={linkVariants}>
                 <Link
                   href="/history"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                  className="relative text-xs sm:text-sm text-gray-800 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.about')}
                 </Link>
@@ -168,7 +168,7 @@ const Footer = () => {
               <motion.li variants={linkVariants}>
                 <Link
                   href="/privacy-policy"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                  className="relative text-xs sm:text-sm text-gray-800 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.privacy')}
                 </Link>
@@ -176,7 +176,7 @@ const Footer = () => {
               <motion.li variants={linkVariants}>
                 <Link
                   href="/cookie-policy"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                  className="relative text-xs sm:text-sm text-gray-800 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.cookies')}
                 </Link>
@@ -184,7 +184,7 @@ const Footer = () => {
               <motion.li variants={linkVariants}>
                 <Link
                   href="/manage-cookies"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                  className="relative text-xs sm:text-sm text-gray-800 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.manageCookies')}
                 </Link>
@@ -192,7 +192,7 @@ const Footer = () => {
               <motion.li variants={linkVariants}>
                 <Link
                   href="/terms-and-conditions"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                  className="relative text-xs sm:text-sm text-gray-800 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.terms')}
                 </Link>
@@ -200,7 +200,7 @@ const Footer = () => {
               <motion.li variants={linkVariants}>
                 <Link
                   href="/code-of-ethics"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                  className="relative text-xs sm:text-sm text-gray-800 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.ethics')}
                 </Link>
@@ -208,7 +208,7 @@ const Footer = () => {
               <motion.li variants={linkVariants}>
                 <Link
                   href="/legal-notice"
-                  className="relative text-xs sm:text-sm text-gray-300 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                  className="relative text-xs sm:text-sm text-gray-800 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-300 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
                 >
                   {t('footer.legal')}
                 </Link>
