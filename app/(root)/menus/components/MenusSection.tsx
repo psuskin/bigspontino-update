@@ -217,7 +217,7 @@ const MenusSection: React.FC = () => {
           ></AnimatedText>
         </motion.h2>
         <motion.p
-          className="text-center font-narrow pt-4 md:pt-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-sm md:text-lg leading-relaxed px-4"
+          className="text-center font-narrow pt-4 md:pt-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-sm md:text-xl leading-relaxed px-4"
           variants={fadeInUp}
         >
           {t('menus.sectionDescription')}

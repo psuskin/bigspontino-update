@@ -1,5 +1,12 @@
 'use client';
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import Image from 'next/image';
 import Link from 'next/link';
 import type React from 'react';
@@ -149,7 +156,7 @@ const ContactSection = () => {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       placeholder={`${contact.form.firstName} *`}
-                      className="w-full bg-white/40 text-black  py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      className="w-full bg-white/40 text-black py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
                   </div>
@@ -160,7 +167,7 @@ const ContactSection = () => {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       placeholder={`${contact.form.lastName} *`}
-                      className="w-full bg-white/40 text-black  py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      className="w-full bg-white/40 text-black py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
                   </div>
@@ -170,16 +177,28 @@ const ContactSection = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="w-full">
                     <div className="flex">
-                      <select
+                      <Select
                         value={formData.phonePrefix}
-                        onChange={(e) => handleSelectChange('phonePrefix', e.target.value)}
-                        className="bg-white/40 text-white py-4 sm:py-6 px-2 text-sm focus:outline-none"
+                        onValueChange={(value) => handleSelectChange('phonePrefix', value)}
                       >
-                        <option value="+49">🇩🇪 +49</option>
-                        <option value="+33">🇫🇷 +33</option>
-                        <option value="+1">🇺🇸 +1</option>
-                        <option value="+44">🇬🇧 +44</option>
-                      </select>
+                        <SelectTrigger className="w-fit bg-white/40 text-white border-0 py-4 sm:py-10 px-2 text-sm focus:ring-0 focus:ring-offset-0 rounded-none shadow-none [&>svg]:hidden">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white/90 backdrop-blur-sm border-white/20">
+                          <SelectItem value="+49" className="text-gray-800 hover:text-gray-900">
+                            🇩🇪 +49
+                          </SelectItem>
+                          <SelectItem value="+33" className="text-gray-800 hover:text-gray-900">
+                            🇫🇷 +33
+                          </SelectItem>
+                          <SelectItem value="+1" className="text-gray-800 hover:text-gray-900">
+                            🇺🇸 +1
+                          </SelectItem>
+                          <SelectItem value="+44" className="text-gray-800 hover:text-gray-900">
+                            🇬🇧 +44
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
                       <input
                         id="phone"
                         type="tel"
@@ -213,19 +232,31 @@ const ContactSection = () => {
                 </h2>
 
                 <div className="space-y-4">
-                  <select
-                    id="enquiryType"
+                  <Select
                     value={formData.enquiryType}
-                    onChange={(e) => handleSelectChange('enquiryType', e.target.value)}
-                    className="w-full bg-white/40 text-white py-4 sm:py-6 px-4 text-sm focus:outline-none"
+                    onValueChange={(value) => handleSelectChange('enquiryType', value)}
                   >
-                    <option value="">{contact.form.enquiryAbout} *</option>
-                    <option value="reservation">{contact.form.reservation}</option>
-                    <option value="events">{contact.form.events}</option>
-                    <option value="catering">{contact.form.catering}</option>
-                    <option value="general">{contact.form.generalInfo}</option>
-                    <option value="other">{contact.form.other}</option>
-                  </select>
+                    <SelectTrigger className="w-full bg-white/40 text-white border-0 py-4 sm:py-6 px-4 text-sm focus:ring-0 focus:ring-offset-0 rounded-none shadow-none data-[placeholder]:text-gray-50">
+                      <SelectValue placeholder={`${contact.form.enquiryAbout} *`} />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white/90 backdrop-blur-sm border-white/20">
+                      <SelectItem value="reservation" className="text-gray-800 hover:text-gray-900">
+                        {contact.form.reservation}
+                      </SelectItem>
+                      <SelectItem value="events" className="text-gray-800 hover:text-gray-900">
+                        {contact.form.events}
+                      </SelectItem>
+                      <SelectItem value="catering" className="text-gray-800 hover:text-gray-900">
+                        {contact.form.catering}
+                      </SelectItem>
+                      <SelectItem value="general" className="text-gray-800 hover:text-gray-900">
+                        {contact.form.generalInfo}
+                      </SelectItem>
+                      <SelectItem value="other" className="text-gray-800 hover:text-gray-900">
+                        {contact.form.other}
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
 
                   <textarea
                     id="message"
