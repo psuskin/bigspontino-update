@@ -18,7 +18,7 @@ export default function HeroSection() {
     const nextSection = document.querySelector('#architectural-inspirations');
     if (nextSection) {
       // Get the navbar height (adjust this value based on your actual navbar height)
-      const navbarHeight = 70; // Change this to match your navbar height in pixels
+      const navbarHeight = 0; // Change this to match your navbar height in pixels
 
       // Calculate the target position
       const elementPosition = nextSection.getBoundingClientRect().top;
