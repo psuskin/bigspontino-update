@@ -68,6 +68,11 @@ const OpeningHours = () => {
   return (
     <section className="py-16 bg-stone-100">
       {/* Desktop Layout */}
+      <p className="text-gray-700  text-center mb-6 sm:mb-20 sm:text-xl px-8 lg:text-2xl leading-relaxed">
+        {contact.description}
+      </p>
+      <div className="w-full h-px bg-black/20 my-12 md:hidden "></div>
+
       <div className="hidden lg:block max-w-6xl mx-auto px-8">
         <div className="grid grid-cols-3 gap-16">
           {/* Opening Hours */}
@@ -172,7 +177,7 @@ const OpeningHours = () => {
             <h3 className="text-xl sm:text-2xl font-light text-black tracking-wide mb-8">
               {contact.getInTouch}
             </h3>
-            <div className="space-y-6 text-black font-light text-lg">
+            <div className="space-y-2 text-black font-light text-lg">
               <a
                 href="tel:040694568 28"
                 className="block underline decoration-1 underline-offset-4 hover:text-red-700 transition-colors"

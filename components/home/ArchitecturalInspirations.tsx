@@ -103,7 +103,7 @@ const ArchitecturalInspirations = () => {
         <div className="grid gap-1">
           <motion.div
             ref={textRef}
-            className="p-6 md:p-10 lg:p-16 border-2 aspect-auto lg:aspect-[11/5]"
+            className="p-6 md:p-10 lg:p-16 border-2 lg:h-[29rem] h-auto"
             variants={staggerContainer}
             initial="hidden"
             animate={textInView ? 'visible' : 'hidden'}
@@ -118,7 +118,7 @@ const ArchitecturalInspirations = () => {
               {t('architecture.description')}
             </motion.p>
           </motion.div>
-          <div className={`aspect-[3/2] relative ${isMobile ? '' : 'overflow-hidden'}`}>
+          <div className={`lg:h-[29rem] h-auto relative ${isMobile ? '' : 'overflow-hidden'}`}>
             <motion.div
               ref={thirdImageRef}
               variants={imageRevealVariants}
@@ -142,7 +142,7 @@ const ArchitecturalInspirations = () => {
 
         {/* Second Column */}
         <div className="grid gap-1 mt-4 lg:mt-0">
-          <div className={`aspect-[11/5] relative ${isMobile ? '' : 'overflow-hidden'}`}>
+          <div className={`lg:h-[29rem] h-auto relative ${isMobile ? '' : 'overflow-hidden'}`}>
             <motion.div
               ref={secondImageRef}
               variants={imageRevealVariants}
@@ -162,7 +162,7 @@ const ArchitecturalInspirations = () => {
               />
             </motion.div>
           </div>
-          <div className={`aspect-[3/2] relative ${isMobile ? '' : 'overflow-hidden'}`}>
+          <div className={`lg:h-[29rem] h-auto relative ${isMobile ? '' : 'overflow-hidden'}`}>
             <motion.div
               ref={thirdImageRef}
               variants={imageRevealVariants}

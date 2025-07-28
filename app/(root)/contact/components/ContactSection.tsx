@@ -275,8 +275,7 @@ const ContactSection = () => {
       <section className="bg-gray-100 py-16 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row">
-            {/* Left Column - Map */}
-            <div className="w-full lg:w-1/2 relative bg-gray-200">
+            {/* <div className="w-full lg:w-1/2 relative bg-gray-200">
               <div className="h-64 sm:h-96 lg:h-full flex items-center justify-center">
                 <Image
                   src="/assets/contact/3.jpg"
@@ -286,11 +285,11 @@ const ContactSection = () => {
                   height={400}
                 />
               </div>
-            </div>
+            </div> */}
 
             {/* Right Column - Contact Information */}
-            <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-16 flex flex-col justify-center bg-white">
-              <div className="max-w-md mx-auto w-full">
+            <div className="w-full lg:w-full p-6 sm:p-8 lg:p-20 flex flex-col justify-center bg-white">
+              <div className="">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#ce2d19] mb-4 uppercase">
                   BIG SPUNTINO
                 </h2>
