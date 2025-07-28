@@ -286,17 +286,7 @@ const EventSection = () => {
                 placeholder="empty"
               />
               {/* Event Details */}
-              <div className="mt-4 sm:mt-6 text-start text-white max-w-xs sm:max-w-md">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">
-                  {t(events[currentImageIndex].titleKey)}
-                </h3>
-                <p className="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3">
-                  {t(events[currentImageIndex].dateKey)} • {t(events[currentImageIndex].timeKey)}
-                </p>
-                <p className="text-xs sm:text-sm leading-relaxed font-narrow">
-                  {t(events[currentImageIndex].descriptionKey)}
-                </p>
-              </div>
+
               {/* Navigation Buttons */}
               {events.length > 1 && (
                 <>
