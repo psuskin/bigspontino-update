@@ -50,39 +50,41 @@ interface ContactTranslations {
   };
 }
 
-interface DaysTranslations {
-  mon: string;
-  tue: string;
-  wed: string;
-  thu: string;
-  fri: string;
-  sat: string;
-  sun: string;
-}
+// interface DaysTranslations {
+//   mon: string;
+//   tue: string;
+//   wed: string;
+//   thu: string;
+//   fri: string;
+//   sat: string;
+//   sun: string;
+// }
 
 const OpeningHours = () => {
   const { t } = useTranslation();
   const contact = t('contact', { returnObjects: true }) as ContactTranslations;
-  const days = t('fullDays', { returnObjects: true }) as DaysTranslations;
+  // const days = t('fullDays', { returnObjects: true }) as DaysTranslations;
 
   return (
     <section className="py-16 bg-stone-100">
-      {/* Desktop Layout */}
-      <p className="text-gray-700  text-center mb-6 sm:mb-20 sm:text-xl px-8 lg:text-2xl leading-relaxed">
+      <p
+        className="text-2xl sm:text-3xl md:text-4xl text-center pt-0 md:py-14 lg:text-5xl xl:text-6xl
+                     uppercase
+                     max-w-full  lg:w-4/6 mx-auto "
+      >
         {contact.description}
       </p>
-      <div className="w-full h-px bg-black/20 my-12 md:hidden "></div>
+      {/* <div className="w-full h-px bg-secondary/20 my-12 md:hidden "></div> */}
 
-      <div className="hidden lg:block max-w-6xl mx-auto px-8">
+      {/* <div className="hidden lg:block max-w-6xl mx-auto px-8">
         <div className="grid grid-cols-3 gap-16">
-          {/* Opening Hours */}
           <div className="text-center">
             <div className="flex flex-col items-center">
-              <h3 className="text-xl sm:text-2xl font-light text-black tracking-wide mb-8">
+              <h3 className="text-xl sm:text-2xl font-light text-secondary tracking-wide mb-8">
                 {contact.openingHours}
               </h3>
-              {/* Desktop opening hours */}
-              <div className="text-black font-light">
+
+              <div className="text-secondary font-light">
                 <div className="space-y-2 text-lg leading-relaxed">
                   <div className="text-center">
                     <div>
@@ -104,18 +106,16 @@ const OpeningHours = () => {
             </div>
           </div>
 
-          {/* Spacer with vertical line */}
           <div className="flex justify-center">
-            <div className="w-px h-56 bg-black/30"></div>
+            <div className="w-px h-56 bg-secondary/30"></div>
           </div>
 
-          {/* Get in Touch */}
           <div className="text-center">
             <div className="flex flex-col items-center">
-              <h3 className="text-xl sm:text-2xl font-light text-black tracking-wide mb-8">
+              <h3 className="text-xl sm:text-2xl font-light text-secondary tracking-wide mb-8">
                 {contact.getInTouch}
               </h3>
-              <div className="space-y-3 text-black font-light text-lg">
+              <div className="space-y-3 text-secondary font-light text-lg">
                 <a
                   href="tel:040694568 28"
                   className="block underline decoration-1 underline-offset-4 hover:text-red-700 transition-colors"
@@ -140,18 +140,16 @@ const OpeningHours = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      {/* Mobile Layout */}
-      <div className="lg:hidden max-w-sm sm:max-w-md mx-auto px-6 sm:px-8">
+      {/* <div className="lg:hidden max-w-sm sm:max-w-md mx-auto px-6 sm:px-8">
         <div className="space-y-16">
-          {/* Opening Hours */}
           <div className="text-center">
-            <h3 className="text-xl sm:text-2xl font-light text-black tracking-wide mb-8">
+            <h3 className="text-xl sm:text-2xl font-light text-secondary tracking-wide mb-8">
               {contact.openingHours}
             </h3>
-            {/* Mobile opening hours */}
-            <div className="text-black font-light">
+
+            <div className="text-secondary font-light">
               <div className="space-y-4 text-base sm:text-lg leading-relaxed">
                 <div className="text-center">
                   <div>
@@ -169,15 +167,14 @@ const OpeningHours = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full h-px bg-black/20 mt-12"></div>
+            <div className="w-full h-px bg-secondary/20 mt-12"></div>
           </div>
 
-          {/* Get in Touch */}
           <div className="text-center">
-            <h3 className="text-xl sm:text-2xl font-light text-black tracking-wide mb-8">
+            <h3 className="text-xl sm:text-2xl font-light text-secondary tracking-wide mb-8">
               {contact.getInTouch}
             </h3>
-            <div className="space-y-2 text-black font-light text-lg">
+            <div className="space-y-2 text-secondary font-light text-lg">
               <a
                 href="tel:040694568 28"
                 className="block underline decoration-1 underline-offset-4 hover:text-red-700 transition-colors"
@@ -201,7 +198,7 @@ const OpeningHours = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

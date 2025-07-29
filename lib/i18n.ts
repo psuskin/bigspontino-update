@@ -120,13 +120,12 @@ const resources = {
         legal: 'LEGAL NOTICE',
         sitemap: 'SITEMAP',
       },
-      // Add this to your existing i18n.ts file under both 'en' and 'de' translations
 
       menus: {
         heroTitle: 'MENU',
         sectionTitle: 'A Tavola',
         sectionDescription:
-          'The menu at Big Spuntino is a warm tribute to Italy\'s culinary heritage. From insalata, caprese and octopus to the crispiest foccacia, our menu offers an exquisite selection of classic spuntini (*ital. "snacks"). Of course, this also applies to the dolci: from the traditional crème the mascarpone to the fluffy light maritozzi, the Big Spuntino sweetens everyday life with the churros all italiana – Neapolitan doughnut sticks, served warm and perfect for dipping in melted chocolate with special toppings. In addition to the culinary experience, classic Italian cosmopolitan cocktails and wines from North and South can be tasted. The essence of an Italian summer is brought to life with a sparkling spritz, while the special aromas of our signature cocktail Spuntino 75 are the perfect prelude to an indulgent evening.',
+          'The menu at Big Spuntino is a heartfelt homage to Italy\'s culinary heritage. From Bufala e Pomodori to octopus and the crispiest focaccia, our menu offers an exquisite selection of classic spuntini (*ital. "snacks"). Of course, this also applies to the dolci: from the traditional crema di mascarpone to the fluffy light maritozzi, Big Spuntino sweetens everyday life with the churros all italiana – Neapolitan doughnut sticks, served warm and perfect for dipping in melted chocolate with special toppings. In addition to the culinary experience, guests can make classic Italian cocktails and enjoy wines from North and South Italy. The essence of an Italian summer is brought to life with a sparkling spritz, while the special aromas of our signature cocktail Spuntino 75 are the perfect prelude to an indulgent evening.',
         experienceTitle: 'Experience Big Spuntino',
         experienceDescription:
           'From morning cappuccino to evening aperitivo, every moment at Big Spuntino celebrates the Italian way of life. Our warm atmosphere and authentic flavors create the perfect setting for sharing good food and great company.',
@@ -159,7 +158,7 @@ const resources = {
       events: {
         heroTitle: 'YOUR NEXT FAVORITE EVENT IS HERE – APERITIVO TO BRUNCH*',
         heroDescription:
-          '*La vita é bella ... and there is always a reason to celebrate. The Big Spuntino lives Italian hospitality and coming together – and not only in the day bar itself, but also in its own private or business premises. Get in touch with our team to discuss your tailor-made events for the most special moments of pleasure.',
+          'La vita è bella ... and there is always a reason to celebrate. The Big Spuntino lives Italian hospitality and coming together – and not only in the day bar itself, but also in private or business premises. Get in touch with our team to discuss tailor-made events for the most special moments of pleasure.',
         contactButton: 'Contatto',
         viewDetails: 'View Details',
         footerText:
@@ -197,8 +196,7 @@ const resources = {
         subtitle:
           "*A brilliant man at East Mamma, whose name we don't remember, just a few weeks before opening.",
         paragraphs: [
-          'Since the summer of 2025, the Big Spuntino has been the second Italian centerpiece of host Dario Pittarello. Dario opened the "Ristorante Pittarello" at Mühlenkamp in Hamburg-Winterhude back in 2015 and has been serving his guests with fine, authentic Italian cuisine ever since. But that wasn\'t enough – Dario couldn\'t miss the chance to visit the neighboring shop and has been welcoming old and new guests in a warm and lively day bar with spettacoloso snacks and drinks from Italian cuisine.',
-          'The bright red interior combined with classic wood and brass elements that blend harmoniously with each other offers guests the ideal place to go for the "big times" and the alldry long: from boozy brunches on the weekends, to daily lunches to early aperitivo/dinner hour. Here, the Mediterranean joie de vivre of good enjoyment and good drinks as well as the celebration of being together can be perfectly lived. Here\'s to the "big times" with the small snacks!',
+          'Since summer 2025, the Big Spuntino has been the second Italian heart of host Dario Pittarello. Dario opened the "Ristorante Pittarello" in 2015 on Mühlenkamp in Hamburg-Winterhude and has been serving its guests fine, authentic Italian cuisine ever since. But that wasn\'t enough – Dario couldn\'t pass up the opportunity to take over the neighboring shop and opened an additional hotspot for his old and new guests alike: his warm and lively daytime bar, Big Spuntino, which offers spettacoloso snacks and drinks from Italian cuisine. The new location is a spontaneous stopover all day long – just like at La Scala in Milan. The family is excited about the new, exciting addition and is looking forward to the future – and the big times that are to come – with joy and anticipation.',
         ],
       },
       gallery: {

@@ -207,9 +207,9 @@ export default function Loading({ onComplete }: LoadingProps = {}) {
           <div className="text-white/80 text-sm font-medium mb-2">
             Loading... {Math.round(loadingProgress)}%
           </div>
-          <div className="w-48 h-1 bg-white/20 rounded-full overflow-hidden">
+          <div className="w-48 h-1 bg-background/20 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-white rounded-full"
+              className="h-full bg-background rounded-full"
               initial={{ width: '0%' }}
               animate={{ width: `${loadingProgress}%` }}
               transition={{ duration: 0.3, ease: 'easeOut' }}

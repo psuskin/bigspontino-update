@@ -85,7 +85,7 @@ const JobsSection = () => {
     const nextSection = document.querySelector('#apply');
     if (nextSection) {
       // Get the navbar height (adjust this value based on your actual navbar height)
-      const navbarHeight = 80; // Change this to match your navbar height in pixels
+      const navbarHeight = 30; // Change this to match your navbar height in pixels
 
       // Calculate the target position
       const elementPosition = nextSection.getBoundingClientRect().top;
@@ -98,22 +98,6 @@ const JobsSection = () => {
       });
     }
   };
-
-  // Animation variants
-  // const fadeInUp: Variants = {
-  //   hidden: {
-  //     opacity: 0,
-  //     y: 60,
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     y: 0,
-  //     transition: {
-  //       duration: 0.8,
-  //       ease: [0.25, 0.46, 0.45, 0.94] as const,
-  //     },
-  //   },
-  // };
 
   const fadeInLeft: Variants = {
     hidden: {
@@ -208,12 +192,12 @@ const JobsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-12 sm:py-16 md:py-20 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-8"
+      className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 lg:px-8"
     >
       <div className="">
         <motion.div
           ref={headerRef}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-24 items-start"
+          className="md:max-w-4xl mx-auto text-center"
           variants={staggerContainer}
           initial="hidden"
           animate={headerInView ? 'visible' : 'hidden'}
@@ -236,10 +220,10 @@ const JobsSection = () => {
               onClick={handleNextSectionClick}
               className="group relative inline-flex h-12 sm:h-14 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium text-base sm:text-lg"
             >
-              <div className="inline-flex h-full translate-y-0 items-center justify-center bg-[#ce2d19] uppercase px-6 sm:px-8 md:px-10 text-white transition group-hover:-translate-y-[150%] rounded-none">
+              <div className="inline-flex h-full translate-y-0 items-center justify-center bg-primary uppercase px-6 sm:px-8 md:px-10 text-white transition group-hover:-translate-y-[150%] rounded-none">
                 {t('jobs.applyNow')}
               </div>
-              <div className="absolute inline-flex h-full w-full translate-y-[100%] items-center justify-center uppercase bg-black px-6 sm:px-8 md:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+              <div className="absolute inline-flex h-full w-full translate-y-[100%] items-center justify-center uppercase bg-secondary px-6 sm:px-8 md:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
                 {t('jobs.applyNow')}
               </div>
             </button>
@@ -265,7 +249,7 @@ const JobsSection = () => {
         <motion.div
           id="apply"
           ref={formRef}
-          className="mt-12 sm:mt-16 md:mt-20 w-full bg-gray-50 p-4 sm:p-6 md:p-8 lg:p-12 font-narrow rounded-none"
+          className="mt-12 sm:mt-16 md:mt-20 w-full bg-white p-4 sm:p-6 md:p-8 lg:p-12 font-narrow rounded-none"
           variants={staggerContainer}
           initial="hidden"
           animate={formInView ? 'visible' : 'hidden'}
@@ -277,7 +261,7 @@ const JobsSection = () => {
                 {t('jobs.joinOur')} {t('jobs.famiglia')}
               </span>
             </h3>
-            <p className="text-sm sm:text-base md:text-lg text-gray-700">
+            <p className="text-sm sm:text-base md:text-lg text-secondary">
               {t('jobs.formDescription')}
             </p>
           </motion.div> */}
@@ -295,7 +279,7 @@ const JobsSection = () => {
                   >
                     {t('jobs.form.firstName')}*
                   </label>
-                  <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
+                  <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-secondary after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
                     <motion.input
                       whileFocus={{ scale: 1.02 }}
                       transition={{ duration: 0.2 }}
@@ -304,7 +288,7 @@ const JobsSection = () => {
                       onChange={handleInputChange}
                       required
                       placeholder={t('jobs.form.placeholders.firstName')}
-                      className="w-full bg-white text-black border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-gray-50 text-secondary border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -315,7 +299,7 @@ const JobsSection = () => {
                   >
                     {t('jobs.form.lastName')}*
                   </label>
-                  <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
+                  <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-secondary after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
                     <motion.input
                       whileFocus={{ scale: 1.02 }}
                       transition={{ duration: 0.2 }}
@@ -324,7 +308,7 @@ const JobsSection = () => {
                       onChange={handleInputChange}
                       required
                       placeholder={t('jobs.form.placeholders.lastName')}
-                      className="w-full bg-white text-black border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-gray-50 text-secondary border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -345,13 +329,13 @@ const JobsSection = () => {
                     <select
                       value={formData.phonePrefix}
                       onChange={(e) => handleSelectChange('phonePrefix', e.target.value)}
-                      className="w-20 sm:w-24 bg-white border-2 border-gray-300 focus:border-black py-2 sm:py-3 px-1 sm:px-2 transition-all duration-300 text-sm sm:text-base"
+                      className="w-20 sm:w-24 bg-gray-50 border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-1 sm:px-2 transition-all duration-300 text-sm sm:text-base"
                     >
                       <option value="+49">🇩🇪</option>
                       <option value="+1">🇺🇸</option>
                       <option value="+44">🇬🇧</option>
                     </select>
-                    <div className="flex-1 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
+                    <div className="flex-1 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-secondary after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
                       <motion.input
                         whileFocus={{ scale: 1.02 }}
                         id="phone"
@@ -360,7 +344,7 @@ const JobsSection = () => {
                         onChange={handleInputChange}
                         required
                         placeholder={t('jobs.form.placeholders.phone')}
-                        className="w-full bg-white border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                        className="w-full bg-gray-50 border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                       />
                     </div>
                   </div>
@@ -372,7 +356,7 @@ const JobsSection = () => {
                   >
                     {t('jobs.form.email')}*
                   </label>
-                  <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
+                  <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-secondary after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
                     <motion.input
                       whileFocus={{ scale: 1.02 }}
                       id="email"
@@ -381,7 +365,7 @@ const JobsSection = () => {
                       onChange={handleInputChange}
                       required
                       placeholder={t('jobs.form.placeholders.email')}
-                      className="w-full bg-white text-black border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-gray-50 text-secondary border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -389,9 +373,9 @@ const JobsSection = () => {
               {/* Position Details */}
               <motion.div
                 variants={formFieldVariants}
-                className="border-l-2 sm:border-l-4 border-black pl-4 sm:pl-6"
+                className="border-l-2 sm:border-l-4 border-secondary pl-4 sm:pl-6"
               >
-                <h3 className="text-base sm:text-lg md:text-xl font-black uppercase mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg md:text-xl font-secondary uppercase mb-3 sm:mb-4">
                   {t('jobs.form.positionDetails')}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
@@ -406,7 +390,7 @@ const JobsSection = () => {
                       id="position"
                       value={formData.position}
                       onChange={(e) => handleSelectChange('position', e.target.value)}
-                      className="w-full bg-white border-2 border-gray-300 focus:border-black py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-gray-50 border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     >
                       <option value="">{t('jobs.form.choose')}</option>
                       <option value="server">{t('jobs.form.positions.server')}</option>
@@ -427,7 +411,7 @@ const JobsSection = () => {
                       id="experience"
                       value={formData.experience}
                       onChange={(e) => handleSelectChange('experience', e.target.value)}
-                      className="w-full bg-white border-2 border-gray-300 focus:border-black py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-gray-50 border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     >
                       <option value="">{t('jobs.form.choose')}</option>
                       <option value="entry">{t('jobs.form.experiences.entry')}</option>
@@ -447,7 +431,7 @@ const JobsSection = () => {
                       id="availability"
                       value={formData.availability}
                       onChange={(e) => handleSelectChange('availability', e.target.value)}
-                      className="w-full bg-white border-2 border-gray-300 focus:border-black py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-gray-50 border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     >
                       <option value="">{t('jobs.form.choose')}</option>
                       <option value="fulltime">{t('jobs.form.availabilities.fulltime')}</option>
@@ -474,7 +458,7 @@ const JobsSection = () => {
                     onChange={handleFileChange}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
-                  <div className="bg-white border-2 border-dashed border-gray-400 hover:border-black py-4 sm:py-6 px-3 sm:px-4 text-center transition-all duration-300">
+                  <div className="bg-gray-50 border-2 border-dashed border-gray-400 hover:border-secondary py-4 sm:py-6 px-3 sm:px-4 text-center transition-all duration-300">
                     <Upload className="w-6 sm:w-8 h-6 sm:h-8 mx-auto mb-1 sm:mb-2 text-gray-600" />
                     <p className="text-gray-600 font-medium text-xs sm:text-sm md:text-base">
                       {formData.cv ? formData.cv.name : t('jobs.form.uploadText')}
@@ -491,7 +475,7 @@ const JobsSection = () => {
                 >
                   {t('jobs.form.whyJoin')}
                 </label>
-                <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
+                <div className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-secondary after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] focus-within:after:origin-bottom-left focus-within:after:scale-x-100">
                   <motion.textarea
                     whileFocus={{ scale: 1.01 }}
                     id="message"
@@ -499,7 +483,7 @@ const JobsSection = () => {
                     onChange={handleInputChange}
                     placeholder={t('jobs.form.placeholders.message')}
                     rows={4}
-                    className="w-full bg-white border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 resize-y transition-all duration-300 text-sm sm:text-base"
+                    className="w-full bg-gray-50 border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 resize-y transition-all duration-300 text-sm sm:text-base"
                   />
                 </div>
               </motion.div>
@@ -510,18 +494,18 @@ const JobsSection = () => {
                   id="agreeTerms"
                   checked={formData.agreeTerms}
                   onChange={handleInputChange}
-                  className="mt-0.5 sm:mt-1 w-4 sm:w-5 h-4 sm:h-5 accent-black"
+                  className="mt-0.5 sm:mt-1 w-4 sm:w-5 h-4 sm:h-5 accent-secondary"
                 />
                 <label
                   htmlFor="agreeTerms"
-                  className="text-xs sm:text-sm text-gray-700 cursor-pointer"
+                  className="text-xs sm:text-sm text-secondary cursor-pointer"
                 >
                   {t('jobs.form.agreeTerms1')}{' '}
-                  <a href="#" className="underline font-bold hover:text-black">
+                  <a href="#" className="underline font-bold hover:text-secondary">
                     {t('jobs.form.terms')}
                   </a>{' '}
                   {t('jobs.form.agreeTerms2')}{' '}
-                  <a href="#" className="underline font-bold hover:text-black">
+                  <a href="#" className="underline font-bold hover:text-secondary">
                     {t('jobs.form.privacyPolicy')}
                   </a>
                 </label>
@@ -532,7 +516,7 @@ const JobsSection = () => {
                   whileHover={{ scale: 1.05, x: 5 }}
                   whileTap={{ scale: 0.95 }}
                   type="submit"
-                  className="bg-black text-white py-3 sm:py-4 px-6 sm:px-8 md:px-10 font-black uppercase tracking-widest hover:bg-gray-800 transition-colors duration-300 flex items-center gap-2 sm:gap-3 text-sm sm:text-base"
+                  className="bg-secondary text-white py-3 sm:py-4 px-6 sm:px-8 md:px-10 font-secondary uppercase tracking-widest hover:bg-gray-800 transition-colors duration-300 flex items-center gap-2 sm:gap-3 text-sm sm:text-base"
                 >
                   {t('jobs.form.submit')}
                   <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5" />

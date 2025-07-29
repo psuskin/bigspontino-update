@@ -606,7 +606,7 @@ const FoodItem = ({ item }: FoodItemProps) => {
       transition={{ duration: 0.3 }}
     >
       <motion.div
-        className="relative p-4 rounded-full bg-white shadow-lg border-2 border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer"
+        className="relative p-4 rounded-full bg-background shadow-lg border-2 border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer"
         style={{ borderColor: item.color }}
         whileHover={{
           backgroundColor: item.color + '10',
@@ -623,7 +623,7 @@ const FoodItem = ({ item }: FoodItemProps) => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
-              className="absolute inset-0 rounded-full bg-black/70 bg-opacity-80 flex items-center justify-center text-white text-xs font-medium text-center px-2"
+              className="absolute inset-0 rounded-full bg-secondary/70 bg-opacity-80 flex items-center justify-center text-white text-xs font-medium text-center px-2"
               style={{
                 width: '100%',
                 height: '100%',
@@ -751,7 +751,7 @@ export default function NotFound() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          <h3 className="text-2xl md:text-3xl font-serif text-gray-700 mb-1">
+          <h3 className="text-2xl md:text-3xl font-serif text-secondary mb-1">
             {"But don't worry, our delicious Italian cuisine is still here!"}
           </h3>
           <p className="text-gray-600 text-xs mb-6 max-w-3xl mx-auto font-narrow">

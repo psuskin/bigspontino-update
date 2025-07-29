@@ -36,7 +36,7 @@ const CookiePolicyPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       {/* Hero Header */}
       <motion.section
         className="relative h-[40vh] overflow-hidden border-b border-gray-200"
@@ -44,8 +44,8 @@ const CookiePolicyPage = () => {
         animate="visible"
         variants={containerVariants}
       >
-        <div className="absolute inset-0 bg-black">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-black/30" />
+        <div className="absolute inset-0 bg-secondary">
+          <div className="absolute inset-0 bg-gradient-to-b from-secondary/90 to-secondary/30" />
         </div>
 
         <div className="relative z-10 flex flex-col justify-center items-center h-full px-4 sm:px-6 lg:px-8">
@@ -90,13 +90,13 @@ const CookiePolicyPage = () => {
       >
         {/* Introduction */}
         <motion.div className="mb-12" variants={sectionVariants}>
-          <p className="text-gray-700 leading-relaxed mb-6">{t('cookie.introduction')}</p>
+          <p className="text-secondary leading-relaxed mb-6">{t('cookie.introduction')}</p>
         </motion.div>
 
         {/* Policy Sections */}
         <motion.section className="mb-16" variants={sectionVariants}>
           <motion.h2
-            className="text-2xl sm:text-3xl font-bold text-black mb-8 tracking-tight"
+            className="text-2xl sm:text-3xl font-bold text-secondary mb-8 tracking-tight"
             whileHover={{ x: 5 }}
             transition={{ duration: 0.3 }}
           >
@@ -115,7 +115,7 @@ const CookiePolicyPage = () => {
                 onMouseLeave={() => setActiveSection(null)}
               >
                 <motion.h3
-                  className="text-lg sm:text-xl font-semibold text-black mb-4 tracking-tight"
+                  className="text-lg sm:text-xl font-semibold text-secondary mb-4 tracking-tight"
                   animate={{
                     color: activeSection === `section-${sectionNum}` ? '#f59e0b' : '#000',
                   }}
@@ -131,7 +131,7 @@ const CookiePolicyPage = () => {
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-secondary leading-relaxed">
                     {t(`cookie.sections.${sectionNum}.content`)}
                   </p>
                 </motion.div>
@@ -143,7 +143,7 @@ const CookiePolicyPage = () => {
         {/* Cookie Table */}
         <motion.section className="mb-16" variants={sectionVariants}>
           <motion.h2
-            className="text-2xl sm:text-3xl font-bold text-black mb-8 tracking-tight"
+            className="text-2xl sm:text-3xl font-bold text-secondary mb-8 tracking-tight"
             whileHover={{ x: 5 }}
             transition={{ duration: 0.3 }}
           >
@@ -153,7 +153,7 @@ const CookiePolicyPage = () => {
           <div className="overflow-x-auto">
             <table className="min-w-full border border-gray-200">
               <thead>
-                <tr className="bg-black text-white">
+                <tr className="bg-secondary text-white">
                   <th className="px-4 py-3 text-left">{t('cookie.tableHeaders.name')}</th>
                   <th className="px-4 py-3 text-left">{t('cookie.tableHeaders.purpose')}</th>
                   <th className="px-4 py-3 text-left">{t('cookie.tableHeaders.duration')}</th>
@@ -161,7 +161,7 @@ const CookiePolicyPage = () => {
               </thead>
               <tbody>
                 {['essential', 'analytics', 'preferences', 'marketing'].map((cookieType, index) => (
-                  <tr key={cookieType} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  <tr key={cookieType} className={index % 2 === 0 ? 'bg-background' : 'bg-gray-50'}>
                     <td className="px-4 py-3 border border-gray-200 font-medium">
                       {t(`cookie.cookies.${cookieType}.name`)}
                     </td>
@@ -192,7 +192,7 @@ const CookiePolicyPage = () => {
             <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.3 }}>
               <Link
                 href="/"
-                className="inline-flex h-12 items-center justify-center bg-black text-white font-medium px-8 tracking-tight uppercase"
+                className="inline-flex h-12 items-center justify-center bg-secondary text-white font-medium px-8 tracking-tight uppercase"
               >
                 {t('cookie.backToHome')}
               </Link>

@@ -63,7 +63,7 @@ const Footer = () => {
     <footer className="">
       <motion.div
         ref={footerRef}
-        className="bg-white border-t-2 border-black/5 text-black py-10 pb-16 md:pb-0 px-4 sm:py-16 sm:px-8 md:py-20 md:px-16 lg:py-24 lg:px-24  rounded-none"
+        className="bg-background border-t-2 border-secondary/5 text-secondary py-10 pb-16 md:pb-0 px-4 sm:py-16 sm:px-8 md:py-20 md:px-16 lg:py-24 lg:px-24  rounded-none"
         variants={fadeInUp}
         initial="hidden"
         animate={footerInView ? 'visible' : 'hidden'}
@@ -90,7 +90,7 @@ const Footer = () => {
             >
               {t('footer.description')}
             </motion.p>
-            <div className="space-y-0.5 font-narrow mt-6 text-black font-light text-">
+            <div className="space-y-0.5 font-narrow mt-6 text-secondary font-light text-">
               <a
                 href="tel:040694568 28"
                 className="block  decoration-1  hover:text-amber-300-600 transition-colors"

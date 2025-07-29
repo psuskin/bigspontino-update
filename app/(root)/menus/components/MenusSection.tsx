@@ -165,7 +165,7 @@ const MenusSection: React.FC = () => {
 
         {/* Text Section */}
         <motion.div
-          className={`bg-red-50/15 z-10 w-full flex flex-col justify-center items-center text-black p-8 md:p-12 lg:p-16 aspect-square ${
+          className={`bg-red-50/15 z-10 w-full flex flex-col justify-center items-center text-secondary p-8 md:p-12 lg:p-16 aspect-square ${
             isImageLeft ? 'order-2 md:order-2' : 'order-2 md:order-1'
           }`}
           variants={staggerContainer}
@@ -173,26 +173,26 @@ const MenusSection: React.FC = () => {
           animate={cardInView ? 'visible' : 'hidden'}
         >
           <motion.h3
-            className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
+            className="text-sm uppercase md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
             variants={fadeInUp}
           >
             Big Spuntino
           </motion.h3>
           <motion.h2
-            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 tracking-wide text-center"
+            className=" text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 tracking-wide text-center"
             variants={fadeInUp}
           >
             {t(category.nameKey)}
           </motion.h2>
           <motion.button
             onClick={() => handleMenuClick(category.pdfPath)}
-            className="group relative inline-flex cursor-pointer h-12 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-8 md:px-10 py-2 mt-4"
+            className="group relative inline-flex cursor-pointer h-12 items-center justify-center overflow-hidden rounded-full border border-secondary font-narrow px-8 md:px-10 py-2 mt-4"
             variants={fadeInUp}
           >
-            <div className="inline-flex h-12 translate-y-0 items-center justify-center bg-transparent text-sm md:text-base font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+            <div className="inline-flex h-12 translate-y-0 items-center justify-center bg-transparent text-sm md:text-base font-medium tracking-widest uppercase text-secondary transition group-hover:-translate-y-[150%]">
               {t('menus.viewMenu')}
             </div>
-            <div className="absolute inline-flex h-12 w-full translate-y-[100%] items-center justify-center bg-black text-sm md:text-base font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+            <div className="absolute inline-flex h-12 w-full translate-y-[100%] items-center justify-center bg-secondary text-sm md:text-base font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
               {t('menus.viewMenu')}
             </div>
           </motion.button>
@@ -202,7 +202,7 @@ const MenusSection: React.FC = () => {
   };
 
   return (
-    <section className="py-12 md:py-24 lg:pt-32 px-4 md:px-6">
+    <section className="py-12 md:py-24 lg:pt-24 px-4 md:px-6 text-secondary">
       <motion.div
         ref={headerRef}
         className="mb-12 md:mb-24 lg:mb-32"
@@ -212,12 +212,12 @@ const MenusSection: React.FC = () => {
       >
         <motion.h2 variants={fadeInUp}>
           <AnimatedText
-            className="text-3xl md:text-6xl lg:text-7xl uppercase font-bold w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-tight"
+            className="text-3xl md:text-6xl lg:text-7xl uppercase  w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-tight"
             text={['A Tavola']}
           ></AnimatedText>
         </motion.h2>
         <motion.p
-          className="text-center font-narrow pt-4 md:pt-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-sm md:text-xl leading-relaxed px-4"
+          className="text-center font-narrow pt-4 md:pt-6 w-full md:w-4/5 lg:w-3/5 mx-auto  text-sm md:text-xl md:leading-relaxed leading-normal lg:px-4"
           variants={fadeInUp}
         >
           {t('menus.sectionDescription')}

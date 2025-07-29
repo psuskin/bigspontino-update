@@ -64,7 +64,7 @@ export default function BookingPopup() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed lg:bottom-6 lg:right-6 bottom-0 right-0 w-full lg:w-[23rem] font-narrow bg-white shadow-2xl border border-black/5 z-50 font-sans max-h-[100vh] overflow-y-auto">
+    <div className="fixed lg:bottom-6 lg:right-6 bottom-0 right-0 w-full lg:w-[23rem] font-narrow bg-background shadow-2xl border border-secondary/5 z-50 font-sans max-h-[100vh] overflow-y-auto">
       {/* Header */}
       <div className="bg-red-700 text-white p-4">
         <div className="flex items-center justify-between">
@@ -94,8 +94,8 @@ export default function BookingPopup() {
                 lastName: formData.lastName,
               })}
             </p>
-            <div className="bg-neutral-100 p-3 text-sm border border-black/5 text-left">
-              <p className="font-medium text-black mb-1">
+            <div className="bg-neutral-100 p-3 text-sm border border-secondary/5 text-left">
+              <p className="font-medium text-secondary mb-1">
                 {t('booking.confirmationDetails', {
                   guests: selectedGuests,
                   date: format(selectedDate || new Date(), 'MMM. dd'),
@@ -113,7 +113,7 @@ export default function BookingPopup() {
             </div>
             <Button
               onClick={() => setIsOpen(false)}
-              className="mt-6 h-10 lg:h-8 bg-black hover:bg-neutral-800 text-white text-sm rounded-none w-full"
+              className="mt-6 h-10 lg:h-8 bg-secondary hover:bg-neutral-800 text-white text-sm rounded-none w-full"
             >
               {t('booking.close')}
             </Button>
@@ -145,13 +145,16 @@ export default function BookingPopup() {
                   <PopoverTrigger asChild>
                     <Button
                       variant="outline"
-                      className="h-10 lg:h-9 w-full text-sm justify-start px-2 rounded-none border-black/5 text-black hover:bg-neutral-100 bg-transparent"
+                      className="h-10 lg:h-9 w-full text-sm justify-start px-2 rounded-none border-secondary/5 text-secondary hover:bg-neutral-100 bg-transparent"
                     >
                       <CalendarIcon className="h-3 w-3 mr-1" />
                       {format(selectedDate || new Date(), 'MMM. dd')}
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0 rounded-none border-black/5" align="end">
+                  <PopoverContent
+                    className="w-auto p-0 rounded-none border-secondary/5"
+                    align="end"
+                  >
                     <Calendar
                       mode="single"
                       selected={selectedDate}
@@ -184,8 +187,8 @@ export default function BookingPopup() {
               </div>
             </div>
             {/* Quick Info */}
-            <div className="bg-neutral-100 p-3 text-sm border border-black/5 mb-2">
-              <p className="font-medium text-black mb-1">
+            <div className="bg-neutral-100 p-3 text-sm border border-secondary/5 mb-2">
+              <p className="font-medium text-secondary mb-1">
                 {t('booking.confirmationDetails', {
                   guests: selectedGuests,
                   date: format(selectedDate || new Date(), 'MMM. dd'),
@@ -207,7 +210,7 @@ export default function BookingPopup() {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     required
-                    className="h-10 lg:h-8 text-sm rounded-none border-black/5"
+                    className="h-10 lg:h-8 text-sm rounded-none border-secondary/5"
                   />
                 </div>
                 <div>
@@ -217,7 +220,7 @@ export default function BookingPopup() {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     required
-                    className="h-10 lg:h-8 text-sm rounded-none border-black/5"
+                    className="h-10 lg:h-8 text-sm rounded-none border-secondary/5"
                   />
                 </div>
               </div>
@@ -228,7 +231,7 @@ export default function BookingPopup() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="h-10 lg:h-8 text-sm rounded-none border-black/5"
+                className="h-10 lg:h-8 text-sm rounded-none border-secondary/5"
               />
               <Input
                 name="phone"
@@ -237,12 +240,12 @@ export default function BookingPopup() {
                 value={formData.phone}
                 onChange={handleInputChange}
                 required
-                className="h-10 lg:h-8 text-sm rounded-none border-black/5"
+                className="h-10 lg:h-8 text-sm rounded-none border-secondary/5"
               />
               <div className="flex gap-2">
                 <Button
                   type="submit"
-                  className="flex-1 h-10 lg:h-8 cursor-pointer bg-black hover:bg-neutral-800 text-white text-sm rounded-none"
+                  className="flex-1 h-10 lg:h-8 cursor-pointer bg-secondary hover:bg-neutral-800 text-white text-sm rounded-none"
                 >
                   {t('booking.reserve')}
                 </Button>

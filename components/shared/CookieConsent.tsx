@@ -34,7 +34,7 @@ const CookieConsent = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 100 }}
           transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg z-50 rounded-none"
+          className="fixed bottom-0 left-0 right-0 bg-background border-t shadow-lg z-50 rounded-none"
         >
           <div className="p-3 xs:p-4 sm:px-7 mx-auto sm:py-10 md:py-16 ">
             <div className="flex flex-col lg:flex-row lg:items-center gap-3 xs:gap-4 sm:gap-6">
@@ -42,7 +42,7 @@ const CookieConsent = () => {
                 <h3 className="text-base xs:text-lg sm:text-2xl lg:text-4xl uppercase font-bold leading-tight">
                   {t('cookieConsent.title')}
                 </h3>
-                <p className="text-xs xs:text-sm font-narrow sm:text-base ps-1 text-gray-700 leading-relaxed">
+                <p className="text-xs xs:text-sm font-narrow sm:text-base ps-1 text-secondary leading-relaxed">
                   {t('cookieConsent.description')}{' '}
                   <Link
                     href="/cookie-policy"
@@ -62,10 +62,10 @@ const CookieConsent = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="inline-flex w-full h-8 sm:h-9 md:h-14 translate-y-0 items-center justify-center bg-[#ce2d19] text-sm sm:text-lg md:text-xl lg:text-2xl px-3 xs:px-4 sm:px-8 lg:px-10 text-white transition group-hover:-translate-y-[150%] rounded-none">
+                  <div className="inline-flex w-full h-8 sm:h-9 md:h-14 translate-y-0 items-center justify-center bg-primary text-sm sm:text-lg md:text-xl lg:text-2xl px-3 xs:px-4 sm:px-8 lg:px-10 text-white transition group-hover:-translate-y-[150%] rounded-none">
                     <span>{t('cookieConsent.accept')}</span>
                   </div>
-                  <div className="absolute inline-flex w-full h-8 sm:h-9 md:h-14 translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-black px-3 xs:px-4 sm:px-8 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+                  <div className="absolute inline-flex w-full h-8 sm:h-9 md:h-14 translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-secondary px-3 xs:px-4 sm:px-8 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
                     <span>{t('cookieConsent.accept')}</span>
                   </div>
                 </motion.button>
@@ -78,10 +78,10 @@ const CookieConsent = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="inline-flex w-full h-8 sm:h-9 md:h-14 translate-y-0 items-center justify-center bg-gray-200 text-sm sm:text-lg md:text-xl lg:text-2xl px-3 xs:px-4 sm:px-8 lg:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none">
+                  <div className="inline-flex w-full h-8 sm:h-9 md:h-14 translate-y-0 items-center justify-center bg-gray-200 text-sm sm:text-lg md:text-xl lg:text-2xl px-3 xs:px-4 sm:px-8 lg:px-10 text-secondary transition group-hover:-translate-y-[150%] rounded-none">
                     <span>{t('cookieConsent.decline')}</span>
                   </div>
-                  <div className="absolute inline-flex w-full h-8 sm:h-9 md:h-14 translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-black px-3 xs:px-4 sm:px-8 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+                  <div className="absolute inline-flex w-full h-8 sm:h-9 md:h-14 translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-secondary px-3 xs:px-4 sm:px-8 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
                     <span>{t('cookieConsent.decline')}</span>
                   </div>
                 </motion.button>

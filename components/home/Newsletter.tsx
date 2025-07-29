@@ -21,10 +21,10 @@ const Newsletter = () => {
     <section className="pb-20 lg:pb-28 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto py-8 lg:py-16 px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-9 items-start gap-6 bg-gray-100 relative overflow-hidden border">
         {/* Circles - hidden on mobile, shown on lg+ */}
-        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-white rounded-full absolute -bottom-6 lg:-bottom-12 border left-4 lg:left-10"></div>
-        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-white rounded-full absolute -bottom-6 lg:-bottom-12 border left-16 lg:left-36"></div>
-        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-white rounded-full absolute -bottom-6 lg:-bottom-12 border right-4 lg:right-10"></div>
-        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-white rounded-full absolute -bottom-6 lg:-bottom-12 border right-16 lg:right-36"></div>
+        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-background rounded-full absolute -bottom-6 lg:-bottom-12 border left-4 lg:left-10"></div>
+        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-background rounded-full absolute -bottom-6 lg:-bottom-12 border left-16 lg:left-36"></div>
+        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-background rounded-full absolute -bottom-6 lg:-bottom-12 border right-4 lg:right-10"></div>
+        <div className="hidden lg:block w-12 lg:w-20 h-12 lg:h-20 bg-background rounded-full absolute -bottom-6 lg:-bottom-12 border right-16 lg:right-36"></div>
 
         {/* Title - spans full width on mobile, 3 cols on lg */}
         <div className="md:col-span-2 lg:col-span-3">
@@ -41,7 +41,7 @@ const Newsletter = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 sm:py-4 rounded-none font-narrow placeholder:text-center lg:placeholder:text-left border-b-2 border-black bg-white focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-4 py-3 sm:py-4 rounded-none font-narrow placeholder:text-center lg:placeholder:text-left border-b-2 border-secondary bg-background focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
               placeholder={t('newsletter.placeholder')}
               required
             />
@@ -72,10 +72,10 @@ const Newsletter = () => {
             onClick={handleSubmit}
             className="group relative inline-flex h-10 sm:h-12 lg:h-[3.7rem] w-full md:w-auto items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
           >
-            <div className="inline-flex h-10 sm:h-12 lg:h-[3.7rem] translate-y-0 items-center justify-center bg-amber-300 text-sm sm:text-lg md:text-xl lg:text-2xl px-4 sm:px-6 lg:px-10 text-black transition group-hover:-translate-y-[150%] rounded-none w-full">
+            <div className="inline-flex h-10 sm:h-12 lg:h-[3.7rem] translate-y-0 items-center justify-center bg-amber-300 text-sm sm:text-lg md:text-xl lg:text-2xl px-4 sm:px-6 lg:px-10 text-secondary transition group-hover:-translate-y-[150%] rounded-none w-full">
               <span>{t('newsletter.submit')}</span>
             </div>
-            <div className="absolute inline-flex h-10 sm:h-12 lg:h-[3.7rem] w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-black px-4 sm:px-6 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+            <div className="absolute inline-flex h-10 sm:h-12 lg:h-[3.7rem] w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-secondary px-4 sm:px-6 lg:px-10 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
               <span>{t('newsletter.submit')}</span>
             </div>
           </button>
