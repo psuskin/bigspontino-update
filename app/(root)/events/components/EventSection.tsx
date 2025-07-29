@@ -166,7 +166,7 @@ const EventSection = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-40 px-4 sm:px-6 lg:px-6">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 lg:px-6">
       <motion.div
         ref={headerRef}
         className=""

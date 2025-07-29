@@ -173,13 +173,13 @@ const MenusSection: React.FC = () => {
           animate={cardInView ? 'visible' : 'hidden'}
         >
           <motion.h3
-            className="text-sm md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
+            className="text-sm uppercase md:text-base lg:text-lg font-light tracking-widest mb-2 opacity-90"
             variants={fadeInUp}
           >
             Big Spuntino
           </motion.h3>
           <motion.h2
-            className="uppercase text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 tracking-wide text-center"
+            className=" text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 tracking-wide text-center"
             variants={fadeInUp}
           >
             {t(category.nameKey)}
@@ -217,7 +217,7 @@ const MenusSection: React.FC = () => {
           ></AnimatedText>
         </motion.h2>
         <motion.p
-          className="text-center font-narrow pt-4 md:pt-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-sm md:text-xl leading-relaxed px-4"
+          className="text-center font-narrow pt-4 md:pt-6 w-full md:w-4/5 lg:w-3/5 mx-auto  text-sm md:text-xl md:leading-relaxed leading-normal lg:px-4"
           variants={fadeInUp}
         >
           {t('menus.sectionDescription')}

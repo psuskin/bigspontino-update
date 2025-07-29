@@ -38,7 +38,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative  h-dvh md:h-[93.5vh]  overflow-hidden bg-secondary">
+    <section className="relative  h-[60dvh]  overflow-hidden bg-secondary">
       {/* Background Image */}
       <Image
         width={1920}
@@ -65,7 +65,7 @@ const HeroSection = () => {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-full max-w-xl md:max-w-2xl lg:max-w-5xl h-32 px-4 md:px-8">
               <RevealTextOnView
-                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-[.45em] pt-8 text-white text-center"
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-wider pt-8 text-white text-center"
                 staggerDelay={0.08}
                 animationDuration={0.8}
                 triggerOnce={true}

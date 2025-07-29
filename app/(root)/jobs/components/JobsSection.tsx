@@ -85,7 +85,7 @@ const JobsSection = () => {
     const nextSection = document.querySelector('#apply');
     if (nextSection) {
       // Get the navbar height (adjust this value based on your actual navbar height)
-      const navbarHeight = 80; // Change this to match your navbar height in pixels
+      const navbarHeight = 30; // Change this to match your navbar height in pixels
 
       // Calculate the target position
       const elementPosition = nextSection.getBoundingClientRect().top;
@@ -208,7 +208,7 @@ const JobsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-12 sm:py-16 md:py-20 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-8"
+      className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 lg:px-8"
     >
       <div className="">
         <motion.div

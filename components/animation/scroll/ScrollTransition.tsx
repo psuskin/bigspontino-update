@@ -66,7 +66,7 @@
 //   const y = useTransform(scrollYProgress, [0, 1], [0, -yOffset]);
 
 //   return (
-//     <motion.div style={{ scale, y }} className={`sticky top-0 h-screen origin-top ${className}`}>
+//     <motion.div style={{ scale, y }} className={`sticky top-0 origin-top ${className}`}>
 //       {children}
 //     </motion.div>
 //   );
@@ -84,6 +84,7 @@
 
 'use client';
 
+import { cn } from '@/lib/utils';
 import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import React, { useRef } from 'react';
 
@@ -135,17 +136,17 @@ const Section1 = ({ scrollYProgress, children, className = '', yOffset = 0 }: Se
   const y = useTransform(scrollYProgress, [0, 1], [0, -yOffset]);
 
   return (
-    <motion.div style={{ y }} className={`sticky top-0 h-[60dvh] ${className}`}>
+    <motion.div style={{ y }} className={cn('sticky top-0 h-[60dvh]', className)}>
       {children}
     </motion.div>
   );
 };
 
 const Section2 = ({ scrollYProgress, children, className = '' }: SectionProps) => {
-  const y = useTransform(scrollYProgress, [0, 1], ['100vh', '0']);
+  const y = useTransform(scrollYProgress, [0, 1], ['100dvh', '0']);
 
   return (
-    <motion.div style={{ y }} className={`relative h-[60dvh] ${className}`}>
+    <motion.div style={{ y }} className={cn(`relative h-[60dvh]`, className)}>
       {children}
     </motion.div>
   );

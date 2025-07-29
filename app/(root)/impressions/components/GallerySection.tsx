@@ -162,7 +162,7 @@ const GallerySection: React.FC = () => {
   };
 
   return (
-    <section className="py-6 px-6 relative overflow-hidden">
+    <section className="py-6 md:px-6 px-3 relative overflow-hidden">
       <div className="relative z-10 ">
         {/* <motion.div
           ref={headerRef}
