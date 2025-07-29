@@ -44,8 +44,8 @@ const LegalNoticePage = () => {
         animate="visible"
         variants={containerVariants}
       >
-        <div className="absolute inset-0 bg-black">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-black/30" />
+        <div className="absolute inset-0 bg-secondary">
+          <div className="absolute inset-0 bg-gradient-to-b from-secondary/90 to-secondary/30" />
         </div>
 
         <div className="relative z-10 flex flex-col justify-center items-center h-full px-4 sm:px-6 lg:px-8">
@@ -91,7 +91,7 @@ const LegalNoticePage = () => {
         {/* Legal Information */}
         <motion.section className="mb-16" variants={sectionVariants}>
           <motion.h2
-            className="text-2xl sm:text-3xl font-bold text-black mb-8 tracking-tight"
+            className="text-2xl sm:text-3xl font-bold text-secondary mb-8 tracking-tight"
             whileHover={{ x: 5 }}
             transition={{ duration: 0.3 }}
           >
@@ -110,7 +110,7 @@ const LegalNoticePage = () => {
                 onMouseLeave={() => setActiveSection(null)}
               >
                 <motion.h3
-                  className="text-lg sm:text-xl font-semibold text-black mb-4 tracking-tight"
+                  className="text-lg sm:text-xl font-semibold text-secondary mb-4 tracking-tight"
                   animate={{
                     color: activeSection === section ? '#f59e0b' : '#000',
                   }}
@@ -138,7 +138,7 @@ const LegalNoticePage = () => {
         {/* Copyright */}
         <motion.section className="mb-16" variants={sectionVariants}>
           <motion.h2
-            className="text-2xl sm:text-3xl font-bold text-black mb-8 tracking-tight"
+            className="text-2xl sm:text-3xl font-bold text-secondary mb-8 tracking-tight"
             whileHover={{ x: 5 }}
             transition={{ duration: 0.3 }}
           >
@@ -168,7 +168,7 @@ const LegalNoticePage = () => {
             <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.3 }}>
               <Link
                 href="/"
-                className="inline-flex h-12 items-center justify-center bg-black text-white font-medium px-8 tracking-tight uppercase"
+                className="inline-flex h-12 items-center justify-center bg-secondary text-white font-medium px-8 tracking-tight uppercase"
               >
                 {t('legal.backToHome')}
               </Link>

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 const slideData = {
   id: 3,
-  image: '/assets/startseite.jpg',
+  image: '/assets/startseite.jpeg',
   titleKey: 'hero.slide2.title',
   descriptionKey: 'hero.slide2.description',
 };
@@ -33,7 +33,7 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="relative w-full mx-auto h-dvh lg:w-full overflow-hidden bg-black">
+    <div className="relative w-full mx-auto h-dvh lg:w-full overflow-hidden bg-secondary">
       {/* Main Container */}
       <div className="relative w-full h-full">
         <div className="relative w-full h-full">

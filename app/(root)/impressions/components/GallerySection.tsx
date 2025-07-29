@@ -231,7 +231,7 @@ const GallerySection: React.FC = () => {
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
                   />
                 </div>
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-opacity-10 transition-opacity duration-300 rounded-lg"></div>
+                <div className="absolute inset-0 bg-secondary/10 group-hover:bg-opacity-10 transition-opacity duration-300 rounded-lg"></div>
               </motion.div>
             );
           })}
@@ -241,7 +241,7 @@ const GallerySection: React.FC = () => {
       <AnimatePresence>
         {lightboxOpen && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 bg-opacity-90 p-2 sm:p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-secondary/70 bg-opacity-90 p-2 sm:p-4 backdrop-blur-sm"
             variants={lightboxVariants}
             initial="hidden"
             animate="visible"

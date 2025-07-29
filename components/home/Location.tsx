@@ -129,7 +129,7 @@ const Location = () => {
 
             {/* Overlay */}
             <motion.div
-              className="absolute inset-0 bg-black/40"
+              className="absolute inset-0 bg-secondary/40"
               animate={{
                 backgroundColor:
                   hoveredCard === location.id ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.4)',
@@ -182,7 +182,7 @@ const Location = () => {
                     <div className="inline-flex h-8 sm:h-10 translate-y-0 items-center justify-center bg-transparent text-xs sm:text-sm font-medium tracking-widest uppercase text-white transition group-hover:-translate-y-[150%]">
                       {t('location.explore')}
                     </div>
-                    <div className="absolute inline-flex h-8 sm:h-10 w-full translate-y-[100%] items-center justify-center bg-white text-xs sm:text-sm font-medium tracking-widest uppercase text-black transition duration-300 group-hover:translate-y-0">
+                    <div className="absolute inline-flex h-8 sm:h-10 w-full translate-y-[100%] items-center justify-center bg-white text-xs sm:text-sm font-medium tracking-widest uppercase text-secondary transition duration-300 group-hover:translate-y-0">
                       {t('location.explore')}
                     </div>
                   </Link>

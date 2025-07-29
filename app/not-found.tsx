@@ -623,7 +623,7 @@ const FoodItem = ({ item }: FoodItemProps) => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
-              className="absolute inset-0 rounded-full bg-black/70 bg-opacity-80 flex items-center justify-center text-white text-xs font-medium text-center px-2"
+              className="absolute inset-0 rounded-full bg-secondary/70 bg-opacity-80 flex items-center justify-center text-white text-xs font-medium text-center px-2"
               style={{
                 width: '100%',
                 height: '100%',

@@ -165,7 +165,7 @@ const MenusSection: React.FC = () => {
 
         {/* Text Section */}
         <motion.div
-          className={`bg-red-50/15 z-10 w-full flex flex-col justify-center items-center text-black p-8 md:p-12 lg:p-16 aspect-square ${
+          className={`bg-red-50/15 z-10 w-full flex flex-col justify-center items-center text-secondary p-8 md:p-12 lg:p-16 aspect-square ${
             isImageLeft ? 'order-2 md:order-2' : 'order-2 md:order-1'
           }`}
           variants={staggerContainer}
@@ -186,13 +186,13 @@ const MenusSection: React.FC = () => {
           </motion.h2>
           <motion.button
             onClick={() => handleMenuClick(category.pdfPath)}
-            className="group relative inline-flex cursor-pointer h-12 items-center justify-center overflow-hidden rounded-full border border-black font-narrow px-8 md:px-10 py-2 mt-4"
+            className="group relative inline-flex cursor-pointer h-12 items-center justify-center overflow-hidden rounded-full border border-secondary font-narrow px-8 md:px-10 py-2 mt-4"
             variants={fadeInUp}
           >
-            <div className="inline-flex h-12 translate-y-0 items-center justify-center bg-transparent text-sm md:text-base font-medium tracking-widest uppercase text-black transition group-hover:-translate-y-[150%]">
+            <div className="inline-flex h-12 translate-y-0 items-center justify-center bg-transparent text-sm md:text-base font-medium tracking-widest uppercase text-secondary transition group-hover:-translate-y-[150%]">
               {t('menus.viewMenu')}
             </div>
-            <div className="absolute inline-flex h-12 w-full translate-y-[100%] items-center justify-center bg-black text-sm md:text-base font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
+            <div className="absolute inline-flex h-12 w-full translate-y-[100%] items-center justify-center bg-secondary text-sm md:text-base font-medium tracking-widest uppercase text-white transition duration-300 group-hover:translate-y-0">
               {t('menus.viewMenu')}
             </div>
           </motion.button>

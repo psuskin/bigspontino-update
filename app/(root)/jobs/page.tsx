@@ -1,5 +1,4 @@
 import { ScrollTransition } from '@/components/animation/scroll/ScrollTransition';
-import Footer from '@/components/shared/footer/Footer';
 import HeroSection from './components/HeroSection';
 import JobsSection from './components/JobsSection';
 
@@ -14,7 +13,6 @@ export default function JobsPage() {
       <HeroSection />
       <div>
         <JobsSection />
-        <Footer />
       </div>
     </ScrollTransition>
   );

@@ -255,7 +255,7 @@ const Navbar = () => {
       >
         {/* Animated background overlay */}
         {/* <motion.div
-          className="absolute inset-0 bg-black/10 backdrop-blur-sm -z-10"
+          className="absolute inset-0 bg-secondary/10 backdrop-blur-sm -z-10"
           initial={{ y: '-100%' }}
           animate={{
             y: isScrolled ? '0%' : '-100%',
@@ -275,8 +275,8 @@ const Navbar = () => {
               </motion.div>
             </div>
           </SheetTrigger>
-          <SheetContent className=" rounded-none border border-[#ce2d19] bg-transparent pointer-events-none text-white w-full sm:w-xl">
-            <div className="w-full h-full bg-[#ce2d19] pointer-events-auto rounded-none">
+          <SheetContent className=" rounded-none border border-primary bg-transparent pointer-events-none text-white w-full sm:w-xl">
+            <div className="w-full h-full bg-primary pointer-events-auto rounded-none">
               <SheetHeader>
                 <SheetTitle></SheetTitle>
                 <SheetDescription></SheetDescription>
@@ -357,7 +357,7 @@ const Navbar = () => {
                           href={link.href}
                           target="_blank"
                           onClick={() => setIsOpen(false)}
-                          className={`block text-3xl font-medium text-left relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-black after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
+                          className={`block text-3xl font-medium text-left relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-secondary after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
                             pathname === link.href ? 'italic after:scale-x-100' : ''
                           }`}
                         >
@@ -382,7 +382,7 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
             >
               <Image
-                src="/assets/logo-white.png"
+                src="/assets/logo-red.png"
                 alt="BigSpuntino"
                 width={100}
                 height={100}
@@ -417,7 +417,7 @@ const Navbar = () => {
               {currentLanguage === 'en' ? (
                 <motion.span
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'en' ? 'text-white ' : 'hover:text-[#ce2d19]'
+                    currentLanguage === 'en' ? 'text-white ' : 'hover:text-primary'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -427,7 +427,7 @@ const Navbar = () => {
               ) : (
                 <motion.span
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'de' ? 'text-white ' : 'hover:text-[#ce2d19]'
+                    currentLanguage === 'de' ? 'text-white ' : 'hover:text-primary'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -451,7 +451,7 @@ const Navbar = () => {
                       <motion.button
                         onClick={() => changeLanguage('en')}
                         className={`transition-colors text-4xl uppercase mb-6 duration-200 ${
-                          currentLanguage === 'en' ? 'text-[#ce2d19] ' : 'hover:text-[#ce2d19]'
+                          currentLanguage === 'en' ? 'text-primary ' : 'hover:text-primary'
                         }`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -463,7 +463,7 @@ const Navbar = () => {
                       <motion.button
                         onClick={() => changeLanguage('de')}
                         className={`transition-colors text-4xl uppercase duration-200 ${
-                          currentLanguage === 'de' ? 'text-[#ce2d19] ' : 'hover:text-[#ce2d19]'
+                          currentLanguage === 'de' ? 'text-primary ' : 'hover:text-primary'
                         }`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -488,7 +488,7 @@ const Navbar = () => {
               whileHover={{ scale: isBookingLoading ? 1 : 1.02 }}
               whileTap={{ scale: isBookingLoading ? 1 : 0.98 }}
             >
-              <div className="inline-flex h-8 sm:h-9 md:h-10 translate-y-0 items-center justify-center bg-[#ce2d19] text-sm sm:text-lg md:text-xl lg:text-2xl px-3 sm:px-4 md:px-6 text-white transition group-hover:-translate-y-[150%] rounded-none">
+              <div className="inline-flex h-8 sm:h-9 md:h-10 translate-y-0 items-center justify-center bg-primary text-sm sm:text-lg md:text-xl lg:text-2xl px-3 sm:px-4 md:px-6 text-white transition group-hover:-translate-y-[150%] rounded-none">
                 <span className="hidden sm:inline">
                   {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
                 </span>
@@ -496,7 +496,7 @@ const Navbar = () => {
                   {isBookingLoading ? '...' : t('buttons.book') || 'Book'}
                 </span>
               </div>
-              <div className="absolute inline-flex h-8 sm:h-9 md:h-10 w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-white px-3 sm:px-4 md:px-6 text-black transition duration-300 group-hover:translate-y-0 rounded-none">
+              <div className="absolute inline-flex h-8 sm:h-9 md:h-10 w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-white px-3 sm:px-4 md:px-6 text-secondary transition duration-300 group-hover:translate-y-0 rounded-none">
                 <span className="hidden sm:inline">
                   {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
                 </span>
@@ -521,12 +521,12 @@ const Navbar = () => {
             whileHover={{ scale: isBookingLoading ? 1 : 1.02 }}
             whileTap={{ scale: isBookingLoading ? 1 : 0.98 }}
           >
-            <div className="inline-flex h-11 md:h-11 translate-y-0 items-center justify-center bg-[#ce2d19]  px-3 sm:px-4 md:px-6 text-white transition group-hover:-translate-y-[150%] rounded-none w-full">
+            <div className="inline-flex h-11 md:h-11 translate-y-0 items-center justify-center bg-primary  px-3 sm:px-4 md:px-6 text-white transition group-hover:-translate-y-[150%] rounded-none w-full">
               <span className="">
                 {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
               </span>
             </div>
-            <div className="absolute inline-flex h-11 md:h-11 w-full translate-y-[100%] items-center justify-center  bg-white px-3 sm:px-4 md:px-6 text-black transition duration-300 group-hover:translate-y-0 rounded-none">
+            <div className="absolute inline-flex h-11 md:h-11 w-full translate-y-[100%] items-center justify-center  bg-white px-3 sm:px-4 md:px-6 text-secondary transition duration-300 group-hover:translate-y-0 rounded-none">
               <span className="">
                 {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
               </span>
@@ -535,12 +535,12 @@ const Navbar = () => {
         </div>
         <Link
           href={'/menus'}
-          className="px-8 h-full flex items-center justify-center border-x-1 bg-[#ce2d19] text-white border-white"
+          className="px-8 h-full flex items-center justify-center border-x-1 bg-primary text-white border-white"
         >
           Menu
         </Link>
         <motion.button
-          className=" bg-[#ce2d19] h-10 aspect-square flex items-center justify-center w-10"
+          className=" bg-primary h-10 aspect-square flex items-center justify-center w-10"
           onClick={scrollToTop}
           whileTap={{ scale: 0.95 }}
         >
@@ -554,11 +554,11 @@ const Navbar = () => {
       <Sheet open={isBookingSheetOpen} onOpenChange={setIsBookingSheetOpen}>
         <SheetContent
           side="right"
-          className="w-full sm:w-[600px] text-white md:w-[700px] lg:w-[800px] p-0 rounded-none border-l-2 border-[#ce2d19]"
+          className="w-full sm:w-[600px] text-white md:w-[700px] lg:w-[800px] p-0 rounded-none border-l-2 border-primary"
         >
           <div className="h-full flex flex-col">
             {/* Header */}
-            <SheetHeader className="p-4 border-b border-gray-200 bg-[#ce2d19] flex-shrink-0">
+            <SheetHeader className="p-4 border-b border-gray-200 bg-primary flex-shrink-0">
               <div className="flex justify-between items-center">
                 <SheetTitle className="text-2xl font-semibold text-white">
                   {t('buttons.bookTable') || 'Book A Table'}
@@ -582,7 +582,7 @@ const Navbar = () => {
                   </div>
                   <div className="w-full max-w-56 bg-gray-200 rounded-none h-[8px]">
                     <div
-                      className="bg-[#ce2d19] h-[8px] rounded-none transition-all duration-500 ease-out"
+                      className="bg-primary h-[8px] rounded-none transition-all duration-500 ease-out"
                       style={{ width: `${progress}%` }}
                     />
                   </div>

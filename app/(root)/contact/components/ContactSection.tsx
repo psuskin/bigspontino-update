@@ -127,7 +127,7 @@ const ContactSection = () => {
           </div>
 
           {/* Right Column - Contact Form */}
-          <div className="w-full lg:w-1/2 bg-[#ce2d19] text-white">
+          <div className="w-full lg:w-1/2 bg-primary text-white">
             <div className="p-6 sm:p-8 lg:p-20">
               {/* Header */}
               <div className="mb-12 lg:mb-16">
@@ -156,7 +156,7 @@ const ContactSection = () => {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       placeholder={`${contact.form.firstName} *`}
-                      className="w-full bg-white/40 text-black py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      className="w-full bg-white/40 text-secondary py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
                   </div>
@@ -167,7 +167,7 @@ const ContactSection = () => {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       placeholder={`${contact.form.lastName} *`}
-                      className="w-full bg-white/40 text-black py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      className="w-full bg-white/40 text-secondary py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
                   </div>
@@ -274,7 +274,7 @@ const ContactSection = () => {
                         id="agreeTerms"
                         checked={formData.agreeTerms}
                         onChange={handleInputChange}
-                        className="mt-1 w-4 h-4 accent-[#ce2d19]"
+                        className="mt-1 w-4 h-4 accent-primary"
                       />
                       <span className="text-white">
                         {contact.form.agreeTerms1}{' '}
@@ -291,7 +291,7 @@ const ContactSection = () => {
 
                   <button
                     onClick={handleSubmit}
-                    className="border-2 border-white text-white hover:bg-white hover:text-[#ce2d19] px-8 sm:px-16 py-4 sm:py-6 font-bold uppercase tracking-wide transition-all duration-300 text-sm w-full sm:w-auto"
+                    className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 sm:px-16 py-4 sm:py-6 font-bold uppercase tracking-wide transition-all duration-300 text-sm w-full sm:w-auto"
                   >
                     {contact.form.submit}
                   </button>
@@ -321,7 +321,7 @@ const ContactSection = () => {
             {/* Right Column - Contact Information */}
             <div className="w-full lg:w-full p-6 sm:p-8 lg:p-20 flex flex-col justify-center bg-white">
               <div className="">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#ce2d19] mb-4 uppercase">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4 uppercase">
                   BIG SPUNTINO
                 </h2>
                 <p className="text-gray-700 mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
@@ -331,17 +331,17 @@ const ContactSection = () => {
                 <div className="space-y-0">
                   {/* Address */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-t-2 py-4 sm:py-5">
-                    <div className="text-[#ce2d19] font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.address}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
-                      <p className="text-[#ce2d19] font-medium">{contact.addressValue}</p>
+                      <p className="text-primary font-medium">{contact.addressValue}</p>
                     </div>
                   </div>
 
                   {/* Phone */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
-                    <div className="text-[#ce2d19] font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.phone}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
@@ -351,7 +351,7 @@ const ContactSection = () => {
 
                   {/* Email */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5">
-                    <div className="text-[#ce2d19] font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.email}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
@@ -361,7 +361,7 @@ const ContactSection = () => {
 
                   {/* Website */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
-                    <div className="text-[#ce2d19] font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.website}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">
@@ -371,7 +371,7 @@ const ContactSection = () => {
 
                   {/* Opening Hours */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-t-2 py-4 sm:py-5">
-                    <div className="text-[#ce2d19] font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
+                    <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.openingHours}
                     </div>
                     <div className="text-gray-700 text-sm sm:text-base">

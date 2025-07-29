@@ -89,8 +89,8 @@ const SitemapPage = () => {
         animate="visible"
         variants={containerVariants}
       >
-        <div className="absolute inset-0 bg-black">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-black/30" />
+        <div className="absolute inset-0 bg-secondary">
+          <div className="absolute inset-0 bg-gradient-to-b from-secondary/90 to-secondary/30" />
         </div>
 
         <div className="relative z-10 flex flex-col justify-center items-center h-full px-4 sm:px-6 lg:px-8">
@@ -144,7 +144,7 @@ const SitemapPage = () => {
               onMouseLeave={() => setActiveSection(null)}
             >
               <motion.h3
-                className="text-xl sm:text-2xl font-semibold text-black mb-6 tracking-tight"
+                className="text-xl sm:text-2xl font-semibold text-secondary mb-6 tracking-tight"
                 animate={{
                   color: activeSection === `section-${index}` ? '#f59e0b' : '#000',
                 }}
@@ -189,7 +189,7 @@ const SitemapPage = () => {
             <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.3 }}>
               <Link
                 href="/"
-                className="inline-flex h-12 items-center justify-center bg-black text-white font-medium px-8 tracking-tight uppercase"
+                className="inline-flex h-12 items-center justify-center bg-secondary text-white font-medium px-8 tracking-tight uppercase"
               >
                 {t('sitemap.backToHome')}
               </Link>

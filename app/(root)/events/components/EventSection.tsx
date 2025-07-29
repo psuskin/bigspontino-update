@@ -193,10 +193,10 @@ const EventSection = () => {
             className="group relative inline-flex h-10 sm:h-12 md:h-14 lg:h-16 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
             variants={buttonVariants}
           >
-            <div className="inline-flex h-10 sm:h-12 md:h-14 lg:h-16 translate-y-0 items-center justify-center bg-[#ce2d19] text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase px-6 sm:px-8 md:px-12 lg:px-16 text-white transition group-hover:-translate-y-[150%] rounded-none">
+            <div className="inline-flex h-10 sm:h-12 md:h-14 lg:h-16 translate-y-0 items-center justify-center bg-primary text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase px-6 sm:px-8 md:px-12 lg:px-16 text-white transition group-hover:-translate-y-[150%] rounded-none">
               {t('events.contactButton')}
             </div>
-            <div className="absolute inline-flex h-10 sm:h-12 md:h-14 lg:h-16 w-full translate-y-[100%] items-center justify-center text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase bg-black px-6 sm:px-8 md:px-12 lg:px-16 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
+            <div className="absolute inline-flex h-10 sm:h-12 md:h-14 lg:h-16 w-full translate-y-[100%] items-center justify-center text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase bg-secondary px-6 sm:px-8 md:px-12 lg:px-16 text-neutral-50 transition duration-300 group-hover:translate-y-0 rounded-none">
               {t('events.contactButton')}
             </div>
           </motion.button>
@@ -225,7 +225,7 @@ const EventSection = () => {
                   className={`w-full ${event.aspectRatio} object-cover transition-transform duration-300 group-hover:scale-105 group-hover:brightness-90`}
                   alt={t(event.titleKey)}
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/10 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="text-white uppercase px-3 py-1 text-xs sm:text-sm font-medium rounded">
                     Big Spuntino
@@ -257,7 +257,7 @@ const EventSection = () => {
       <AnimatePresence>
         {lightboxOpen && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 bg-opacity-90 p-2 sm:p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-secondary/70 bg-opacity-90 p-2 sm:p-4 backdrop-blur-sm"
             variants={lightboxVariants}
             initial="hidden"
             animate="visible"
