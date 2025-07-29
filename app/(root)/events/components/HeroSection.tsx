@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full   h-[60dvh]  overflow-hidden bg-secondary">
+    <section className="relative w-full   h-[60dvh]  overflow-hidden bg-primary">
       <Image
         width={1920}
         height={1080}
