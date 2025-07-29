@@ -33,7 +33,7 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="relative w-full mx-auto h-dvh lg:w-full overflow-hidden bg-secondary">
+    <div className="relative w-full mx-auto h-dvh lg:w-full overflow-hidden bg-primary">
       {/* Main Container */}
       <div className="relative w-full h-full">
         <div className="relative w-full h-full">

@@ -14,7 +14,7 @@ const images = [
   '/assets/photos/6.jpeg',
   '/assets/photos/7.jpeg',
   '/assets/photos/8.jpeg',
-  '/assets/photos/9.jpg',
+  '/assets/photos/9.jpeg',
   '/assets/photos/10.jpg',
   '/assets/photos/11.jpg',
   '/assets/photos/12.jpeg',
