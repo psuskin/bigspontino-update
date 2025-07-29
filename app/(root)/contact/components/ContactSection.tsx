@@ -324,7 +324,7 @@ const ContactSection = () => {
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4 uppercase">
                   BIG SPUNTINO
                 </h2>
-                <p className="text-gray-700 mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
+                <p className="text-secondary mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
                   {contact.description}
                 </p>
 
@@ -334,7 +334,7 @@ const ContactSection = () => {
                     <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.address}
                     </div>
-                    <div className="text-gray-700 text-sm sm:text-base">
+                    <div className="text-secondary text-sm sm:text-base">
                       <p className="text-primary font-medium">{contact.addressValue}</p>
                     </div>
                   </div>
@@ -344,7 +344,7 @@ const ContactSection = () => {
                     <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.phone}
                     </div>
-                    <div className="text-gray-700 text-sm sm:text-base">
+                    <div className="text-secondary text-sm sm:text-base">
                       <p>{contact.phoneValue}</p>
                     </div>
                   </div>
@@ -354,7 +354,7 @@ const ContactSection = () => {
                     <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.email}
                     </div>
-                    <div className="text-gray-700 text-sm sm:text-base">
+                    <div className="text-secondary text-sm sm:text-base">
                       <p>{contact.emailValue}</p>
                     </div>
                   </div>
@@ -364,7 +364,7 @@ const ContactSection = () => {
                     <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.website}
                     </div>
-                    <div className="text-gray-700 text-sm sm:text-base">
+                    <div className="text-secondary text-sm sm:text-base">
                       <p>{contact.websiteValue}</p>
                     </div>
                   </div>
@@ -374,7 +374,7 @@ const ContactSection = () => {
                     <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.openingHours}
                     </div>
-                    <div className="text-gray-700 text-sm sm:text-base">
+                    <div className="text-secondary text-sm sm:text-base">
                       <p>
                         {days.wed}-{days.fri} {contact.wedHours}
                       </p>

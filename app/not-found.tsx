@@ -751,7 +751,7 @@ export default function NotFound() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          <h3 className="text-2xl md:text-3xl font-serif text-gray-700 mb-1">
+          <h3 className="text-2xl md:text-3xl font-serif text-secondary mb-1">
             {"But don't worry, our delicious Italian cuisine is still here!"}
           </h3>
           <p className="text-gray-600 text-xs mb-6 max-w-3xl mx-auto font-narrow">

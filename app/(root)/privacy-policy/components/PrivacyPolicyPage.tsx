@@ -98,7 +98,7 @@ const PrivacyPolicyPage = () => {
             >
               {t('privacy.contactTitle')}
             </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-secondary">
               <div className="space-y-2">
                 <p className="font-medium">{t('privacy.addressTitle')}</p>
                 <p>{t('privacy.addressLine1')}</p>
@@ -160,7 +160,7 @@ const PrivacyPolicyPage = () => {
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-secondary leading-relaxed">
                     {t(`privacy.sections.${sectionNum}.content`)}
                   </p>
                 </motion.div>

@@ -90,7 +90,7 @@ const CookiePolicyPage = () => {
       >
         {/* Introduction */}
         <motion.div className="mb-12" variants={sectionVariants}>
-          <p className="text-gray-700 leading-relaxed mb-6">{t('cookie.introduction')}</p>
+          <p className="text-secondary leading-relaxed mb-6">{t('cookie.introduction')}</p>
         </motion.div>
 
         {/* Policy Sections */}
@@ -131,7 +131,7 @@ const CookiePolicyPage = () => {
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-secondary leading-relaxed">
                     {t(`cookie.sections.${sectionNum}.content`)}
                   </p>
                 </motion.div>

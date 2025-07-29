@@ -6,18 +6,35 @@ import Image from 'next/image';
 const HeroSection = () => {
   // Define images for the mouse trail - you can customize these
   const trailImages = [
-    '/assets/bambiniclub.jpg',
     '/assets/photos/1.jpg',
-    '/assets/bambini_club8.jpg',
+    '/assets/photos/2.jpg',
     '/assets/photos/3.jpg',
     '/assets/photos/4.jpg',
     '/assets/photos/5.jpeg',
     '/assets/photos/6.jpeg',
-    '/assets/photos/7.jpg',
-    '/assets/bambiniclub02.jpg',
-    '/assets/photos/8.jpg',
+    '/assets/photos/7.jpeg',
+    '/assets/photos/8.jpeg',
     '/assets/photos/9.jpg',
-    '/assets/photos/10.jpeg',
+    '/assets/photos/10.jpg',
+    '/assets/photos/11.jpg',
+    '/assets/photos/12.jpeg',
+    '/assets/photos/13.jpeg',
+    '/assets/photos/14.jpeg',
+    '/assets/photos/15.jpg',
+    '/assets/photos/16.jpg',
+    '/assets/photos/17.jpeg',
+    '/assets/photos/18.jpg',
+    '/assets/photos/19.jpg',
+    '/assets/photos/20.jpg',
+    '/assets/photos/21.jpg',
+    '/assets/photos/22.jpg',
+    '/assets/photos/23.jpg',
+    '/assets/photos/24.jpg',
+    '/assets/photos/25.jpg',
+    '/assets/photos/26.jpg',
+    '/assets/photos/27.jpeg',
+    '/assets/photos/28.jpg',
+    '/assets/photos/29.jpeg',
   ];
 
   return (
@@ -32,7 +49,7 @@ const HeroSection = () => {
       />
 
       {/* Overlay for better text visibility */}
-      <div className="absolute inset-0 bg-secondary/35" />
+      <div className="absolute inset-0 bg-black/35" />
 
       {/* Mouse Trail Container */}
       <div className="absolute inset-0">

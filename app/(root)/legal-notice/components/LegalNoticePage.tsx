@@ -126,7 +126,7 @@ const LegalNoticePage = () => {
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-secondary leading-relaxed">
                     {t(`legal.sections.${section}.content`)}
                   </p>
                 </motion.div>
@@ -150,7 +150,7 @@ const LegalNoticePage = () => {
             whileHover={{ x: 5 }}
             transition={{ duration: 0.3 }}
           >
-            <p className="text-gray-700 leading-relaxed">{t('legal.copyrightContent')}</p>
+            <p className="text-secondary leading-relaxed">{t('legal.copyrightContent')}</p>
           </motion.div>
         </motion.section>
 

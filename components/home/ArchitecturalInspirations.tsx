@@ -103,7 +103,7 @@ const ArchitecturalInspirations = () => {
         <div className="grid gap-1">
           <motion.div
             ref={textRef}
-            className="p-6 md:p-10 lg:p-16 border-2 lg:h-[29rem] h-auto"
+            className="p-6 md:p-10 lg:p-16 border-2 lg:h-[29rem] h-auto text-secondary"
             variants={staggerContainer}
             initial="hidden"
             animate={textInView ? 'visible' : 'hidden'}

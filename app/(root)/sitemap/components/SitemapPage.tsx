@@ -161,7 +161,7 @@ const SitemapPage = () => {
                   >
                     <Link
                       href={link.href}
-                      className="relative text-gray-700 font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-amber-500 after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
+                      className="relative text-secondary font-medium after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-amber-500 after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
                     >
                       {link.label}
                     </Link>

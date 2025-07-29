@@ -90,7 +90,7 @@ const TermsAndConditionsPage = () => {
       >
         {/* Introduction */}
         <motion.div className="mb-12" variants={sectionVariants}>
-          <p className="text-gray-700 leading-relaxed mb-6">{t('terms.introduction')}</p>
+          <p className="text-secondary leading-relaxed mb-6">{t('terms.introduction')}</p>
         </motion.div>
 
         {/* Terms Sections */}
@@ -131,7 +131,7 @@ const TermsAndConditionsPage = () => {
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-secondary leading-relaxed">
                     {t(`terms.sections.${sectionNum}.content`)}
                   </p>
                 </motion.div>
@@ -155,7 +155,7 @@ const TermsAndConditionsPage = () => {
             whileHover={{ x: 5 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-secondary">
               <div className="space-y-2">
                 <p className="font-medium">{t('terms.addressTitle')}</p>
                 <p>{t('terms.addressLine1')}</p>

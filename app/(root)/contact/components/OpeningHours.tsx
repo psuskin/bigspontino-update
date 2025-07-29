@@ -68,7 +68,7 @@ const OpeningHours = () => {
   return (
     <section className="py-16 bg-stone-100">
       {/* Desktop Layout */}
-      <p className="text-gray-700  text-center mb-6 sm:mb-20 sm:text-xl px-8 lg:text-2xl leading-relaxed">
+      <p className="text-secondary  text-center mb-6 sm:mb-20 sm:text-xl px-8 lg:text-2xl leading-relaxed">
         {contact.description}
       </p>
       <div className="w-full h-px bg-secondary/20 my-12 md:hidden "></div>

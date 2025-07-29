@@ -611,7 +611,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                 <Button
                   onClick={() => setIsOpen(false)}
                   variant="outline"
-                  className="w-full h-10 sm:h-12 border-gray-300 text-gray-700 hover:bg-gray-50 rounded-none font-medium text-sm sm:text-base"
+                  className="w-full h-10 sm:h-12 border-gray-300 text-secondary hover:bg-gray-50 rounded-none font-medium text-sm sm:text-base"
                 >
                   Close
                 </Button>

@@ -277,7 +277,7 @@ const JobsSection = () => {
                 {t('jobs.joinOur')} {t('jobs.famiglia')}
               </span>
             </h3>
-            <p className="text-sm sm:text-base md:text-lg text-gray-700">
+            <p className="text-sm sm:text-base md:text-lg text-secondary">
               {t('jobs.formDescription')}
             </p>
           </motion.div> */}
@@ -514,7 +514,7 @@ const JobsSection = () => {
                 />
                 <label
                   htmlFor="agreeTerms"
-                  className="text-xs sm:text-sm text-gray-700 cursor-pointer"
+                  className="text-xs sm:text-sm text-secondary cursor-pointer"
                 >
                   {t('jobs.form.agreeTerms1')}{' '}
                   <a href="#" className="underline font-bold hover:text-secondary">

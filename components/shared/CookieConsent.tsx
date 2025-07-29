@@ -42,7 +42,7 @@ const CookieConsent = () => {
                 <h3 className="text-base xs:text-lg sm:text-2xl lg:text-4xl uppercase font-bold leading-tight">
                   {t('cookieConsent.title')}
                 </h3>
-                <p className="text-xs xs:text-sm font-narrow sm:text-base ps-1 text-gray-700 leading-relaxed">
+                <p className="text-xs xs:text-sm font-narrow sm:text-base ps-1 text-secondary leading-relaxed">
                   {t('cookieConsent.description')}{' '}
                   <Link
                     href="/cookie-policy"
