@@ -304,7 +304,7 @@ const JobsSection = () => {
                       onChange={handleInputChange}
                       required
                       placeholder={t('jobs.form.placeholders.firstName')}
-                      className="w-full bg-white text-secondary border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-background text-secondary border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -324,7 +324,7 @@ const JobsSection = () => {
                       onChange={handleInputChange}
                       required
                       placeholder={t('jobs.form.placeholders.lastName')}
-                      className="w-full bg-white text-secondary border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-background text-secondary border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -345,7 +345,7 @@ const JobsSection = () => {
                     <select
                       value={formData.phonePrefix}
                       onChange={(e) => handleSelectChange('phonePrefix', e.target.value)}
-                      className="w-20 sm:w-24 bg-white border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-1 sm:px-2 transition-all duration-300 text-sm sm:text-base"
+                      className="w-20 sm:w-24 bg-background border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-1 sm:px-2 transition-all duration-300 text-sm sm:text-base"
                     >
                       <option value="+49">🇩🇪</option>
                       <option value="+1">🇺🇸</option>
@@ -360,7 +360,7 @@ const JobsSection = () => {
                         onChange={handleInputChange}
                         required
                         placeholder={t('jobs.form.placeholders.phone')}
-                        className="w-full bg-white border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                        className="w-full bg-background border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                       />
                     </div>
                   </div>
@@ -381,7 +381,7 @@ const JobsSection = () => {
                       onChange={handleInputChange}
                       required
                       placeholder={t('jobs.form.placeholders.email')}
-                      className="w-full bg-white text-secondary border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-background text-secondary border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -406,7 +406,7 @@ const JobsSection = () => {
                       id="position"
                       value={formData.position}
                       onChange={(e) => handleSelectChange('position', e.target.value)}
-                      className="w-full bg-white border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-background border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     >
                       <option value="">{t('jobs.form.choose')}</option>
                       <option value="server">{t('jobs.form.positions.server')}</option>
@@ -427,7 +427,7 @@ const JobsSection = () => {
                       id="experience"
                       value={formData.experience}
                       onChange={(e) => handleSelectChange('experience', e.target.value)}
-                      className="w-full bg-white border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-background border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     >
                       <option value="">{t('jobs.form.choose')}</option>
                       <option value="entry">{t('jobs.form.experiences.entry')}</option>
@@ -447,7 +447,7 @@ const JobsSection = () => {
                       id="availability"
                       value={formData.availability}
                       onChange={(e) => handleSelectChange('availability', e.target.value)}
-                      className="w-full bg-white border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full bg-background border-2 border-gray-300 focus:border-secondary py-2 sm:py-3 px-3 sm:px-4 transition-all duration-300 text-sm sm:text-base"
                     >
                       <option value="">{t('jobs.form.choose')}</option>
                       <option value="fulltime">{t('jobs.form.availabilities.fulltime')}</option>
@@ -474,7 +474,7 @@ const JobsSection = () => {
                     onChange={handleFileChange}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
-                  <div className="bg-white border-2 border-dashed border-gray-400 hover:border-secondary py-4 sm:py-6 px-3 sm:px-4 text-center transition-all duration-300">
+                  <div className="bg-background border-2 border-dashed border-gray-400 hover:border-secondary py-4 sm:py-6 px-3 sm:px-4 text-center transition-all duration-300">
                     <Upload className="w-6 sm:w-8 h-6 sm:h-8 mx-auto mb-1 sm:mb-2 text-gray-600" />
                     <p className="text-gray-600 font-medium text-xs sm:text-sm md:text-base">
                       {formData.cv ? formData.cv.name : t('jobs.form.uploadText')}
@@ -499,7 +499,7 @@ const JobsSection = () => {
                     onChange={handleInputChange}
                     placeholder={t('jobs.form.placeholders.message')}
                     rows={4}
-                    className="w-full bg-white border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 resize-y transition-all duration-300 text-sm sm:text-base"
+                    className="w-full bg-background border-2 border-gray-300 focus:border-transparent py-2 sm:py-3 px-3 sm:px-4 resize-y transition-all duration-300 text-sm sm:text-base"
                   />
                 </div>
               </motion.div>

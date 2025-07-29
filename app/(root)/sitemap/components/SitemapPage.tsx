@@ -81,7 +81,7 @@ const SitemapPage = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       {/* Hero Header */}
       <motion.section
         className="relative h-[40vh] overflow-hidden border-b border-gray-200"

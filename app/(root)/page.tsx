@@ -12,7 +12,7 @@ export default function Home() {
     <main className="">
       <ScrollTransition
         section1ClassName="h-dvh"
-        section2ClassName="bg-white h-dvh"
+        section2ClassName="bg-background h-dvh"
         // scaleRange={[1, 0.8]}
         yOffset={50}
       >

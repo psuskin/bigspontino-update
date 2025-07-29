@@ -8,7 +8,7 @@ export default function Menus() {
   return (
     <ScrollTransition
       section1ClassName=""
-      section2ClassName="bg-white"
+      section2ClassName="bg-background"
       // scaleRange={[1, 0.8]}
       yOffset={50}
     >

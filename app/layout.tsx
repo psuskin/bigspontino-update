@@ -46,7 +46,7 @@ export default function RootLayout({
       <head>
         <link rel="preload" href="/assets/logo-white.png" as="image" />
       </head>
-      <body className={`${dreamOrphans.variable} ${futuraCyrillic.variable} antialiased`}>
+      <body className={`${dreamOrphans.variable} ${futuraCyrillic.variable} antialiased `}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

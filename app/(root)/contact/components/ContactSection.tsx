@@ -137,7 +137,7 @@ const ContactSection = () => {
                 <p className="text-white-900 font-narrow text-sm mb-10 sm:mb-16">
                   {t('contact.welcomeMessage')}
                 </p>
-                <div className="w-full h-px bg-white"></div>
+                <div className="w-full h-px bg-background"></div>
               </div>
 
               {/* Your Details Section */}
@@ -145,7 +145,7 @@ const ContactSection = () => {
                 <h2 className="text-lg sm:text-xl lg:text-2xl uppercase font-bold mb-6 sm:mb-10">
                   {contact.form.yourDetails}
                 </h2>
-                <div className="w-full h-px bg-white mb-10 sm:mb-16"></div>
+                <div className="w-full h-px bg-background mb-10 sm:mb-16"></div>
 
                 {/* Name Fields */}
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
@@ -156,7 +156,7 @@ const ContactSection = () => {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       placeholder={`${contact.form.firstName} *`}
-                      className="w-full bg-white/40 text-secondary py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      className="w-full bg-background/40 text-secondary py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
                   </div>
@@ -167,7 +167,7 @@ const ContactSection = () => {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       placeholder={`${contact.form.lastName} *`}
-                      className="w-full bg-white/40 text-secondary py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      className="w-full bg-background/40 text-secondary py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
                   </div>
@@ -181,10 +181,10 @@ const ContactSection = () => {
                         value={formData.phonePrefix}
                         onValueChange={(value) => handleSelectChange('phonePrefix', value)}
                       >
-                        <SelectTrigger className="w-fit bg-white/40 text-white border-0 py-4 sm:py-10 px-2 text-sm focus:ring-0 focus:ring-offset-0 rounded-none shadow-none [&>svg]:hidden">
+                        <SelectTrigger className="w-fit bg-background/40 text-white border-0 py-4 sm:py-10 px-2 text-sm focus:ring-0 focus:ring-offset-0 rounded-none shadow-none [&>svg]:hidden">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent className="bg-white/90 backdrop-blur-sm border-white/20">
+                        <SelectContent className="bg-background/90 backdrop-blur-sm border-white/20">
                           <SelectItem value="+49" className="text-gray-800 hover:text-gray-900">
                             🇩🇪 +49
                           </SelectItem>
@@ -205,7 +205,7 @@ const ContactSection = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         placeholder={`${contact.form.phone} *`}
-                        className="flex-1 bg-white/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                        className="flex-1 bg-background/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                         required
                       />
                     </div>
@@ -217,7 +217,7 @@ const ContactSection = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder={`${contact.form.email} *`}
-                      className="w-full bg-white/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
+                      className="w-full bg-background/40 text-white py-4 sm:py-6 px-4 text-sm font-medium placeholder-gray-50 focus:outline-none"
                       required
                     />
                   </div>
@@ -226,7 +226,7 @@ const ContactSection = () => {
 
               {/* Your Enquiry Section */}
               <div>
-                <div className="w-full h-px bg-white mb-8 sm:mb-14"></div>
+                <div className="w-full h-px bg-background mb-8 sm:mb-14"></div>
                 <h2 className="text-lg sm:text-xl lg:text-2xl uppercase font-bold mb-6 sm:mb-10">
                   {contact.form.yourEnquiry}
                 </h2>
@@ -236,10 +236,10 @@ const ContactSection = () => {
                     value={formData.enquiryType}
                     onValueChange={(value) => handleSelectChange('enquiryType', value)}
                   >
-                    <SelectTrigger className="w-full bg-white/40 text-white border-0 py-4 sm:py-6 px-4 text-sm focus:ring-0 focus:ring-offset-0 rounded-none shadow-none data-[placeholder]:text-gray-50">
+                    <SelectTrigger className="w-full bg-background/40 text-white border-0 py-4 sm:py-6 px-4 text-sm focus:ring-0 focus:ring-offset-0 rounded-none shadow-none data-[placeholder]:text-gray-50">
                       <SelectValue placeholder={`${contact.form.enquiryAbout} *`} />
                     </SelectTrigger>
-                    <SelectContent className="bg-white/90 backdrop-blur-sm border-white/20">
+                    <SelectContent className="bg-background/90 backdrop-blur-sm border-white/20">
                       <SelectItem value="reservation" className="text-gray-800 hover:text-gray-900">
                         {contact.form.reservation}
                       </SelectItem>
@@ -264,7 +264,7 @@ const ContactSection = () => {
                     onChange={handleInputChange}
                     placeholder={contact.form.placeholders.message}
                     rows={6}
-                    className="w-full bg-white/40 text-white py-4 sm:py-6 px-4 text-sm placeholder-gray-50 focus:outline-none resize-none"
+                    className="w-full bg-background/40 text-white py-4 sm:py-6 px-4 text-sm placeholder-gray-50 focus:outline-none resize-none"
                   ></textarea>
 
                   <div className="mb-10 sm:mb-14">
@@ -291,7 +291,7 @@ const ContactSection = () => {
 
                   <button
                     onClick={handleSubmit}
-                    className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 sm:px-16 py-4 sm:py-6 font-bold uppercase tracking-wide transition-all duration-300 text-sm w-full sm:w-auto"
+                    className="border-2 border-white text-white hover:bg-background hover:text-primary px-8 sm:px-16 py-4 sm:py-6 font-bold uppercase tracking-wide transition-all duration-300 text-sm w-full sm:w-auto"
                   >
                     {contact.form.submit}
                   </button>
@@ -319,7 +319,7 @@ const ContactSection = () => {
             </div> */}
 
             {/* Right Column - Contact Information */}
-            <div className="w-full lg:w-full p-6 sm:p-8 lg:p-20 flex flex-col justify-center bg-white">
+            <div className="w-full lg:w-full p-6 sm:p-8 lg:p-20 flex flex-col justify-center bg-background">
               <div className="">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4 uppercase">
                   BIG SPUNTINO

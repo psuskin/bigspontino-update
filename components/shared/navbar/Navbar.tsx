@@ -306,7 +306,7 @@ const Navbar = () => {
                           <Link
                             href={link.href}
                             onClick={() => setIsOpen(false)}
-                            className={`block font-medium md:text-center text-start relative after:absolute md:after:bottom-1.5 after:bottom-0.5 after:left-0 md:after:h-[3px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-white after:bg-white  after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic  ${
+                            className={`block font-medium md:text-center text-start relative after:absolute md:after:bottom-1.5 after:bottom-0.5 after:left-0 md:after:h-[3px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-background after:bg-background  after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic  ${
                               pathname === link.href ? 'italic after:scale-x-100' : ''
                             }`}
                           >
@@ -437,7 +437,7 @@ const Navbar = () => {
               )}
             </SheetTrigger>
             <SheetContent side="right" className="rounded-none pointer-events-none w-full sm:w-xl">
-              <div className="w-full h-full bg-white pointer-events-auto rounded-none">
+              <div className="w-full h-full bg-background pointer-events-auto rounded-none">
                 <SheetHeader>
                   <SheetTitle></SheetTitle>
                   <SheetDescription></SheetDescription>
@@ -496,7 +496,7 @@ const Navbar = () => {
                   {isBookingLoading ? '...' : t('buttons.book') || 'Book'}
                 </span>
               </div>
-              <div className="absolute inline-flex h-8 sm:h-9 md:h-10 w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-white px-3 sm:px-4 md:px-6 text-secondary transition duration-300 group-hover:translate-y-0 rounded-none">
+              <div className="absolute inline-flex h-8 sm:h-9 md:h-10 w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-background px-3 sm:px-4 md:px-6 text-secondary transition duration-300 group-hover:translate-y-0 rounded-none">
                 <span className="hidden sm:inline">
                   {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
                 </span>
@@ -509,7 +509,7 @@ const Navbar = () => {
         </div>
       </motion.header>
 
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 overflow-y-hidden bg-white  flex justify-between items-center h-10 ">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 overflow-y-hidden bg-background  flex justify-between items-center h-10 ">
         <div className="flex-1 ">
           <motion.button
             onClick={handleBookTable}
@@ -526,7 +526,7 @@ const Navbar = () => {
                 {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
               </span>
             </div>
-            <div className="absolute inline-flex h-11 md:h-11 w-full translate-y-[100%] items-center justify-center  bg-white px-3 sm:px-4 md:px-6 text-secondary transition duration-300 group-hover:translate-y-0 rounded-none">
+            <div className="absolute inline-flex h-11 md:h-11 w-full translate-y-[100%] items-center justify-center  bg-background px-3 sm:px-4 md:px-6 text-secondary transition duration-300 group-hover:translate-y-0 rounded-none">
               <span className="">
                 {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
               </span>
@@ -570,7 +570,7 @@ const Navbar = () => {
             {/* Content */}
             <div className="relative flex-1 overflow-hidden">
               {isWidgetLoading && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-10">
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-background z-10">
                   <div className="mb-4 text-xl font-semibold text-gray-800">
                     <Image
                       src="/assets/logo.png"

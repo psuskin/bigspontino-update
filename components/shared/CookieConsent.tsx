@@ -34,7 +34,7 @@ const CookieConsent = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 100 }}
           transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg z-50 rounded-none"
+          className="fixed bottom-0 left-0 right-0 bg-background border-t shadow-lg z-50 rounded-none"
         >
           <div className="p-3 xs:p-4 sm:px-7 mx-auto sm:py-10 md:py-16 ">
             <div className="flex flex-col lg:flex-row lg:items-center gap-3 xs:gap-4 sm:gap-6">

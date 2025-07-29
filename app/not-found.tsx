@@ -606,7 +606,7 @@ const FoodItem = ({ item }: FoodItemProps) => {
       transition={{ duration: 0.3 }}
     >
       <motion.div
-        className="relative p-4 rounded-full bg-white shadow-lg border-2 border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer"
+        className="relative p-4 rounded-full bg-background shadow-lg border-2 border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer"
         style={{ borderColor: item.color }}
         whileHover={{
           backgroundColor: item.color + '10',

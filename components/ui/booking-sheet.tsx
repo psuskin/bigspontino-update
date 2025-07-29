@@ -84,7 +84,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
   ];
 
   return (
-    <div className="flex flex-col h-full font-narrow bg-white rounded-none">
+    <div className="flex flex-col h-full font-narrow bg-background rounded-none">
       {/* Custom Header */}
       <div className="flex items-center justify-between p-4 sm:p-6 bg-amber-400 text-secondary rounded-none">
         <div className="flex items-center gap-2">
@@ -141,11 +141,11 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                   <Select value={selectedGuests} onValueChange={setSelectedGuests}>
                     <SelectTrigger
                       id="guests"
-                      className="bg-white text-secondary border-gray-300 rounded-none !py-4 sm:!py-6 w-full text-xs sm:text-sm"
+                      className="bg-background text-secondary border-gray-300 rounded-none !py-4 sm:!py-6 w-full text-xs sm:text-sm"
                     >
                       <SelectValue placeholder="Guests" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white text-secondary rounded-none text-xs sm:text-sm">
+                    <SelectContent className="bg-background text-secondary rounded-none text-xs sm:text-sm">
                       {Array.from({ length: 10 }, (_, i) => (
                         <SelectItem key={i + 1} value={String(i + 1)}>
                           {i + 1}
@@ -161,11 +161,11 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                   <Select value={selectedTime} onValueChange={setSelectedTime}>
                     <SelectTrigger
                       id="time"
-                      className="bg-white text-secondary border-gray-300 rounded-none !py-4 sm:!py-6 w-full text-xs sm:text-sm"
+                      className="bg-background text-secondary border-gray-300 rounded-none !py-4 sm:!py-6 w-full text-xs sm:text-sm"
                     >
                       <SelectValue placeholder="All Times" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white text-secondary rounded-none text-xs sm:text-sm">
+                    <SelectContent className="bg-background text-secondary rounded-none text-xs sm:text-sm">
                       {timeSlots.map((time) => (
                         <SelectItem key={time} value={time}>
                           {time}
@@ -183,7 +183,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                       <Button
                         variant={'outline'}
                         className={cn(
-                          'justify-start text-left !py-4 sm:!py-6 w-full font-normal bg-white text-secondary border-gray-300 rounded-none text-xs sm:text-sm',
+                          'justify-start text-left !py-4 sm:!py-6 w-full font-normal bg-background text-secondary border-gray-300 rounded-none text-xs sm:text-sm',
                           !selectedDate && 'text-muted-foreground',
                         )}
                       >
@@ -191,7 +191,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                         {selectedDate ? format(selectedDate, 'dd MMM') : <span>Pick a date</span>}
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0 bg-white rounded-none">
+                    <PopoverContent className="w-auto p-0 bg-background rounded-none">
                       <Calendar
                         mode="single"
                         selected={selectedDate}
@@ -259,7 +259,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
               <div className="space-y-3 sm:space-y-4">
                 <Button
                   variant="outline"
-                  className="w-full h-10 sm:h-12 text-sm sm:text-lg flex items-center gap-2 bg-white text-secondary border-gray-300 hover:bg-gray-50 rounded-none"
+                  className="w-full h-10 sm:h-12 text-sm sm:text-lg flex items-center gap-2 bg-background text-secondary border-gray-300 hover:bg-gray-50 rounded-none"
                 >
                   <svg role="img" viewBox="0 0 24 24" className="h-4 w-4 sm:h-5 sm:w-5">
                     <path
@@ -295,7 +295,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                     onChange={handleInputChange}
                     required
                     placeholder="John"
-                    className="bg-white text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
+                    className="bg-background text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
                   />
                 </div>
                 <div>
@@ -308,7 +308,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                     onChange={handleInputChange}
                     required
                     placeholder="Doe"
-                    className="bg-white text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
+                    className="bg-background text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
                   />
                 </div>
                 <div>
@@ -322,7 +322,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                     onChange={handleInputChange}
                     required
                     placeholder="john.doe@example.com"
-                    className="bg-white text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
+                    className="bg-background text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
                   />
                 </div>
                 <div>
@@ -334,10 +334,10 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                       defaultValue="+49"
                       onValueChange={(value) => handleSelectChange('phonePrefix', value)}
                     >
-                      <SelectTrigger className="w-20 sm:w-24 bg-white text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm">
+                      <SelectTrigger className="w-20 sm:w-24 bg-background text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm">
                         <SelectValue placeholder="+49" />
                       </SelectTrigger>
-                      <SelectContent className="bg-white text-secondary rounded-none text-xs sm:text-sm">
+                      <SelectContent className="bg-background text-secondary rounded-none text-xs sm:text-sm">
                         <SelectItem value="+49">🇩🇪 +49</SelectItem>
                         <SelectItem value="+1">🇺🇸 +1</SelectItem>
                         <SelectItem value="+44">🇬🇧 +44</SelectItem>
@@ -350,7 +350,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                       onChange={handleInputChange}
                       required
                       placeholder="1234567890"
-                      className="bg-white text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
+                      className="bg-background text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
                     />
                   </div>
                 </div>
@@ -364,7 +364,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                       placeholder="dd"
                       value={formData.birthdayDay}
                       onChange={handleInputChange}
-                      className="bg-white text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
+                      className="bg-background text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
                     />
                   </div>
                   <div>
@@ -376,7 +376,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                       placeholder="mm"
                       value={formData.birthdayMonth}
                       onChange={handleInputChange}
-                      className="bg-white text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
+                      className="bg-background text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
                     />
                   </div>
                 </div>
@@ -389,7 +389,7 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                     value={formData.postalCode}
                     onChange={handleInputChange}
                     placeholder="10119"
-                    className="bg-white text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
+                    className="bg-background text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
                   />
                 </div>
                 <div>
@@ -402,11 +402,11 @@ export default function BookingSheet({ setIsOpen }: BookingSheetProps) {
                   >
                     <SelectTrigger
                       id="language"
-                      className="bg-white text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
+                      className="bg-background text-secondary border-gray-300 rounded-none py-4 sm:py-6 text-xs sm:text-sm"
                     >
                       <SelectValue placeholder="English" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white text-secondary rounded-none text-xs sm:text-sm">
+                    <SelectContent className="bg-background text-secondary rounded-none text-xs sm:text-sm">
                       <SelectItem value="English">English</SelectItem>
                       <SelectItem value="German">German</SelectItem>
                       <SelectItem value="Italian">Italian</SelectItem>

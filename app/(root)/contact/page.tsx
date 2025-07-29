@@ -7,7 +7,7 @@ export default function ContactPage() {
   return (
     <ScrollTransition
       section1ClassName="sticky top-0"
-      section2ClassName="relative bg-white"
+      section2ClassName="relative bg-background"
       // scaleRange={[1, 0.8]}
       yOffset={0} // Adjust this if you want some upward movement
     >

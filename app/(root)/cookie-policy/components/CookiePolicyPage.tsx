@@ -36,7 +36,7 @@ const CookiePolicyPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       {/* Hero Header */}
       <motion.section
         className="relative h-[40vh] overflow-hidden border-b border-gray-200"
@@ -161,7 +161,7 @@ const CookiePolicyPage = () => {
               </thead>
               <tbody>
                 {['essential', 'analytics', 'preferences', 'marketing'].map((cookieType, index) => (
-                  <tr key={cookieType} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  <tr key={cookieType} className={index % 2 === 0 ? 'bg-background' : 'bg-gray-50'}>
                     <td className="px-4 py-3 border border-gray-200 font-medium">
                       {t(`cookie.cookies.${cookieType}.name`)}
                     </td>
