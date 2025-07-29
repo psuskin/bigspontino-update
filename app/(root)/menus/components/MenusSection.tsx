@@ -212,7 +212,7 @@ const MenusSection: React.FC = () => {
       >
         <motion.h2 variants={fadeInUp}>
           <AnimatedText
-            className="text-3xl md:text-6xl lg:text-7xl uppercase font-bold w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-tight"
+            className="text-3xl md:text-6xl lg:text-7xl uppercase  w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-tight"
             text={['A Tavola']}
           ></AnimatedText>
         </motion.h2>

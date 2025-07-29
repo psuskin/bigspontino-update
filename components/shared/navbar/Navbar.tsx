@@ -450,7 +450,7 @@ const Navbar = () => {
                     <div className="">
                       <motion.button
                         onClick={() => changeLanguage('en')}
-                        className={`transition-colors text-4xl uppercase mb-6 duration-200 ${
+                        className={`cursor-pointer transition-colors text-4xl uppercase mb-6 duration-200 ${
                           currentLanguage === 'en' ? 'text-primary ' : 'hover:text-primary'
                         }`}
                         whileHover={{ scale: 1.1 }}
@@ -462,7 +462,7 @@ const Navbar = () => {
                     <div className="">
                       <motion.button
                         onClick={() => changeLanguage('de')}
-                        className={`transition-colors text-4xl uppercase duration-200 ${
+                        className={`cursor-pointer transition-colors text-4xl uppercase duration-200 ${
                           currentLanguage === 'de' ? 'text-primary ' : 'hover:text-primary'
                         }`}
                         whileHover={{ scale: 1.1 }}

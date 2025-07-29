@@ -60,6 +60,9 @@ const ItalianDaytimeBar = () => {
   return (
     <section id="italian-daytime-bar" ref={containerRef} className="relative overflow-hidden">
       {/* Text Section */}
+      <div className="widget-container widget-container--bleed line-divider-widget line-divider-widget--pattern">
+        <hr className="line-divider" />
+      </div>
       <motion.div
         ref={textRef}
         className="px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-16 lg:py-16 pb-0 xl:px-20
@@ -71,7 +74,7 @@ const ItalianDaytimeBar = () => {
       >
         <motion.h2
           className="text-2xl sm:text-3xl md:text-4xl pt-10 md:pt-14 lg:text-5xl xl:text-6xl
-                     uppercase font-bold leading-tight
+                     uppercase  leading-tight
                      sm:leading-tight md:leading-tight lg:leading-tight xl:leading-16
                      max-w-full break-words lg:w-4/6 mx-auto"
           variants={fadeInUp}

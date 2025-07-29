@@ -88,7 +88,7 @@ const OurStory = () => {
         animate={headerInView ? 'visible' : 'hidden'}
       >
         <motion.h2
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase font-bold w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-tight sm:leading-snug lg:leading-16"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase  w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-tight sm:leading-snug lg:leading-16"
           variants={fadeInUp}
         >
           Siamo aperti

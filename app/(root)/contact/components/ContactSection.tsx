@@ -7,10 +7,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import type React from 'react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface ContactTranslations {
@@ -84,6 +85,9 @@ const ContactSection = () => {
     agreeTerms: false,
   });
 
+  const imageRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const { t } = useTranslation();
   const contact = t('contact', { returnObjects: true }) as ContactTranslations;
   const days = t('days', { returnObjects: true }) as DaysTranslations;
@@ -96,6 +100,24 @@ const ContactSection = () => {
       [id]: type === 'checkbox' ? checked : value,
     }));
   };
+
+  // Parallax scroll effect - fixed by using the correct container ref
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ['-20%', '20%']);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleSelectChange = (id: string, value: string) => {
     setFormData((prev) => ({
@@ -110,7 +132,9 @@ const ContactSection = () => {
   };
 
   return (
-    <div className="w-full">
+    <div ref={containerRef} className="w-full">
+      {' '}
+      {/* Added containerRef here */}
       {/* First Section: Sticky Image + Contact Form */}
       <section className="bg-reg-800 min-h-screen">
         <div className="flex flex-col lg:flex-row min-h-screen">
@@ -137,7 +161,6 @@ const ContactSection = () => {
                 <p className="text-white-900 font-narrow text-sm mb-10 sm:mb-16">
                   {t('contact.welcomeMessage')}
                 </p>
-                <div className="w-full h-px bg-background"></div>
               </div>
 
               {/* Your Details Section */}
@@ -145,7 +168,6 @@ const ContactSection = () => {
                 <h2 className="text-lg sm:text-xl lg:text-2xl uppercase font-bold mb-6 sm:mb-10">
                   {contact.form.yourDetails}
                 </h2>
-                <div className="w-full h-px bg-background mb-10 sm:mb-16"></div>
 
                 {/* Name Fields */}
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
@@ -181,7 +203,7 @@ const ContactSection = () => {
                         value={formData.phonePrefix}
                         onValueChange={(value) => handleSelectChange('phonePrefix', value)}
                       >
-                        <SelectTrigger className="w-fit bg-background/40 text-white border-0 py-4 sm:py-10 px-2 text-sm focus:ring-0 focus:ring-offset-0 rounded-none shadow-none [&>svg]:hidden">
+                        <SelectTrigger className="w-fit bg-background/40 text-white border-0 py-7 sm:py-8 px-2 text-sm focus:ring-0 focus:ring-offset-0 rounded-none shadow-none [&>svg]:hidden">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-background/90 backdrop-blur-sm border-white/20">
@@ -301,50 +323,42 @@ const ContactSection = () => {
           </div>
         </div>
       </section>
-
       {/* Second Section: Map + Contact Information */}
-      <section className="bg-gray-100 py-16 sm:py-28">
+      <section className="py-16 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row">
-            {/* <div className="w-full lg:w-1/2 relative bg-gray-200">
-              <div className="h-64 sm:h-96 lg:h-full flex items-center justify-center">
-                <Image
-                  src="/assets/contact/3.jpg"
-                  className="w-full h-full object-cover"
-                  alt="Location Map"
-                  width={600}
-                  height={400}
-                />
-              </div>
-            </div> */}
-
-            {/* Right Column - Contact Information */}
-            <div className="w-full lg:w-full p-6 sm:p-8 lg:p-20 flex flex-col justify-center bg-background">
+            <div
+              style={{
+                backgroundImage: "url('/assets/divider-15.svg')",
+                backgroundSize: '40px auto',
+              }}
+              className="w-full lg:w-full p-6 sm:p-8 lg:p-20 flex flex-col justify-center bg-background"
+            >
               <div className="">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4 uppercase">
                   BIG SPUNTINO
                 </h2>
-                <p className="text-secondary mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
+                <p className="text-primary mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
                   {contact.description}
                 </p>
 
                 <div className="space-y-0">
                   {/* Address */}
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-t-2 py-4 sm:py-5">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-primary border-t-2 py-4 sm:py-5">
                     <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.address}
                     </div>
-                    <div className="text-secondary text-sm sm:text-base">
+                    <div className="text-primary text-sm sm:text-base">
                       <p className="text-primary font-medium">{contact.addressValue}</p>
                     </div>
                   </div>
 
                   {/* Phone */}
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-primary border-y-2 py-4 sm:py-5">
                     <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.phone}
                     </div>
-                    <div className="text-secondary text-sm sm:text-base">
+                    <div className="text-primary text-sm sm:text-base">
                       <p>{contact.phoneValue}</p>
                     </div>
                   </div>
@@ -354,27 +368,27 @@ const ContactSection = () => {
                     <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.email}
                     </div>
-                    <div className="text-secondary text-sm sm:text-base">
+                    <div className="text-primary text-sm sm:text-base">
                       <p>{contact.emailValue}</p>
                     </div>
                   </div>
 
                   {/* Website */}
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-y-2 py-4 sm:py-5">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-primary border-y-2 py-4 sm:py-5">
                     <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.website}
                     </div>
-                    <div className="text-secondary text-sm sm:text-base">
+                    <div className="text-primary text-sm sm:text-base">
                       <p>{contact.websiteValue}</p>
                     </div>
                   </div>
 
                   {/* Opening Hours */}
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between border-t-2 py-4 sm:py-5">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between py-4 sm:py-5">
                     <div className="text-primary font-bold text-lg sm:text-xl uppercase tracking-wide mb-2 sm:mb-0">
                       {contact.openingHours}
                     </div>
-                    <div className="text-secondary text-sm sm:text-base">
+                    <div className="text-primary text-sm sm:text-base">
                       <p>
                         {days.wed}-{days.fri} {contact.wedHours}
                       </p>
@@ -391,6 +405,32 @@ const ContactSection = () => {
             </div>
           </div>
         </div>
+      </section>
+      {/* Parallax Image Section */}
+      <section className="">
+        <div
+          ref={imageRef}
+          className="relative  sm:mx-6
+                   h-[400px] lg:h-[500px] xl:h-[600px]
+                   overflow-hidden"
+        >
+          <motion.div
+            style={{ y: isMobile ? 0 : y }}
+            className="relative w-full h-[120%] -top-[10%]"
+          >
+            <Image
+              src="/assets/photos/8.jpeg"
+              fill
+              style={{ objectFit: 'cover' }}
+              alt="A lively restaurant scene"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
+              priority
+              quality={85}
+            />
+            <div className="absolute inset-0 bg-black/10" />
+          </motion.div>
+        </div>
+        <div className="h-6" />
       </section>
     </div>
   );
