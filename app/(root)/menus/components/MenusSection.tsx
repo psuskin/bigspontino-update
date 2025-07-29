@@ -202,7 +202,7 @@ const MenusSection: React.FC = () => {
   };
 
   return (
-    <section className="py-12 md:py-24 lg:pt-32 px-4 md:px-6 text-secondary">
+    <section className="py-12 md:py-24 lg:pt-24 px-4 md:px-6 text-secondary">
       <motion.div
         ref={headerRef}
         className="mb-12 md:mb-24 lg:mb-32"

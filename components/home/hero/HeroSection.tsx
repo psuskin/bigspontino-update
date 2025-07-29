@@ -15,7 +15,7 @@ export default function HeroSection() {
   const { t } = useTranslation();
 
   const handleNextSectionClick = () => {
-    const nextSection = document.querySelector('#architectural-inspirations');
+    const nextSection = document.querySelector('#italian-daytime-bar');
     if (nextSection) {
       // Get the navbar height (adjust this value based on your actual navbar height)
       const navbarHeight = 0; // Change this to match your navbar height in pixels

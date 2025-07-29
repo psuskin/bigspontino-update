@@ -135,7 +135,7 @@ const Section1 = ({ scrollYProgress, children, className = '', yOffset = 0 }: Se
   const y = useTransform(scrollYProgress, [0, 1], [0, -yOffset]);
 
   return (
-    <motion.div style={{ y }} className={`sticky top-0 h-screen ${className}`}>
+    <motion.div style={{ y }} className={`sticky top-0 h-[60dvh] ${className}`}>
       {children}
     </motion.div>
   );
@@ -145,7 +145,7 @@ const Section2 = ({ scrollYProgress, children, className = '' }: SectionProps) =
   const y = useTransform(scrollYProgress, [0, 1], ['100vh', '0']);
 
   return (
-    <motion.div style={{ y }} className={`relative h-screen ${className}`}>
+    <motion.div style={{ y }} className={`relative h-[60dvh] ${className}`}>
       {children}
     </motion.div>
   );
