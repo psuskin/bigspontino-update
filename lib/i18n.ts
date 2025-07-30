@@ -158,7 +158,7 @@ const resources = {
       events: {
         heroTitle: 'YOUR NEXT FAVORITE EVENT IS HERE – APERITIVO TO BRUNCH*',
         heroDescription:
-          'La vita è bella ... and there is always a reason to celebrate. The Big Spuntino lives Italian hospitality and coming together – and not only in the day bar itself, but also in private or business premises. Get in touch with our team to discuss tailor-made events for the most special moments of pleasure.',
+          '...and there is always a reason to celebrate. The Big Spuntino lives Italian hospitality and coming together – and not only in the day bar itself, but also in private or business premises. Get in touch with our team to discuss tailor-made events for the most special moments of pleasure.',
         contactButton: 'Contatto',
         viewDetails: 'View Details',
         footerText:
@@ -595,7 +595,7 @@ const resources = {
       flavors: {
         title: 'Italiens feinste Aromen',
         description:
-          'Die Speisekarte des Big Spuntino ist ein herzliche Hommage an Italiens kulinarisches Erbe. Von Insalata Caprese und Pulpo bis hin zu den knusprigsten Foccacia bietet unsere Speisekarte eine exquisite Auswahl an klassischen Spuntini (*ital. „Snacks“). Dies natürlich auch bei den Dolci: Von der traditionellen Creme die Mascarpone bis hin zu den fluffig leichten Maritozzi versüßt das Big Spuntino den Alltag mit den Churros all italiana – neapolitanische Doughnut-Stangen, warm serviert und perfekt zum Eintauchen in geschmolzene Schokolade mit special Toppings. Ergänzend zum kulinarischen Erlebnis können klassische italienisch-kosmopolitische Cocktails und Weine aus Nord und Süd verköstigt werden. Die Essenz eines italienischen Sommers wird mit einem spritzigen Spritz zum Leben erweckt, während die besonderen Aromen unseres Signature-Cocktails Spuntino 75 der perfekten Auftakt für einen genussvollen Abend sind.',
+          'Die Speisekarte des Big Spuntino ist eine herzliche Hommage an Italiens kulinarisches Erbe. Von Insalata Caprese und Pulpo bis hin zu den knusprigsten Foccacia bietet unsere Speisekarte eine exquisite Auswahl an klassischen Spuntini (*ital. „Snacks“). Dies natürlich auch bei den Dolci: Von der traditionellen Creme die Mascarpone bis hin zu den fluffig leichten Maritozzi versüßt das Big Spuntino den Alltag mit den Churros all italiana – neapolitanische Doughnut-Stangen, warm serviert und perfekt zum Eintauchen in geschmolzene Schokolade mit special Toppings. Ergänzend zum kulinarischen Erlebnis können klassische italienisch-kosmopolitische Cocktails und Weine aus Nord und Süd verköstigt werden. Die Essenz eines italienischen Sommers wird mit einem spritzigen Spritz zum Leben erweckt, während die besonderen Aromen unseres Signature-Cocktails Spuntino 75 der perfekten Auftakt für einen genussvollen Abend sind.',
       },
       architecture: {
         title: 'Erlebe den Charm  einer authentischen, italienischen Tagesbar ',
@@ -650,7 +650,7 @@ const resources = {
         heroTitle: 'IL MENU',
         sectionTitle: 'A Tavola',
         sectionDescription:
-          'Die Speisekarte des Big Spuntino ist ein herzliche Hommage an Italiens kulinarisches Erbe. Von Insalata Caprese und Pulpo bis hin zu den knusprigsten Foccacia bietet unsere Speisekarte eine exquisite Auswahl an klassischen Spuntini (*ital. „Snacks“). Dies natürlich auch bei den Dolci: Von der traditionellen Creme die Mascarpone bis hin zu den fluffig leichten Maritozzi versüßt das Big Spuntino den Alltag mit den Churros all italiana – neapolitanische Doughnut-Stangen, warm serviert und perfekt zum Eintauchen in geschmolzene Schokolade mit special Toppings. Ergänzend zum kulinarischen Erlebnis können klassische italienisch-kosmopolitische Cocktails und Weine aus Nord und Süd verköstigt werden. Die Essenz eines italienischen Sommers wird mit einem spritzigen Spritz zum Leben erweckt, während die besonderen Aromen unseres Signature-Cocktails Spuntino 75 der perfekten Auftakt für einen genussvollen Abend sind.',
+          'Die Speisekarte des Big Spuntino ist eine herzliche Hommage an Italiens kulinarisches Erbe. Von Bufala e Pomodori bis hin zu den knusprigsten Focaccia bietet unsere Speisekarte eine exquisite Auswahl an klassischen Spuntini (*ital. „Snacks“). Dies natürlich auch bei den Dolci: Von der traditionellen Crema di Mascarpone bis hin zu den fluffig leichten Maritozzi versüßt das Big Spuntino den Alltag mit den Churros all italiana – neapolitanische Doughnut-Stangen, warm serviert und perfekt zum Eintauchen in geschmolzene Schokolade mit special Toppings. Ergänzend zum kulinarischen Erlebnis können klassische italienische Cocktails und Weine aus Nord und Süd verköstigt werden. Die Essenz eines italienischen Sommers wird mit einem spritzigen Spritz zum Leben erweckt, während die besonderen Aromen unseres Signature-Cocktails Spuntino 75 der perfekten Auftakt für einen genussvollen Abend sind.',
         experienceTitle: 'Erleben Sie Big Spuntino',
         experienceDescription:
           'Vom morgendlichen Cappuccino bis zum abendlichen Aperitivo feiert jeder Moment bei Big Spuntino die italienische Lebensart. Unsere warme Atmosphäre und authentischen Aromen schaffen die perfekte Kulisse für gutes Essen und gute Gesellschaft.',
@@ -683,7 +683,7 @@ const resources = {
       events: {
         heroTitle: 'IHR NÄCHSTES LIEBLINGSEVENT – VOM APERITIVO BIS ZUM BRUNCH*',
         heroDescription:
-          'La vita é bella… und es gibt immer einen Grund um zu feiern. Das Big Spuntino lebt die italienische Gastfreundschaft und das Zusammenkommen – und das nicht nur in der Tagesbar selbst, sondern auch in eigenen privaten oder geschäftlichen Räumlichkeiten. Nehmen Sie Kontakt mit unserem Team auf, um Ihre maßgeschneiderten Veranstaltungen für die besondersten Genussmomente zu besprechen.',
+          '…und es gibt immer einen Grund zu feiern. Das Big Spuntino lebt die italienische Gastfreundschaft und das Zusammenkommen – und das nicht nur in der Tagesbar selbst, sondern auch in privaten oder geschäftlichen Räumlichkeiten. Nehmen Sie Kontakt mit unserem Team auf, um maßgeschneiderten Veranstaltungen für die besondersten Genussmomente zu besprechen.',
         contactButton: 'Kontakt',
         viewDetails: 'Details anzeigen',
         footerText:
@@ -725,7 +725,7 @@ const resources = {
         subtitle:
           '*Ein brillanter Mann bei East Mamma, dessen Namen wir uns nicht erinnern, nur wenige Wochen vor der Eröffnung.',
         paragraphs: [
-          'Seit Sommer 2025 ist das Big Spuntino das zweite italienische Herzstück des Gastgebers Dario Pittarello. Bereits 2015 eröffnete Dario das „Ristorante Pittarello" am Mühlenkamp in Hamburg-Winterhude und bewirtet seither seine Gäste mit feiner, authentischer italienischen Küche. Doch damit sollte es nicht genug sein – die Chance auf den Nachbarladen konnte sich Dario nicht entgehen lassen und begrüßt zusätzlich nun seither alte wie neue Gäste in einer herzlich-lebhaften Tagesbar mit spettacoloso Snacks und Drinks aus der italienischen Küche.',
+          'Seit Sommer 2025 ist das Big Spuntino das zweite italienische Herzstück des Gastgebers Dario Pittarello. Bereits 2015 eröffnete Dario das „Ristorante Pittarello“ am Mühlenkamp in Hamburg-Winterhude und bewirtet seither seine Gäste mit feiner, authentischer italienischer Küche. Doch damit sollte es nicht genug sein – die Chance auf den Nachbarladen konnte sich Dario nicht entgehen lassen und eröffnete einen zusätzlichen Hotspot für seine alten wie neuen Gäste: Mit seiner herzlich-lebhaften Tagesbar Big Spuntino, die spettacoloso Snacks und Drinks aus der italienischen Küche offeriert. Die neue Location als spontane Anlaufstelle und das den ganzen Tag lang – ganz wie auf der Mailänder Scala. Die Familie freut sich auf den neuen, aufregenden Zuwachs und blickt freudig-gespannt in die Zukunft – und auf die Big Times, die folgen werden.',
           'Das knallig rote Interieur kombiniert mit klassischen Holz-&Messing-Elementen, die harmonisch miteinander verschmelzen, bietet den Gästen die ideale Anlaufstelle für die „big times" und das alldry long: von boozy Brunches an den Wochenenden, über daily Lunches bis hin zur earlier Aperitivo/Dinner-Hour. Hier kann die mediterrane Lebensfreude am guten Genuss und guten Getränken sowie dem Feiern des Zusammenseins perfekt gelebt werden. Auf die „big times" mit den kleinen Snacks!',
         ],
       },

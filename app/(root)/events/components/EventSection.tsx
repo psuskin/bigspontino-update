@@ -1,10 +1,16 @@
-'use client';
+"use client";
 
-import { AnimatedText } from '@/components/animation/text/AnimatedText';
-import { motion, useInView, useScroll, useTransform, type Variants } from 'framer-motion';
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { AnimatedText } from "@/components/animation/text/AnimatedText";
+import {
+  motion,
+  useInView,
+  useScroll,
+  useTransform,
+  type Variants,
+} from "framer-motion";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const EventSection = () => {
   // Refs for intersection observers
@@ -17,15 +23,15 @@ const EventSection = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   // Intersection observers for animations
-  const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
+  const headerInView = useInView(headerRef, { once: true, margin: "-100px" });
 
   // Parallax scroll effect - fixed by adding containerRef to the section
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['-20%', '20%']);
+  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   // Check if device is mobile
   useEffect(() => {
@@ -33,8 +39,8 @@ const EventSection = () => {
       setIsMobile(window.innerWidth < 768);
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Animation variants
@@ -63,28 +69,30 @@ const EventSection = () => {
   };
 
   return (
-    <section
-      ref={containerRef}
-      className="py-12 sm:py-16 pb-0 sm:pb-0 md:pb-0 lg:pb-0 md:py-20 lg:py-28 px-4 sm:px-6 lg:px-6"
-    >
+    <section ref={containerRef}>
+      {/* Divider */}
+      <div className="widget-container widget-container--bleed line-divider-widget line-divider-widget--pattern">
+        <hr className="line-divider" />
+      </div>
+
       <motion.div
         ref={headerRef}
-        className=""
+        className="py-12 sm:py-16 pb-0 sm:pb-0 md:pb-0 lg:pb-0 md:py-20 lg:py-28 px-4 sm:px-6 lg:px-6"
         variants={staggerContainer}
         initial="hidden"
-        animate={headerInView ? 'visible' : 'hidden'}
+        animate={headerInView ? "visible" : "hidden"}
       >
         <motion.h2 variants={fadeInUp}>
           <AnimatedText
             className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase  w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-snug sm:leading-tight lg:leading-16"
-            text={['La Vita è Bella']}
+            text={["La Vita è Bella"]}
           ></AnimatedText>
         </motion.h2>
         <motion.p
           className="text-center font-narrow py-4 lg:py-6 w-full md:w-4/5 lg:w-3/5 mx-auto text-sm md:text-xl"
           variants={fadeInUp}
         >
-          {t('events.heroDescription')}
+          {t("events.heroDescription")}
         </motion.p>
       </motion.div>
 
@@ -103,7 +111,7 @@ const EventSection = () => {
           <Image
             src="/assets/photos/24.jpg"
             fill
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: "cover" }}
             alt="A lively restaurant scene"
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
             priority

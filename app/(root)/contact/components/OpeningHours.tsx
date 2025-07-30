@@ -1,5 +1,5 @@
-'use client';
-import { useTranslation } from 'react-i18next';
+"use client";
+import { useTranslation } from "react-i18next";
 
 interface ContactTranslations {
   title: string;
@@ -62,13 +62,17 @@ interface ContactTranslations {
 
 const OpeningHours = () => {
   const { t } = useTranslation();
-  const contact = t('contact', { returnObjects: true }) as ContactTranslations;
+  const contact = t("contact", { returnObjects: true }) as ContactTranslations;
   // const days = t('fullDays', { returnObjects: true }) as DaysTranslations;
 
   return (
-    <section className="py-16 bg-stone-100">
+    <section className=" bg-stone-100">
+      <div className="widget-container widget-container--bleed line-divider-widget line-divider-widget--pattern">
+        <hr className="line-divider" />
+      </div>
+
       <p
-        className="text-2xl sm:text-3xl md:text-4xl text-center pt-0 md:py-14 lg:text-5xl xl:text-6xl
+        className="py-20 text-2xl sm:text-3xl md:text-4xl text-center pt-0 md:py-14 lg:text-5xl xl:text-6xl
                      uppercase
                      max-w-full  lg:w-4/6 mx-auto "
       >

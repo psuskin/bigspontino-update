@@ -1,12 +1,18 @@
-'use client';
-import { motion, useInView, useScroll, useTransform, type Variants } from 'framer-motion';
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+"use client";
+import {
+  motion,
+  useInView,
+  useScroll,
+  useTransform,
+  type Variants,
+} from "framer-motion";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const OurStory = () => {
   const { t } = useTranslation();
-  const history = t('history', { returnObjects: true }) as {
+  const history = t("history", { returnObjects: true }) as {
     title: string;
     subtitle: string;
     paragraphs: string[];
@@ -25,21 +31,21 @@ const OurStory = () => {
       setIsMobile(window.innerWidth < 768);
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Intersection observers for animations
-  const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
-  const storyInView = useInView(storyRef, { once: true, margin: '-100px' });
+  const headerInView = useInView(headerRef, { once: true, margin: "-100px" });
+  const storyInView = useInView(storyRef, { once: true, margin: "-100px" });
 
   // Parallax scroll effect - fixed by properly setting up the container ref
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['-20%', '20%']);
+  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   // Animation variants
   const fadeInUp: Variants = {
@@ -76,16 +82,17 @@ const OurStory = () => {
   };
 
   return (
-    <section
-      ref={containerRef}
-      className="py-12 md:py-20 pb-0 lg:pb-0 md:pb-0 lg:py-32 px-4 sm:px-6"
-    >
+    <section ref={containerRef}>
+      <div className="widget-container widget-container--bleed line-divider-widget line-divider-widget--pattern">
+        <hr className="line-divider" />
+      </div>
+
       <motion.div
         ref={headerRef}
-        className=""
+        className="py-12 md:py-20 pb-0 lg:pb-0 md:pb-0 lg:py-24 px-4 sm:px-6"
         variants={staggerContainer}
         initial="hidden"
-        animate={headerInView ? 'visible' : 'hidden'}
+        animate={headerInView ? "visible" : "hidden"}
       >
         <motion.h2
           className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl uppercase  w-full md:w-4/5 lg:w-3/5 mx-auto text-center leading-tight sm:leading-snug lg:leading-16"
@@ -97,15 +104,15 @@ const OurStory = () => {
 
       <motion.div
         ref={storyRef}
-        className="py-12  sm:py-20 lg:pb-10 lg:py-28"
+        className="py-12 sm:py-14 lg:pb-10 lg:py-12"
         variants={textStaggerVariants}
         initial="hidden"
-        animate={storyInView ? 'visible' : 'hidden'}
+        animate={storyInView ? "visible" : "hidden"}
       >
         {history.paragraphs.map((paragraph, index) => (
           <motion.p
             key={index}
-            className="text-sm sm:text-base lg:text-3xl text-secondary text-center mb-4 sm:mb-6 lg:mb-8 w-full md:w-4/5 lg:w-3/5 mx-auto"
+            className="text-sm sm:text-lg lg:text-xl text-secondary font-narrow text-center mb-4 sm:mb-6 lg:mb-8 w-full md:w-4/5 lg:w-3/5 mx-auto"
             variants={fadeInUp}
           >
             {paragraph}
@@ -128,7 +135,7 @@ const OurStory = () => {
           <Image
             src="/assets/photos/3.jpg"
             fill
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: "cover" }}
             alt="A lively restaurant scene"
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
             priority

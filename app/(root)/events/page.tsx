@@ -1,6 +1,6 @@
-import { ScrollTransition } from '@/components/animation/scroll/ScrollTransition';
-import EventSection from './components/EventSection';
-import HeroSection from './components/HeroSection';
+import { ScrollTransition } from "@/components/animation/scroll/ScrollTransition";
+import EventSection from "./components/EventSection";
+import HeroSection from "./components/HeroSection";
 
 export default function EventsPage() {
   return (
