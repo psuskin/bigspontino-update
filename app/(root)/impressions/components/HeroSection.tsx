@@ -14,7 +14,7 @@ const HeroSection = () => {
     "/assets/photos/6.jpeg",
     "/assets/photos/7.jpeg",
     "/assets/photos/8.jpeg",
-    "/assets/photos/9.jpg",
+    "/assets/photos/9.jpeg",
     "/assets/photos/10.jpg",
     "/assets/photos/11.jpg",
     "/assets/photos/12.jpeg",
@@ -43,7 +43,7 @@ const HeroSection = () => {
       <Image
         width={1920}
         height={1080}
-        src={"/assets/final_images/Impressioni.jpg"}
+        src={"/assets/final_images/impressioni.JPG"}
         alt={"Antipasti dish"}
         className="w-full h-full object-cover"
         style={{ objectPosition: "center 50%" }}

@@ -71,11 +71,7 @@ const OpeningHours = () => {
         <hr className="line-divider" />
       </div>
 
-      <p
-        className="py-20 text-2xl sm:text-3xl md:text-4xl text-center pt-0 md:py-14 lg:text-5xl xl:text-6xl
-                     uppercase
-                     max-w-full  lg:w-4/6 mx-auto "
-      >
+      <p className="text-2xl sm:text-3xl md:text-4xl text-center py-16 md:py-14 lg:text-5xl xl:text-6xl uppercase max-w-full lg:w-4/6 mx-auto">
         {contact.description}
       </p>
       {/* <div className="w-full h-px bg-secondary/20 my-12 md:hidden "></div> */}

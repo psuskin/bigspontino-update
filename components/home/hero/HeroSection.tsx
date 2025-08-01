@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const slideData = {
   id: 3,
-  image: "/assets/final_images/StartingScreen.jpg",
+  image: "/assets/final_images/startingScreen.jpg",
   titleKey: "hero.slide2.title",
   descriptionKey: "hero.slide2.description",
 };

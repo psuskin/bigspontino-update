@@ -139,7 +139,7 @@ const ContactSection = () => {
       {" "}
       {/* Added containerRef here */}
       {/* First Section: Sticky Image + Contact Form */}
-      <section className="bg-reg-800 min-h-screen">\
+      <section className="bg-reg-800 min-h-screen">
         <div className="flex flex-col lg:flex-row min-h-screen">
           {/* Left Column - Sticky Image */}
           <div className="w-full lg:w-1/2 lg:sticky lg:top-0 h-[50vh] lg:h-screen">
