@@ -1,5 +1,5 @@
 // import RevealTextOnView from '@/components/animation/text/RevealTextOnView';
-import Image from 'next/image';
+import Image from "next/image";
 
 const HeroSection = () => {
   return (
@@ -7,8 +7,8 @@ const HeroSection = () => {
       <Image
         width={1920}
         height={1080}
-        src={'/assets/contact/1.jpg'}
-        alt={'Antipasti dish'}
+        src={"/assets/contact/1.jpg"}
+        alt={"Antipasti dish"}
         className="w-full h-full object-cover"
       />
 
