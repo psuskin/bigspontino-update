@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import {
@@ -7,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import type React from "react";
@@ -85,9 +86,9 @@ const ContactSection = () => {
     agreeTerms: false,
   });
 
-  const imageRef = useRef<HTMLDivElement>(null);
+  // const imageRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  // const [isMobile, setIsMobile] = useState(false);
   const { t } = useTranslation();
   const contact = t("contact", { returnObjects: true }) as ContactTranslations;
   const days = t("days", { returnObjects: true }) as DaysTranslations;
@@ -112,14 +113,14 @@ const ContactSection = () => {
   const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   // Check if device is mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  // useEffect(() => {
+  //   const checkMobile = () => {
+  //     setIsMobile(window.innerWidth < 768);
+  //   };
+  //   checkMobile();
+  //   window.addEventListener("resize", checkMobile);
+  //   return () => window.removeEventListener("resize", checkMobile);
+  // }, []);
 
   const handleSelectChange = (id: string, value: string) => {
     setFormData((prev) => ({
@@ -447,7 +448,7 @@ const ContactSection = () => {
         </div>
       </section>
       {/* Parallax Image Section */}
-      <section className="">
+      {/* <section className="">
         <div
           ref={imageRef}
           className="relative  sm:mx-6
@@ -471,7 +472,7 @@ const ContactSection = () => {
           </motion.div>
         </div>
         <div className="h-6" />
-      </section>
+      </section> */}
     </div>
   );
 };

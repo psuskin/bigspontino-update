@@ -200,20 +200,21 @@ const JobsSection = () => {
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="py-12 sm:py-16 md:py-20 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-8"
-    >
+    <section ref={sectionRef}>
       <div className="">
+        {/* Divider */}
+        <div className="widget-container widget-container--bleed line-divider-widget line-divider-widget--pattern">
+          <hr className="line-divider" />
+        </div>
         <motion.div
           ref={headerRef}
-          className="md:max-w-4xl mx-auto text-center"
+          className="md:max-w-4xl mx-auto text-center py-12 sm:py-16 md:py-20 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-8"
           variants={staggerContainer}
           initial="hidden"
           animate={headerInView ? "visible" : "hidden"}
         >
           <motion.div variants={fadeInLeft}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-narrow leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-narrow leading-tight uppercase">
               <span className="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
                 {t("jobs.empowering")}
               </span>{" "}
@@ -223,7 +224,7 @@ const JobsSection = () => {
             </h2>
           </motion.div>
           <motion.div className="self-start" variants={fadeInRight}>
-            <p className="text-lg sm:text-lg md:text-xl font-narrow my-6 sm:my-8">
+            <p className="text-lg font-narrow my-6 sm:my-8">
               {t("jobs.description")}
             </p>
             <button

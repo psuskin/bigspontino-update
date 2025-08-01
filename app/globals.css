@@ -43,7 +43,7 @@ html {
 }
 .line-divider-widget--pattern .line-divider {
   border: 0;
-  background: url('/assets/divider.svg');
+  background: url('/assets/divider-3.svg');
   background-repeat: repeat-x;
   background-position: center left;
   background-size: auto 40px;

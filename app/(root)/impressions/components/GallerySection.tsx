@@ -1,40 +1,45 @@
-'use client';
+"use client";
 
-import { AnimatePresence, motion, useInView, type Variants } from 'framer-motion';
-import Image from 'next/image';
-import type * as React from 'react';
-import { useCallback, useRef, useState } from 'react';
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  type Variants,
+} from "framer-motion";
+import Image from "next/image";
+import type * as React from "react";
+import { useCallback, useRef, useState } from "react";
 
 const images = [
-  '/assets/photos/1.jpg',
-  '/assets/photos/2.jpg',
-  '/assets/photos/3.jpg',
-  '/assets/photos/4.jpg',
-  '/assets/photos/5.jpeg',
-  '/assets/photos/6.jpeg',
-  '/assets/photos/7.jpeg',
-  '/assets/photos/8.jpeg',
-  '/assets/photos/9.jpeg',
-  '/assets/photos/10.jpg',
-  '/assets/photos/11.jpg',
-  '/assets/photos/12.jpeg',
-  '/assets/photos/13.jpeg',
-  '/assets/photos/14.jpeg',
-  '/assets/photos/15.jpg',
-  '/assets/photos/16.jpg',
-  '/assets/photos/17.jpeg',
-  '/assets/photos/18.jpg',
-  '/assets/photos/19.jpg',
-  '/assets/photos/20.jpg',
-  '/assets/photos/21.jpg',
-  '/assets/photos/22.jpg',
-  '/assets/photos/23.jpg',
-  '/assets/photos/24.jpg',
-  '/assets/photos/25.jpg',
-  '/assets/photos/26.jpg',
-  '/assets/photos/27.jpeg',
-  '/assets/photos/28.jpg',
-  '/assets/photos/29.jpeg',
+  "/assets/photos/1.jpg",
+  "/assets/photos/2.jpg",
+  "/assets/photos/3.jpg",
+  "/assets/photos/4.jpg",
+  "/assets/photos/5.jpeg",
+  "/assets/photos/6.jpeg",
+  "/assets/photos/7.jpeg",
+  "/assets/photos/8.jpeg",
+  "/assets/photos/9.jpeg",
+  "/assets/photos/10.jpg",
+  "/assets/photos/11.jpg",
+  "/assets/photos/12.jpeg",
+  "/assets/photos/13.jpeg",
+  "/assets/photos/14.jpeg",
+  "/assets/photos/15.jpg",
+  "/assets/photos/16.jpg",
+  "/assets/photos/17.jpeg",
+  "/assets/photos/18.jpg",
+  "/assets/photos/19.jpg",
+  "/assets/photos/20.jpg",
+  "/assets/photos/21.jpg",
+  "/assets/photos/22.jpg",
+  "/assets/photos/23.jpg",
+  "/assets/photos/24.jpg",
+  "/assets/photos/25.jpg",
+  "/assets/photos/26.jpg",
+  "/assets/photos/27.jpeg",
+  "/assets/photos/28.jpg",
+  "/assets/photos/29.jpeg",
 ];
 
 const GallerySection: React.FC = () => {
@@ -48,7 +53,7 @@ const GallerySection: React.FC = () => {
 
   // Intersection observers for animations
   // const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
-  const galleryInView = useInView(galleryRef, { once: true, margin: '-50px' });
+  const galleryInView = useInView(galleryRef, { once: true, margin: "-50px" });
 
   // Responsive aspect ratios
   const aspectRatios = {
@@ -106,7 +111,9 @@ const GallerySection: React.FC = () => {
 
   const goToPrevImage = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
   }, []);
 
   // Animation variants
@@ -162,8 +169,12 @@ const GallerySection: React.FC = () => {
   };
 
   return (
-    <section className="py-6 md:px-6 px-3 relative overflow-hidden">
-      <div className="relative z-10 ">
+    <section className="">
+      {/* Divider */}
+      <div className="widget-container widget-container--bleed line-divider-widget line-divider-widget--pattern">
+        <hr className="line-divider" />
+      </div>
+      <div className="py-16 md:px-6 px-3 overflow-hidden relative z-10 ">
         {/* <motion.div
           ref={headerRef}
           variants={staggerContainer}
@@ -187,16 +198,22 @@ const GallerySection: React.FC = () => {
           className="columns-2 xs:columns-3 sm:columns-4 md:columns-3 lg:columns-4 gap-2 sm:gap-3 md:gap-4"
           variants={staggerContainer}
           initial="hidden"
-          animate={galleryInView ? 'visible' : 'hidden'}
+          animate={galleryInView ? "visible" : "hidden"}
         >
           {images.map((src, index) => {
-            const randomIndex = Math.floor(Math.random() * aspectRatios.sm.length);
+            const randomIndex = Math.floor(
+              Math.random() * aspectRatios.sm.length
+            );
             return (
               <motion.div
                 key={index}
                 className="mb-2 sm:mb-3 md:mb-4 overflow-hidden rounded-none shadow-lg break-inside-avoid cursor-pointer relative group"
                 variants={itemVariants}
-                whileHover={{ scale: 1.03, zIndex: 1, boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}
+                whileHover={{
+                  scale: 1.03,
+                  zIndex: 1,
+                  boxShadow: "0 10px 20px rgba(0,0,0,0.2)",
+                }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                 onClick={() => openLightbox(index)}
@@ -204,7 +221,7 @@ const GallerySection: React.FC = () => {
                 {/* Mobile (sm) */}
                 <div className="block sm:hidden">
                   <Image
-                    src={src || '/placeholder.svg'}
+                    src={src || "/placeholder.svg"}
                     alt={`Galeriebild ${index + 1}`}
                     width={aspectRatios.sm[randomIndex].width}
                     height={aspectRatios.sm[randomIndex].height}
@@ -214,7 +231,7 @@ const GallerySection: React.FC = () => {
                 {/* Small tablet (md) */}
                 <div className="hidden sm:block md:hidden">
                   <Image
-                    src={src || '/placeholder.svg'}
+                    src={src || "/placeholder.svg"}
                     alt={`Galeriebild ${index + 1}`}
                     width={aspectRatios.md[randomIndex].width}
                     height={aspectRatios.md[randomIndex].height}
@@ -224,7 +241,7 @@ const GallerySection: React.FC = () => {
                 {/* Tablet (lg) */}
                 <div className="hidden md:block lg:hidden">
                   <Image
-                    src={src || '/placeholder.svg'}
+                    src={src || "/placeholder.svg"}
                     alt={`Galeriebild ${index + 1}`}
                     width={aspectRatios.lg[randomIndex].width}
                     height={aspectRatios.lg[randomIndex].height}
@@ -234,7 +251,7 @@ const GallerySection: React.FC = () => {
                 {/* Desktop (xl) - original design */}
                 <div className="hidden lg:block">
                   <Image
-                    src={src || '/placeholder.svg'}
+                    src={src || "/placeholder.svg"}
                     alt={`Galeriebild ${index + 1}`}
                     width={aspectRatios.xl[randomIndex].width}
                     height={aspectRatios.xl[randomIndex].height}
@@ -269,7 +286,7 @@ const GallerySection: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={images[currentImageIndex] || '/placeholder.svg'}
+                src={images[currentImageIndex] || "/placeholder.svg"}
                 alt={`Vollansicht von Galeriebild ${currentImageIndex + 1}`}
                 width={1600}
                 height={1000}

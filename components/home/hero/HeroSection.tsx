@@ -1,33 +1,34 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { useTranslation } from 'react-i18next';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const slideData = {
   id: 3,
-  image: '/assets/startseite.jpeg',
-  titleKey: 'hero.slide2.title',
-  descriptionKey: 'hero.slide2.description',
+  image: "/assets/final_images/StartingScreen.jpg",
+  titleKey: "hero.slide2.title",
+  descriptionKey: "hero.slide2.description",
 };
 
 export default function HeroSection() {
   const { t } = useTranslation();
 
   const handleNextSectionClick = () => {
-    const nextSection = document.querySelector('#italian-daytime-bar');
+    const nextSection = document.querySelector("#italian-daytime-bar");
     if (nextSection) {
       // Get the navbar height (adjust this value based on your actual navbar height)
       const navbarHeight = 0; // Change this to match your navbar height in pixels
 
       // Calculate the target position
       const elementPosition = nextSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - navbarHeight;
 
       // Smooth scroll to the calculated position
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   };
@@ -44,6 +45,7 @@ export default function HeroSection() {
             alt={t(slideData.titleKey)}
             className="w-full h-full object-cover"
             priority
+            quality={100}
           />
 
           {/* Simple dark overlay for text readability */}
@@ -74,7 +76,7 @@ export default function HeroSection() {
             onClick={handleNextSectionClick}
             className="text-sm sm:text-base lg:text-lg font-semibold text-white rounded-full transition-all duration-200 hover:text-gray-200 cursor-pointer shadow-2xl"
           >
-            {t('hero.explore')}
+            {t("hero.explore")}
           </button>
           <motion.svg
             fill="#fff"
@@ -91,9 +93,9 @@ export default function HeroSection() {
             animate={{ y: [0, -4, 0] }}
             transition={{
               duration: 1.5,
-              ease: 'easeInOut',
+              ease: "easeInOut",
               repeat: Number.POSITIVE_INFINITY,
-              repeatType: 'loop',
+              repeatType: "loop",
             }}
           >
             <g>

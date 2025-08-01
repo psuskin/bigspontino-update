@@ -1,5 +1,5 @@
-import RevealTextOnView from '@/components/animation/text/RevealTextOnView';
-import Image from 'next/image';
+// import RevealTextOnView from '@/components/animation/text/RevealTextOnView';
+import Image from "next/image";
 
 const HeroSection = () => {
   return (
@@ -7,15 +7,18 @@ const HeroSection = () => {
       <Image
         width={1920}
         height={1080}
-        src={'/assets/jobs/lavori.jpg'}
-        alt={'Antipasti dish'}
+        src={"/assets/final_images/Lavori.jpg"}
+        alt={"Antipasti dish"}
         className="w-full h-full object-cover"
+        quality={100}
+        priority
+        style={{ objectPosition: "center 60%" }}
       />
 
       {/* Overlay for better text visibility */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/30" />
 
-      <div className="absolute inset-0 flex items-center justify-center">
+      {/* <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-full max-w-xl md:max-w-2xl lg:max-w-4xl h-32 px-4 md:px-8">
           <RevealTextOnView
             className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-wider pt-8 text-white text-center"
@@ -26,7 +29,7 @@ const HeroSection = () => {
             Lavori
           </RevealTextOnView>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

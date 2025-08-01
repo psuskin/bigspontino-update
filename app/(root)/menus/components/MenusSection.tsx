@@ -33,21 +33,21 @@ const MenusSection: React.FC = () => {
     {
       id: 1,
       nameKey: "menus.categories.brunch.name",
-      image: "/assets/menus/brunch/italianBrunch.jpg", // Single image
+      image: "/assets/final_images/Brunch.jpg", // Single image
       link: "/menu/brunch",
       pdfPath: "/assets/menus/pdf/brunch.pdf",
     },
     {
       id: 2,
       nameKey: "menus.categories.lunch.name",
-      image: "/assets/menus/lunch/pranzo.jpg", // Single image
+      image: "/assets/final_images/Pranzo.jpeg", // Single image
       link: "/menu/lunch",
       pdfPath: "/assets/menus/pdf/lunch.pdf",
     },
     {
       id: 3,
       nameKey: "menus.categories.dinner.name",
-      image: "/assets/menus/dinner/cena.jpg", // Single image
+      image: "/assets/final_images/Cena.jpg", // Single image
       link: "/menu/dinner",
       pdfPath: "/assets/menus/pdf/dinner.pdf",
     },
