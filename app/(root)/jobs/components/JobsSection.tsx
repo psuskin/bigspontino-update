@@ -572,7 +572,10 @@ const JobsSection = () => {
                 </label>
               </motion.div>
               {/* Submit */}
-              <motion.div variants={buttonVariants} className="pt-4 sm:pt-6">
+              <motion.div
+                variants={buttonVariants}
+                className="pt-4 sm:pt-6 mb-10"
+              >
                 <motion.button
                   whileHover={{ scale: 1.05, x: 5 }}
                   whileTap={{ scale: 0.95 }}
