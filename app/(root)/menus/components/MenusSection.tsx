@@ -35,7 +35,7 @@ const MenusSection: React.FC = () => {
       nameKey: "menus.categories.brunch.name",
       image: "/assets/final-images/brunch.jpg", // Single image
       link: "/menu/brunch",
-      pdfPath: "/assets/menus/pdf/brunch.pdf",
+      pdfPath: "/assets/menus/pdf/italian-brunch.pdf",
     },
     {
       id: 2,

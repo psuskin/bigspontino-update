@@ -316,14 +316,26 @@ const Navbar = () => {
                         setIsBookingModalOpen(true);
                         setIsOpen(false);
                       }}
-                      className="group relative inline-flex h-10 sm:h-12 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
+                      className="group relative inline-flex h-12 sm:h-14 items-center cursor-pointer justify-center overflow-hidden rounded-none font-medium"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <div className="inline-flex h-10 sm:h-12 translate-y-0 items-center justify-center bg-background text-lg sm:text-xl px-6 text-secondary transition group-hover:-translate-y-[150%] rounded-none">
+                      {/* SVG Pattern Background */}
+                      <div
+                        className="absolute inset-0 bg-white"
+                        style={{
+                          backgroundImage: "url('/assets/divider-15.svg')",
+                          backgroundSize: "40px auto",
+                        }}
+                      />
+
+                      {/* Button Content */}
+                      <div className="relative z-10 inline-flex h-12 sm:h-14 translate-y-0 items-center justify-center text-lg sm:text-xl px-8 text-secondary transition group-hover:-translate-y-[150%] rounded-none font-medium tracking-wide">
                         {t("buttons.bookTable") || "Book A Table"}
                       </div>
-                      <div className="absolute inline-flex h-10 sm:h-12 w-full translate-y-[100%] items-center justify-center text-lg sm:text-xl bg-[#000c71] px-6 text-white transition duration-300 group-hover:translate-y-0 rounded-none">
+
+                      {/* Hover State */}
+                      <div className="absolute inset-0 z-10 inline-flex h-12 sm:h-14 w-full translate-y-[100%] items-center justify-center text-lg sm:text-xl bg-[#000c71] px-8 text-white transition duration-300 group-hover:translate-y-0 rounded-none font-medium tracking-wide">
                         {t("buttons.bookTable") || "Book A Table"}
                       </div>
                     </motion.button>
@@ -362,7 +374,7 @@ const Navbar = () => {
                                 {mainText}
                               </span>
                               {bracketed && (
-                                <span className="text-xs sm:text-sm md:text-lg lg:text-xl uppercase leading-tight">
+                                <span className="text-xs sm:text-sm md:text-lg lg:text-xl uppercase leading-tight italic font-narrow">
                                   {bracketed.split("(")[1].split(")")[0]}
                                 </span>
                               )}

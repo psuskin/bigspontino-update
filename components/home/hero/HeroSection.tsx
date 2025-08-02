@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const slideData = {
   id: 3,
-  image: "/assets/final-images/home.jpg",
+  image: "/assets/hero-image.jpg",
   titleKey: "hero.slide2.title",
   descriptionKey: "hero.slide2.description",
 };
@@ -49,7 +49,7 @@ export default function HeroSection() {
           />
 
           {/* Simple dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/10" />
 
           {/* Content Overlay - Centered */}
           {/* <div className="absolute inset-0 flex items-center justify-center">

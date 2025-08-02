@@ -224,7 +224,7 @@ const JobsSection = () => {
             </h2>
           </motion.div>
           <motion.div className="self-start" variants={fadeInRight}>
-            <p className="text-lg font-narrow my-6 sm:my-8">
+            <p className="text-sm md:text-lg font-narrow my-6 sm:my-8">
               {t("jobs.description")}
             </p>
             <button

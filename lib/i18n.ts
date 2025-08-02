@@ -72,7 +72,7 @@ const resources = {
           "The cuisine at Big Spuntino restaurants tells a narrative of flavors, with each plate representing a chapter from the heart of Italy's culinary traditions. Classic dishes such as Tagliatelle Al Tartufo, Pistachio Pesto Trofie, and the iconic Milanese Cutlet are adorned with the finest harvests from Italian soils. Meanwhile, the theatrics of our artisanal pizza oven unveil crusts that combine the ethereal fluff of Naples with the crisp whisper of Rome. The dining experience is then completed with a selection of generous Italian desserts.",
       },
       architecture: {
-        title: 'Experience the charm of an authentic Italian daytime bar',
+        title: 'Experience the charm of an Italian daytime bar',
         description:
           "Big Spuntino welcomes its guests to a vibrant ambiance in Hamburg's Winterhude district, where tomato-red and classic Italian elements, such as dark wood and brass, blend harmoniously. This welcoming daytime bar is the ideal destination for authentic cuisine, just like at La Scala in Milan, and offers fine menus for Mediterranean enjoyment – all day long: from boozy brunches on the weekends, to daily lunches and early aperitivo hours, to the actual dinner.",
       },
@@ -598,7 +598,7 @@ const resources = {
           'Die Speisekarte des Big Spuntino ist eine herzliche Hommage an Italiens kulinarisches Erbe. Von Insalata Caprese und Pulpo bis hin zu den knusprigsten Foccacia bietet unsere Speisekarte eine exquisite Auswahl an klassischen Spuntini (*ital. „Snacks“). Dies natürlich auch bei den Dolci: Von der traditionellen Creme die Mascarpone bis hin zu den fluffig leichten Maritozzi versüßt das Big Spuntino den Alltag mit den Churros all italiana – neapolitanische Doughnut-Stangen, warm serviert und perfekt zum Eintauchen in geschmolzene Schokolade mit special Toppings. Ergänzend zum kulinarischen Erlebnis können klassische italienisch-kosmopolitische Cocktails und Weine aus Nord und Süd verköstigt werden. Die Essenz eines italienischen Sommers wird mit einem spritzigen Spritz zum Leben erweckt, während die besonderen Aromen unseres Signature-Cocktails Spuntino 75 der perfekten Auftakt für einen genussvollen Abend sind.',
       },
       architecture: {
-        title: 'Erlebe den Charm einer authentischen',
+        title: 'Erlebe den Charme einer italienischen Tagesbar',
         description:
           'Das Big Spuntino begrüßt seine Gäste in einem lebendigen Ambiente in Hamburg-Winterhude, in dem tomatenrote und klassisch italienische Elemente wie die dunklen Holz-Messing-Kombinationen harmonisch miteinander verschmelzen. Die herzliche Tagesbar ist die ideale Anlaufstelle für authentische Küche ganz wie auf der Mailänder Scala und bietet feine Speisekarten für mediterranen Genuss – und das allday long: von boozy Brunches an den Wochenenden, über daily Lunches und early Aperitivo-Hour bis hin zum eigentlichen Dinner.',
       },
