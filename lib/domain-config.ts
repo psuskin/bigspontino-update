@@ -12,42 +12,37 @@ type DomainInfo = {
 export const domainConfig = {
   // Primary domain (canonical)
   primaryDomain: 'https://www.bigspuntino.com',
-  
+
   // Alternative domains that should redirect to primary
-  alternativeDomains: [
-    'https://bigspuntino.com',
-    'https://www.bigspuntino.de',
-    'https://bigspuntino.de'
-  ],
-  
+  alternativeDomains: ['https://bigspuntino.com'],
+
   // Domain-specific configurations
   domains: {
     'www.bigspuntino.com': {
       isPrimary: true,
       language: 'en',
       region: 'international',
-      hreflang: 'en'
+      hreflang: 'en',
     },
     'bigspuntino.com': {
-      isPrimary: false,
+      isPrimary: true,
       redirectTo: 'https://www.bigspuntino.com',
       language: 'en',
-      region: 'international'
+      region: 'international',
     },
     'www.bigspuntino.de': {
-      isPrimary: false,
-      redirectTo: 'https://www.bigspuntino.com',
+      isPrimary: true,
       language: 'de',
       region: 'germany',
-      hreflang: 'de'
+      hreflang: 'de',
     },
     'bigspuntino.de': {
-      isPrimary: false,
-      redirectTo: 'https://www.bigspuntino.com',
+      isPrimary: true,
+      redirectTo: 'https://www.bigspuntino.de',
       language: 'de',
-      region: 'germany'
-    }
-  }
+      region: 'germany',
+    },
+  },
 };
 
 // Get canonical URL for any given path
@@ -58,18 +53,20 @@ export const getCanonicalUrl = (path: string = ''): string => {
 
 // Check if domain needs redirect
 export const shouldRedirect = (hostname: string): string | null => {
-  const domainInfo = domainConfig.domains[hostname as keyof typeof domainConfig.domains] as DomainInfo | undefined;
+  const domainInfo = domainConfig.domains[hostname as keyof typeof domainConfig.domains] as
+    | DomainInfo
+    | undefined;
   return domainInfo?.redirectTo || null;
 };
 
 // Get hreflang alternatives for SEO
 export const getHreflangAlternatives = (path: string = '') => {
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
-  
+
   return {
-    'en': `https://www.bigspuntino.com${cleanPath}`,
-    'de': `https://www.bigspuntino.com${cleanPath}`,
-    'x-default': `https://www.bigspuntino.com${cleanPath}`
+    en: `https://www.bigspuntino.com${cleanPath}`,
+    de: `https://www.bigspuntino.de${cleanPath}`,
+    'x-default': `https://www.bigspuntino.com${cleanPath}`,
   };
 };
 
@@ -80,13 +77,17 @@ export const createRedirectResponse = (url: string, permanent: boolean = true) =
 
 // Domain validation utilities
 export const isDomainValid = (hostname: string): boolean => {
-  return Object.keys(domainConfig.domains).includes(hostname) || 
-         domainConfig.alternativeDomains.some(domain => domain.includes(hostname));
+  return (
+    Object.keys(domainConfig.domains).includes(hostname) ||
+    domainConfig.alternativeDomains.some((domain) => domain.includes(hostname))
+  );
 };
 
 // Get domain configuration
 export const getDomainConfig = (hostname: string): DomainInfo | null => {
-  return (domainConfig.domains[hostname as keyof typeof domainConfig.domains] as DomainInfo) || null;
+  return (
+    (domainConfig.domains[hostname as keyof typeof domainConfig.domains] as DomainInfo) || null
+  );
 };
 
 // SEO-friendly domain handling
@@ -94,13 +95,13 @@ export const generateDomainMetadata = (hostname: string, path: string = '') => {
   const canonical = getCanonicalUrl(path);
   const hreflang = getHreflangAlternatives(path);
   const domainInfo = getDomainConfig(hostname);
-  
+
   return {
     canonical,
     hreflang,
     shouldIndex: domainInfo?.isPrimary ?? false,
     language: domainInfo?.language || 'en',
-    region: domainInfo?.region || 'international'
+    region: domainInfo?.region || 'international',
   };
 };
 
@@ -108,39 +109,39 @@ export const generateDomainMetadata = (hostname: string, path: string = '') => {
 export const handleDomainRedirect = (request: Request) => {
   const url = new URL(request.url);
   const hostname = url.hostname;
-  
+
   // Check if redirect is needed
   const redirectUrl = shouldRedirect(hostname);
   if (redirectUrl) {
     const newUrl = new URL(url.pathname + url.search, redirectUrl);
     return createRedirectResponse(newUrl.toString());
   }
-  
+
   return null;
 };
 
 // Analytics and tracking configuration per domain
 export const getDomainAnalytics = (hostname: string) => {
   const config = getDomainConfig(hostname);
-  
+
   return {
     // Google Analytics tracking ID (same for all domains)
     gaTrackingId: 'G-XXXXXXXXXX', // Replace with actual GA4 ID
-    
+
     // Domain-specific tracking parameters
     trackingParams: {
       domain: hostname,
       language: config?.language || 'en',
       region: config?.region || 'international',
-      isPrimary: config?.isPrimary || false
+      isPrimary: config?.isPrimary || false,
     },
-    
+
     // Custom dimensions for domain tracking
     customDimensions: {
       domain_type: config?.isPrimary ? 'primary' : 'redirect',
       domain_language: config?.language || 'en',
-      domain_region: config?.region || 'international'
-    }
+      domain_region: config?.region || 'international',
+    },
   };
 };
 
