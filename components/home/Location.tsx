@@ -149,7 +149,7 @@ const Location = () => {
                 }}
                 viewport={{ once: true }}
               >
-                <motion.h3
+                <motion.h1
                   className="font-light tracking-widest mb-1 sm:mb-2 opacity-90 text-xs sm:text-sm"
                   animate={{
                     y: hoveredCard === location.id ? -5 : 0,
@@ -157,7 +157,7 @@ const Location = () => {
                   transition={{ duration: 0.3 }}
                 >
                   Big Spuntino
-                </motion.h3>
+                </motion.h1>
 
                 <motion.h2
                   className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-wide"

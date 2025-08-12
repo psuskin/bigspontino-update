@@ -222,7 +222,7 @@ const GallerySection: React.FC = () => {
                 <div className="block sm:hidden">
                   <Image
                     src={src || "/placeholder.svg"}
-                    alt={`Galeriebild ${index + 1}`}
+                    alt={`Big Spuntino Italian Restaurant Hamburg - Gallery Image ${index + 1}`}
                     width={aspectRatios.sm[randomIndex].width}
                     height={aspectRatios.sm[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
@@ -232,7 +232,7 @@ const GallerySection: React.FC = () => {
                 <div className="hidden sm:block md:hidden">
                   <Image
                     src={src || "/placeholder.svg"}
-                    alt={`Galeriebild ${index + 1}`}
+                    alt={`Big Spuntino Italian Restaurant Hamburg - Gallery Image ${index + 1}`}
                     width={aspectRatios.md[randomIndex].width}
                     height={aspectRatios.md[randomIndex].height}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:brightness-90"
@@ -287,7 +287,7 @@ const GallerySection: React.FC = () => {
             >
               <Image
                 src={images[currentImageIndex] || "/placeholder.svg"}
-                alt={`Vollansicht von Galeriebild ${currentImageIndex + 1}`}
+                alt={`Big Spuntino Italian Restaurant Hamburg - Full View Gallery Image ${currentImageIndex + 1}`}
                 width={1600}
                 height={1000}
                 className="max-w-full max-h-[90vh] sm:max-h-[93.5vh] object-contain rounded-none shadow-2xl border-2 border-white/20"

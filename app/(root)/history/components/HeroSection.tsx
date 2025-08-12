@@ -8,7 +8,7 @@ const HeroSection = () => {
         width={1920}
         height={1080}
         src={"/assets/history/history.jpg"}
-        alt={"Antipasti dish"}
+        alt={"Big Spuntino - Italian Restaurant History Hamburg Winterhude"}
         className="w-full h-full object-cover"
         style={{ objectPosition: "center 50%" }}
       />

@@ -8,7 +8,7 @@ const HeroSection = () => {
         width={1920}
         height={1080}
         src={"/assets/events/eventiStartbild.jpg"}
-        alt={"Antipasti dish"}
+        alt={"Big Spuntino - Italian Events and Private Dining Hamburg"}
         className="w-full h-full object-cover"
       />
 

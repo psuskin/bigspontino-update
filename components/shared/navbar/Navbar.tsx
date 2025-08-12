@@ -447,7 +447,7 @@ const Navbar = () => {
             >
               <Image
                 src="/assets/logo-white.png"
-                alt="BigSpuntino"
+                alt="Big Spuntino - Authentic Italian Restaurant Hamburg"
                 width={100}
                 height={100}
                 className="w-auto h-16 md:h-20 lg:h-24"
@@ -640,7 +640,7 @@ const Navbar = () => {
                   <div className="mb-4 text-xl font-semibold text-gray-800">
                     <Image
                       src="/assets/logo.png"
-                      alt="BigSpuntino"
+                      alt="Big Spuntino - Authentic Italian Restaurant Hamburg"
                       width={100}
                       height={100}
                       className="w-auto h-16 md:h-20 lg:h-24"

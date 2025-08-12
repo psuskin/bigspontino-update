@@ -131,7 +131,7 @@ const ArchitecturalInspirations = () => {
                 width={800}
                 height={600}
                 className="w-full h-full object-cover"
-                alt="Bambini Paris Interior"
+                alt="Big Spuntino - Italian Restaurant Interior Design Hamburg"
                 priority={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                 quality={75}
@@ -155,7 +155,7 @@ const ArchitecturalInspirations = () => {
                 width={800}
                 height={400}
                 className="w-full h-full object-cover"
-                alt="Cocktail Mr Lemon"
+                alt="Big Spuntino - Italian Cocktails and Aperitivo Hamburg"
                 priority={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                 quality={75}
@@ -171,13 +171,14 @@ const ArchitecturalInspirations = () => {
               className="w-full h-full"
             >
               <Image
-                src="/assets/photos/14.jpeg"
+                src="/assets/photos/2.jpg"
                 width={800}
-                height={600}
+                height={400}
                 className="w-full h-full object-cover"
-                alt="Antipasti by Joann"
+                alt="Big Spuntino - Italian Antipasti and Appetizers Hamburg"
                 priority={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+                quality={75}
               />
             </motion.div>
           </div>

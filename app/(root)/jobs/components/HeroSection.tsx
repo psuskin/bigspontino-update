@@ -8,7 +8,7 @@ const HeroSection = () => {
         width={1920}
         height={1080}
         src={"/assets/final-images/lavori.jpg"}
-        alt={"Antipasti dish"}
+        alt={"Big Spuntino - Italian Restaurant Jobs Hamburg Careers"}
         className="w-full h-full object-cover"
         quality={100}
         priority

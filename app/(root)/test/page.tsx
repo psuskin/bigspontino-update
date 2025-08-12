@@ -82,7 +82,7 @@ export default function Loading() {
             >
               <Image
                 src="/assets/logo-white.png"
-                alt="BigSpuntino"
+                alt="Big Spuntino - Authentic Italian Restaurant Hamburg"
                 width={100}
                 height={100}
                 className="w-auto h-12 sm:h-14 md:h-20 lg:h-24 mx-auto"

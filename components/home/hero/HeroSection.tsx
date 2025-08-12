@@ -42,7 +42,7 @@ export default function HeroSection() {
             width={1920}
             height={1080}
             src={slideData.image}
-            alt={t(slideData.titleKey)}
+            alt={`Big Spuntino - ${t(slideData.titleKey)} - Authentic Italian Restaurant Hamburg`}
             className="w-full h-full object-cover"
             priority
             quality={100}

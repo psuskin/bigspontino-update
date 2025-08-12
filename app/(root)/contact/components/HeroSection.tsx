@@ -8,7 +8,7 @@ const HeroSection = () => {
         width={1920}
         height={1080}
         src={"/assets/contact/1.jpg"}
-        alt={"Antipasti dish"}
+        alt={"Big Spuntino - Italian Antipasti Contact Hamburg"}
         className="w-full h-full object-cover"
       />
 

@@ -83,7 +83,7 @@ const ItalianFlavors = () => {
               width={400}
               className="w-full aspect-[4/3] sm:aspect-[3/2] object-cover"
               height={300}
-              alt="Authentic Italian dishes"
+              alt="Big Spuntino - Authentic Italian Dishes and Spuntini"
             />
           </motion.div>
         </div>
@@ -96,12 +96,12 @@ const ItalianFlavors = () => {
             className="w-full h-full"
           >
             <Image
-              src="/assets/italian-flavors/07-Il-Bambini-Club.jpg"
-              width={400}
-              className="w-full aspect-[4/3] sm:aspect-[3/2] object-cover"
-              height={300}
-              alt="Authentic Italian dishes"
-            />
+                src="/assets/italian-flavors/06-Il-Bambini-Club.jpg"
+                width={400}
+                className="w-full aspect-[4/3] sm:aspect-[3/2] object-cover"
+                height={300}
+                alt="Big Spuntino - Traditional Italian Cuisine Hamburg"
+              />
           </motion.div>
         </div>
       </div>
@@ -140,7 +140,7 @@ const ItalianFlavors = () => {
           <Image
             src="/assets/bambini_club8.jpg"
             className="w-full h-full object-cover"
-            alt="Italian restaurant ambiance"
+            alt="Big Spuntino - Italian Restaurant Ambiance Hamburg Winterhude"
             fill
           />
         </motion.div>

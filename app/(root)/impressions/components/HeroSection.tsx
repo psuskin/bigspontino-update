@@ -44,7 +44,7 @@ const HeroSection = () => {
         width={1920}
         height={1080}
         src={"/assets/final-images/impressioni.jpg"}
-        alt={"Antipasti dish"}
+        alt={"Big Spuntino - Italian Restaurant Gallery Hamburg"}
         className="w-full h-full object-cover"
         style={{ objectPosition: "center 50%" }}
         quality={100}
