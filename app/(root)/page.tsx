@@ -6,6 +6,13 @@ import ItalianDaytimeBar from '@/components/home/ItalianDaytimeBar';
 // import Location from '@/components/home/Location';
 // import Newsletter from '@/components/home/Newsletter';
 // import BookingPopup from '@/components/shared/popup/BookingPopup';
+import { generateMetadata as generateSEOMetadata, pageMetadata } from '@/lib/metadata';
+
+export const metadata = generateSEOMetadata({
+  title: pageMetadata.home.title,
+  description: pageMetadata.home.description,
+  path: '',
+});
 
 export default function Home() {
   return (

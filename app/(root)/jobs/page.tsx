@@ -1,6 +1,13 @@
 import { ScrollTransition } from '@/components/animation/scroll/ScrollTransition';
 import HeroSection from './components/HeroSection';
 import JobsSection from './components/JobsSection';
+import { generateMetadata as generateSEOMetadata, pageMetadata } from '@/lib/metadata';
+
+export const metadata = generateSEOMetadata({
+  title: pageMetadata.jobs.title,
+  description: pageMetadata.jobs.description,
+  path: '/jobs',
+});
 
 export default function JobsPage() {
   return (

@@ -1,6 +1,13 @@
 import { ScrollTransition } from '@/components/animation/scroll/ScrollTransition';
 import GallerySection from './components/GallerySection';
 import HeroSection from './components/HeroSection';
+import { generateMetadata as generateSEOMetadata, pageMetadata } from '@/lib/metadata';
+
+export const metadata = generateSEOMetadata({
+  title: pageMetadata.impressions.title,
+  description: pageMetadata.impressions.description,
+  path: '/impressions',
+});
 
 export default function Impressions() {
   return (

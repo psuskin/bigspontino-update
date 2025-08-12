@@ -2,6 +2,13 @@ import { ScrollTransition } from '@/components/animation/scroll/ScrollTransition
 import ContactSection from './components/ContactSection';
 import HeroSection from './components/HeroSection';
 import OpeningHours from './components/OpeningHours';
+import { generateMetadata as generateSEOMetadata, pageMetadata } from '@/lib/metadata';
+
+export const metadata = generateSEOMetadata({
+  title: pageMetadata.contact.title,
+  description: pageMetadata.contact.description,
+  path: '/contact',
+});
 
 export default function ContactPage() {
   return (

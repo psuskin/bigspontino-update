@@ -1,0 +1,32 @@
+# Robots.txt for Big Spuntino - Hamburg Italian Restaurant
+# https://www.bigspuntino.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.bigspuntino.com/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
+
+# Allow all search engines to index our content
+# Big Spuntino - Authentic Italian Restaurant in Hamburg
+# Mühlenkamp 8, 22303 Hamburg, Germany
+# Phone: +49 40 / 69 45 68 28
+# Email: mail@bigspuntino.de
+
+# Priority pages for search engines
+# / - Homepage with restaurant overview
+# /menus - Italian menu and dishes
+# /contact - Contact information and reservations
+# /events - Special events and private dining
+# /history - Restaurant story and heritage
+# /impressions - Gallery and atmosphere
+# /jobs - Career opportunities
+
+# Legal and policy pages
+# /privacy-policy - Privacy policy
+# /cookie-policy - Cookie policy
+# /terms-and-conditions - Terms and conditions
+# /legal-notice - Legal notice

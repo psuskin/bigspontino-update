@@ -1,8 +1,9 @@
 import { ThemeProvider } from '@/components/theme/theme-provider';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 
 import { I18nProvider } from '@/components/lang/i18n-provider';
+import { generateMetadata as generateSEOMetadata, generateRestaurantStructuredData } from '@/lib/metadata';
 import './globals.css';
 
 const dreamOrphans = localFont({
@@ -30,10 +31,20 @@ const futuraCyrillic = localFont({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: 'Big Spuntino',
-  description:
-    'A restaurant website showcasing Italian cuisine and culture. Featuring elegant design, rich imagery, and a focus on the culinary arts, it invites visitors to explore the flavors of Italy through its menu, architectural inspirations, and cultural heritage. With sections dedicated to the restaurant’s story, job opportunities, and frequently asked questions, it provides a comprehensive view of the Big Spuntino experience. The site also includes a newsletter subscription form to keep guests updated on events and offers. The overall aesthetic combines modern web design with a touch of Italian elegance, making it a delightful online destination for food lovers.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Authentic Italian Restaurant in Hamburg-Winterhude',
+  description: 'Experience authentic Italian cuisine at Big Spuntino in Hamburg-Winterhude. Traditional spuntini, artisanal cocktails, and warm Italian hospitality. Book your table today.',
+});
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
 };
 
 export default function RootLayout({
@@ -42,9 +53,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Preload critical assets */}
         <link rel="preload" href="/assets/logo-white.png" as="image" />
+        <link rel="preload" href="/assets/hero-bg.jpg" as="image" />
+        
+        {/* DNS prefetch for external domains */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        
+        {/* Structured Data for Restaurant */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateRestaurantStructuredData()),
+          }}
+        />
+        
+        {/* Additional meta tags for better SEO */}
+        <meta name="format-detection" content="telephone=yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Big Spuntino" />
+        
+        {/* Favicon and app icons */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={`${dreamOrphans.variable} ${futuraCyrillic.variable} antialiased `}>
         <ThemeProvider

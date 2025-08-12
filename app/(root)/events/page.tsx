@@ -1,6 +1,13 @@
 import { ScrollTransition } from "@/components/animation/scroll/ScrollTransition";
 import EventSection from "./components/EventSection";
 import HeroSection from "./components/HeroSection";
+import { generateMetadata as generateSEOMetadata, pageMetadata } from '@/lib/metadata';
+
+export const metadata = generateSEOMetadata({
+  title: pageMetadata.events.title,
+  description: pageMetadata.events.description,
+  path: '/events',
+});
 
 export default function EventsPage() {
   return (
