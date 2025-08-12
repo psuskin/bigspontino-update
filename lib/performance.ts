@@ -19,26 +19,38 @@ interface PerformanceWithMemory extends Performance {
 
 // Image optimization configuration
 export const imageOptimization = {
-  formats: ['image/avif', 'image/webp', 'image/jpeg'],
+  formats: ['image/avif', 'image/webp', 'image/jpeg', 'image/jpg', 'image/png'],
   quality: 85,
   sizes: {
     mobile: '(max-width: 640px) 100vw',
     tablet: '(max-width: 1024px) 50vw',
-    desktop: '33vw'
+    desktop: '33vw',
   },
   breakpoints: [320, 640, 768, 1024, 1280, 1536],
   placeholder: 'blur',
-  loading: 'lazy' as const
+  loading: 'lazy' as const,
 };
 
 // Critical resource preloading
 export const criticalResources = [
-  { rel: 'preload', href: '/fonts/inter-var.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
-  { rel: 'preload', href: '/fonts/playfair-display-var.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+  {
+    rel: 'preload',
+    href: '/fonts/inter-var.woff2',
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'preload',
+    href: '/fonts/playfair-display-var.woff2',
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
+  },
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
   { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
   { rel: 'dns-prefetch', href: 'https://www.google-analytics.com' },
-  { rel: 'dns-prefetch', href: 'https://www.googletagmanager.com' }
+  { rel: 'dns-prefetch', href: 'https://www.googletagmanager.com' },
 ];
 
 // Service Worker registration
@@ -58,19 +70,19 @@ export const registerServiceWorker = () => {
 // Lazy loading intersection observer
 export const createLazyLoader = (callback: (entries: IntersectionObserverEntry[]) => void) => {
   if (typeof window === 'undefined') return null;
-  
+
   return new IntersectionObserver(callback, {
     root: null,
     rootMargin: '50px',
-    threshold: 0.1
+    threshold: 0.1,
   });
 };
 
 // Resource hints generator
 export const generateResourceHints = (urls: string[]) => {
-  return urls.map(url => ({
+  return urls.map((url) => ({
     rel: 'prefetch',
-    href: url
+    href: url,
   }));
 };
 
@@ -82,19 +94,19 @@ export const criticalCSS = `
     margin: 0;
     padding: 0;
   }
-  
+
   html {
     font-family: system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     scroll-behavior: smooth;
   }
-  
+
   body {
     background-color: #ffffff;
     color: #1a1a1a;
     overflow-x: hidden;
   }
-  
+
   .hero-section {
     min-height: 100vh;
     display: flex;
@@ -102,7 +114,7 @@ export const criticalCSS = `
     justify-content: center;
     background: linear-gradient(135deg, #d4af37 0%, #f4e4a6 100%);
   }
-  
+
   .navigation {
     position: fixed;
     top: 0;
@@ -118,14 +130,14 @@ export const performanceMonitor = {
   // Core Web Vitals measurement
   measureCoreWebVitals: () => {
     if (typeof window === 'undefined') return;
-    
+
     // Largest Contentful Paint
     new PerformanceObserver((entryList) => {
       const entries = entryList.getEntries();
       const lastEntry = entries[entries.length - 1];
       console.log('LCP:', lastEntry.startTime);
     }).observe({ entryTypes: ['largest-contentful-paint'] });
-    
+
     // First Input Delay
     new PerformanceObserver((entryList) => {
       const entries = entryList.getEntries();
@@ -134,7 +146,7 @@ export const performanceMonitor = {
         console.log('FID:', fidEntry.processingStart - fidEntry.startTime);
       });
     }).observe({ entryTypes: ['first-input'] });
-    
+
     // Cumulative Layout Shift
     let clsValue = 0;
     new PerformanceObserver((entryList) => {
@@ -148,30 +160,30 @@ export const performanceMonitor = {
       console.log('CLS:', clsValue);
     }).observe({ entryTypes: ['layout-shift'] });
   },
-  
+
   // Resource timing analysis
   analyzeResourceTiming: () => {
     if (typeof window === 'undefined') return;
-    
+
     const resources = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
     const slowResources = resources.filter((resource) => resource.duration > 1000);
-    
+
     if (slowResources.length > 0) {
       console.warn('Slow loading resources:', slowResources);
     }
   },
-  
+
   // Memory usage monitoring
   monitorMemoryUsage: () => {
     if (typeof window === 'undefined' || !('memory' in performance)) return;
-    
+
     const memory = (performance as PerformanceWithMemory).memory;
     console.log('Memory usage:', {
       used: Math.round(memory.usedJSHeapSize / 1048576) + ' MB',
       total: Math.round(memory.totalJSHeapSize / 1048576) + ' MB',
-      limit: Math.round(memory.jsHeapSizeLimit / 1048576) + ' MB'
+      limit: Math.round(memory.jsHeapSizeLimit / 1048576) + ' MB',
     });
-  }
+  },
 };
 
 // Cache strategies
@@ -179,27 +191,22 @@ export const cacheStrategies = {
   // Static assets cache
   staticCache: {
     name: 'static-cache-v1',
-    urls: [
-      '/',
-      '/manifest.json',
-      '/icon.svg',
-      '/offline.html'
-    ]
+    urls: ['/', '/manifest.json', '/icon.svg', '/offline.html'],
   },
-  
+
   // API cache with TTL
   apiCache: {
     name: 'api-cache-v1',
     ttl: 5 * 60 * 1000, // 5 minutes
-    maxEntries: 50
+    maxEntries: 50,
   },
-  
+
   // Image cache
   imageCache: {
     name: 'image-cache-v1',
     ttl: 24 * 60 * 60 * 1000, // 24 hours
-    maxEntries: 100
-  }
+    maxEntries: 100,
+  },
 };
 
 // Compression utilities
@@ -209,12 +216,12 @@ export const compressionConfig = {
     threshold: 1024,
     filter: (contentType: string) => {
       return /text|javascript|json|css|xml|svg/.test(contentType);
-    }
+    },
   },
   brotli: {
     quality: 6,
-    threshold: 1024
-  }
+    threshold: 1024,
+  },
 };
 
 // Bundle optimization
@@ -228,37 +235,33 @@ export const bundleOptimization = {
       vendor: {
         test: /[\\/]node_modules[\\/]/,
         name: 'vendors',
-        chunks: 'all'
+        chunks: 'all',
       },
       common: {
         name: 'common',
         minChunks: 2,
         chunks: 'all',
-        enforce: true
-      }
-    }
+        enforce: true,
+      },
+    },
   },
-  
+
   // Tree shaking configuration
   treeShaking: {
     usedExports: true,
-    sideEffects: false
-  }
+    sideEffects: false,
+  },
 };
 
 // CDN configuration
 export const cdnConfig = {
-  domains: [
-    'cdn.bigspuntino.com',
-    'images.bigspuntino.com',
-    'assets.bigspuntino.com'
-  ],
+  domains: ['cdn.bigspuntino.com', 'images.bigspuntino.com', 'assets.bigspuntino.com'],
   headers: {
     'Cache-Control': 'public, max-age=31536000, immutable',
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
-    'X-XSS-Protection': '1; mode=block'
-  }
+    'X-XSS-Protection': '1; mode=block',
+  },
 };
 
 // Performance budget
@@ -269,22 +272,17 @@ export const performanceBudget = {
   images: 500,
   fonts: 100,
   total: 1000,
-  
+
   // Timing budgets (in ms)
   firstContentfulPaint: 1500,
   largestContentfulPaint: 2500,
   firstInputDelay: 100,
   cumulativeLayoutShift: 0.1,
-  timeToInteractive: 3000
+  timeToInteractive: 3000,
 };
 
 // Preload critical routes
-export const preloadCriticalRoutes = [
-  '/',
-  '/menus',
-  '/contact',
-  '/events'
-];
+export const preloadCriticalRoutes = ['/', '/menus', '/contact', '/events'];
 
 // Optimize third-party scripts
 export const thirdPartyOptimization = {
@@ -295,21 +293,21 @@ export const thirdPartyOptimization = {
       page_title: document?.title,
       page_location: window?.location?.href,
       anonymize_ip: true,
-      cookie_flags: 'SameSite=None;Secure'
-    }
+      cookie_flags: 'SameSite=None;Secure',
+    },
   },
-  
+
   // Social media widgets
   socialWidgets: {
     facebook: {
       appId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID,
-      lazy: true
+      lazy: true,
     },
     instagram: {
       lazy: true,
-      intersection: true
-    }
-  }
+      intersection: true,
+    },
+  },
 };
 
 // Database query optimization
@@ -319,20 +317,20 @@ export const dbOptimization = {
     min: 2,
     max: 10,
     idle: 10000,
-    acquire: 60000
+    acquire: 60000,
   },
-  
+
   // Query caching
   queryCache: {
     ttl: 300, // 5 minutes
-    max: 100
+    max: 100,
   },
-  
+
   // Pagination
   pagination: {
     defaultLimit: 20,
-    maxLimit: 100
-  }
+    maxLimit: 100,
+  },
 };
 
 // Error boundary for performance issues
@@ -346,7 +344,7 @@ export class PerformanceErrorBoundary extends Error {
 // Performance optimization middleware
 export const performanceMiddleware = () => {
   const start = Date.now();
-  
+
   return NextResponse.next({
     headers: {
       'X-Response-Time': `${Date.now() - start}ms`,
@@ -354,8 +352,8 @@ export const performanceMiddleware = () => {
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'DENY',
       'X-XSS-Protection': '1; mode=block',
-      'Referrer-Policy': 'strict-origin-when-cross-origin'
-    }
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+    },
   });
 };
 
@@ -364,10 +362,10 @@ export const initializePerformanceOptimizations = () => {
   if (typeof window !== 'undefined') {
     // Register service worker
     registerServiceWorker();
-    
+
     // Start performance monitoring
     performanceMonitor.measureCoreWebVitals();
-    
+
     // Analyze resource timing after page load
     window.addEventListener('load', () => {
       setTimeout(() => {
@@ -375,7 +373,7 @@ export const initializePerformanceOptimizations = () => {
         performanceMonitor.monitorMemoryUsage();
       }, 1000);
     });
-    
+
     // Preload critical routes on hover
     document.addEventListener('mouseover', (e) => {
       const target = e.target as HTMLAnchorElement;
@@ -403,7 +401,7 @@ const performanceUtils = {
   performanceBudget,
   thirdPartyOptimization,
   dbOptimization,
-  initializePerformanceOptimizations
+  initializePerformanceOptimizations,
 };
 
 export default performanceUtils;
