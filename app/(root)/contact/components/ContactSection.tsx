@@ -146,7 +146,7 @@ const ContactSection = () => {
             <Image
               src="/assets/contact/2.jpg"
               className="w-full h-full object-cover"
-              alt="Bartender making cocktail"
+              alt="Big Spuntino - Italian Bartender Cocktails Hamburg"
               width={600}
               height={800}
               priority
@@ -463,7 +463,7 @@ const ContactSection = () => {
               src="/assets/photos/8.jpeg"
               fill
               style={{ objectFit: "cover" }}
-              alt="A lively restaurant scene"
+              alt="Big Spuntino - Italian Restaurant Contact Hamburg Winterhude"
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
               priority
               quality={85}

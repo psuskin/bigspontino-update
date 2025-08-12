@@ -95,7 +95,7 @@ export default function ImageMouseTrail({
           data-index={index}
           data-status="inactive"
           src={item}
-          alt={`image-${index}`}
+          alt={`Big Spuntino - ${item.split('/')}`}
           ref={refs.current[index]}
         />
       ))}

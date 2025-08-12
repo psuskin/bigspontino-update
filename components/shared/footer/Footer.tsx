@@ -79,7 +79,7 @@ const Footer = () => {
           >
             <Image
               src="/assets/logo.png"
-              alt="BigSpuntino"
+              alt="Big Spuntino - Italian Restaurant Hamburg Winterhude"
               width={100}
               height={100}
               className="w-auto mx-auto md:me-auto md:mx-0 h-14  md:h-16 lg:h-28"

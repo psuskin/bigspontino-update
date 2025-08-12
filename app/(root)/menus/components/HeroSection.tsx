@@ -8,7 +8,7 @@ const HeroSection = () => {
         width={1920}
         height={1080}
         src={"/assets/menus/menu.jpeg"}
-        alt={"Antipasti dish"}
+        alt={"Big Spuntino - Italian Menu Traditional Spuntini Hamburg"}
         className="w-full h-full object-cover"
         priority
         quality={100}

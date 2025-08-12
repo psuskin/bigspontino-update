@@ -106,7 +106,7 @@ const ItalianDaytimeBar = () => {
             src="/assets/italian.jpeg"
             fill
             style={{ objectFit: 'cover' }}
-            alt="A lively restaurant scene"
+            alt="Big Spuntino - Italian Daytime Bar Hamburg Winterhude"
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
             priority
             quality={85}

@@ -252,7 +252,7 @@ const JobsSection = () => {
               src="/assets/jobs/2.jpeg"
               layout="fill"
               objectFit="cover"
-              alt="A lively restaurant scene"
+              alt="Big Spuntino - Italian Restaurant Team Hamburg Careers"
             />
           </motion.div>
         </motion.div>

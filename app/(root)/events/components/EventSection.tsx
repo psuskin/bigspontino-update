@@ -112,7 +112,7 @@ const EventSection = () => {
             src="/assets/photos/24.jpg"
             fill
             style={{ objectFit: "cover" }}
-            alt="A lively restaurant scene"
+            alt="Big Spuntino - Italian Events and Celebrations Hamburg"
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
             priority
             quality={85}
