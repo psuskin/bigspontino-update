@@ -714,14 +714,14 @@ export default function NotFound() {
           404
         </motion.h1>
         <div>
-          <motion.h2
+          <motion.h1
             className="text-3xl md:text-4xl font-serif text-amber-700 mb-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
             Big Spuntino
-          </motion.h2>
+          </motion.h1>
           <motion.p
             className="text-lg text-gray-600 italic"
             initial={{ opacity: 0 }}

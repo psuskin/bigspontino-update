@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client";
+'use client';
 
 import {
   Select,
@@ -7,13 +7,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import type React from "react";
-import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+} from '@/components/ui/select';
+import { useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
+import type React from 'react';
+import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ContactTranslations {
   title: string;
@@ -75,13 +75,13 @@ interface DaysTranslations {
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    phonePrefix: "+49",
-    email: "",
-    enquiryType: "",
-    message: "",
+    firstName: '',
+    lastName: '',
+    phone: '',
+    phonePrefix: '+49',
+    email: '',
+    enquiryType: '',
+    message: '',
     receiveNews: false,
     agreeTerms: false,
   });
@@ -90,27 +90,25 @@ const ContactSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   // const [isMobile, setIsMobile] = useState(false);
   const { t } = useTranslation();
-  const contact = t("contact", { returnObjects: true }) as ContactTranslations;
-  const days = t("days", { returnObjects: true }) as DaysTranslations;
+  const contact = t('contact', { returnObjects: true }) as ContactTranslations;
+  const days = t('days', { returnObjects: true }) as DaysTranslations;
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
     setFormData((prev) => ({
       ...prev,
-      [id]: type === "checkbox" ? checked : value,
+      [id]: type === 'checkbox' ? checked : value,
     }));
   };
 
   // Parallax scroll effect - fixed by using the correct container ref
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ['start end', 'end start'],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ['-20%', '20%']);
 
   // Check if device is mobile
   // useEffect(() => {
@@ -131,12 +129,12 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log('Form submitted:', formData);
   };
 
   return (
     <div ref={containerRef} className="w-full">
-      {" "}
+      {' '}
       {/* Added containerRef here */}
       {/* First Section: Sticky Image + Contact Form */}
       <section className="bg-reg-800 min-h-screen">
@@ -162,7 +160,7 @@ const ContactSection = () => {
                   {contact.title}
                 </h1>
                 <p className="text-white-900 font-narrow text-sm mb-10 sm:mb-16">
-                  {t("contact.welcomeMessage")}
+                  {t('contact.welcomeMessage')}
                 </p>
               </div>
 
@@ -204,36 +202,22 @@ const ContactSection = () => {
                     <div className="flex">
                       <Select
                         value={formData.phonePrefix}
-                        onValueChange={(value) =>
-                          handleSelectChange("phonePrefix", value)
-                        }
+                        onValueChange={(value) => handleSelectChange('phonePrefix', value)}
                       >
                         <SelectTrigger className="w-fit bg-background/40 text-white border-0 py-7 sm:py-[34px] px-2 text-sm focus:ring-0 focus:ring-offset-0 rounded-none shadow-none [&>svg]:hidden">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-background/90 backdrop-blur-sm border-white/20">
-                          <SelectItem
-                            value="+49"
-                            className="text-gray-800 hover:text-gray-900"
-                          >
+                          <SelectItem value="+49" className="text-gray-800 hover:text-gray-900">
                             🇩🇪 +49
                           </SelectItem>
-                          <SelectItem
-                            value="+33"
-                            className="text-gray-800 hover:text-gray-900"
-                          >
+                          <SelectItem value="+33" className="text-gray-800 hover:text-gray-900">
                             🇫🇷 +33
                           </SelectItem>
-                          <SelectItem
-                            value="+1"
-                            className="text-gray-800 hover:text-gray-900"
-                          >
+                          <SelectItem value="+1" className="text-gray-800 hover:text-gray-900">
                             🇺🇸 +1
                           </SelectItem>
-                          <SelectItem
-                            value="+44"
-                            className="text-gray-800 hover:text-gray-900"
-                          >
+                          <SelectItem value="+44" className="text-gray-800 hover:text-gray-900">
                             🇬🇧 +44
                           </SelectItem>
                         </SelectContent>
@@ -273,44 +257,25 @@ const ContactSection = () => {
                 <div className="space-y-4">
                   <Select
                     value={formData.enquiryType}
-                    onValueChange={(value) =>
-                      handleSelectChange("enquiryType", value)
-                    }
+                    onValueChange={(value) => handleSelectChange('enquiryType', value)}
                   >
                     <SelectTrigger className="w-full bg-background/40 text-white border-0 py-4 sm:py-6 px-4 text-sm focus:ring-0 focus:ring-offset-0 rounded-none shadow-none data-[placeholder]:text-gray-50">
-                      <SelectValue
-                        placeholder={`${contact.form.enquiryAbout} *`}
-                      />
+                      <SelectValue placeholder={`${contact.form.enquiryAbout} *`} />
                     </SelectTrigger>
                     <SelectContent className="bg-background/90 backdrop-blur-sm border-white/20">
-                      <SelectItem
-                        value="reservation"
-                        className="text-gray-800 hover:text-gray-900"
-                      >
+                      <SelectItem value="reservation" className="text-gray-800 hover:text-gray-900">
                         {contact.form.reservation}
                       </SelectItem>
-                      <SelectItem
-                        value="events"
-                        className="text-gray-800 hover:text-gray-900"
-                      >
+                      <SelectItem value="events" className="text-gray-800 hover:text-gray-900">
                         {contact.form.events}
                       </SelectItem>
-                      <SelectItem
-                        value="catering"
-                        className="text-gray-800 hover:text-gray-900"
-                      >
+                      <SelectItem value="catering" className="text-gray-800 hover:text-gray-900">
                         {contact.form.catering}
                       </SelectItem>
-                      <SelectItem
-                        value="general"
-                        className="text-gray-800 hover:text-gray-900"
-                      >
+                      <SelectItem value="general" className="text-gray-800 hover:text-gray-900">
                         {contact.form.generalInfo}
                       </SelectItem>
-                      <SelectItem
-                        value="other"
-                        className="text-gray-800 hover:text-gray-900"
-                      >
+                      <SelectItem value="other" className="text-gray-800 hover:text-gray-900">
                         {contact.form.other}
                       </SelectItem>
                     </SelectContent>
@@ -335,14 +300,11 @@ const ContactSection = () => {
                         className="mt-1 w-4 h-4 accent-primary"
                       />
                       <span className="text-white">
-                        {contact.form.agreeTerms1}{" "}
-                        <Link
-                          href="/terms-and-conditions"
-                          className="underline"
-                        >
+                        {contact.form.agreeTerms1}{' '}
+                        <Link href="/terms-and-conditions" className="underline">
                           {contact.form.terms}
-                        </Link>{" "}
-                        {contact.form.agreeTerms2}{" "}
+                        </Link>{' '}
+                        {contact.form.agreeTerms2}{' '}
                         <Link href="/privacy-policy" className="underline">
                           {contact.form.privacyPolicy}
                         </Link>
@@ -369,14 +331,14 @@ const ContactSection = () => {
             <div
               style={{
                 backgroundImage: "url('/assets/divider-15.svg')",
-                backgroundSize: "40px auto",
+                backgroundSize: '40px auto',
               }}
               className="w-full lg:w-full p-6 sm:p-8 lg:p-20 flex flex-col justify-center bg-background"
             >
               <div className="">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4 uppercase">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4 uppercase">
                   BIG SPUNTINO
-                </h2>
+                </h1>
                 {/* <p className="text-primary mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
                   {contact.description}
                 </p> */}
@@ -388,9 +350,7 @@ const ContactSection = () => {
                       {contact.address}
                     </div>
                     <div className="text-primary text-sm sm:text-base">
-                      <p className="text-primary font-medium">
-                        {contact.addressValue}
-                      </p>
+                      <p className="text-primary font-medium">{contact.addressValue}</p>
                     </div>
                   </div>
 
