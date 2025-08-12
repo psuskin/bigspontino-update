@@ -4,7 +4,6 @@ export async function GET() {
   const baseUrls = ['https://www.bigspuntino.com', 'https://www.bigspuntino.de'];
   const currentDate = new Date();
 
-  // Define all route paths (without base)
   const routePaths = [
     { path: '', changeFrequency: 'weekly', priority: 1.0 },
     { path: '/menus', changeFrequency: 'weekly', priority: 0.9 },
@@ -19,8 +18,6 @@ export async function GET() {
     { path: '/legal-notice', changeFrequency: 'yearly', priority: 0.3 },
     { path: '/sitemap', changeFrequency: 'monthly', priority: 0.2 },
   ];
-
-  // Generate all routes for both domains
   const routes = baseUrls.flatMap(baseUrl =>
     routePaths.map(route => ({
       url: `${baseUrl}${route.path}`,
