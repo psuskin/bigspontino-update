@@ -1,9 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -12,58 +12,81 @@ interface BookingModalProps {
 
 const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
   const { t } = useTranslation();
-  const [iframeUrl, setIframeUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // This is the direct URL for an embedded OpenTable reservation widget
+  const openTableUrl =
+    "https://www.opentable.de/restref/client/?rid=441969&restref=441969&domain=de&lang=de-DE&theme=standard&color=1&iframe=true";
 
   useEffect(() => {
     if (isOpen) {
-      // Create the iframe URL with the booking widget
-      const htmlContent = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Book a Table - BigSpuntino</title>
-          <style>
-            body { 
-              margin: 0; 
-              padding: 0; 
-              font-family: Arial, sans-serif; 
-              background: #f5f5f5; 
-              height: 100vh;
-              overflow: hidden;
-            }
-            .container { 
-              width: 100%; 
-              height: 100vh; 
-              background: white; 
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            #quandoo-booking-widget {
-              /* The widget script will define its own size */
-            }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div id="quandoo-booking-widget"></div>
-          </div>
-          <script src="https://booking-widget.quandoo.com/index.js" data-merchant-id="107538" data-theme="light" data-primary-color="1870C3"></script>
-        </body>
-        </html>
-      `;
+      document.body.style.overflow = "hidden";
+      setIsLoading(true);
+      setProgress(0);
 
-      const blob = new Blob([htmlContent], { type: "text/html" });
-      const url = URL.createObjectURL(blob);
-      setIframeUrl(url);
+      // Start progress animation
+      progressIntervalRef.current = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 90) {
+            if (progressIntervalRef.current) {
+              clearInterval(progressIntervalRef.current);
+            }
+            return 90;
+          }
+          return prev + 10;
+        });
+      }, 100);
+
+      // Set a maximum loading time (1 second)
+      loadingTimeoutRef.current = setTimeout(() => {
+        setIsLoading(false);
+        setProgress(100);
+        if (progressIntervalRef.current) {
+          clearInterval(progressIntervalRef.current);
+        }
+      }, 1000);
+    } else {
+      document.body.style.overflow = "unset";
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current);
+        loadingTimeoutRef.current = null;
+      }
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+        progressIntervalRef.current = null;
+      }
     }
 
     return () => {
-      if (iframeUrl) {
-        URL.revokeObjectURL(iframeUrl);
+      document.body.style.overflow = "unset";
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current);
+        loadingTimeoutRef.current = null;
+      }
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+        progressIntervalRef.current = null;
       }
     };
   }, [isOpen]);
+
+  const handleIframeLoad = () => {
+    // Clear the timeout and hide loader once iframe is loaded
+    if (loadingTimeoutRef.current) {
+      clearTimeout(loadingTimeoutRef.current);
+      loadingTimeoutRef.current = null;
+    }
+    if (progressIntervalRef.current) {
+      clearInterval(progressIntervalRef.current);
+      progressIntervalRef.current = null;
+    }
+    setProgress(100);
+    setIsLoading(false);
+  };
 
   return (
     <AnimatePresence>
@@ -92,6 +115,7 @@ const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
                 onClick={onClose}
                 className="text-white hover:text-gray-200 transition-colors"
               >
+                {/* X icon */}
                 <svg
                   className="w-6 h-6"
                   fill="none"
@@ -108,16 +132,35 @@ const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
               </button>
             </div>
 
-            {/* Iframe Container */}
-            <div className="w-full h-full pt-16">
-              {iframeUrl && (
-                <iframe
-                  src={iframeUrl}
-                  className="w-full h-full border-0"
-                  title="Booking Widget"
-                  allow="fullscreen"
-                />
+            {/* Content */}
+            <div className="relative w-full h-full pt-16 overflow-hidden">
+              {isLoading && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-10">
+                  <div className="mb-4 text-xl font-semibold text-gray-800">
+                    <Image
+                      src="/assets/logo.png"
+                      alt="BigSpuntino"
+                      width={100}
+                      height={100}
+                      className="w-auto h-16 md:h-20 lg:h-24"
+                    />
+                  </div>
+                  <div className="w-full max-w-56 bg-gray-200 rounded-none h-[8px]">
+                    <div
+                      className="bg-primary h-[8px] rounded-none transition-all duration-500 ease-out"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                </div>
               )}
+              <iframe
+                ref={iframeRef}
+                src={openTableUrl}
+                title="OpenTable Reservation Widget"
+                className="w-full h-full border-0"
+                allowFullScreen
+                onLoad={handleIframeLoad}
+              />
             </div>
           </motion.div>
         </motion.div>

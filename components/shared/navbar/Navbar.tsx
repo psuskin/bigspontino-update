@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client';
+"use client";
 
-import RevealText from '@/components/animation/text/RevealText';
-import DownArrowIcon from '@/components/icons/DownArrowIcon';
-import InstagramIcon from '@/components/icons/InstagramIcon';
-import PlusIcon from '@/components/icons/PlusIcon';
-import BookingModal from '@/components/shared/popup/BookingModal';
+import RevealText from "@/components/animation/text/RevealText";
+import DownArrowIcon from "@/components/icons/DownArrowIcon";
+import InstagramIcon from "@/components/icons/InstagramIcon";
+import PlusIcon from "@/components/icons/PlusIcon";
+import BookingModal from "@/components/shared/popup/BookingModal";
 import {
   Sheet,
   SheetContent,
@@ -13,14 +13,14 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet';
-import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,61 +63,16 @@ const Navbar = () => {
       });
     }, 100);
 
-    // Initialize widget
-    if (widgetContainerRef.current) {
-      // Clear any existing content
-      widgetContainerRef.current.innerHTML = '<div id="quandoo-booking-widget"></div>';
-
-      // Remove any existing script to prevent duplicates
-      const existingScript = document.querySelector(
-        'script[src="https://booking-widget.quandoo.com/index.js"]',
-      );
-      if (existingScript) {
-        existingScript.remove();
+    // Set a timeout for widget loading
+    loadingTimeoutRef.current = setTimeout(() => {
+      console.error("OpenTable widget loading timeout");
+      setIsWidgetLoading(false);
+      setWidgetLoadError(true);
+      setProgress(100);
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
       }
-
-      // Create and configure the script
-      const script = document.createElement('script');
-      script.src = 'https://booking-widget.quandoo.com/index.js';
-      script.setAttribute('data-merchant-id', '107538');
-      script.setAttribute('data-theme', 'light');
-      script.setAttribute('data-primary-color', '1870C3');
-
-      script.onload = () => {
-        setIsWidgetLoading(false);
-        setProgress(100);
-        if (progressIntervalRef.current) {
-          clearInterval(progressIntervalRef.current);
-        }
-        if (loadingTimeoutRef.current) {
-          clearTimeout(loadingTimeoutRef.current);
-        }
-      };
-
-      script.onerror = () => {
-        console.error('Failed to load booking widget');
-        setIsWidgetLoading(false);
-        setWidgetLoadError(true);
-        setProgress(100);
-        if (progressIntervalRef.current) {
-          clearInterval(progressIntervalRef.current);
-        }
-      };
-
-      // Append script to head
-      document.head.appendChild(script);
-
-      // Set a timeout for widget loading
-      loadingTimeoutRef.current = setTimeout(() => {
-        console.error('Booking widget loading timeout');
-        setIsWidgetLoading(false);
-        setWidgetLoadError(true);
-        setProgress(100);
-        if (progressIntervalRef.current) {
-          clearInterval(progressIntervalRef.current);
-        }
-      }, 5000); // 5 second timeout
-    }
+    }, 5000); // 5 second timeout
   };
 
   useEffect(() => {
@@ -127,14 +82,14 @@ const Navbar = () => {
       setIsScrolled(scrollTop > 100);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Booking sheet effect (updated to work with Sheet component)
   useEffect(() => {
     if (isBookingSheetOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
 
       // Small delay to ensure Sheet content is mounted before loading widget
       const timeoutId = setTimeout(() => {
@@ -145,7 +100,7 @@ const Navbar = () => {
         clearTimeout(timeoutId);
       };
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
       if (loadingTimeoutRef.current) {
         clearTimeout(loadingTimeoutRef.current);
         loadingTimeoutRef.current = null;
@@ -157,20 +112,12 @@ const Navbar = () => {
 
       // Clean up the widget when sheet closes
       if (widgetContainerRef.current) {
-        widgetContainerRef.current.innerHTML = '';
-      }
-
-      // Remove the script tag
-      const scriptTag = document.querySelector(
-        'script[src="https://booking-widget.quandoo.com/index.js"]',
-      );
-      if (scriptTag) {
-        scriptTag.remove();
+        widgetContainerRef.current.innerHTML = "";
       }
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
       if (loadingTimeoutRef.current) {
         clearTimeout(loadingTimeoutRef.current);
         loadingTimeoutRef.current = null;
@@ -182,26 +129,18 @@ const Navbar = () => {
 
       // Clean up the widget on component unmount
       if (widgetContainerRef.current) {
-        widgetContainerRef.current.innerHTML = '';
-      }
-
-      // Remove the script tag on unmount
-      const scriptTag = document.querySelector(
-        'script[src="https://booking-widget.quandoo.com/index.js"]',
-      );
-      if (scriptTag) {
-        scriptTag.remove();
+        widgetContainerRef.current.innerHTML = "";
       }
     };
   }, [isBookingSheetOpen]);
 
   const changeLanguage = async (languageCode: string) => {
-    if (i18n && typeof i18n.changeLanguage === 'function') {
+    if (i18n && typeof i18n.changeLanguage === "function") {
       try {
         await i18n.changeLanguage(languageCode);
         setIsLanguageSheetOpen(false);
       } catch (error) {
-        console.error('Failed to change language:', error);
+        console.error("Failed to change language:", error);
       }
     }
   };
@@ -209,7 +148,7 @@ const Navbar = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -224,39 +163,41 @@ const Navbar = () => {
   };
 
   const isI18nReady = mounted && ready && i18n;
-  const currentLanguage = isI18nReady ? i18n.language : 'en';
+  const currentLanguage = isI18nReady ? i18n.language : "en";
 
   const navLinks = [
-    { href: '/', label: t('navigation.home') || 'Home' },
-    { href: '/menus', label: `Il Menu (${t('navigation.menu') || 'menus'})` },
+    { href: "/", label: t("navigation.home") || "Home" },
+    { href: "/menus", label: `Il Menu (${t("navigation.menu") || "menus"})` },
     {
-      href: '/events',
-      label: `Eventi (${t('navigation.events') || 'events'})`,
+      href: "/events",
+      label: `Eventi (${t("navigation.events") || "events"})`,
     },
     {
-      href: '/history',
-      label: `La Storia (${t('navigation.history') || 'history'})`,
+      href: "/history",
+      label: `La Storia (${t("navigation.history") || "history"})`,
     },
     {
-      href: '/impressions',
-      label: `Impressioni  (${t('navigation.impressions') || 'Bildgalerie'})`,
+      href: "/impressions",
+      label: `Impressioni  (${t("navigation.impressions") || "Bildgalerie"})`,
     },
     {
-      href: '/contact',
-      label: `Contatto (${t('navigation.contact') || 'contact'} )`,
+      href: "/contact",
+      label: `Contatto (${t("navigation.contact") || "contact"} )`,
     },
     {
-      href: '/jobs',
-      label: `Lavori (${t('navigation.jobs') || 'Stellen'})`,
+      href: "/jobs",
+      label: `Lavori (${t("navigation.jobs") || "Stellen"})`,
     },
   ];
 
-  const socialLinks = [{ href: 'https://www.instagram.com/bigspuntino/', label: 'Instagram' }];
+  const socialLinks = [
+    { href: "https://www.instagram.com/bigspuntino/", label: "Instagram" },
+  ];
 
   const processText = (text: string) => {
-    const parts = text.split('(');
+    const parts = text.split("(");
     const mainText = parts[0].trim();
-    const bracketed = parts[1] ? `(${parts[1]}` : '';
+    const bracketed = parts[1] ? `(${parts[1]}` : "";
     return { mainText, bracketed };
   };
 
@@ -273,8 +214,8 @@ const Navbar = () => {
           ease: [0.25, 0.46, 0.45, 0.94],
         }}
         className={cn(
-          'flex items-center px-3 overflow-y-hidden sm:px-4 py-10 text-white md:px-6 fixed top-0 z-50 w-full',
-          isScrolled && 'py-4',
+          "flex items-center px-3 overflow-y-hidden sm:px-4 py-10 text-white md:px-6 fixed top-0 z-50 w-full",
+          isScrolled && "py-4"
         )}
       >
         {/* Animated background overlay */}
@@ -292,9 +233,12 @@ const Navbar = () => {
 
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="flex cursor-pointer items-center gap-1 sm:gap-2 text-sm  md:text-2xl z-20">
-            <span>{t('navigation.menu') || 'Menu'}</span>
+            <span>{t("navigation.menu") || "Menu"}</span>
             <div className="relative">
-              <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.3 }}>
+              <motion.div
+                animate={{ rotate: isOpen ? 45 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
                 <PlusIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
               </motion.div>
             </div>
@@ -305,7 +249,7 @@ const Navbar = () => {
                 <SheetTitle></SheetTitle>
                 <SheetDescription></SheetDescription>
                 <div
-                  style={{ height: 'calc(100vh)' }}
+                  style={{ height: "calc(100vh)" }}
                   className="w-full flex gap-0.5 flex-col h-full md:items-center items-start justify-center px-4 sm:px-8 md:ps-16 md:pe-10 relative"
                 >
                   {/* Riservare button at the top */}
@@ -332,18 +276,18 @@ const Navbar = () => {
                         className="absolute inset-0 bg-white"
                         style={{
                           backgroundImage: "url('/assets/divider-15.svg')",
-                          backgroundSize: '40px auto',
+                          backgroundSize: "40px auto",
                         }}
                       />
 
                       {/* Button Content */}
                       <div className="relative z-10 inline-flex h-12 sm:h-14 translate-y-0 items-center justify-center text-lg sm:text-xl px-8 text-secondary transition group-hover:-translate-y-[150%] rounded-none font-medium tracking-wide">
-                        {t('buttons.bookTable') || 'Book A Table'}
+                        {t("buttons.bookTable") || "Book A Table"}
                       </div>
 
                       {/* Hover State */}
                       <div className="absolute inset-0 z-10 inline-flex h-12 sm:h-14 w-full translate-y-[100%] items-center justify-center text-lg sm:text-xl bg-[#000c71] px-8 text-white transition duration-300 group-hover:translate-y-0 rounded-none font-medium tracking-wide">
-                        {t('buttons.bookTable') || 'Book A Table'}
+                        {t("buttons.bookTable") || "Book A Table"}
                       </div>
                     </motion.button>
                   </motion.div>
@@ -371,7 +315,9 @@ const Navbar = () => {
                             href={link.href}
                             onClick={() => setIsOpen(false)}
                             className={`block font-medium md:text-center text-start relative after:absolute md:after:bottom-1.5 after:bottom-0.5 after:left-0 md:after:h-[3px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-background after:bg-background  after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic  ${
-                              pathname === link.href ? 'italic after:scale-x-100' : ''
+                              pathname === link.href
+                                ? "italic after:scale-x-100"
+                                : ""
                             }`}
                           >
                             <div className="flex items-center gap-1 text-white sm:gap-2 md:gap-2.5">
@@ -380,7 +326,7 @@ const Navbar = () => {
                               </span>
                               {bracketed && (
                                 <span className="text-xs sm:text-sm md:text-lg lg:text-xl uppercase leading-tight italic font-narrow">
-                                  {bracketed.split('(')[1].split(')')[0]}
+                                  {bracketed.split("(")[1].split(")")[0]}
                                 </span>
                               )}
                             </div>
@@ -400,7 +346,9 @@ const Navbar = () => {
                     className="md:hidden block"
                   >
                     <div className="mt-10 mb-1 gap-4 w-full">
-                      <h5 className="text-lg text-left">{t('social.title') || 'Social'}</h5>
+                      <h5 className="text-lg text-left">
+                        {t("social.title") || "Social"}
+                      </h5>
                     </div>
                     {socialLinks.map((link, index) => (
                       <motion.div
@@ -422,7 +370,9 @@ const Navbar = () => {
                           target="_blank"
                           onClick={() => setIsOpen(false)}
                           className={`block text-3xl font-medium text-left relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-secondary after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 hover:italic ${
-                            pathname === link.href ? 'italic after:scale-x-100' : ''
+                            pathname === link.href
+                              ? "italic after:scale-x-100"
+                              : ""
                           }`}
                         >
                           {link.label}
@@ -437,7 +387,7 @@ const Navbar = () => {
         </Sheet>
 
         <div className="absolute inset-0 flex items-center justify-center z-10">
-          <Link href={'/'} className="">
+          <Link href={"/"} className="">
             <motion.div
               className="py-2"
               animate={{
@@ -465,10 +415,13 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
+            <motion.div
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+            >
               <Link
                 target="_blank"
-                href={'https://www.instagram.com/bigspuntino/'}
+                href={"https://www.instagram.com/bigspuntino/"}
                 className="text-primary"
               >
                 <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -478,12 +431,17 @@ const Navbar = () => {
 
           <div className="w-3 sm:w-4 h-[1px] lg:block hidden bg-gray-100"></div>
 
-          <Sheet open={isLanguageSheetOpen} onOpenChange={setIsLanguageSheetOpen}>
+          <Sheet
+            open={isLanguageSheetOpen}
+            onOpenChange={setIsLanguageSheetOpen}
+          >
             <SheetTrigger className="cursor-pointer flex items-center gap-1 text-sm sm:gap-2 md:text-2xl z-20">
-              {currentLanguage === 'en' ? (
+              {currentLanguage === "en" ? (
                 <motion.span
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'en' ? 'text-white ' : 'hover:text-primary'
+                    currentLanguage === "en"
+                      ? "text-white "
+                      : "hover:text-primary"
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -493,7 +451,9 @@ const Navbar = () => {
               ) : (
                 <motion.span
                   className={`transition-colors duration-200 flex items-center gap-1 md:px-3 ${
-                    currentLanguage === 'de' ? 'text-white ' : 'hover:text-primary'
+                    currentLanguage === "de"
+                      ? "text-white "
+                      : "hover:text-primary"
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -502,7 +462,10 @@ const Navbar = () => {
                 </motion.span>
               )}
             </SheetTrigger>
-            <SheetContent side="right" className="rounded-none pointer-events-none w-full sm:w-xl">
+            <SheetContent
+              side="right"
+              className="rounded-none pointer-events-none w-full sm:w-xl"
+            >
               <div className="w-full h-full bg-background pointer-events-auto rounded-none">
                 <SheetHeader>
                   <SheetTitle></SheetTitle>
@@ -511,25 +474,31 @@ const Navbar = () => {
                 <div className="h-full w-full flex items-center justify-end text-end px-20">
                   <div className="">
                     <h2 className="text-lg sm:text-xl lg:text-xl  opacity-75 font-bold mb-10">
-                      {t('language.title') || 'Language'}
+                      {t("language.title") || "Language"}
                     </h2>
                     <div className="">
                       <motion.button
-                        onClick={() => changeLanguage('en')}
+                        onClick={() => changeLanguage("en")}
                         className={`cursor-pointer transition-colors text-4xl uppercase mb-6 duration-200 ${
-                          currentLanguage === 'en' ? 'text-primary ' : 'hover:text-primary'
+                          currentLanguage === "en"
+                            ? "text-primary "
+                            : "hover:text-primary"
                         }`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >
-                        <RevealText>{t('language.english') || 'English'}</RevealText>
+                        <RevealText>
+                          {t("language.english") || "English"}
+                        </RevealText>
                       </motion.button>
                     </div>
                     <div className="">
                       <motion.button
-                        onClick={() => changeLanguage('de')}
+                        onClick={() => changeLanguage("de")}
                         className={`cursor-pointer transition-colors text-4xl uppercase duration-200 ${
-                          currentLanguage === 'de' ? 'text-primary ' : 'hover:text-primary'
+                          currentLanguage === "de"
+                            ? "text-primary "
+                            : "hover:text-primary"
                         }`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -556,18 +525,22 @@ const Navbar = () => {
             >
               <div className="inline-flex h-8 sm:h-9 md:h-10 translate-y-0 items-center justify-center bg-primary text-sm sm:text-lg md:text-xl lg:text-2xl px-3 sm:px-4 md:px-6 text-white transition group-hover:-translate-y-[150%] rounded-none">
                 <span className="hidden sm:inline">
-                  {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
+                  {isBookingLoading
+                    ? "Loading..."
+                    : t("buttons.bookTable") || "Book A Table"}
                 </span>
                 <span className="sm:hidden">
-                  {isBookingLoading ? '...' : t('buttons.book') || 'Book'}
+                  {isBookingLoading ? "..." : t("buttons.book") || "Book"}
                 </span>
               </div>
               <div className="absolute inline-flex h-8 sm:h-9 md:h-10 w-full translate-y-[100%] items-center justify-center text-sm sm:text-lg md:text-xl lg:text-2xl bg-background px-3 sm:px-4 md:px-6 text-secondary transition duration-300 group-hover:translate-y-0 rounded-none">
                 <span className="hidden sm:inline">
-                  {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
+                  {isBookingLoading
+                    ? "Loading..."
+                    : t("buttons.bookTable") || "Book A Table"}
                 </span>
                 <span className="sm:hidden">
-                  {isBookingLoading ? '...' : t('buttons.book') || 'Book'}
+                  {isBookingLoading ? "..." : t("buttons.book") || "Book"}
                 </span>
               </div>
             </motion.button>
@@ -589,18 +562,22 @@ const Navbar = () => {
           >
             <div className="inline-flex h-11 md:h-11 translate-y-0 items-center justify-center bg-primary  px-3 sm:px-4 md:px-6 text-white transition group-hover:-translate-y-[150%] rounded-none w-full">
               <span className="">
-                {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
+                {isBookingLoading
+                  ? "Loading..."
+                  : t("buttons.bookTable") || "Book A Table"}
               </span>
             </div>
             <div className="absolute inline-flex h-11 md:h-11 w-full translate-y-[100%] items-center justify-center  bg-background px-3 sm:px-4 md:px-6 text-secondary transition duration-300 group-hover:translate-y-0 rounded-none">
               <span className="">
-                {isBookingLoading ? 'Loading...' : t('buttons.bookTable') || 'Book A Table'}
+                {isBookingLoading
+                  ? "Loading..."
+                  : t("buttons.bookTable") || "Book A Table"}
               </span>
             </div>
           </motion.button>
         </div>
         <Link
-          href={'/menus'}
+          href={"/menus"}
           className="px-8 h-full flex items-center justify-center border-x-1 bg-primary text-white border-white"
         >
           Menu
@@ -627,7 +604,7 @@ const Navbar = () => {
             <SheetHeader className="p-4 border-b border-gray-200 bg-primary flex-shrink-0">
               <div className="flex justify-between items-center">
                 <SheetTitle className="text-2xl font-semibold text-white">
-                  {t('buttons.bookTable') || 'Book A Table'}
+                  {t("buttons.bookTable") || "Book A Table"}
                 </SheetTitle>
               </div>
               <SheetDescription></SheetDescription>
@@ -659,10 +636,10 @@ const Navbar = () => {
                   <div className="text-center space-y-4">
                     <div className="text-6xl">⚠️</div>
                     <h3 className="text-xl font-semibold text-gray-800">
-                      {t('booking.widgetError') || 'Booking Widget Unavailable'}
+                      {t("booking.widgetError") || "Booking Widget Unavailable"}
                     </h3>
                     <p className="text-gray-600 max-w-md">
-                      {t('booking.widgetErrorMessage') ||
+                      {t("booking.widgetErrorMessage") ||
                         "We're having trouble loading our booking system. Please try one of the alternatives below."}
                     </p>
                     <div className="space-y-3 pt-4">
@@ -670,19 +647,21 @@ const Navbar = () => {
                         onClick={retryWidgetLoading}
                         className="w-full px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 transition-colors"
                       >
-                        {t('booking.tryAgain') || 'Try Again'}
+                        {t("booking.tryAgain") || "Try Again"}
                       </button>
                       <a
                         href="tel:+4940123456789"
                         className="block w-full px-4 py-2 border border-primary text-primary rounded hover:bg-primary/10 transition-colors text-center"
                       >
-                        {t('booking.callToBook') || 'Call to Book: +49 40 123 456 789'}
+                        {t("booking.callToBook") ||
+                          "Call to Book: +49 40 123 456 789"}
                       </a>
                       <a
                         href="mailto:reservations@bigspuntino.com"
                         className="block w-full px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 transition-colors text-center"
                       >
-                        {t('booking.emailToBook') || 'Email: reservations@bigspuntino.com'}
+                        {t("booking.emailToBook") ||
+                          "Email: reservations@bigspuntino.com"}
                       </a>
                     </div>
                   </div>
@@ -691,15 +670,35 @@ const Navbar = () => {
               <div
                 ref={widgetContainerRef}
                 className="w-full h-full"
-                style={{ minHeight: '400px' }}
-              />
+                style={{ minHeight: "400px" }}
+              >
+                <iframe
+                  src="https://www.opentable.de/restref/client/?rid=441969&restref=441969&domain=de&lang=de-DE&theme=standard&color=1&iframe=true"
+                  title="OpenTable Reservation Widget"
+                  className="w-full h-full border-0"
+                  allowFullScreen
+                  onLoad={() => {
+                    setIsWidgetLoading(false);
+                    setProgress(100);
+                    if (progressIntervalRef.current) {
+                      clearInterval(progressIntervalRef.current);
+                    }
+                    if (loadingTimeoutRef.current) {
+                      clearTimeout(loadingTimeoutRef.current);
+                    }
+                  }}
+                />
+              </div>
             </div>
           </div>
         </SheetContent>
       </Sheet>
 
       {/* Booking Modal */}
-      <BookingModal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} />
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </>
   );
 };
